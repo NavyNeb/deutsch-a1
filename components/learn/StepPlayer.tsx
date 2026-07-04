@@ -35,7 +35,7 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
         <div style={{ flex: 1 }}><ProgressBar value={(i) / lesson.steps.length} /></div>
         <span className="label">{i + 1} / {lesson.steps.length}</span>
       </div>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
           {step.kind === 'intro' && <IntroStep step={step} />}
           {step.kind === 'vocab' && <VocabStep item={step.item} />}

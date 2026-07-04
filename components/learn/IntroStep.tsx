@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/Card';
+import type { LessonStep } from '@/content/types';
 
-type IntroStepData = { kind: 'intro'; title: string; scene?: string; goals: string[] };
+type IntroStepData = Extract<LessonStep, { kind: 'intro' }>;
 
 export function IntroStep({ step }: { step: IntroStepData }) {
   return (

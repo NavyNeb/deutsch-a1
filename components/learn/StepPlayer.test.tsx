@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
@@ -7,6 +8,25 @@ import { describe, it, expect, vi } from 'vitest';
 // for this unit test (StepPlayer's router usage is a fire-and-forget `router.push`
 // on the last step, not exercised by this test).
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
+
+// StepPlayer uses <AnimatePresence mode="wait"> so the outgoing step's exit
+// animation completes before the incoming step mounts. jsdom never resolves
+// framer-motion's exit animations, so real AnimatePresence would leave the
+// old step in the DOM forever during a test. Mock framer-motion so animations
+// are inert: AnimatePresence is a passthrough and motion.* elements render as
+// plain DOM elements.
+vi.mock('framer-motion', () => ({
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
+  motion: new Proxy(
+    {},
+    {
+      get: () => (props: any) => {
+        const { children, ...rest } = props;
+        return React.createElement('div', rest, children);
+      },
+    }
+  ),
+}));
 
 import { StepPlayer } from './StepPlayer';
 
