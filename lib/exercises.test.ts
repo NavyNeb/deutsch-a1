@@ -7,6 +7,11 @@ describe('checkAnswer', () => {
     expect(checkAnswer(ex, 1)).toEqual({ correct: true, explanation: 'because' });
     expect(checkAnswer(ex, 0).correct).toBe(false);
   });
+  it('listenChoose compares the chosen index', () => {
+    const ex = { type: 'listenChoose', id: 'e', audio: { ttsText: 'Guten Tag' }, options: ['A greeting', 'Ordering food'], answer: 0 } as const;
+    expect(checkAnswer(ex, 0).correct).toBe(true);
+    expect(checkAnswer(ex, 1).correct).toBe(false);
+  });
   it('fillBlank is case/space-insensitive', () => {
     const ex = { type: 'fillBlank', id: 'e', prompt: '', answer: 'bist' } as const;
     expect(checkAnswer(ex, '  Bist ').correct).toBe(true);

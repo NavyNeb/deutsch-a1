@@ -6,7 +6,7 @@ export function checkAnswer(ex: Exercise, response: unknown): { correct: boolean
   switch (ex.type) {
     case 'multipleChoice':
     case 'listenChoose':
-      return { correct: response === ex.answer, explanation: (ex as any).explain };
+      return { correct: response === ex.answer, explanation: 'explain' in ex ? ex.explain : undefined };
     case 'fillBlank':
       return { correct: norm(String(response)) === norm(ex.answer), explanation: ex.hint };
     case 'articlePicker':
