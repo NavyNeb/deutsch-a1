@@ -19,6 +19,9 @@
 # Never publish these. Free TTS-generated audio (tts-*.mp3) is fine to commit.
 /public/audio/l*.mp3
 
+# generated content snapshot consumed by scripts/prepare-audio.mjs
+/content/lessons.snapshot.json
+
 # misc
 .DS_Store
 *.pem
