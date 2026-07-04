@@ -33,3 +33,6 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+
+# Next.js generated types (regenerated on build/dev)
+/next-env.d.ts
