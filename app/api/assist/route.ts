@@ -20,6 +20,10 @@ export async function POST(req: Request) {
     context?: string;
   };
 
+  if (mode !== 'explain' && mode !== 'examples' && mode !== 'quiz') {
+    return Response.json({ text: 'Invalid mode' }, { status: 400 });
+  }
+
   const client = new Anthropic();
   const msg = await client.messages.create({
     model: mode === 'examples' || mode === 'explain' ? ASSIST_MODELS.rich : ASSIST_MODELS.cheap,

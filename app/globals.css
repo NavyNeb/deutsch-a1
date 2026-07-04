@@ -29,6 +29,7 @@ body {
   --paper:#F5F3EE; --card:#FCFBF8; --ink:#2B2A26; --muted:#8A7F6B;
   --border:#E4E0D7; --accent:#B0472F;
   --der:#2F5FB0; --die:#B0472F; --das:#3E7C5A;
+  --accent-wash: #F3E7E3;
   --font-serif: Georgia, 'Times New Roman', serif;
 }
 body { background: var(--paper); color: var(--ink); }

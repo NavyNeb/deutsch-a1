@@ -1,28 +1,12 @@
 import Link from 'next/link';
 import type { Lesson } from '@/content/types';
 
-// Lessons beyond Module 1 have no content yet — render a locked, non-interactive placeholder.
-const LAST_ACTIVE_LESSON_NUMBER = 3;
-
 const RADIUS = 20;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
+// LessonNode only ever receives authored lessons (Module 1, numbers 1-3) — LearningPath
+// renders the greyed-out "coming soon" slots for the rest of the curriculum itself.
 export function LessonNode({ lesson, completion }: { lesson: Lesson; completion: number }) {
-  if (lesson.number > LAST_ACTIVE_LESSON_NUMBER) {
-    return (
-      <div
-        style={{
-          display: 'flex', alignItems: 'center', gap: 16, padding: 16,
-          background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 4,
-          opacity: 0.5,
-        }}
-      >
-        <span className="label">Lektion {lesson.number}</span>
-        <p style={{ margin: 0, color: 'var(--muted)' }}>Bald verfügbar</p>
-      </div>
-    );
-  }
-
   const pct = Math.max(0, Math.min(1, completion));
   const dashOffset = CIRCUMFERENCE * (1 - pct);
 

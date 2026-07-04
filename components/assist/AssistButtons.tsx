@@ -28,6 +28,11 @@ export function AssistButtons({ term, context }: { term: string; context?: strin
         body: JSON.stringify({ mode, term, context }),
       });
       const data = (await res.json()) as { text: string };
+      if (!res.ok) {
+        setText(null);
+        setError(data.text || 'Assist is unavailable right now.');
+        return;
+      }
       setText(data.text);
     } catch {
       setError('Something went wrong asking for assist. Please try again.');

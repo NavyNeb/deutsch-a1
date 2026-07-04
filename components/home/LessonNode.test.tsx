@@ -14,11 +14,4 @@ describe('LessonNode', () => {
     render(<LessonNode lesson={lesson} completion={0.5} />);
     expect(screen.getByRole('link', { name: /review/i })).toHaveAttribute('href', '/lesson/l1/review');
   });
-
-  it('shows a greyed "coming soon" state for lessons beyond number 3', () => {
-    const locked = { ...lesson, id: 'l4', number: 4, title: { de: 'Später', en: 'Later' } };
-    render(<LessonNode lesson={locked} completion={0} />);
-    expect(screen.queryByRole('link')).not.toBeInTheDocument();
-    expect(screen.getByText(/bald verfügbar/i)).toBeInTheDocument();
-  });
 });

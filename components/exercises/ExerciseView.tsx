@@ -11,7 +11,12 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
   const [result, setResult] = useState<{ correct: boolean; explanation?: string } | null>(null);
 
   const check = () => { const r = checkAnswer(exercise, response); setResult(r); onResult(r.correct); };
-  const opt = (active: boolean) => ({ border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`, background: active ? '#F3E7E3' : 'var(--card)', borderRadius: 6, padding: '10px 14px', margin: '4px 0', width: '100%', textAlign: 'left' as const });
+  const opt = (active: boolean) => ({ border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`, background: active ? 'var(--accent-wash)' : 'var(--card)', borderRadius: 6, padding: '10px 14px', margin: '4px 0', width: '100%', textAlign: 'left' as const });
+
+  const unattempted =
+    exercise.type === 'wordOrder' ? (response as string[]).length !== exercise.tokens.length :
+    exercise.type === 'match' ? Object.keys(response as Record<string, string>).length !== exercise.pairs.length :
+    response === undefined;
 
   return (
     <div>
@@ -41,7 +46,7 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
       {exercise.type === 'wordOrder' && <WordOrder tokens={exercise.tokens} onChange={setResponse} />}
       {exercise.type === 'match' && <Match pairs={exercise.pairs} onChange={setResponse} />}
 
-      <div style={{ marginTop: 14 }}><Button onClick={check} disabled={response === undefined}>Check</Button></div>
+      <div style={{ marginTop: 14 }}><Button onClick={check} disabled={unattempted}>Check</Button></div>
 
       {result && (
         <div style={{ marginTop: 12, color: result.correct ? 'var(--das)' : 'var(--die)' }}>

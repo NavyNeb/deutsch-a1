@@ -13,7 +13,8 @@ pronunciation and grammar.
   lesson's content for revisiting material already learned.
 - **Home / learning path** (`/`) — shows the full 12-lesson path for Module 1, with
   the authored lessons active and the rest greyed out as "coming soon", plus
-  progress rings and a "words to review" list drawn from missed exercises.
+  progress rings and a "words to review" list populated by words the learner
+  marks as difficult while working through vocab in learn mode.
 - **Native audio** — official *Menschen* course audio where available, generated
   TTS (Microsoft Edge neural voices) as a fallback/supplement for everything else,
   including listening-comprehension exercises.
