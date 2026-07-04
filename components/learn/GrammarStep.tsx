@@ -3,6 +3,7 @@ import { ttsSrc } from '@/lib/audio';
 import { AudioButton } from '@/components/ui/AudioButton';
 import { Card } from '@/components/ui/Card';
 import { MiniMarkdown } from '@/components/ui/miniMarkdown';
+import { AssistButtons } from '@/components/assist/AssistButtons';
 
 export function GrammarStep({ note }: { note: GrammarNote }) {
   return (
@@ -32,6 +33,7 @@ export function GrammarStep({ note }: { note: GrammarNote }) {
           ))}
         </div>
       )}
+      <AssistButtons term={note.title} />
     </Card>
   );
 }

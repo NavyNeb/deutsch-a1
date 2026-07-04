@@ -4,6 +4,7 @@ import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { SyllableStress } from '@/components/ui/SyllableStress';
 import { Card } from '@/components/ui/Card';
+import { AssistButtons } from '@/components/assist/AssistButtons';
 
 export function VocabStep({ item }: { item: VocabItem }) {
   return (
@@ -19,6 +20,7 @@ export function VocabStep({ item }: { item: VocabItem }) {
         <div><em>{item.example.de}</em><br /><span style={{ color: 'var(--muted)', fontSize: 14 }}>{item.example.en}</span></div>
         <AudioButton src={ttsSrc(item.example.de)} label="Play example" />
       </div>
+      <AssistButtons term={item.german} context={item.example.de} />
     </Card>
   );
 }
