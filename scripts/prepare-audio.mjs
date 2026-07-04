@@ -1,9 +1,10 @@
 import { MsEdgeTTS, OUTPUT_FORMAT } from 'msedge-tts';
 import { readFile, copyFile, mkdir, access, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { officialTrackName, ttsFileName, TTS_VOICE } from '../lib/audio-names.mjs';
 
-const OFFICIAL_SRC = 'C:/Users/F3LX_STOR/Downloads/Menschen A1 audio';
+const OFFICIAL_SRC = process.env.MENSCHEN_AUDIO_DIR || 'C:/Users/F3LX_STOR/Downloads/Menschen A1 audio';
 const OUT = path.resolve('public/audio');
 
 // Pull audio-bearing text + official refs out of the lessons.
@@ -55,4 +56,4 @@ async function main() {
 }
 
 // Only run when invoked directly (not when imported by the test).
-if (import.meta.url === `file://${process.argv[1]}`) main();
+if (import.meta.url === pathToFileURL(process.argv[1]).href) main();
