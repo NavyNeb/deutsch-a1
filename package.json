@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
     "snapshot": "tsx scripts/snapshot.mjs",
     "audio": "npm run snapshot && node scripts/prepare-audio.mjs"
   },

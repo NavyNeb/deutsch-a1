@@ -56,7 +56,7 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
 function WordOrder({ tokens, onChange }: { tokens: string[]; onChange: (v: string[]) => void }) {
   const [chosen, setChosen] = useState<string[]>([]);
   const pick = (t: string, i: number) => { const next = [...chosen, t]; setChosen(next); onChange(next); };
-  const pool = tokens.filter((t) => { const c = { ...countBy(chosen) }; return (countBy(tokens)[t] ?? 0) > (chosen.filter(x => x === t).length); });
+  const pool = tokens.filter((t) => (countBy(tokens)[t] ?? 0) > (chosen.filter(x => x === t).length));
   return (<div>
     <div style={{ minHeight: 38, border: '1px dashed var(--border)', borderRadius: 6, padding: 8, marginBottom: 8 }}>{chosen.join(' ')}</div>
     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
