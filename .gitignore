@@ -15,6 +15,10 @@
 # brainstorming companion (local mockups)
 /.superpowers/
 
+# official Menschen audio tracks — copyrighted (Hueber), local/personal use ONLY.
+# Never publish these. Free TTS-generated audio (tts-*.mp3) is fine to commit.
+/public/audio/l*.mp3
+
 # misc
 .DS_Store
 *.pem
