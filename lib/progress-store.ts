@@ -4,6 +4,7 @@ import { ProgressState, loadProgress, saveProgress, withStepDone, withExerciseRe
 
 let state: ProgressState = emptyProgress();
 let hydrated = false;
+const SERVER_SNAPSHOT = emptyProgress();
 const listeners = new Set<() => void>();
 function set(next: ProgressState) { state = next; saveProgress(state); listeners.forEach((l) => l()); }
 function subscribe(l: () => void) { listeners.add(l); return () => listeners.delete(l); }
@@ -11,7 +12,7 @@ function getSnapshot() {
   if (!hydrated && typeof window !== 'undefined') { state = loadProgress(); hydrated = true; }
   return state;
 }
-function getServerSnapshot() { return emptyProgress(); }
+function getServerSnapshot() { return SERVER_SNAPSHOT; }
 
 export function useProgress() {
   const s = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
