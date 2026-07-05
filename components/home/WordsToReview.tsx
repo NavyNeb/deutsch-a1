@@ -15,10 +15,13 @@ export function WordsToReview() {
 
   return (
     <section>
-      <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: '0 0 16px' }}>Schwierige Wörter</h2>
+      <div style={{ marginBottom: 16 }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: 0 }}>Schwierige Wörter</h2>
+        <p className="label" style={{ color: 'var(--muted)', margin: '2px 0 0' }}>Words to review</p>
+      </div>
       {hardWords.length === 0 ? (
         <p style={{ color: 'var(--muted)' }}>
-          No hard words yet — mark a word while learning to review it here.
+          No saved words yet — tap “Als schwierig markieren” (mark as difficult) on a word while learning, and it will appear here.
         </p>
       ) : (
         <Card>

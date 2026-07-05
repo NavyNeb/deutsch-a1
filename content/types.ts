@@ -9,6 +9,7 @@ export const VocabItemSchema = z.object({
   english: z.string(),
   gender: GenderSchema,
   syllables: z.array(z.string()).min(1),   // stressed syllable is UPPERCASE
+  pronunciation: z.string().optional(),    // English-reader respelling, e.g. "GOO-ten tahk"
   example: z.object({ de: z.string(), en: z.string() }),
   image: z.string().optional(),
 });

@@ -9,18 +9,18 @@ export const lektion3: Lesson = {
     { kind: 'intro', title: 'Willkommen zurück! 👋', scene: 'Someone shows a family photo and talks about their parents, siblings and grandparents.',
       goals: ['Talk about your family', 'Say which languages you speak', 'Use possessives (mein/dein)', 'Use the definite article with the right gender'] },
 
-    { kind: 'vocab', item: { id: 'l3-familie', german: 'die Familie', english: 'the family', gender: 'die', syllables: ['fa', 'MI', 'lie'], example: { de: 'Meine Familie ist groß.', en: 'My family is big.' } } },
-    { kind: 'vocab', item: { id: 'l3-mutter', german: 'die Mutter', english: 'the mother', gender: 'die', syllables: ['MUT', 'ter'], example: { de: 'Das ist meine Mutter.', en: 'This is my mother.' } } },
-    { kind: 'vocab', item: { id: 'l3-vater', german: 'der Vater', english: 'the father', gender: 'der', syllables: ['VA', 'ter'], example: { de: 'Das ist mein Vater.', en: 'This is my father.' } } },
-    { kind: 'vocab', item: { id: 'l3-eltern', german: 'die Eltern', english: 'the parents', gender: 'die', syllables: ['EL', 'tern'], example: { de: 'Meine Eltern kommen aus Kamerun.', en: 'My parents come from Cameroon.' } } },
-    { kind: 'vocab', item: { id: 'l3-bruder', german: 'der Bruder', english: 'the brother', gender: 'der', syllables: ['BRU', 'der'], example: { de: 'Mein Bruder heißt Paul.', en: 'My brother is called Paul.' } } },
-    { kind: 'vocab', item: { id: 'l3-schwester', german: 'die Schwester', english: 'the sister', gender: 'die', syllables: ['SCHWES', 'ter'], example: { de: 'Meine Schwester ist Studentin.', en: 'My sister is a student.' } } },
-    { kind: 'vocab', item: { id: 'l3-geschwister', german: 'die Geschwister', english: 'the siblings', gender: 'die', syllables: ['ge', 'SCHWIS', 'ter'], example: { de: 'Ich habe zwei Geschwister.', en: 'I have two siblings.' } } },
-    { kind: 'vocab', item: { id: 'l3-sohn', german: 'der Sohn', english: 'the son', gender: 'der', syllables: ['SOHN'], example: { de: 'Mein Sohn ist zehn Jahre alt.', en: 'My son is ten years old.' } } },
-    { kind: 'vocab', item: { id: 'l3-tochter', german: 'die Tochter', english: 'the daughter', gender: 'die', syllables: ['TOCH', 'ter'], example: { de: 'Meine Tochter spricht Englisch.', en: 'My daughter speaks English.' } } },
-    { kind: 'vocab', item: { id: 'l3-kind', german: 'das Kind', english: 'the child', gender: 'das', syllables: ['KIND'], example: { de: 'Das Kind spricht Deutsch und Englisch.', en: 'The child speaks German and English.' } } },
-    { kind: 'vocab', item: { id: 'l3-grossmutter', german: 'die Großmutter', english: 'the grandmother', gender: 'die', syllables: ['GROSS', 'mut', 'ter'], example: { de: 'Meine Großmutter wohnt in Yaoundé.', en: 'My grandmother lives in Yaoundé.' } } },
-    { kind: 'vocab', item: { id: 'l3-grossvater', german: 'der Großvater', english: 'the grandfather', gender: 'der', syllables: ['GROSS', 'va', 'ter'], example: { de: 'Mein Großvater ist verheiratet.', en: 'My grandfather is married.' } } },
+    { kind: 'vocab', item: { id: 'l3-familie', german: 'die Familie', english: 'the family', gender: 'die', syllables: ['fa', 'MI', 'lie'], pronunciation: 'dee fah-MEE-lee-uh', example: { de: 'Meine Familie ist groß.', en: 'My family is big.' } } },
+    { kind: 'vocab', item: { id: 'l3-mutter', german: 'die Mutter', english: 'the mother', gender: 'die', syllables: ['MUT', 'ter'], pronunciation: 'dee MOO-ter', example: { de: 'Das ist meine Mutter.', en: 'This is my mother.' } } },
+    { kind: 'vocab', item: { id: 'l3-vater', german: 'der Vater', english: 'the father', gender: 'der', syllables: ['VA', 'ter'], pronunciation: 'dair FAH-ter', example: { de: 'Das ist mein Vater.', en: 'This is my father.' } } },
+    { kind: 'vocab', item: { id: 'l3-eltern', german: 'die Eltern', english: 'the parents', gender: 'die', syllables: ['EL', 'tern'], pronunciation: 'dee EL-tern', example: { de: 'Meine Eltern kommen aus Kamerun.', en: 'My parents come from Cameroon.' } } },
+    { kind: 'vocab', item: { id: 'l3-bruder', german: 'der Bruder', english: 'the brother', gender: 'der', syllables: ['BRU', 'der'], pronunciation: 'dair BROO-der', example: { de: 'Mein Bruder heißt Paul.', en: 'My brother is called Paul.' } } },
+    { kind: 'vocab', item: { id: 'l3-schwester', german: 'die Schwester', english: 'the sister', gender: 'die', syllables: ['SCHWES', 'ter'], pronunciation: 'dee SHVES-ter', example: { de: 'Meine Schwester ist Studentin.', en: 'My sister is a student.' } } },
+    { kind: 'vocab', item: { id: 'l3-geschwister', german: 'die Geschwister', english: 'the siblings', gender: 'die', syllables: ['ge', 'SCHWIS', 'ter'], pronunciation: 'dee guh-SHVIS-ter', example: { de: 'Ich habe zwei Geschwister.', en: 'I have two siblings.' } } },
+    { kind: 'vocab', item: { id: 'l3-sohn', german: 'der Sohn', english: 'the son', gender: 'der', syllables: ['SOHN'], pronunciation: 'dair ZOHN', example: { de: 'Mein Sohn ist zehn Jahre alt.', en: 'My son is ten years old.' } } },
+    { kind: 'vocab', item: { id: 'l3-tochter', german: 'die Tochter', english: 'the daughter', gender: 'die', syllables: ['TOCH', 'ter'], pronunciation: 'dee TOKH-ter', example: { de: 'Meine Tochter spricht Englisch.', en: 'My daughter speaks English.' } } },
+    { kind: 'vocab', item: { id: 'l3-kind', german: 'das Kind', english: 'the child', gender: 'das', syllables: ['KIND'], pronunciation: 'dahs KINT', example: { de: 'Das Kind spricht Deutsch und Englisch.', en: 'The child speaks German and English.' } } },
+    { kind: 'vocab', item: { id: 'l3-grossmutter', german: 'die Großmutter', english: 'the grandmother', gender: 'die', syllables: ['GROSS', 'mut', 'ter'], pronunciation: 'dee GROHSS-moo-ter', example: { de: 'Meine Großmutter wohnt in Yaoundé.', en: 'My grandmother lives in Yaoundé.' } } },
+    { kind: 'vocab', item: { id: 'l3-grossvater', german: 'der Großvater', english: 'the grandfather', gender: 'der', syllables: ['GROSS', 'va', 'ter'], pronunciation: 'dair GROHSS-fah-ter', example: { de: 'Mein Großvater ist verheiratet.', en: 'My grandfather is married.' } } },
 
     { kind: 'grammar', note: {
       id: 'l3-artikel', title: 'The definite article: der/die/das',
@@ -52,12 +52,12 @@ export const lektion3: Lesson = {
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l3-e13', prompt: 'What is the plural definite article for all German nouns, regardless of gender?', options: ['der', 'die', 'das'], answer: 1, explain: 'The plural article is always "die": die Kinder, die Eltern, die Geschwister.' } },
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l3-e14', prompt: 'Das ist ___ Familie. (die)', answer: 'die', hint: 'definite article for "Familie" (feminine)' } },
 
-    { kind: 'vocab', item: { id: 'l3-deutsch', german: 'Deutsch', english: 'German (language)', gender: null, syllables: ['DEUTSCH'], example: { de: 'Ich spreche Deutsch.', en: 'I speak German.' } } },
-    { kind: 'vocab', item: { id: 'l3-englisch', german: 'Englisch', english: 'English (language)', gender: null, syllables: ['ENG', 'lisch'], example: { de: 'Sprichst du Englisch?', en: 'Do you speak English?' } } },
-    { kind: 'vocab', item: { id: 'l3-franzoesisch', german: 'Französisch', english: 'French (language)', gender: null, syllables: ['fran', 'ZÖ', 'sisch'], example: { de: 'Meine Schwester spricht Französisch.', en: 'My sister speaks French.' } } },
-    { kind: 'vocab', item: { id: 'l3-spanisch', german: 'Spanisch', english: 'Spanish (language)', gender: null, syllables: ['SPA', 'nisch'], example: { de: 'Er spricht Spanisch.', en: 'He speaks Spanish.' } } },
-    { kind: 'vocab', item: { id: 'l3-sprache', german: 'die Sprache', english: 'the language', gender: 'die', syllables: ['SPRA', 'che'], example: { de: 'Deutsch ist eine Sprache.', en: 'German is a language.' } } },
-    { kind: 'vocab', item: { id: 'l3-sprechen', german: 'sprechen', english: 'to speak', gender: null, syllables: ['SPRE', 'chen'], example: { de: 'Wir sprechen Deutsch und Englisch.', en: 'We speak German and English.' } } },
+    { kind: 'vocab', item: { id: 'l3-deutsch', german: 'Deutsch', english: 'German (language)', gender: null, syllables: ['DEUTSCH'], pronunciation: 'DOYTCH', example: { de: 'Ich spreche Deutsch.', en: 'I speak German.' } } },
+    { kind: 'vocab', item: { id: 'l3-englisch', german: 'Englisch', english: 'English (language)', gender: null, syllables: ['ENG', 'lisch'], pronunciation: 'ENG-lish', example: { de: 'Sprichst du Englisch?', en: 'Do you speak English?' } } },
+    { kind: 'vocab', item: { id: 'l3-franzoesisch', german: 'Französisch', english: 'French (language)', gender: null, syllables: ['fran', 'ZÖ', 'sisch'], pronunciation: 'frahn-TSÖ-zish', example: { de: 'Meine Schwester spricht Französisch.', en: 'My sister speaks French.' } } },
+    { kind: 'vocab', item: { id: 'l3-spanisch', german: 'Spanisch', english: 'Spanish (language)', gender: null, syllables: ['SPA', 'nisch'], pronunciation: 'SHPAH-nish', example: { de: 'Er spricht Spanisch.', en: 'He speaks Spanish.' } } },
+    { kind: 'vocab', item: { id: 'l3-sprache', german: 'die Sprache', english: 'the language', gender: 'die', syllables: ['SPRA', 'che'], pronunciation: 'dee SHPRAH-khuh', example: { de: 'Deutsch ist eine Sprache.', en: 'German is a language.' } } },
+    { kind: 'vocab', item: { id: 'l3-sprechen', german: 'sprechen', english: 'to speak', gender: null, syllables: ['SPRE', 'chen'], pronunciation: 'SHPREH-khen', example: { de: 'Wir sprechen Deutsch und Englisch.', en: 'We speak German and English.' } } },
 
     { kind: 'grammar', note: {
       id: 'l3-sprechen-note', title: 'The verb "sprechen" — vowel change e → i',
@@ -72,10 +72,10 @@ export const lektion3: Lesson = {
     { kind: 'exercise', exercise: { type: 'match', id: 'l3-e19', pairs: [ { de: 'Deutsch', en: 'German' }, { de: 'Englisch', en: 'English' }, { de: 'Französisch', en: 'French' }, { de: 'Spanisch', en: 'Spanish' } ] } },
     { kind: 'exercise', exercise: { type: 'articlePicker', id: 'l3-e20', word: 'Sprache', answer: 'die' } },
 
-    { kind: 'vocab', item: { id: 'l3-hundert', german: 'hundert', english: 'hundred', gender: null, syllables: ['HUN', 'dert'], example: { de: 'Hundert plus hundert sind zweihundert.', en: 'One hundred plus one hundred is two hundred.' } } },
-    { kind: 'vocab', item: { id: 'l3-tausend', german: 'tausend', english: 'thousand', gender: null, syllables: ['TAU', 'send'], example: { de: 'Ich zähle von hundert bis tausend.', en: 'I count from a hundred to a thousand.' } } },
-    { kind: 'vocab', item: { id: 'l3-million', german: 'eine Million', english: 'a million', gender: null, syllables: ['EI', 'ne', 'Mil', 'li', 'ON'], example: { de: 'Diese Stadt hat eine Million Einwohner.', en: 'This city has a million inhabitants.' } } },
-    { kind: 'vocab', item: { id: 'l3-fahren', german: 'fahren', english: 'to drive / to travel', gender: null, syllables: ['FAH', 'ren'], example: { de: 'Wir fahren nach Deutschland.', en: 'We are going to Germany.' } } },
+    { kind: 'vocab', item: { id: 'l3-hundert', german: 'hundert', english: 'hundred', gender: null, syllables: ['HUN', 'dert'], pronunciation: 'HOON-dert', example: { de: 'Hundert plus hundert sind zweihundert.', en: 'One hundred plus one hundred is two hundred.' } } },
+    { kind: 'vocab', item: { id: 'l3-tausend', german: 'tausend', english: 'thousand', gender: null, syllables: ['TAU', 'send'], pronunciation: 'TOW-zent', example: { de: 'Ich zähle von hundert bis tausend.', en: 'I count from a hundred to a thousand.' } } },
+    { kind: 'vocab', item: { id: 'l3-million', german: 'eine Million', english: 'a million', gender: null, syllables: ['EI', 'ne', 'Mil', 'li', 'ON'], pronunciation: 'EYE-nuh mil-lee-OHN', example: { de: 'Diese Stadt hat eine Million Einwohner.', en: 'This city has a million inhabitants.' } } },
+    { kind: 'vocab', item: { id: 'l3-fahren', german: 'fahren', english: 'to drive / to travel', gender: null, syllables: ['FAH', 'ren'], pronunciation: 'FAH-ren', example: { de: 'Wir fahren nach Deutschland.', en: 'We are going to Germany.' } } },
 
     { kind: 'grammar', note: {
       id: 'l3-fahren-note', title: 'The verb "fahren" — vowel change a → ä',
@@ -87,8 +87,8 @@ export const lektion3: Lesson = {
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l3-e22', prompt: 'Which number is "eine Million"?', options: ['100', '1.000', '1.000.000'], answer: 2, explain: '"eine Million" means one million (1.000.000).' } },
 
     { kind: 'pronunciation', focus: 'The "ö" sound in Französisch and the stress on the first part of compound words like Großmutter', items: [
-      { id: 'l3-franzoesisch-pron', german: 'Französisch', english: 'French (language)', gender: null, syllables: ['fran', 'ZÖ', 'sisch'], example: { de: 'Meine Schwester spricht Französisch.', en: 'My sister speaks French.' } },
-      { id: 'l3-grossmutter-pron', german: 'die Großmutter', english: 'the grandmother', gender: 'die', syllables: ['GROSS', 'mut', 'ter'], example: { de: 'Meine Großmutter wohnt in Yaoundé.', en: 'My grandmother lives in Yaoundé.' } },
+      { id: 'l3-franzoesisch-pron', german: 'Französisch', english: 'French (language)', gender: null, syllables: ['fran', 'ZÖ', 'sisch'], pronunciation: 'frahn-TSÖ-zish', example: { de: 'Meine Schwester spricht Französisch.', en: 'My sister speaks French.' } },
+      { id: 'l3-grossmutter-pron', german: 'die Großmutter', english: 'the grandmother', gender: 'die', syllables: ['GROSS', 'mut', 'ter'], pronunciation: 'dee GROHSS-moo-ter', example: { de: 'Meine Großmutter wohnt in Yaoundé.', en: 'My grandmother lives in Yaoundé.' } },
     ] },
 
     { kind: 'wrapup', summary: 'You can now talk about your family, say which languages you speak with **sprechen**, use **mein/dein** with the correct gender, and use **der/die/das** — including the plural **die**. 🎉' },

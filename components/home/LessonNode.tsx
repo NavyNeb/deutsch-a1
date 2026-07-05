@@ -27,9 +27,15 @@ export function LessonNode({ lesson, completion }: { lesson: Lesson; completion:
           <p style={{ color: 'var(--muted)', margin: '2px 0 0', fontSize: 14 }}>{lesson.title.en}</p>
         </div>
       </Link>
-      <Link href={`/lesson/${lesson.id}/review`} className="label" style={{ color: 'var(--accent)' }}>
-        Review
-      </Link>
+      {pct >= 1 ? (
+        <Link href={`/lesson/${lesson.id}/review`} className="label" style={{ color: 'var(--accent)' }}>
+          Review
+        </Link>
+      ) : (
+        <span className="label" style={{ color: 'var(--muted)', fontSize: 11, maxWidth: 88, textAlign: 'right' }}>
+          Complete the lesson to unlock review
+        </span>
+      )}
     </div>
   );
 }

@@ -41,6 +41,9 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
                         <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20 }}>{item.german}</span>
                         <GenderTag gender={item.gender} />
                       </div>
+                      {item.pronunciation && (
+                        <p style={{ color: 'var(--muted)', margin: '2px 0 0', fontSize: 13 }}>{item.pronunciation}</p>
+                      )}
                       <p style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{item.english}</p>
                     </div>
                     <AudioButton src={ttsSrc(item.german)} label={`Say ${item.german}`} />

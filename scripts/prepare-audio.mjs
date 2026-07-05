@@ -7,6 +7,11 @@ import { officialTrackName, ttsFileName, TTS_VOICE } from '../lib/audio-names.mj
 const OFFICIAL_SRC = process.env.MENSCHEN_AUDIO_DIR || 'C:/Users/F3LX_STOR/Downloads/Menschen A1 audio';
 const OUT = path.resolve('public/audio');
 
+// German words that appear in the app's UI chrome (nav buttons, the "mark
+// difficult" toggle). The app plays these via ttsSrc(), so their clips must be
+// generated too — otherwise those 🔊 buttons request a file that 404s.
+export const UI_PHRASES = ['Zurück', 'Weiter', 'Fertig', 'Als schwierig markieren', 'Gemerkt'];
+
 // Pull audio-bearing text + official refs out of the lessons.
 export function collectAudioJobs(lessons) {
   const official = [], tts = new Set();
@@ -28,7 +33,8 @@ async function main() {
   // Lessons are TS; load the JSON snapshot the build writes (see note) OR import via tsx.
   const lessons = JSON.parse(await readFile(path.resolve('content/lessons.snapshot.json'), 'utf8'));
   await mkdir(OUT, { recursive: true });
-  const { official, tts } = collectAudioJobs(lessons);
+  const { official, tts: contentTts } = collectAudioJobs(lessons);
+  const tts = [...new Set([...contentTts, ...UI_PHRASES])];
 
   let copied = 0, generated = 0, skipped = 0, missing = [];
   for (const { lesson, activity } of official) {

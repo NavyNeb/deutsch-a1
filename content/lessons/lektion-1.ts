@@ -9,18 +9,18 @@ export const lektion1: Lesson = {
     { kind: 'intro', title: 'Willkommen! 👋', scene: 'Two people meeting for the first time.',
       goals: ['Say hello and goodbye', 'Introduce yourself', 'Say where you are from', 'Spell your name using the alphabet'] },
 
-    { kind: 'vocab', item: { id: 'l1-hallo', german: 'Hallo', english: 'Hello (informal)', gender: null, syllables: ['ha', 'LO'], example: { de: 'Hallo, ich bin Nicole.', en: 'Hello, I am Nicole.' } } },
-    { kind: 'vocab', item: { id: 'l1-gutentag', german: 'Guten Tag', english: 'Hello / Good day (formal)', gender: null, syllables: ['GU', 'ten', 'TAG'], example: { de: 'Guten Tag, Frau Meier.', en: 'Good day, Mrs Meier.' } } },
-    { kind: 'vocab', item: { id: 'l1-tschuess', german: 'Tschüss', english: 'Bye (informal)', gender: null, syllables: ['TSCHÜSS'], example: { de: 'Tschüss, bis morgen!', en: 'Bye, see you tomorrow!' } } },
-    { kind: 'vocab', item: { id: 'l1-name', german: 'der Name', english: 'the name', gender: 'der', syllables: ['NA', 'me'], example: { de: 'Mein Name ist Nicole.', en: 'My name is Nicole.' } } },
+    { kind: 'vocab', item: { id: 'l1-hallo', german: 'Hallo', english: 'Hello (informal)', gender: null, syllables: ['ha', 'LO'], pronunciation: 'hah-LOH', example: { de: 'Hallo, ich bin Nicole.', en: 'Hello, I am Nicole.' } } },
+    { kind: 'vocab', item: { id: 'l1-gutentag', german: 'Guten Tag', english: 'Hello / Good day (formal)', gender: null, syllables: ['GU', 'ten', 'TAG'], pronunciation: 'GOO-ten tahk', example: { de: 'Guten Tag, Frau Meier.', en: 'Good day, Mrs Meier.' } } },
+    { kind: 'vocab', item: { id: 'l1-tschuess', german: 'Tschüss', english: 'Bye (informal)', gender: null, syllables: ['TSCHÜSS'], pronunciation: 'chews', example: { de: 'Tschüss, bis morgen!', en: 'Bye, see you tomorrow!' } } },
+    { kind: 'vocab', item: { id: 'l1-name', german: 'der Name', english: 'the name', gender: 'der', syllables: ['NA', 'me'], pronunciation: 'dair NAH-muh', example: { de: 'Mein Name ist Nicole.', en: 'My name is Nicole.' } } },
 
-    { kind: 'vocab', item: { id: 'l1-kommen-aus', german: 'kommen aus', english: 'to come from', gender: null, syllables: ['KOM', 'men', 'AUS'], example: { de: 'Ich komme aus Kamerun.', en: 'I come from Cameroon.' } } },
-    { kind: 'vocab', item: { id: 'l1-land', german: 'das Land', english: 'the country', gender: 'das', syllables: ['LAND'], example: { de: 'Deutschland ist ein Land in Europa.', en: 'Germany is a country in Europe.' } } },
-    { kind: 'vocab', item: { id: 'l1-kamerun', german: 'Kamerun', english: 'Cameroon', gender: null, syllables: ['ka', 'me', 'RUN'], example: { de: 'Kamerun ist mein Land.', en: 'Cameroon is my country.' } } },
-    { kind: 'vocab', item: { id: 'l1-deutschland', german: 'Deutschland', english: 'Germany', gender: null, syllables: ['DEUTSCH', 'land'], example: { de: 'Er kommt aus Deutschland.', en: 'He comes from Germany.' } } },
+    { kind: 'vocab', item: { id: 'l1-kommen-aus', german: 'kommen aus', english: 'to come from', gender: null, syllables: ['KOM', 'men', 'AUS'], pronunciation: 'KOM-en ows', example: { de: 'Ich komme aus Kamerun.', en: 'I come from Cameroon.' } } },
+    { kind: 'vocab', item: { id: 'l1-land', german: 'das Land', english: 'the country', gender: 'das', syllables: ['LAND'], pronunciation: 'dahs LAHNT', example: { de: 'Deutschland ist ein Land in Europa.', en: 'Germany is a country in Europe.' } } },
+    { kind: 'vocab', item: { id: 'l1-kamerun', german: 'Kamerun', english: 'Cameroon', gender: null, syllables: ['ka', 'me', 'RUN'], pronunciation: 'KAH-meh-roon', example: { de: 'Kamerun ist mein Land.', en: 'Cameroon is my country.' } } },
+    { kind: 'vocab', item: { id: 'l1-deutschland', german: 'Deutschland', english: 'Germany', gender: null, syllables: ['DEUTSCH', 'land'], pronunciation: 'DOYTCH-lahnt', example: { de: 'Er kommt aus Deutschland.', en: 'He comes from Germany.' } } },
 
-    { kind: 'vocab', item: { id: 'l1-alphabet', german: 'das Alphabet', english: 'the alphabet', gender: 'das', syllables: ['al', 'pha', 'BET'], example: { de: 'Das deutsche Alphabet hat 26 Buchstaben.', en: 'The German alphabet has 26 letters.' } } },
-    { kind: 'vocab', item: { id: 'l1-buchstabieren', german: 'buchstabieren', english: 'to spell', gender: null, syllables: ['buch', 'sta', 'BIE', 'ren'], example: { de: 'Wie buchstabiert man das?', en: 'How do you spell that?' } } },
+    { kind: 'vocab', item: { id: 'l1-alphabet', german: 'das Alphabet', english: 'the alphabet', gender: 'das', syllables: ['al', 'pha', 'BET'], pronunciation: 'dahs al-fah-BET', example: { de: 'Das deutsche Alphabet hat 26 Buchstaben.', en: 'The German alphabet has 26 letters.' } } },
+    { kind: 'vocab', item: { id: 'l1-buchstabieren', german: 'buchstabieren', english: 'to spell', gender: null, syllables: ['buch', 'sta', 'BIE', 'ren'], pronunciation: 'BOOKH-shtah-bee-ren', example: { de: 'Wie buchstabiert man das?', en: 'How do you spell that?' } } },
 
     { kind: 'grammar', note: {
       id: 'l1-sein', title: 'The verb "sein" (to be)',
@@ -59,8 +59,8 @@ export const lektion1: Lesson = {
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l1-e10', prompt: 'Können Sie das bitte ___? (buchstabieren)', answer: 'buchstabieren', hint: 'infinitive: to spell' } },
 
     { kind: 'pronunciation', focus: 'The "ü" sound in Tschüss and the letter ß in heißen', items: [
-      { id: 'l1-tschuess-pron', german: 'Tschüss', english: 'Bye', gender: null, syllables: ['TSCHÜSS'], example: { de: 'Tschüss!', en: 'Bye!' } },
-      { id: 'l1-heissen-pron', german: 'heißen', english: 'to be called', gender: null, syllables: ['HEI', 'ßen'], example: { de: 'Ich heiße Nicole.', en: 'My name is Nicole. (lit. I am called Nicole)' } },
+      { id: 'l1-tschuess-pron', german: 'Tschüss', english: 'Bye', gender: null, syllables: ['TSCHÜSS'], pronunciation: 'chews', example: { de: 'Tschüss!', en: 'Bye!' } },
+      { id: 'l1-heissen-pron', german: 'heißen', english: 'to be called', gender: null, syllables: ['HEI', 'ßen'], pronunciation: 'HIGH-ssen', example: { de: 'Ich heiße Nicole.', en: 'My name is Nicole. (lit. I am called Nicole)' } },
     ] },
 
     { kind: 'wrapup', summary: 'You can now greet people, introduce yourself, say where you are from with **kommen aus**, and spell your name using the German alphabet. 🎉' },

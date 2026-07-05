@@ -36,6 +36,8 @@ const lesson = { id: 'l1', number: 1, title: { de: 'Hallo', en: 'Hi' }, theme: '
 it('advances through steps with Weiter', async () => {
   render(<StepPlayer lesson={lesson} />);
   expect(screen.getByText('Willkommen')).toBeInTheDocument();
-  await userEvent.click(screen.getByRole('button', { name: /weiter/i }));
+  // Anchored: the adjacent "Say Weiter" audio button's label also contains
+  // "weiter", so an unanchored match would find two buttons.
+  await userEvent.click(screen.getByRole('button', { name: /^weiter/i }));
   expect(screen.getByText('done')).toBeInTheDocument();
 });

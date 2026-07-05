@@ -10,8 +10,13 @@ describe('LessonNode', () => {
     expect(screen.getByRole('link', { name: /hallo/i })).toHaveAttribute('href', '/lesson/l1/learn');
   });
 
-  it('links to the review route', () => {
-    render(<LessonNode lesson={lesson} completion={0.5} />);
+  it('shows the review link once the lesson is fully completed', () => {
+    render(<LessonNode lesson={lesson} completion={1} />);
     expect(screen.getByRole('link', { name: /review/i })).toHaveAttribute('href', '/lesson/l1/review');
+  });
+
+  it('hides the review link until the lesson is fully completed', () => {
+    render(<LessonNode lesson={lesson} completion={0.5} />);
+    expect(screen.queryByRole('link', { name: /review/i })).not.toBeInTheDocument();
   });
 });

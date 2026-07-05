@@ -1,6 +1,7 @@
 import type { GrammarNote } from '@/content/types';
 import { ttsSrc } from '@/lib/audio';
 import { AudioButton } from '@/components/ui/AudioButton';
+import { GermanText } from '@/components/ui/GermanText';
 import { Card } from '@/components/ui/Card';
 import { MiniMarkdown } from '@/components/ui/miniMarkdown';
 import { AssistButtons } from '@/components/assist/AssistButtons';
@@ -18,17 +19,16 @@ export function GrammarStep({ note }: { note: GrammarNote }) {
               <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
                 <td style={{ padding: '8px 6px 8px 0', fontFamily: 'var(--font-serif)' }}>{ex.de}</td>
                 <td style={{ padding: '8px 0', color: 'var(--muted)' }}>{ex.en}</td>
-                <td style={{ padding: '8px 0', textAlign: 'right' }}><AudioButton src={ttsSrc(ex.de)} label={`Say ${ex.de}`} /></td>
+                <td style={{ padding: '8px 0', textAlign: 'right' }}><AudioButton src={ttsSrc(ex.de)} label={`Say ${ex.de}`} size={26} /></td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        <div style={{ marginTop: 16, display: 'grid', gap: 10 }}>
+        <div style={{ marginTop: 16, display: 'grid', gap: 12 }}>
           {note.examples.map((ex, i) => (
-            <div key={i} style={{ borderLeft: '3px solid var(--accent)', paddingLeft: 12, display: 'flex', gap: 10, alignItems: 'center' }}>
-              <div><em>{ex.de}</em><br /><span style={{ color: 'var(--muted)', fontSize: 14 }}>{ex.en}</span></div>
-              <AudioButton src={ttsSrc(ex.de)} label={`Say ${ex.de}`} />
+            <div key={i} style={{ borderLeft: '3px solid var(--accent)', paddingLeft: 12 }}>
+              <GermanText de={ex.de} en={ex.en} deSize={17} />
             </div>
           ))}
         </div>
