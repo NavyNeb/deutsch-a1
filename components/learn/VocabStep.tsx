@@ -4,6 +4,7 @@ import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
+import { pick } from '@/lib/i18n';
 import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { SyllableStress } from '@/components/ui/SyllableStress';
@@ -31,9 +32,9 @@ export function VocabStep({ item }: { item: VocabItem }) {
         </p>
       )}
       <div style={{ marginBottom: 16, fontSize: 16 }}><SyllableStress syllables={item.syllables} /></div>
-      <p style={{ color: 'var(--muted)', marginBottom: 22, fontSize: 18 }}>{item.english}</p>
+      <p style={{ color: 'var(--muted)', marginBottom: 22, fontSize: 18 }}>{pick(item.english, item.french, locale)}</p>
       <div style={{ borderLeft: '3px solid var(--accent)', paddingLeft: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
-        <div><em style={{ fontSize: 17 }}>{item.example.de}</em><br /><span style={{ color: 'var(--muted)', fontSize: 15 }}>{item.example.en}</span></div>
+        <div><em style={{ fontSize: 17 }}>{item.example.de}</em><br /><span style={{ color: 'var(--muted)', fontSize: 15 }}>{pick(item.example.en, item.example.fr, locale)}</span></div>
         <AudioButton src={ttsSrc(item.example.de)} label="Play example" />
       </div>
       <div

@@ -5,6 +5,7 @@ import { checkAnswer } from '@/lib/exercises';
 import { audioSrc } from '@/lib/audio';
 import { useLocale, type Locale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
+import { pick as pickLocale } from '@/lib/i18n';
 import { Button } from '@/components/ui/Button';
 import { AudioButton } from '@/components/ui/AudioButton';
 
@@ -13,7 +14,7 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
   const [result, setResult] = useState<{ correct: boolean; explanation?: string } | null>(null);
   const { locale } = useLocale();
 
-  const check = () => { const r = checkAnswer(exercise, response); setResult(r); onResult(r.correct); };
+  const check = () => { const r = checkAnswer(exercise, response, locale); setResult(r); onResult(r.correct); };
   const opt = (active: boolean) => ({ border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`, background: active ? 'var(--accent-wash)' : 'var(--card)', borderRadius: 6, padding: '10px 14px', margin: '4px 0', width: '100%', textAlign: 'left' as const });
 
   const unattempted =
@@ -21,17 +22,20 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
     exercise.type === 'match' ? Object.keys(response as Record<string, string>).length !== exercise.pairs.length :
     response === undefined;
 
+  const prompt = 'prompt' in exercise ? pickLocale(exercise.prompt, exercise.promptFr, locale) : undefined;
+  const options = 'options' in exercise ? (locale === 'fr' && exercise.optionsFr ? exercise.optionsFr : exercise.options) : undefined;
+
   return (
     <div>
-      {'prompt' in exercise && <p style={{ marginBottom: 12 }}>{exercise.prompt}</p>}
+      {prompt && <p style={{ marginBottom: 12 }}>{prompt}</p>}
 
-      {(exercise.type === 'multipleChoice') && exercise.options.map((o, i) => (
+      {(exercise.type === 'multipleChoice') && options!.map((o, i) => (
         <button key={i} style={opt(response === i)} onClick={() => setResponse(i)}>{o}</button>
       ))}
 
       {exercise.type === 'listenChoose' && (<>
         <div style={{ marginBottom: 10 }}><AudioButton src={audioSrc(exercise.audio)} label={t('playClip', locale)} /> <span className="label">{t('listenThenChoose', locale)}</span></div>
-        {exercise.options.map((o, i) => (<button key={i} style={opt(response === i)} onClick={() => setResponse(i)}>{o}</button>))}
+        {options!.map((o, i) => (<button key={i} style={opt(response === i)} onClick={() => setResponse(i)}>{o}</button>))}
       </>)}
 
       {exercise.type === 'articlePicker' && (<div style={{ display: 'flex', gap: 8 }}>
@@ -75,18 +79,18 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
 }
 function countBy(a: string[]) { return a.reduce<Record<string, number>>((m, x) => (m[x] = (m[x] ?? 0) + 1, m), {}); }
 
-// --- Match: pick an English meaning for each German word ---
-function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string }[]; onChange: (v: Record<string, string>) => void; locale: Locale }) {
+// --- Match: pick the translated meaning for each German word ---
+function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; fr?: string }[]; onChange: (v: Record<string, string>) => void; locale: Locale }) {
   const [sel, setSel] = useState<Record<string, string>>({});
-  const ens = pairs.map((p) => p.en);
-  const set = (de: string, en: string) => { const next = { ...sel, [de]: en }; setSel(next); onChange(next); };
+  const meanings = pairs.map((p) => pickLocale(p.en, p.fr, locale));
+  const set = (de: string, meaning: string) => { const next = { ...sel, [de]: meaning }; setSel(next); onChange(next); };
   return (<div style={{ display: 'grid', gap: 8 }}>
     {pairs.map((p) => (
       <div key={p.de} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ fontFamily: 'var(--font-serif)', minWidth: 90 }}>{p.de}</span>
         <select value={sel[p.de] ?? ''} onChange={(e) => set(p.de, e.target.value)} style={{ border: '1px solid var(--border)', borderRadius: 6, padding: '6px 8px' }}>
           <option value="" disabled>{t('chooseEllipsis', locale)}</option>
-          {ens.map((en) => <option key={en} value={en}>{en}</option>)}
+          {meanings.map((m) => <option key={m} value={m}>{m}</option>)}
         </select>
       </div>
     ))}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Lesson } from '@/content/types';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
+import { pick } from '@/lib/i18n';
 
 const RADIUS = 20;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -28,7 +29,7 @@ export function LessonNode({ lesson, completion }: { lesson: Lesson; completion:
         <div>
           <p className="label" style={{ marginBottom: 2 }}>Lektion {lesson.number}</p>
           <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 20, margin: 0 }}>{lesson.title.de}</h3>
-          <p style={{ color: 'var(--muted)', margin: '2px 0 0', fontSize: 14 }}>{lesson.title.en}</p>
+          <p style={{ color: 'var(--muted)', margin: '2px 0 0', fontSize: 14 }}>{pick(lesson.title.en, lesson.title.fr, locale)}</p>
         </div>
       </Link>
       {pct >= 1 ? (

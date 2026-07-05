@@ -32,4 +32,15 @@ describe('checkAnswer', () => {
     expect(checkAnswer(ex, { Hallo: 'Hello', 'Tschüss': 'Bye' }).correct).toBe(true);
     expect(checkAnswer(ex, { Hallo: 'Bye', 'Tschüss': 'Hello' }).correct).toBe(false);
   });
+  it('match compares against the French pair when locale is fr', () => {
+    const ex: Exercise = {
+      type: 'match', id: 'e',
+      pairs: [{ de: 'Hallo', en: 'Hello', fr: 'Bonjour' }, { de: 'Tschüss', en: 'Bye', fr: 'Salut' }],
+    };
+    // English response is wrong once locale is 'fr' — the UI now shows French pairs.
+    expect(checkAnswer(ex, { Hallo: 'Hello', 'Tschüss': 'Bye' }, 'fr').correct).toBe(false);
+    expect(checkAnswer(ex, { Hallo: 'Bonjour', 'Tschüss': 'Salut' }, 'fr').correct).toBe(true);
+    // Default locale ('en') keeps the original behavior.
+    expect(checkAnswer(ex, { Hallo: 'Hello', 'Tschüss': 'Bye' }).correct).toBe(true);
+  });
 });

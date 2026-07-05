@@ -4,6 +4,7 @@ import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
+import { pick } from '@/lib/i18n';
 import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { Card } from '@/components/ui/Card';
@@ -36,7 +37,7 @@ export function WordsToReview() {
                     <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20 }}>{item.german}</span>
                     <GenderTag gender={item.gender} />
                   </div>
-                  <p style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{item.english}</p>
+                  <p style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{pick(item.english, item.french, locale)}</p>
                 </div>
                 <AudioButton src={ttsSrc(item.german)} label={`Say ${item.german}`} />
                 <button

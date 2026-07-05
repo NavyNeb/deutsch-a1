@@ -1,14 +1,17 @@
 import type { Exercise } from '@/content/types';
+import type { Locale } from './locale-store';
+import { pick } from './i18n';
 
 const norm = (s: string) => s.trim().toLowerCase();
 
-export function checkAnswer(ex: Exercise, response: unknown): { correct: boolean; explanation?: string } {
+export function checkAnswer(ex: Exercise, response: unknown, locale: Locale = 'en'): { correct: boolean; explanation?: string } {
   switch (ex.type) {
     case 'multipleChoice':
+      return { correct: response === ex.answer, explanation: ex.explain ? pick(ex.explain, ex.explainFr, locale) : undefined };
     case 'listenChoose':
-      return { correct: response === ex.answer, explanation: 'explain' in ex ? ex.explain : undefined };
+      return { correct: response === ex.answer, explanation: undefined };
     case 'fillBlank':
-      return { correct: norm(String(response)) === norm(ex.answer), explanation: ex.hint };
+      return { correct: norm(String(response)) === norm(ex.answer), explanation: ex.hint ? pick(ex.hint, ex.hintFr, locale) : undefined };
     case 'articlePicker':
       return { correct: response === ex.answer, explanation: `${ex.answer} ${ex.word}` };
     case 'wordOrder': {
@@ -17,7 +20,7 @@ export function checkAnswer(ex: Exercise, response: unknown): { correct: boolean
     }
     case 'match': {
       const r = (response ?? {}) as Record<string, string>;
-      return { correct: ex.pairs.every((p) => r[p.de] === p.en) };
+      return { correct: ex.pairs.every((p) => r[p.de] === pick(p.en, p.fr, locale)) };
     }
   }
 }

@@ -54,6 +54,11 @@ export const UI = {
   },
 
   inThisLessonYouWill: { en: 'In this lesson you will:', fr: 'Dans cette leçon, tu vas :' },
+
+  homeSubtitle: {
+    en: 'Your German A1 learning path — work through each lesson, track your progress, and review the words you find hard.',
+    fr: 'Ton parcours d’apprentissage de l’allemand A1 — parcours chaque leçon, suis ta progression, et révise les mots que tu trouves difficiles.',
+  },
 } as const;
 
 export type UIKey = keyof typeof UI;
