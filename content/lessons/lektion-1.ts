@@ -48,7 +48,7 @@ export const lektion1: Lesson = {
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l1-e1', prompt: 'Ich ___ Nicole. (sein)', answer: 'bin', hint: 'first person singular of sein' } },
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l1-e2', prompt: 'Which is a formal greeting?', options: ['Hallo', 'Guten Tag', 'Tschüss'], answer: 1, explain: '"Guten Tag" is the formal daytime greeting.' } },
     { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l1-e3', tokens: ['heißt', 'Wie', 'du'], answer: ['Wie', 'heißt', 'du'] } },
-    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l1-e4', audio: { official: { lesson: 1, activity: '2a' } }, options: ['A greeting between friends', 'Ordering food', 'Buying a ticket'], answer: 0 } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l1-e4', prompt: 'Listen. Where is Nicole from?', audio: { ttsText: 'Hallo! Ich heiße Nicole. Ich komme aus Kamerun.' }, options: ['Cameroon', 'Germany', 'Austria'], answer: 0 } },
     { kind: 'exercise', exercise: { type: 'match', id: 'l1-e5', pairs: [ { de: 'Hallo', en: 'Hello' }, { de: 'Tschüss', en: 'Bye' }, { de: 'Name', en: 'Name' } ] } },
 
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l1-e6', prompt: 'Ich ___ aus Kamerun. (kommen)', answer: 'komme', hint: 'first person singular of kommen' } },
@@ -57,6 +57,7 @@ export const lektion1: Lesson = {
 
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l1-e9', prompt: 'How do you ask someone to spell a word in German?', options: ['Wie buchstabiert man das?', 'Woher kommst du?', 'Guten Tag!'], answer: 0, explain: '"Wie buchstabiert man das?" asks someone to spell a word letter by letter.' } },
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l1-e10', prompt: 'Können Sie das bitte ___? (buchstabieren)', answer: 'buchstabieren', hint: 'infinitive: to spell' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l1-e11', prompt: "Listen. What is the man's name?", audio: { ttsText: 'Guten Tag! Ich bin Herr Meier. Ich komme aus Deutschland. Tschüss!' }, options: ['Herr Meier', 'Herr Fischer', 'Frau Meier'], answer: 0 } },
 
     { kind: 'pronunciation', focus: 'The "ü" sound in Tschüss and the letter ß in heißen', items: [
       { id: 'l1-tschuess-pron', german: 'Tschüss', english: 'Bye', gender: null, syllables: ['TSCHÜSS'], pronunciation: 'chews', example: { de: 'Tschüss!', en: 'Bye!' } },

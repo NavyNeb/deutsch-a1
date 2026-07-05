@@ -43,7 +43,7 @@ export const lektion3: Lesson = {
     { kind: 'exercise', exercise: { type: 'match', id: 'l3-e4', pairs: [ { de: 'die Mutter', en: 'the mother' }, { de: 'der Vater', en: 'the father' }, { de: 'die Geschwister', en: 'the siblings' }, { de: 'das Kind', en: 'the child' } ] } },
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l3-e5', prompt: 'Meine Schwester und mein Bruder sind meine ___. (Geschwister)', answer: 'Geschwister', hint: 'siblings' } },
     { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l3-e6', tokens: ['ist', 'Das', 'meine', 'Mutter'], answer: ['Das', 'ist', 'meine', 'Mutter'] } },
-    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l3-e7', audio: { official: { lesson: 3, activity: '1' } }, options: ['A person describing their family members', 'A weather report', 'An order at a restaurant'], answer: 0 } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l3-e7', prompt: 'Listen. Which languages does the mother speak?', audio: { ttsText: 'Das ist meine Familie. Mein Vater heißt Michael, er ist Lehrer. Meine Mutter heißt Nicole, sie spricht Französisch und Englisch.' }, options: ['French and English', 'German and Spanish', 'English and Spanish'], answer: 0 } },
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l3-e8', prompt: '___ Vater ist Lehrer. (mein)', answer: 'Mein', hint: 'possessive for a der-word' } },
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l3-e9', prompt: '___ Mutter ist Ärztin. (mein)', answer: 'Meine', hint: 'possessive for a die-word' } },
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l3-e10', prompt: 'Which is correct for "my child"?', options: ['mein Kind', 'meine Kind', 'meiner Kind'], answer: 0, explain: '"Kind" is neuter (das), so the possessive is "mein".' } },
@@ -85,6 +85,7 @@ export const lektion3: Lesson = {
 
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l3-e21', prompt: 'Which number is "tausend"?', options: ['100', '1.000', '1.000.000'], answer: 1, explain: '"tausend" means one thousand (1.000).' } },
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l3-e22', prompt: 'Which number is "eine Million"?', options: ['100', '1.000', '1.000.000'], answer: 2, explain: '"eine Million" means one million (1.000.000).' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l3-e23', prompt: 'Listen. Where does the grandmother live?', audio: { ttsText: 'Das ist meine Familie. Mein Bruder heißt Paul. Meine Großmutter wohnt in Yaoundé.' }, options: ['Yaoundé', 'Deutschland', 'Berlin'], answer: 0 } },
 
     { kind: 'pronunciation', focus: 'The "ö" sound in Französisch and the stress on the first part of compound words like Großmutter', items: [
       { id: 'l3-franzoesisch-pron', german: 'Französisch', english: 'French (language)', gender: null, syllables: ['fran', 'ZÖ', 'sisch'], pronunciation: 'frahn-TSÖ-zish', example: { de: 'Meine Schwester spricht Französisch.', en: 'My sister speaks French.' } },

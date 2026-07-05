@@ -9,7 +9,7 @@ describe('checkAnswer', () => {
     expect(checkAnswer(ex, 0).correct).toBe(false);
   });
   it('listenChoose compares the chosen index', () => {
-    const ex: Exercise = { type: 'listenChoose', id: 'e', audio: { ttsText: 'Guten Tag' }, options: ['A greeting', 'Ordering food'], answer: 0 };
+    const ex: Exercise = { type: 'listenChoose', id: 'e', prompt: '', audio: { ttsText: 'Guten Tag' }, options: ['A greeting', 'Ordering food'], answer: 0 };
     expect(checkAnswer(ex, 0).correct).toBe(true);
     expect(checkAnswer(ex, 1).correct).toBe(false);
   });

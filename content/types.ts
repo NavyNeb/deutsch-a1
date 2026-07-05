@@ -35,7 +35,7 @@ export const ExerciseSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('articlePicker'), id: z.string(), word: z.string(), answer: z.enum(['der', 'die', 'das']) }),
   z.object({ type: z.literal('match'), id: z.string(), pairs: z.array(z.object({ de: z.string(), en: z.string() })).min(2) }),
   z.object({ type: z.literal('wordOrder'), id: z.string(), tokens: z.array(z.string()), answer: z.array(z.string()) }),
-  z.object({ type: z.literal('listenChoose'), id: z.string(), audio: AudioSourceSchema, options: z.array(z.string()), answer: z.number() }),
+  z.object({ type: z.literal('listenChoose'), id: z.string(), prompt: z.string(), audio: AudioSourceSchema, options: z.array(z.string()), answer: z.number() }),
 ]);
 export type Exercise = z.infer<typeof ExerciseSchema>;
 

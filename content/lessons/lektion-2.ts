@@ -67,7 +67,7 @@ export const lektion2: Lesson = {
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l2-e8', prompt: 'Which word means "divorced"?', options: ['ledig', 'verheiratet', 'geschieden'], answer: 2, explain: '"geschieden" means divorced.' } },
     { kind: 'exercise', exercise: { type: 'match', id: 'l2-e9', pairs: [ { de: 'verheiratet', en: 'married' }, { de: 'ledig', en: 'single' }, { de: 'geschieden', en: 'divorced' } ] } },
     { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l2-e10', tokens: ['bist', 'Wie', 'du', 'alt'], answer: ['Wie', 'alt', 'bist', 'du'] } },
-    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l2-e11', audio: { official: { lesson: 2, activity: '1b' } }, options: ['Two people talking about their jobs', 'A weather forecast', 'Buying train tickets'], answer: 0 } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l2-e11', prompt: "Listen. What is Sofia's job?", audio: { ttsText: 'Ich heiße Sofia. Ich bin dreißig Jahre alt und ich arbeite als Ärztin. Ich bin nicht verheiratet, ich bin ledig.' }, options: ['Doctor', 'Teacher', 'Journalist'], answer: 0 } },
 
     { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l2-e12', tokens: ['du', 'Bist', 'verheiratet'], answer: ['Bist', 'du', 'verheiratet'] } },
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l2-e13', prompt: 'Someone asks "Bist du nicht Student?" and you ARE a student. How do you answer?', options: ['Ja, ich bin Student.', 'Doch, ich bin Student.', 'Nein, ich bin Student.'], answer: 1, explain: '"Doch" contradicts a negative question.' } },
@@ -76,6 +76,7 @@ export const lektion2: Lesson = {
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l2-e15', prompt: 'Ich bin ___ verheiratet. (nicht)', answer: 'nicht', hint: 'negation word' } },
     { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l2-e16', prompt: 'Where does "nicht" go in "Ich arbeite nicht"?', options: ['At the beginning', 'At the end', 'It is never used'], answer: 1, explain: 'In a simple sentence, "nicht" often stands at the end.' } },
     { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l2-e17', tokens: ['als', 'arbeitet', 'Arzt', 'nicht', 'Er'], answer: ['Er', 'arbeitet', 'nicht', 'als', 'Arzt'] } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l2-e18', prompt: "Listen. What is Herr Weber's marital status?", audio: { ttsText: 'Guten Tag, ich bin Herr Weber. Ich bin Lehrer von Beruf und zwanzig Jahre alt. Ich bin verheiratet.' }, options: ['Married', 'Single', 'Divorced'], answer: 0 } },
 
     { kind: 'pronunciation', focus: 'The "z" sound (pronounced "ts") in words like zwanzig and the umlaut ä in Ärztin', items: [
       { id: 'l2-zwanzig-pron', german: 'zwanzig', english: 'twenty', gender: null, syllables: ['ZWAN', 'zig'], pronunciation: 'TSVAHN-tsikh', example: { de: 'Ich bin zwanzig Jahre alt.', en: 'I am twenty years old.' } },
