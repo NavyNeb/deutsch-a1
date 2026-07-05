@@ -4,6 +4,7 @@ import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { Card } from '@/components/ui/Card';
 import { MiniMarkdown } from '@/components/ui/miniMarkdown';
+import { LanguageToggle } from '@/components/ui/LanguageToggle';
 
 // Read-only, scrolling review of a lesson's content — no step gating, no progress tracking.
 export function ChapterView({ lesson }: { lesson: Lesson }) {
@@ -17,14 +18,17 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
 
   return (
     <div style={{ maxWidth: 720, margin: '0 auto', padding: 24 }}>
-      <header style={{ marginBottom: 32 }}>
-        <p className="label" style={{ marginBottom: 4 }}>Lektion {lesson.number}</p>
-        <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 40, margin: '0 0 8px' }}>
-          {`${lesson.title.de} (${lesson.title.en})`}
-        </h1>
-        <ul style={{ margin: 0, paddingLeft: 20 }}>
-          {lesson.goals.map((g, i) => <li key={i} style={{ margin: '4px 0' }}>{g}</li>)}
-        </ul>
+      <header style={{ marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+        <div>
+          <p className="label" style={{ marginBottom: 4 }}>Lektion {lesson.number}</p>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 40, margin: '0 0 8px' }}>
+            {`${lesson.title.de} (${lesson.title.en})`}
+          </h1>
+          <ul style={{ margin: 0, paddingLeft: 20 }}>
+            {lesson.goals.map((g, i) => <li key={i} style={{ margin: '4px 0' }}>{g}</li>)}
+          </ul>
+        </div>
+        <LanguageToggle />
       </header>
 
       {vocabSteps.length > 0 && (

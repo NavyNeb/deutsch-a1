@@ -1,6 +1,8 @@
 'use client';
 import { lessons } from '@/content';
 import { useProgress } from '@/lib/progress-store';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 import { lessonCompletion } from '@/lib/progress';
 import { LessonNode } from './LessonNode';
 
@@ -11,6 +13,7 @@ const TOTAL_LESSON_SLOTS = 12;
 
 export function LearningPath() {
   const { state } = useProgress();
+  const { locale } = useLocale();
   const byNumber = new Map(lessons.map((l) => [l.number, l]));
 
   return (
@@ -30,7 +33,7 @@ export function LearningPath() {
             }}
           >
             <span className="label">Lektion {number}</span>
-            <p style={{ margin: 0, color: 'var(--muted)' }}>Bald verfügbar</p>
+            <p style={{ margin: 0, color: 'var(--muted)' }}>{t('comingSoon', locale)}</p>
           </div>
         );
       })}

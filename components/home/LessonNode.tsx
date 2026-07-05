@@ -1,5 +1,8 @@
+'use client';
 import Link from 'next/link';
 import type { Lesson } from '@/content/types';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 
 const RADIUS = 20;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -7,6 +10,7 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 // LessonNode only ever receives authored lessons (Module 1, numbers 1-3) — LearningPath
 // renders the greyed-out "coming soon" slots for the rest of the curriculum itself.
 export function LessonNode({ lesson, completion }: { lesson: Lesson; completion: number }) {
+  const { locale } = useLocale();
   const pct = Math.max(0, Math.min(1, completion));
   const dashOffset = CIRCUMFERENCE * (1 - pct);
 
@@ -29,11 +33,11 @@ export function LessonNode({ lesson, completion }: { lesson: Lesson; completion:
       </Link>
       {pct >= 1 ? (
         <Link href={`/lesson/${lesson.id}/review`} className="label" style={{ color: 'var(--accent)' }}>
-          Review
+          {t('review', locale)}
         </Link>
       ) : (
         <span className="label" style={{ color: 'var(--muted)', fontSize: 11, maxWidth: 88, textAlign: 'right' }}>
-          Complete the lesson to unlock review
+          {t('completeLessonUnlockReview', locale)}
         </span>
       )}
     </div>

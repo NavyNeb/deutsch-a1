@@ -1,6 +1,8 @@
 'use client';
 import type { Lesson, LessonStep } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 import { lessonCompletion } from '@/lib/progress';
 import { stepId } from './stepId';
 
@@ -41,6 +43,7 @@ export function LessonStepNav({
   open: boolean;
 }) {
   const { state } = useProgress();
+  const { locale } = useLocale();
   const doneSteps = state.lessons[lesson.id]?.steps ?? [];
 
   // Progressive unlocking: you can reach any step you've completed, the current
@@ -58,7 +61,7 @@ export function LessonStepNav({
 
   return (
     <nav
-      aria-label="Lesson steps"
+      aria-label={t('lessonStepsNav', locale)}
       style={{
         width: 260,
         minWidth: 260,
@@ -85,7 +88,7 @@ export function LessonStepNav({
                 onClick={() => { if (!locked) onJump(index); }}
                 disabled={locked}
                 aria-current={isCurrent ? 'step' : undefined}
-                title={locked ? 'Complete the earlier steps to unlock this one' : undefined}
+                title={locked ? t('completeEarlierSteps', locale) : undefined}
                 style={{
                   width: '100%',
                   textAlign: 'left',

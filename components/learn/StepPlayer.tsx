@@ -4,12 +4,15 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Lesson } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 import { ttsSrc } from '@/lib/audio';
 import { stepId } from './stepId';
 import { LessonStepNav } from './LessonStepNav';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { Button } from '@/components/ui/Button';
 import { AudioButton } from '@/components/ui/AudioButton';
+import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import { IntroStep } from './IntroStep';
 import { VocabStep } from './VocabStep';
 import { GrammarStep } from './GrammarStep';
@@ -20,6 +23,7 @@ import { ExerciseView } from '@/components/exercises/ExerciseView';
 export function StepPlayer({ lesson }: { lesson: Lesson }) {
   const router = useRouter();
   const { state, markStepDone, recordExercise } = useProgress();
+  const { locale } = useLocale();
   const [i, setI] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [navOpen, setNavOpen] = useState(true);
@@ -60,13 +64,14 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
           <button
             type="button"
             onClick={() => setNavOpen((o) => !o)}
-            aria-label={navOpen ? 'Close lesson navigation' : 'Open lesson navigation'}
+            aria-label={navOpen ? t('closeLessonNav', locale) : t('openLessonNav', locale)}
             style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 6, width: 36, height: 36, cursor: 'pointer', color: 'var(--ink)', flexShrink: 0 }}
           >
             ☰
           </button>
           <div style={{ flex: 1 }}><ProgressBar value={(i + 1) / lesson.steps.length} /></div>
           <span className="label">{i + 1} / {lesson.steps.length}</span>
+          <LanguageToggle />
         </div>
 
         {/* Card + controls, centered in the remaining space */}
@@ -95,7 +100,7 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
                   </Button>
                   <AudioButton src={ttsSrc('Zurück')} label="Say Zurück" size={22} />
                 </div>
-                <span className="label" style={{ paddingLeft: 4, color: 'var(--muted)' }}>Back</span>
+                <span className="label" style={{ paddingLeft: 4, color: 'var(--muted)' }}>{t('back', locale)}</span>
               </div>
 
               {/* Next / Finish — primary */}
@@ -106,7 +111,7 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
                     {last ? 'Fertig ✓' : 'Weiter →'}
                   </Button>
                 </div>
-                <span className="label" style={{ paddingRight: 4, color: 'var(--muted)' }}>{last ? 'Done' : 'Next'}</span>
+                <span className="label" style={{ paddingRight: 4, color: 'var(--muted)' }}>{last ? t('done', locale) : t('next', locale)}</span>
               </div>
             </div>
           </div>

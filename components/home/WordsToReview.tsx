@@ -2,12 +2,15 @@
 import { allVocab } from '@/content';
 import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { Card } from '@/components/ui/Card';
 
 export function WordsToReview() {
   const { state, toggleHardWord } = useProgress();
+  const { locale } = useLocale();
   const vocab = allVocab();
   const hardWords = state.hardWords
     .map((id) => vocab.find((v) => v.id === id))
@@ -17,11 +20,11 @@ export function WordsToReview() {
     <section>
       <div style={{ marginBottom: 16 }}>
         <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: 0 }}>Schwierige Wörter</h2>
-        <p className="label" style={{ color: 'var(--muted)', margin: '2px 0 0' }}>Words to review</p>
+        <p className="label" style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{t('wordsToReview', locale)}</p>
       </div>
       {hardWords.length === 0 ? (
         <p style={{ color: 'var(--muted)' }}>
-          No saved words yet — tap “Als schwierig markieren” (mark as difficult) on a word while learning, and it will appear here.
+          {t('noWordsYet', locale)}
         </p>
       ) : (
         <Card>
@@ -37,7 +40,7 @@ export function WordsToReview() {
                 </div>
                 <AudioButton src={ttsSrc(item.german)} label={`Say ${item.german}`} />
                 <button
-                  aria-label={`Remove ${item.german} from hard words`}
+                  aria-label={`${t('removeWord', locale)} ${item.german} ${t('fromReview', locale)}`}
                   onClick={() => toggleHardWord(item.id)}
                   style={{ background: 'none', border: '1px solid var(--border)', borderRadius: '50%', width: 32, height: 32, color: 'var(--muted)', cursor: 'pointer' }}
                 >

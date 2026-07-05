@@ -2,6 +2,8 @@
 import type { VocabItem } from '@/content/types';
 import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
+import { useLocale } from '@/lib/locale-store';
+import { t } from '@/lib/ui-strings';
 import { AudioButton } from '@/components/ui/AudioButton';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { SyllableStress } from '@/components/ui/SyllableStress';
@@ -10,6 +12,7 @@ import { AssistButtons } from '@/components/assist/AssistButtons';
 
 export function VocabStep({ item }: { item: VocabItem }) {
   const { state, toggleHardWord } = useProgress();
+  const { locale } = useLocale();
   const isHard = state.hardWords.includes(item.id);
 
   return (
@@ -22,7 +25,7 @@ export function VocabStep({ item }: { item: VocabItem }) {
       {item.pronunciation && (
         <p style={{ margin: '0 0 4px', fontSize: 20, fontWeight: 600, color: 'var(--ink)' }}>
           <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', marginRight: 8 }}>
-            say it:
+            {t('sayIt', locale)}
           </span>
           {item.pronunciation}
         </p>
@@ -45,7 +48,7 @@ export function VocabStep({ item }: { item: VocabItem }) {
         <button
           type="button"
           aria-pressed={isHard}
-          title={isHard ? 'Saved to review — tap to remove' : "Save this word to your 'Words to review' list on the home page"}
+          title={isHard ? t('savedToReviewTapRemove', locale) : t('saveWordHint', locale)}
           onClick={() => toggleHardWord(item.id)}
           style={{
             display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1,
@@ -58,7 +61,7 @@ export function VocabStep({ item }: { item: VocabItem }) {
             {isHard ? 'Gemerkt' : 'Als schwierig markieren'}
           </span>
           <span style={{ fontSize: 11, color: 'var(--muted)' }}>
-            {isHard ? 'Saved to review' : 'Mark as difficult — save to review'}
+            {isHard ? t('savedToReview', locale) : t('markDifficult', locale)}
           </span>
         </button>
         <AudioButton
