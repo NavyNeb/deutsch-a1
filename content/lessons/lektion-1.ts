@@ -81,7 +81,7 @@ export const lektion1: Lesson = {
     { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l1-e10', prompt: 'Können Sie das bitte ___? (buchstabieren)', answer: 'buchstabieren', hint: 'infinitive: to spell', hintFr: 'infinitif : épeler' } },
     { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l1-e11', prompt: "Listen. What is the man's name?", promptFr: "Écoute. Quel est le nom de l'homme ?", audio: { ttsText: 'Guten Tag! Ich bin Herr Meier. Ich komme aus Deutschland. Tschüss!' }, options: ['Herr Meier', 'Herr Fischer', 'Frau Meier'], answer: 0 } },
 
-    { kind: 'pronunciation', focus: 'The "ü" sound in Tschüss and the letter ß in heißen', items: [
+    { kind: 'pronunciation', focus: 'The "ü" sound in Tschüss and the letter ß in heißen', focusFr: 'Le son « ü » dans Tschüss et la lettre ß dans heißen', items: [
       { id: 'l1-tschuess-pron', german: 'Tschüss', english: 'Bye', french: 'Salut', gender: null, syllables: ['TSCHÜSS'], pronunciation: 'chews', example: { de: 'Tschüss!', en: 'Bye!', fr: 'Salut !' } },
       { id: 'l1-heissen-pron', german: 'heißen', english: 'to be called', french: "s'appeler", gender: null, syllables: ['HEI', 'ßen'], pronunciation: 'HIGH-ssen', example: { de: 'Ich heiße Nicole.', en: 'My name is Nicole. (lit. I am called Nicole)', fr: "Je m'appelle Nicole. (litt. je suis appelée Nicole)" } },
     ] },

@@ -82,7 +82,7 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
                 {step.kind === 'intro' && <IntroStep step={step} />}
                 {step.kind === 'vocab' && <VocabStep item={step.item} />}
                 {step.kind === 'grammar' && <GrammarStep note={step.note} />}
-                {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} items={step.items} />}
+                {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} focusFr={step.focusFr} items={step.items} />}
                 {step.kind === 'wrapup' && <WrapupStep summary={step.summary} summaryFr={step.summaryFr} />}
                 {step.kind === 'exercise' && <ExerciseView exercise={step.exercise} onResult={(c) => { setAnswered(true); recordExercise(lesson.id, step.exercise.id, c); }} />}
               </motion.div>

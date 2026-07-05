@@ -47,7 +47,7 @@ export const LessonStepSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('vocab'), item: VocabItemSchema }),
   z.object({ kind: z.literal('grammar'), note: GrammarNoteSchema }),
   z.object({ kind: z.literal('exercise'), exercise: ExerciseSchema }),
-  z.object({ kind: z.literal('pronunciation'), focus: z.string(), items: z.array(VocabItemSchema) }),
+  z.object({ kind: z.literal('pronunciation'), focus: z.string(), focusFr: z.string().optional(), items: z.array(VocabItemSchema) }),
   z.object({ kind: z.literal('wrapup'), summary: z.string(), summaryFr: z.string().optional() }),
 ]);
 export type LessonStep = z.infer<typeof LessonStepSchema>;
