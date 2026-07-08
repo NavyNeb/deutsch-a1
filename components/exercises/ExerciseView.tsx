@@ -9,13 +9,31 @@ import { pick as pickLocale } from '@/lib/i18n';
 import { Button } from '@/components/ui/Button';
 import { AudioButton } from '@/components/ui/AudioButton';
 
+// Initial (empty) response shape for a given exercise type — used both on
+// mount and to reset the exercise when the learner hits "Try again".
+const initialResponse = (exercise: Exercise): unknown =>
+  exercise.type === 'match' ? {} : exercise.type === 'wordOrder' ? [] : undefined;
+
 export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onResult: (correct: boolean) => void }) {
-  const [response, setResponse] = useState<unknown>(exercise.type === 'match' ? {} : exercise.type === 'wordOrder' ? [] : undefined);
+  const [response, setResponse] = useState<unknown>(initialResponse(exercise));
   const [result, setResult] = useState<{ correct: boolean; explanation?: string } | null>(null);
+  // Bumped on "Try again" so uncontrolled/inner-state child inputs (fillBlank's
+  // text input, WordOrder, Match) remount with a clean slate instead of just
+  // silently keeping stale visible state.
+  const [attempt, setAttempt] = useState(0);
   const { locale } = useLocale();
 
   const check = () => { const r = checkAnswer(exercise, response, locale); setResult(r); onResult(r.correct); };
+  const tryAgain = () => { setResponse(initialResponse(exercise)); setResult(null); setAttempt((n) => n + 1); };
   const opt = (active: boolean) => ({ border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`, background: active ? 'var(--accent-wash)' : 'var(--card)', borderRadius: 6, padding: '10px 14px', margin: '4px 0', width: '100%', textAlign: 'left' as const });
+
+  // A guiding hint to show on a wrong answer — never the answer itself.
+  // Falls back to the exercise's teaching "explain" note (multipleChoice only)
+  // when no dedicated hint was authored; omitted entirely if neither exists.
+  const wrongAnswerHint =
+    exercise.hint ? pickLocale(exercise.hint, exercise.hintFr, locale) :
+    exercise.type === 'multipleChoice' && exercise.explain ? pickLocale(exercise.explain, exercise.explainFr, locale) :
+    undefined;
 
   const unattempted =
     exercise.type === 'wordOrder' ? (response as string[]).length !== exercise.tokens.length :
@@ -46,18 +64,40 @@ export function ExerciseView({ exercise, onResult }: { exercise: Exercise; onRes
       </div>)}
 
       {exercise.type === 'fillBlank' && (
-        <input className="mock-input" style={{ border: '1px solid var(--border)', borderRadius: 6, padding: '10px 12px', width: '100%' }}
+        <input key={attempt} className="mock-input" style={{ border: '1px solid var(--border)', borderRadius: 6, padding: '10px 12px', width: '100%' }}
           onChange={(e) => setResponse(e.target.value)} placeholder={t('typeYourAnswer', locale)} />
       )}
 
-      {exercise.type === 'wordOrder' && <WordOrder tokens={exercise.tokens} onChange={setResponse} locale={locale} />}
-      {exercise.type === 'match' && <Match pairs={exercise.pairs} onChange={setResponse} locale={locale} />}
+      {exercise.type === 'wordOrder' && <WordOrder key={attempt} tokens={exercise.tokens} onChange={setResponse} locale={locale} />}
+      {exercise.type === 'match' && <Match key={attempt} pairs={exercise.pairs} onChange={setResponse} locale={locale} />}
 
       <div style={{ marginTop: 14 }}><Button onClick={check} disabled={unattempted}>{t('check', locale)}</Button></div>
 
       {result && (
-        <div style={{ marginTop: 12, color: result.correct ? 'var(--das)' : 'var(--die)' }}>
-          {result.correct ? '✓ Richtig!' : `✗ ${t('notQuite', locale)}`} {result.explanation && <span style={{ color: 'var(--muted)' }}>— {result.explanation}</span>}
+        <div style={{ marginTop: 12 }}>
+          {result.correct ? (
+            <div style={{ color: 'var(--das)' }}>
+              ✓ Richtig! {result.explanation && <span style={{ color: 'var(--muted)' }}>— {result.explanation}</span>}
+            </div>
+          ) : (
+            <div>
+              <div style={{ color: 'var(--die)' }}>✗ {t('notQuite', locale)}</div>
+              <div role="note" aria-label={t('tip', locale)}
+                style={{ marginTop: 8, background: 'var(--accent-wash)', border: '1px solid var(--border)', borderRadius: 8, padding: '12px 14px' }}>
+                {wrongAnswerHint && (
+                  <p style={{ margin: 0 }}>
+                    <strong>💡 {t('tip', locale)}:</strong> <span style={{ color: 'var(--ink)' }}>{wrongAnswerHint}</span>
+                  </p>
+                )}
+                <div style={{ marginTop: wrongAnswerHint ? 10 : 0 }}>
+                  <button onClick={tryAgain}
+                    style={{ border: '1px solid var(--accent)', color: 'var(--accent)', background: 'transparent', borderRadius: 6, padding: '8px 14px', fontWeight: 600 }}>
+                    {t('tryAgain', locale)}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

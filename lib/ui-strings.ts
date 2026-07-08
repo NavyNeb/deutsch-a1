@@ -40,6 +40,8 @@ export const UI = {
 
   check: { en: 'Check', fr: 'Vérifier' },
   notQuite: { en: 'Not quite.', fr: 'Pas tout à fait.' },
+  tip: { en: 'Tip', fr: 'Astuce' },
+  tryAgain: { en: 'Try again', fr: 'Réessayer' },
   listenThenChoose: { en: 'Listen, then choose', fr: 'Écoute, puis choisis' },
   playClip: { en: 'Play the clip', fr: 'Écoute le clip' },
   typeYourAnswer: { en: 'Type your answer', fr: 'Tape ta réponse' },

@@ -12,8 +12,10 @@ export function checkAnswer(ex: Exercise, response: unknown, locale: Locale = 'e
       return { correct: response === ex.answer, explanation: undefined };
     case 'fillBlank':
       return { correct: norm(String(response)) === norm(ex.answer), explanation: ex.hint ? pick(ex.hint, ex.hintFr, locale) : undefined };
-    case 'articlePicker':
-      return { correct: response === ex.answer, explanation: `${ex.answer} ${ex.word}` };
+    case 'articlePicker': {
+      const correct = response === ex.answer;
+      return { correct, explanation: correct ? `${ex.answer} ${ex.word}` : undefined };
+    }
     case 'wordOrder': {
       const r = response as string[];
       return { correct: Array.isArray(r) && r.length === ex.answer.length && r.every((t, i) => t === ex.answer[i]) };

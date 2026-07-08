@@ -33,12 +33,12 @@ const AudioSourceSchema = z.union([
 ]);
 
 export const ExerciseSchema = z.discriminatedUnion('type', [
-  z.object({ type: z.literal('multipleChoice'), id: z.string(), prompt: z.string(), promptFr: z.string().optional(), options: z.array(z.string()), optionsFr: z.array(z.string()).optional(), answer: z.number(), explain: z.string().optional(), explainFr: z.string().optional() }),
+  z.object({ type: z.literal('multipleChoice'), id: z.string(), prompt: z.string(), promptFr: z.string().optional(), options: z.array(z.string()), optionsFr: z.array(z.string()).optional(), answer: z.number(), explain: z.string().optional(), explainFr: z.string().optional(), hint: z.string().optional(), hintFr: z.string().optional() }),
   z.object({ type: z.literal('fillBlank'), id: z.string(), prompt: z.string(), promptFr: z.string().optional(), answer: z.string(), hint: z.string().optional(), hintFr: z.string().optional() }),
-  z.object({ type: z.literal('articlePicker'), id: z.string(), word: z.string(), answer: z.enum(['der', 'die', 'das']) }),
-  z.object({ type: z.literal('match'), id: z.string(), pairs: z.array(z.object({ de: z.string(), en: z.string(), fr: z.string().optional() })).min(2) }),
-  z.object({ type: z.literal('wordOrder'), id: z.string(), tokens: z.array(z.string()), answer: z.array(z.string()) }),
-  z.object({ type: z.literal('listenChoose'), id: z.string(), prompt: z.string(), promptFr: z.string().optional(), audio: AudioSourceSchema, options: z.array(z.string()), optionsFr: z.array(z.string()).optional(), answer: z.number() }),
+  z.object({ type: z.literal('articlePicker'), id: z.string(), word: z.string(), answer: z.enum(['der', 'die', 'das']), hint: z.string().optional(), hintFr: z.string().optional() }),
+  z.object({ type: z.literal('match'), id: z.string(), pairs: z.array(z.object({ de: z.string(), en: z.string(), fr: z.string().optional() })).min(2), hint: z.string().optional(), hintFr: z.string().optional() }),
+  z.object({ type: z.literal('wordOrder'), id: z.string(), tokens: z.array(z.string()), answer: z.array(z.string()), hint: z.string().optional(), hintFr: z.string().optional() }),
+  z.object({ type: z.literal('listenChoose'), id: z.string(), prompt: z.string(), promptFr: z.string().optional(), audio: AudioSourceSchema, options: z.array(z.string()), optionsFr: z.array(z.string()).optional(), answer: z.number(), hint: z.string().optional(), hintFr: z.string().optional() }),
 ]);
 export type Exercise = z.infer<typeof ExerciseSchema>;
 
