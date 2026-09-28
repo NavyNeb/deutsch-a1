@@ -1,6 +1,6 @@
 export function SyllableStress({ syllables }: { syllables: string[] }) {
   return (
-    <span className="text-[color:var(--accent)] font-medium italic">
+    <span className="text-primary font-medium italic font-rounded">
       {syllables.map((s, i) => {
         const stressed = s === s.toUpperCase() && /[A-ZÄÖÜẞ]/.test(s);
         return (

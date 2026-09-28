@@ -1,4 +1,5 @@
 'use client';
+import { X } from 'lucide-react';
 import { allVocab } from '@/content';
 import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
@@ -19,33 +20,40 @@ export function WordsToReview() {
 
   return (
     <section>
-      <div style={{ marginBottom: 16 }}>
-        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: 0 }}>Schwierige Wörter</h2>
-        <p className="label" style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{t('wordsToReview', locale)}</p>
+      <div className="mb-4">
+        <h2 className="text-[26px] font-extrabold m-0">Schwierige Wörter</h2>
+        <p className="label text-muted m-0 mt-0.5">{t('wordsToReview', locale)}</p>
       </div>
       {hardWords.length === 0 ? (
-        <p style={{ color: 'var(--muted)' }}>
-          {t('noWordsYet', locale)}
-        </p>
+        <Card>
+          <p className="text-muted m-0">{t('noWordsYet', locale)}</p>
+        </Card>
       ) : (
         <Card>
-          <div style={{ display: 'grid', gap: 16 }}>
-            {hardWords.map((item) => (
-              <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12, borderBottom: '1px solid var(--border)', paddingBottom: 16 }}>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20 }}>{item.german}</span>
+          <div className="grid gap-4">
+            {hardWords.map((item, i) => (
+              <div
+                key={item.id}
+                className={
+                  'flex items-center gap-3 ' +
+                  (i < hardWords.length - 1 ? 'border-b border-border pb-4' : '')
+                }
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[20px] font-bold font-rounded">{item.german}</span>
                     <GenderTag gender={item.gender} />
                   </div>
-                  <p style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{pick(item.english, item.french, locale)}</p>
+                  <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>
                 </div>
-                <AudioButton src={ttsSrc(item.german)} label={`Say ${item.german}`} />
+                <AudioButton src={ttsSrc(item.german)} label={`${item.german} anhören`} />
                 <button
                   aria-label={`${t('removeWord', locale)} ${item.german} ${t('fromReview', locale)}`}
                   onClick={() => toggleHardWord(item.id)}
-                  style={{ background: 'none', border: '1px solid var(--border)', borderRadius: '50%', width: 32, height: 32, color: 'var(--muted)', cursor: 'pointer' }}
+                  className="grid place-items-center shrink-0 w-8 h-8 rounded-full text-muted border border-border
+                    transition-[background,color,border-color] duration-150 hover:text-[var(--bad)] hover:border-[var(--bad)] hover:bg-[var(--bad-wash)]"
                 >
-                  ✕
+                  <X size={15} strokeWidth={2.4} />
                 </button>
               </div>
             ))}

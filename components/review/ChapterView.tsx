@@ -8,6 +8,7 @@ import { GenderTag } from '@/components/ui/GenderTag';
 import { Card } from '@/components/ui/Card';
 import { MiniMarkdown } from '@/components/ui/miniMarkdown';
 import { LanguageToggle } from '@/components/ui/LanguageToggle';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 // Read-only, scrolling review of a lesson's content — no step gating, no progress tracking.
 export function ChapterView({ lesson }: { lesson: Lesson }) {
@@ -24,40 +25,44 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
   const goals = locale === 'fr' && lesson.goalsFr ? lesson.goalsFr : lesson.goals;
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: 24 }}>
-      <header style={{ marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+    <div className="max-w-[720px] mx-auto p-6">
+      <header className="mb-8 flex justify-between items-start gap-4">
         <div>
-          <p className="label" style={{ marginBottom: 4 }}>Lektion {lesson.number}</p>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 40, margin: '0 0 8px' }}>
+          <p className="label mb-1">Lektion {lesson.number}</p>
+          <h1 className="text-[40px] font-extrabold m-0 mb-2">
             {`${lesson.title.de} (${titleTranslation})`}
           </h1>
-          <ul style={{ margin: 0, paddingLeft: 20 }}>
-            {goals.map((g, i) => <li key={i} style={{ margin: '4px 0' }}>{g}</li>)}
+          <ul className="m-0 pl-5 grid gap-1 marker:text-primary">
+            {goals.map((g, i) => <li key={i}>{g}</li>)}
           </ul>
         </div>
-        <LanguageToggle />
+        <div className="flex items-center gap-2 shrink-0">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </header>
 
       {vocabSteps.length > 0 && (
-        <section style={{ marginBottom: 32 }}>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: '0 0 16px' }}>Wortschatz</h2>
+        <section className="mb-8">
+          <h2 className="text-[26px] font-extrabold m-0 mb-4">Wortschatz</h2>
           <Card>
-            <div style={{ display: 'grid', gap: 16 }}>
-              {vocabSteps.map((step) => {
+            <div className="grid gap-4">
+              {vocabSteps.map((step, i) => {
                 const item = step.item;
                 return (
-                  <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12, borderBottom: '1px solid var(--border)', paddingBottom: 16 }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20 }}>{item.german}</span>
+                  <div
+                    key={item.id}
+                    className={'flex items-center gap-3 ' + (i < vocabSteps.length - 1 ? 'border-b border-border pb-4' : '')}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="font-rounded font-bold text-[20px]">{item.german}</span>
                         <GenderTag gender={item.gender} />
                       </div>
-                      {item.pronunciation && (
-                        <p style={{ color: 'var(--muted)', margin: '2px 0 0', fontSize: 13 }}>{item.pronunciation}</p>
-                      )}
-                      <p style={{ color: 'var(--muted)', margin: '2px 0 0' }}>{pick(item.english, item.french, locale)}</p>
+                      {item.pronunciation && <p className="text-muted m-0 mt-0.5 text-[13px]">{item.pronunciation}</p>}
+                      <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>
                     </div>
-                    <AudioButton src={ttsSrc(item.german)} label={`Say ${item.german}`} />
+                    <AudioButton src={ttsSrc(item.german)} label={`Anhören: ${item.german}`} />
                   </div>
                 );
               })}
@@ -67,14 +72,14 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
       )}
 
       {grammarSteps.length > 0 && (
-        <section style={{ marginBottom: 32 }}>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: '0 0 16px' }}>Grammatik</h2>
-          <div style={{ display: 'grid', gap: 16 }}>
+        <section className="mb-8">
+          <h2 className="text-[26px] font-extrabold m-0 mb-4">Grammatik</h2>
+          <div className="grid gap-4">
             {grammarSteps.map((step) => {
               const note = step.note;
               return (
                 <Card key={note.id}>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 20, margin: '0 0 8px' }}>{pick(note.title, note.titleFr, locale)}</h3>
+                  <h3 className="text-[20px] font-bold m-0 mb-2">{pick(note.title, note.titleFr, locale)}</h3>
                   <MiniMarkdown md={pick(note.explanationMd, note.explanationMdFr, locale)} />
                 </Card>
               );
@@ -85,13 +90,17 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
 
       {examples.length > 0 && (
         <section>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 26, margin: '0 0 16px' }}>Beispielsätze</h2>
+          <h2 className="text-[26px] font-extrabold m-0 mb-4">Beispielsätze</h2>
           <Card>
-            <div style={{ display: 'grid', gap: 10 }}>
+            <div className="grid gap-2.5">
               {examples.map((ex, i) => (
-                <div key={i} style={{ borderLeft: '3px solid var(--accent)', paddingLeft: 12, display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <div style={{ flex: 1 }}><em>{ex.de}</em><br /><span style={{ color: 'var(--muted)', fontSize: 14 }}>{pick(ex.en, ex.fr, locale)}</span></div>
-                  <AudioButton src={ttsSrc(ex.de)} label={`Say ${ex.de}`} />
+                <div key={i} className="border-l-[3px] border-primary pl-3 flex gap-2.5 items-center">
+                  <div className="flex-1">
+                    <em className="not-italic font-medium">{ex.de}</em>
+                    <br />
+                    <span className="text-muted text-sm">{pick(ex.en, ex.fr, locale)}</span>
+                  </div>
+                  <AudioButton src={ttsSrc(ex.de)} label={`Anhören: ${ex.de}`} />
                 </div>
               ))}
             </div>

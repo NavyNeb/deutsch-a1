@@ -1,37 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================================
+   Deutsch — design system (warm, learner-focused premium)
+   Light-first. Dark theme via [data-theme="dark"] on <html>.
+   Semantic colors are runtime CSS vars so the theme toggle re-resolves every
+   Tailwind color utility (that's what @theme inline buys us).
+   ========================================================================= */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* colors → semantic runtime vars (themeable) */
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-card: var(--card);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-2);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-primary: var(--primary);
+  --color-primary-2: var(--primary-2);
+  --color-primary-ink: var(--primary-ink);
+  --color-der: var(--der);
+  --color-die: var(--die);
+  --color-das: var(--das);
+  --color-amber: var(--amber);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+
+  /* shadows (themeable) */
+  --shadow-sm: var(--shadow-sm-v);
+  --shadow-card: var(--shadow-v);
+  --shadow-pop: var(--shadow-lg-v);
+  --shadow-primary: var(--shadow-primary-v);
+
+  /* type */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-rounded: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", "Nunito", var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
+
+  /* radii */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---- Light theme (default) --------------------------------------------- */
+:root {
+  --bg: #FAFAFB;
+  --bg-soft: #F3F1FB;
+  --card: #FFFFFF;
+  --surface-2: #F4F5F8;
+  --surface-3: #EBECF1;
+  --border: rgba(23, 25, 34, 0.08);
+  --border-2: rgba(23, 25, 34, 0.14);
+  --text: #171922;
+  --text-2: #414654;
+  --muted: #6B7280;
+  --faint: #9AA0AC;
+  --primary: #5B57E8;
+  --primary-2: #7B78F0;
+  --primary-ink: #FFFFFF;
+  --der: #2F6BF0;
+  --die: #E85C97;
+  --das: #1F9E68;
+  --amber: #F59E0B;
+  --good: #16A34A;
+  --bad: #E5484D;
+
+  --primary-wash: #EEEDFD;
+  --amber-wash: #FEF3E2;
+  --good-wash: #E7F6EE;
+  --bad-wash: #FCECEC;
+  --accent-wash: var(--primary-wash);
+  --ring: rgba(91, 87, 232, 0.5);
+
+  --shadow-sm-v: 0 1px 2px rgba(23, 25, 34, 0.05), 0 1px 3px rgba(23, 25, 34, 0.06);
+  --shadow-v: 0 4px 14px -6px rgba(23, 25, 34, 0.14), 0 2px 5px -3px rgba(23, 25, 34, 0.1);
+  --shadow-lg-v: 0 24px 50px -26px rgba(23, 25, 34, 0.3);
+  --shadow-primary-v: 0 10px 24px -10px rgba(91, 87, 232, 0.5);
+
+  /* --- backward-compat aliases (legacy inline styles reference these) --- */
+  --paper: var(--bg);
+  --ink: var(--text);
+  --accent: var(--primary);
+  --font-serif: var(--font-rounded);
+
+  color-scheme: light;
+}
+
+/* ---- Dark theme --------------------------------------------------------- */
+[data-theme="dark"] {
+  --bg: #0E0F13;
+  --bg-soft: #141322;
+  --card: #17181D;
+  --surface-2: #1D1F25;
+  --surface-3: #26282F;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-2: rgba(255, 255, 255, 0.15);
+  --text: #ECEDF1;
+  --text-2: #B7BBC4;
+  --muted: #8B909B;
+  --faint: #5C616B;
+  --primary: #7C82F2;
+  --primary-2: #9AA0F6;
+  --primary-ink: #0E0F13;
+  --der: #5A93FF;
+  --die: #FF83B0;
+  --das: #46C79A;
+  --amber: #F5B54A;
+  --good: #46C79A;
+  --bad: #FF6B6B;
+
+  --primary-wash: rgba(124, 130, 242, 0.15);
+  --amber-wash: rgba(245, 181, 74, 0.14);
+  --good-wash: rgba(70, 199, 154, 0.13);
+  --bad-wash: rgba(255, 107, 107, 0.12);
+  --accent-wash: var(--primary-wash);
+  --ring: rgba(124, 130, 242, 0.6);
+
+  --shadow-sm-v: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-v: 0 6px 20px -10px rgba(0, 0, 0, 0.7);
+  --shadow-lg-v: 0 30px 60px -30px rgba(0, 0, 0, 0.85);
+  --shadow-primary-v: 0 10px 24px -10px rgba(124, 130, 242, 0.55);
+
+  color-scheme: dark;
+}
+
+/* ---- base --------------------------------------------------------------- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-rounded);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+::selection { background: var(--accent-wash); }
+
+/* utility retained from the old system */
+.label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* themed scrollbar (webkit) */
+* { scrollbar-color: var(--surface-3) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--border-2); }
+
+@keyframes confetti-fly {
+  0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4) rotate(200deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-:root {
-  --paper:#F5F3EE; --card:#FCFBF8; --ink:#2B2A26; --muted:#8A7F6B;
-  --border:#E4E0D7; --accent:#B0472F;
-  --der:#2F5FB0; --die:#B0472F; --das:#3E7C5A;
-  --accent-wash: #F3E7E3;
-  --font-serif: Georgia, 'Times New Roman', serif;
-}
-body { background: var(--paper); color: var(--ink); }
-h1,h2,h3 { font-family: var(--font-serif); }
-.label { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }

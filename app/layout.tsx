@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { SyncManager } from "@/components/auth/SyncManager";
 
 export const metadata: Metadata = {
-  title: "Deutsch A1",
-  description: "A German A1 learning path — lessons, exercises, and vocabulary review.",
+  title: "Deutsch — Learn German A1",
+  description: "A premium German A1 course — guided lessons, exercises, spaced review, and native audio.",
 };
+
+// Applies the saved theme before first paint so light mode never flashes dark.
+const themeInit = `try{var t=localStorage.getItem('deutsch-a1-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}`;
 
 export default function RootLayout({
   children,
@@ -23,11 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <SyncManager />
+        {children}
+      </body>
     </html>
   );
 }

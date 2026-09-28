@@ -21,7 +21,7 @@ export function MiniMarkdown({ md }: { md: string }) {
         const isList = lines.length > 0 && lines.every((l) => l.startsWith('-') || l.startsWith('•'));
         if (isList) {
           return (
-            <ul key={bi} style={{ margin: '8px 0', paddingLeft: 20 }}>
+            <ul key={bi} className="my-2 pl-5 grid gap-1 marker:text-primary">
               {lines.map((l, li) => (
                 <li key={li}>{renderInline(l.replace(/^[-•]\s*/, ''), `${bi}-${li}`)}</li>
               ))}
@@ -29,7 +29,7 @@ export function MiniMarkdown({ md }: { md: string }) {
           );
         }
         return (
-          <p key={bi} style={{ margin: '8px 0' }}>
+          <p key={bi} className="my-2 leading-relaxed">
             {lines.map((l, li) => (
               <Fragment key={li}>
                 {li > 0 && <br />}

@@ -12,11 +12,13 @@ export function IntroStep({ step }: { step: IntroStepData }) {
   const goals = locale === 'fr' && step.goalsFr ? step.goalsFr : step.goals;
   return (
     <Card>
-      <h2 style={{ fontSize: 28, margin: '0 0 8px' }}>{pick(step.title, step.titleFr, locale)}</h2>
-      {step.scene && <p style={{ color: 'var(--muted)', marginBottom: 16 }}>{pick(step.scene, step.sceneFr, locale)}</p>}
-      <p className="label" style={{ marginBottom: 8 }}>{t('inThisLessonYouWill', locale)}</p>
-      <ul style={{ margin: 0, paddingLeft: 20 }}>
-        {goals.map((g, i) => <li key={i} style={{ margin: '4px 0' }}>{g}</li>)}
+      <h2 className="text-[28px] font-extrabold m-0 mb-2">{pick(step.title, step.titleFr, locale)}</h2>
+      {step.scene && <p className="text-muted mb-4">{pick(step.scene, step.sceneFr, locale)}</p>}
+      <p className="label mb-2">{t('inThisLessonYouWill', locale)}</p>
+      <ul className="m-0 pl-5 grid gap-1">
+        {goals.map((g, i) => (
+          <li key={i} className="marker:text-primary">{g}</li>
+        ))}
       </ul>
     </Card>
   );

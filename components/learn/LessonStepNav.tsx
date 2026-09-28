@@ -1,4 +1,5 @@
 'use client';
+import { Lock, Check } from 'lucide-react';
 import type { Lesson, LessonStep } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -62,20 +63,10 @@ export function LessonStepNav({
   return (
     <nav
       aria-label={t('lessonStepsNav', locale)}
-      style={{
-        width: 260,
-        minWidth: 260,
-        flexShrink: 0,
-        borderRight: '1px solid var(--border)',
-        height: '100dvh',
-        position: 'sticky',
-        top: 0,
-        overflowY: 'auto',
-        padding: '64px 10px 24px',
-        background: 'var(--paper)',
-      }}
+      className="w-[260px] min-w-[260px] shrink-0 border-r border-border h-[100dvh] sticky top-0 overflow-y-auto
+        pt-16 px-2.5 pb-6 bg-bg-soft"
     >
-      <ol style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 2 }}>
+      <ol className="list-none m-0 p-0 grid gap-0.5">
         {lesson.steps.map((step, index) => {
           const id = stepId(step, index);
           const isDone = doneSteps.includes(id);
@@ -89,27 +80,24 @@ export function LessonStepNav({
                 disabled={locked}
                 aria-current={isCurrent ? 'step' : undefined}
                 title={locked ? t('completeEarlierSteps', locale) : undefined}
-                style={{
-                  width: '100%',
-                  textAlign: 'left',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '8px 10px',
-                  borderRadius: 6,
-                  border: 'none',
-                  cursor: locked ? 'not-allowed' : 'pointer',
-                  background: isCurrent ? 'var(--accent-wash)' : 'transparent',
-                  color: locked ? 'var(--border)' : isCurrent ? 'var(--accent)' : 'var(--ink)',
-                  fontWeight: isCurrent ? 600 : 400,
-                }}
+                className={
+                  'w-full text-left flex items-center gap-2 px-2.5 py-2 rounded-[10px] border-none transition-colors ' +
+                  (locked ? 'cursor-not-allowed text-faint' : 'cursor-pointer ') +
+                  (isCurrent ? 'bg-[var(--primary-wash)] text-primary font-semibold' : locked ? '' : 'text-text hover:bg-surface-2')
+                }
               >
-                <span style={{ fontSize: 12, color: locked ? 'var(--border)' : 'var(--muted)', minWidth: 18 }}>{index + 1}</span>
-                <span style={{ flex: 1, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span className={'text-xs min-w-[18px] tabular-nums ' + (locked ? 'text-faint' : 'text-muted')}>{index + 1}</span>
+                <span className="flex-1 text-sm overflow-hidden text-ellipsis whitespace-nowrap font-rounded">
                   {labelFor(step, index, lesson)}
                 </span>
-                <span aria-hidden="true" style={{ color: isDone ? 'var(--accent)' : 'var(--muted)', fontSize: 13 }}>
-                  {locked ? '🔒' : isDone ? '✓' : '·'}
+                <span aria-hidden="true" className="shrink-0 grid place-items-center w-4 h-4">
+                  {locked ? (
+                    <Lock size={12} strokeWidth={2.2} />
+                  ) : isDone ? (
+                    <Check size={14} strokeWidth={2.6} className="text-primary" />
+                  ) : (
+                    <span className="w-1 h-1 rounded-full bg-muted" />
+                  )}
                 </span>
               </button>
             </li>

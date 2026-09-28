@@ -1,0 +1,10 @@
+# Copyrighted Menschen A1 course audio (© Hueber) — local/personal study only.
+# Must NEVER be deployed publicly. Mirrors the rule in .gitignore. Only the
+# generated TTS audio (public/audio/tts-*.mp3) is safe to ship.
+public/audio/l*.mp3
+
+# Local content snapshot consumed by the audio script (regenerated on demand).
+content/lessons.snapshot.json
+
+# Dev-only assets not needed at runtime.
+docs/

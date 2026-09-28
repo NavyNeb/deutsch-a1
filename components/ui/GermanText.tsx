@@ -19,17 +19,13 @@ export function GermanText({
   return (
     <div style={{ textAlign: align }}>
       <div
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          justifyContent: align === 'center' ? 'center' : 'flex-start',
-        }}
+        className="inline-flex items-center gap-2"
+        style={{ justifyContent: align === 'center' ? 'center' : 'flex-start' }}
       >
-        <span style={{ fontFamily: 'var(--font-serif)', fontSize: deSize }}>{de}</span>
-        <AudioButton src={ttsSrc(de)} label={`Say ${de}`} size={26} />
+        <span className="font-rounded font-semibold" style={{ fontSize: deSize }}>{de}</span>
+        <AudioButton src={ttsSrc(de)} label={`Anhören: ${de}`} size={26} />
       </div>
-      <div style={{ color: 'var(--muted)', fontSize: Math.max(13, deSize - 4), marginTop: 2 }}>{en}</div>
+      <div className="text-muted mt-0.5" style={{ fontSize: Math.max(13, deSize - 4) }}>{en}</div>
     </div>
   );
 }
