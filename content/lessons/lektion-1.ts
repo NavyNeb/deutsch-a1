@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion1: Lesson = {
-  id: 'l1', number: 1,
+  id: 'l1', level: 'A1', module: 1, number: 1,
   title: { de: 'Hallo! Ich bin Nicole', en: 'Hello! I am Nicole', fr: 'Salut ! Je suis Nicole' },
   theme: 'Greetings & introducing yourself',
   themeFr: 'Salutations et présentations',

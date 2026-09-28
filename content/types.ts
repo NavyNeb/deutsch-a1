@@ -52,9 +52,14 @@ export const LessonStepSchema = z.discriminatedUnion('kind', [
 ]);
 export type LessonStep = z.infer<typeof LessonStepSchema>;
 
+export const LevelSchema = z.enum(['A1', 'A2', 'B1', 'B2']);
+export type Level = z.infer<typeof LevelSchema>;
+
 export const LessonSchema = z.object({
   id: z.string(),
-  number: z.number(),
+  level: LevelSchema.default('A1'),   // CEFR level this lesson belongs to
+  number: z.number(),                 // lesson number within its level
+  module: z.number().optional(),      // module (group of 3) within the level
   title: z.object({ de: z.string(), en: z.string(), fr: z.string().optional() }),
   theme: z.string(),
   themeFr: z.string().optional(),
