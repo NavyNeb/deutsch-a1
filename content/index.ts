@@ -17,12 +17,16 @@ import { a2lektion3 } from './lessons/a2-lektion-3';
 import { a2lektion4 } from './lessons/a2-lektion-4';
 import { a2lektion5 } from './lessons/a2-lektion-5';
 import { a2lektion6 } from './lessons/a2-lektion-6';
+import { a2lektion7 } from './lessons/a2-lektion-7';
+import { a2lektion8 } from './lessons/a2-lektion-8';
+import { a2lektion9 } from './lessons/a2-lektion-9';
 
 // parseLesson validates at module load — a malformed lesson throws immediately.
 export const lessons: Lesson[] = [
   lektion1, lektion2, lektion3, lektion4, lektion5, lektion6,
   lektion7, lektion8, lektion9, lektion10, lektion11, lektion12,
   a2lektion1, a2lektion2, a2lektion3, a2lektion4, a2lektion5, a2lektion6,
+  a2lektion7, a2lektion8, a2lektion9,
 ].map(parseLesson);
 export function getLesson(id: string): Lesson | undefined { return lessons.find((l) => l.id === id); }
 
