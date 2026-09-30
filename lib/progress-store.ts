@@ -61,5 +61,8 @@ export function useProgress() {
       if (correct) next = withXp(next, XP_REVIEW, dateKey(now));
       set(next);
     },
+
+    // Generic XP award (games) — logged under today so it feeds streak + daily goal.
+    awardXp: (amount: number) => { if (amount > 0) set(withXp(state, amount, dateKey(Date.now()))); },
   };
 }
