@@ -13,7 +13,7 @@ export function LanguageToggle({ style }: { style?: CSSProperties }) {
     background: active ? 'var(--accent)' : 'transparent',
     color: active ? '#FFFFFF' : 'var(--muted)',
     borderRadius: 999,
-    padding: '4px 10px',
+    padding: '10px 14px',
     fontSize: 11,
     fontWeight: 600,
     letterSpacing: '0.08em',

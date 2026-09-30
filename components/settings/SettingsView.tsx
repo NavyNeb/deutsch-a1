@@ -40,7 +40,7 @@ function ThemeChoice() {
       onClick={() => choose(val)}
       aria-pressed={theme === val}
       className={
-        'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-rounded font-bold transition-colors ' +
+        'inline-flex items-center gap-1.5 px-3.5 py-2.5 sm:px-3 sm:py-1.5 rounded-full text-[13px] font-rounded font-bold transition-colors ' +
         (theme === val ? 'bg-primary text-primary-ink' : 'text-text-2 hover:bg-surface-2')
       }
     >

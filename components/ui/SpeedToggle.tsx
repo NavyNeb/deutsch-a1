@@ -27,7 +27,7 @@ export function SpeedToggle() {
       aria-label={slow ? t('speedSlow', locale) : t('speedNormal', locale)}
       title={t('playbackSpeed', locale)}
       className={
-        'inline-flex items-center gap-1.5 h-9 px-2.5 rounded-full border shadow-sm text-[13px] font-rounded font-bold ' +
+        'inline-flex items-center shrink-0 gap-1.5 h-10 sm:h-9 px-2.5 rounded-full border shadow-sm text-[13px] font-rounded font-bold ' +
         'tabular-nums transition-[border-color,background,transform] duration-150 active:scale-95 cursor-pointer ' +
         (slow ? 'border-primary text-primary bg-[var(--primary-wash)]' : 'border-border text-text-2 bg-card hover:border-border-strong')
       }

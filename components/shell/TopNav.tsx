@@ -144,7 +144,7 @@ function AccountArea({ user, configured, locale }: { user: MinimalUserOrNull; co
   }
   return (
     <div className="flex items-center gap-3">
-      <Link href="/account" className="font-rounded font-semibold text-[14px] text-text no-underline hover:text-primary">
+      <Link href="/account" className="font-rounded font-semibold text-[14px] text-text no-underline hover:text-primary py-2.5 px-1">
         {t('login', locale)}
       </Link>
       <Link

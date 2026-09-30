@@ -53,10 +53,10 @@ export function TextbookView() {
         </div>
         <div className="flex-1" />
         <div className="flex items-center gap-2">
-          <Link href="/games/sprint" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--soft)] text-[var(--soft-ink)] font-rounded font-bold text-[13px] px-3.5 py-2 no-underline hover:brightness-[1.03] transition">
+          <Link href="/games/sprint" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--soft)] text-[var(--soft-ink)] font-rounded font-bold text-[13px] px-3.5 py-2.5 no-underline hover:brightness-[1.03] transition">
             <Zap size={14} strokeWidth={2.4} fill="currentColor" stroke="none" /> {t('navSprint', locale)}
           </Link>
-          <Link href="/games/audio" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-wash)] text-primary font-rounded font-bold text-[13px] px-3.5 py-2 no-underline hover:brightness-105 transition">
+          <Link href="/games/audio" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-wash)] text-primary font-rounded font-bold text-[13px] px-3.5 py-2.5 no-underline hover:brightness-105 transition">
             <Headphones size={14} strokeWidth={2.4} /> {t('navAudioCall', locale)}
           </Link>
         </div>
@@ -64,16 +64,16 @@ export function TextbookView() {
 
       {/* Level tabs */}
       {tab === 'textbook' && (
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-7">
+        <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-1 mb-7">
           {LEVELS.map(({ lv, diff }) => (
-            <button key={lv} onClick={() => setLevel(lv)} className="inline-flex items-center gap-2 group">
+            <button key={lv} onClick={() => setLevel(lv)} className="inline-flex items-center gap-2 group py-2.5">
               <span className={'font-rounded font-extrabold text-[20px] transition-colors ' + (level === lv ? 'text-text underline decoration-2 underline-offset-8 decoration-primary' : 'text-muted group-hover:text-text')}>
                 {lv}
               </span>
-              <span className={'label rounded-full px-2 py-0.5 ' + DIFF_CLS[diff]}>{t(DIFF_LABEL[diff], locale)}</span>
+              <span className={'label hidden sm:inline-block rounded-full px-2 py-0.5 ' + DIFF_CLS[diff]}>{t(DIFF_LABEL[diff], locale)}</span>
             </button>
           ))}
-          <span className="ml-auto label text-muted">{words.length} {t('wordsStudied', locale)}</span>
+          <span className="w-full sm:w-auto sm:ml-auto label text-muted pt-1 sm:pt-0">{words.length} {t('wordsStudied', locale)}</span>
         </div>
       )}
 
@@ -90,7 +90,13 @@ export function TextbookView() {
 
       {/* Pagination */}
       {pageCount > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-9">
+        <>
+        <div className="sm:hidden flex items-center justify-center gap-4 mt-9">
+          <Pager label={<ChevronLeft size={18} />} disabled={page === 0} onClick={() => setPage((p) => Math.max(0, p - 1))} />
+          <span className="font-rounded font-bold text-[15px] tabular-nums text-text min-w-[64px] text-center">{page + 1} / {pageCount}</span>
+          <Pager label={<ChevronRight size={18} />} disabled={page >= pageCount - 1} onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))} />
+        </div>
+        <div className="hidden sm:flex items-center justify-center gap-2 mt-9">
           <Pager label={<ChevronLeft size={16} />} disabled={page === 0} onClick={() => setPage((p) => Math.max(0, p - 1))} />
           {pageWindow(page, pageCount).map((n, i) =>
             n === -1 ? (
@@ -101,6 +107,7 @@ export function TextbookView() {
           )}
           <Pager label={<ChevronRight size={16} />} disabled={page >= pageCount - 1} onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))} />
         </div>
+        </>
       )}
     </div>
   );
@@ -110,7 +117,7 @@ function ToolTab({ active, onClick, icon, label }: { active: boolean; onClick: (
   return (
     <button
       onClick={onClick}
-      className={'inline-flex items-center gap-2 rounded-full px-4 py-2 font-rounded font-bold text-[15px] transition-colors ' + (active ? 'bg-[var(--primary-wash)] text-primary' : 'text-muted hover:text-text')}
+      className={'inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-rounded font-bold text-[15px] transition-colors ' + (active ? 'bg-[var(--primary-wash)] text-primary' : 'text-muted hover:text-text')}
     >
       {icon} {label}
     </button>
@@ -123,7 +130,7 @@ function Pager({ label, active, disabled, onClick }: { label: React.ReactNode; a
       onClick={onClick}
       disabled={disabled}
       className={
-        'grid place-items-center w-9 h-9 rounded-full font-rounded font-bold text-[14px] tabular-nums transition-colors disabled:opacity-35 disabled:pointer-events-none ' +
+        'grid place-items-center w-11 h-11 sm:w-9 sm:h-9 rounded-full font-rounded font-bold text-[14px] tabular-nums transition-colors disabled:opacity-35 disabled:pointer-events-none ' +
         (active ? 'bg-primary text-primary-ink' : 'border border-border text-text-2 hover:border-primary hover:text-primary')
       }
     >

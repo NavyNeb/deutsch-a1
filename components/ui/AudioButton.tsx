@@ -16,7 +16,7 @@ export function AudioButton({
       type="button"
       aria-label={label}
       onClick={() => playAudio(src)}
-      className="inline-flex items-center justify-center rounded-full shrink-0 text-primary bg-[var(--primary-wash)]
+      className="relative tap-area inline-flex items-center justify-center rounded-full shrink-0 text-primary bg-[var(--primary-wash)]
         transition-[transform,filter] duration-150 hover:brightness-105 active:scale-90"
       style={{ width: size, height: size }}
     >

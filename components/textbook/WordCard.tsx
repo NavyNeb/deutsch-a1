@@ -24,18 +24,18 @@ export function WordCard({ item }: { item: VocabItem }) {
         <button
           onClick={() => toggleHardWord(item.id)}
           aria-label={saved ? t('savedToReview', locale) : t('addToLearned', locale)}
-          className={'absolute top-3 right-3 grid place-items-center w-8 h-8 rounded-full transition-colors ' + (saved ? 'text-amber' : 'text-faint hover:text-amber')}
+          className={'absolute top-2 right-2 grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-amber' : 'text-faint hover:text-amber')}
         >
           <Star size={17} strokeWidth={2.2} fill={saved ? 'currentColor' : 'none'} />
         </button>
 
         <div className="mb-1.5 min-h-[18px]">{item.gender && <GenderTag gender={item.gender} />}</div>
-        <div className="flex items-end justify-between gap-2 pr-8">
+        <div className="flex items-end justify-between gap-2 pr-9">
           <span className="font-rounded font-extrabold text-[23px] leading-tight text-text">{item.german}</span>
           <button
             onClick={() => playAudio(ttsSrc(item.german))}
             aria-label={`${item.german} anhören`}
-            className="grid place-items-center shrink-0 w-9 h-9 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
+            className="grid place-items-center shrink-0 w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
           >
             <Volume2 size={17} strokeWidth={2.2} />
           </button>
@@ -60,7 +60,7 @@ export function WordCard({ item }: { item: VocabItem }) {
         <button
           onClick={() => toggleHardWord(item.id)}
           className={
-            'w-full inline-flex items-center justify-center gap-1.5 rounded-full py-2.5 font-rounded font-bold text-[14px] transition ' +
+            'w-full inline-flex items-center justify-center gap-1.5 rounded-full py-3 font-rounded font-bold text-[14px] transition ' +
             (saved
               ? 'bg-[var(--good-wash)] text-[var(--good)] hover:brightness-[0.98]'
               : 'bg-[var(--soft)] text-[var(--soft-ink)] hover:brightness-[1.03]')

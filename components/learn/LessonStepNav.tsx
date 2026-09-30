@@ -63,8 +63,9 @@ export function LessonStepNav({
   return (
     <nav
       aria-label={t('lessonStepsNav', locale)}
-      className="w-[260px] min-w-[260px] shrink-0 border-r border-border h-[100dvh] sticky top-0 overflow-y-auto
-        pt-16 px-2.5 pb-6 bg-bg-soft"
+      className="fixed inset-y-0 left-0 z-50 w-[min(300px,86vw)] shadow-pop border-r border-border h-[100dvh] overflow-y-auto overflow-x-hidden overscroll-contain
+        pt-[max(4rem,env(safe-area-inset-top))] px-2.5 pb-[max(1.5rem,env(safe-area-inset-bottom))] bg-bg-soft
+        md:sticky md:top-0 md:z-auto md:w-[260px] md:min-w-[260px] md:shrink-0 md:shadow-none"
     >
       <ol className="list-none m-0 p-0 grid gap-0.5">
         {lesson.steps.map((step, index) => {
@@ -81,7 +82,7 @@ export function LessonStepNav({
                 aria-current={isCurrent ? 'step' : undefined}
                 title={locked ? t('completeEarlierSteps', locale) : undefined}
                 className={
-                  'w-full text-left flex items-center gap-2 px-2.5 py-2 rounded-[10px] border-none transition-colors ' +
+                  'w-full text-left flex items-center gap-2 px-2.5 py-3 md:py-2 rounded-[10px] border-none transition-colors ' +
                   (locked ? 'cursor-not-allowed text-faint' : 'cursor-pointer ') +
                   (isCurrent ? 'bg-[var(--primary-wash)] text-primary font-semibold' : locked ? '' : 'text-text hover:bg-surface-2')
                 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SyncManager } from "@/components/auth/SyncManager";
 import { AppChrome } from "@/components/shell/AppChrome";
@@ -6,6 +6,16 @@ import { AppChrome } from "@/components/shell/AppChrome";
 export const metadata: Metadata = {
   title: "Deutsch — Learn German A1",
   description: "A premium German A1 course — guided lessons, exercises, spaced review, and native audio.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F6F5F4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F1417" },
+  ],
 };
 
 // Applies the saved theme before first paint so light mode never flashes dark.

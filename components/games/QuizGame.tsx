@@ -104,8 +104,8 @@ export function QuizGame({
             </h1>
             <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-2 max-w-[46ch]">{t(taglineKey, locale)}</p>
             <p className="text-muted text-[14px] leading-relaxed mb-7 max-w-[48ch]">{t(howToKey, locale)}</p>
-            <div className="flex items-center gap-4">
-              <button onClick={start} className="inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <button onClick={start} className="inline-flex items-center justify-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
                 {t('startGame', locale)} <ArrowRight size={17} strokeWidth={2.5} />
               </button>
               {best > 0 && (
@@ -215,15 +215,18 @@ export function QuizGame({
 function Shell({ gradient, children }: { gradient: string; children: React.ReactNode }) {
   return (
     <div className="relative">
-      <div className="absolute inset-x-0 top-0 h-[200px] opacity-[0.10] pointer-events-none" style={{ background: gradient }} />
-      <div className="relative mx-auto max-w-[760px] px-5 py-8 md:py-12">{children}</div>
+      <div
+        className="absolute inset-x-0 top-0 h-[260px] opacity-[0.10] pointer-events-none"
+        style={{ background: gradient, maskImage: 'linear-gradient(to bottom, #000 40%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, #000 40%, transparent)' }}
+      />
+      <div className="relative mx-auto max-w-[760px] px-5 py-6 md:py-12">{children}</div>
     </div>
   );
 }
 
 function GameArt({ src, small }: { src: string; small?: boolean }) {
   return (
-    <div className={'relative mx-auto ' + (small ? 'w-[150px]' : 'w-full max-w-[280px]')}>
+    <div className={'relative mx-auto ' + (small ? 'w-[150px]' : 'w-full max-w-[200px] sm:max-w-[280px]')}>
       <div className="absolute inset-[8%] rounded-[46%_54%_58%_42%/48%_44%_56%_52%] bg-[radial-gradient(120%_120%_at_60%_30%,var(--soft),var(--primary-wash)_60%,transparent_80%)]" />
       <img src={src} alt="" className="relative w-full block select-none pointer-events-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.14)]" draggable={false} />
     </div>

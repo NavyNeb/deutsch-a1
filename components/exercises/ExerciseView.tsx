@@ -222,7 +222,7 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
             key={i}
             onClick={() => removeAt(i)}
             aria-label={`${tok} entfernen`}
-            className="border border-primary bg-[var(--primary-wash)] text-primary rounded-[10px] px-3 py-1.5 font-rounded font-semibold
+            className="border border-primary bg-[var(--primary-wash)] text-primary rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 font-rounded font-semibold
               transition-transform duration-150 active:scale-[.97] cursor-pointer"
           >
             {tok}
@@ -234,14 +234,14 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
           <button
             key={i}
             onClick={() => add(tok)}
-            className="border border-border rounded-[10px] px-3 py-1.5 bg-card font-rounded font-semibold
+            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-rounded font-semibold
               transition-[border-color,transform] duration-150 hover:border-border-strong active:scale-[.97] cursor-pointer"
           >
             {tok}
           </button>
         ))}
         {chosen.length > 0 && (
-          <button onClick={() => commit([])} className="label cursor-pointer">{t('reset', locale)}</button>
+          <button onClick={() => commit([])} className="label cursor-pointer px-2 py-2.5">{t('reset', locale)}</button>
         )}
       </div>
     </div>
@@ -294,7 +294,7 @@ function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; f
             key={m}
             onClick={() => assign(m)}
             disabled={!activeDe}
-            className="border border-border rounded-[10px] px-3 py-1.5 bg-card font-rounded font-semibold text-sm
+            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-rounded font-semibold text-sm
               transition-[border-color,transform] duration-150 hover:border-border-strong active:scale-[.97]
               disabled:opacity-45 disabled:cursor-not-allowed cursor-pointer"
           >
