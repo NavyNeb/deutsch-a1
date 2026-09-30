@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* ---- Self-hosted Poppins (latin) — matches the GlobalTalk display type ---- */
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/poppins-400.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/poppins-500.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/poppins-600.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/poppins-700.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 800; font-display: swap; src: url("/fonts/poppins-800.woff2") format("woff2"); }
+
 /* ============================================================================
    Deutsch — design system (warm, learner-focused premium)
    Light-first. Dark theme via [data-theme="dark"] on <html>.
@@ -36,9 +43,9 @@
   --shadow-pop: var(--shadow-lg-v);
   --shadow-primary: var(--shadow-primary-v);
 
-  /* type */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-rounded: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", "Nunito", var(--font-sans);
+  /* type — self-hosted Poppins (geometric, rounded) for the GlobalTalk look */
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-rounded: "Poppins", ui-rounded, "SF Pro Rounded", "Nunito", -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
 
   /* radii */
@@ -49,40 +56,42 @@
   --radius-xl: 26px;
 }
 
-/* ---- Light theme (default) --------------------------------------------- */
+/* ---- Light theme (default) — "GlobalTalk" teal on warm off-white -------- */
 :root {
-  --bg: #FAFAFB;
-  --bg-soft: #F3F1FB;
+  --bg: #F6F5F4;
+  --bg-soft: #EFEEEA;
   --card: #FFFFFF;
-  --surface-2: #F4F5F8;
-  --surface-3: #EBECF1;
-  --border: rgba(23, 25, 34, 0.08);
-  --border-2: rgba(23, 25, 34, 0.14);
-  --text: #171922;
-  --text-2: #414654;
-  --muted: #6B7280;
-  --faint: #9AA0AC;
-  --primary: #5B57E8;
-  --primary-2: #7B78F0;
+  --surface-2: #F0EFEB;
+  --surface-3: #E4E2DD;
+  --border: rgba(20, 18, 12, 0.10);
+  --border-2: rgba(20, 18, 12, 0.16);
+  --text: #14140F;
+  --text-2: #4A4A46;
+  --muted: #6E6E68;
+  --faint: #A2A29B;
+  --primary: #2B788B;
+  --primary-2: #35899E;
   --primary-ink: #FFFFFF;
   --der: #2F6BF0;
-  --die: #E85C97;
+  --die: #E05A96;
   --das: #1F9E68;
-  --amber: #F59E0B;
-  --good: #16A34A;
-  --bad: #E5484D;
+  --amber: #E8A020;
+  --good: #1F9E68;
+  --bad: #DC4A4A;
+  --soft: #C3DCE3;
+  --soft-ink: #24697A;
 
-  --primary-wash: #EEEDFD;
-  --amber-wash: #FEF3E2;
-  --good-wash: #E7F6EE;
-  --bad-wash: #FCECEC;
+  --primary-wash: #E4EFF2;
+  --amber-wash: #FBF0DD;
+  --good-wash: #E4F4EC;
+  --bad-wash: #FBEBEB;
   --accent-wash: var(--primary-wash);
-  --ring: rgba(91, 87, 232, 0.5);
+  --ring: rgba(43, 120, 139, 0.5);
 
-  --shadow-sm-v: 0 1px 2px rgba(23, 25, 34, 0.05), 0 1px 3px rgba(23, 25, 34, 0.06);
-  --shadow-v: 0 4px 14px -6px rgba(23, 25, 34, 0.14), 0 2px 5px -3px rgba(23, 25, 34, 0.1);
-  --shadow-lg-v: 0 24px 50px -26px rgba(23, 25, 34, 0.3);
-  --shadow-primary-v: 0 10px 24px -10px rgba(91, 87, 232, 0.5);
+  --shadow-sm-v: 0 1px 2px rgba(20, 18, 12, 0.05), 0 1px 3px rgba(20, 18, 12, 0.06);
+  --shadow-v: 0 6px 20px -8px rgba(20, 18, 12, 0.12), 0 2px 6px -3px rgba(20, 18, 12, 0.08);
+  --shadow-lg-v: 0 24px 50px -26px rgba(20, 18, 12, 0.28);
+  --shadow-primary-v: 0 10px 24px -10px rgba(43, 120, 139, 0.45);
 
   /* --- backward-compat aliases (legacy inline styles reference these) --- */
   --paper: var(--bg);
@@ -95,38 +104,40 @@
 
 /* ---- Dark theme --------------------------------------------------------- */
 [data-theme="dark"] {
-  --bg: #0E0F13;
-  --bg-soft: #141322;
-  --card: #17181D;
-  --surface-2: #1D1F25;
-  --surface-3: #26282F;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-2: rgba(255, 255, 255, 0.15);
-  --text: #ECEDF1;
-  --text-2: #B7BBC4;
-  --muted: #8B909B;
-  --faint: #5C616B;
-  --primary: #7C82F2;
-  --primary-2: #9AA0F6;
-  --primary-ink: #0E0F13;
+  --bg: #0F1417;
+  --bg-soft: #12191D;
+  --card: #172026;
+  --surface-2: #1D272D;
+  --surface-3: #28353C;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-2: rgba(255, 255, 255, 0.16);
+  --text: #ECEFEF;
+  --text-2: #B2BCC0;
+  --muted: #879197;
+  --faint: #59656B;
+  --primary: #4FA7BB;
+  --primary-2: #6CBFD1;
+  --primary-ink: #08242C;
   --der: #5A93FF;
   --die: #FF83B0;
   --das: #46C79A;
-  --amber: #F5B54A;
+  --amber: #EFB45A;
   --good: #46C79A;
   --bad: #FF6B6B;
+  --soft: rgba(79, 167, 187, 0.20);
+  --soft-ink: #8FD2E1;
 
-  --primary-wash: rgba(124, 130, 242, 0.15);
-  --amber-wash: rgba(245, 181, 74, 0.14);
+  --primary-wash: rgba(79, 167, 187, 0.16);
+  --amber-wash: rgba(239, 180, 90, 0.14);
   --good-wash: rgba(70, 199, 154, 0.13);
   --bad-wash: rgba(255, 107, 107, 0.12);
   --accent-wash: var(--primary-wash);
-  --ring: rgba(124, 130, 242, 0.6);
+  --ring: rgba(79, 167, 187, 0.6);
 
   --shadow-sm-v: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-v: 0 6px 20px -10px rgba(0, 0, 0, 0.7);
   --shadow-lg-v: 0 30px 60px -30px rgba(0, 0, 0, 0.85);
-  --shadow-primary-v: 0 10px 24px -10px rgba(124, 130, 242, 0.55);
+  --shadow-primary-v: 0 10px 24px -10px rgba(79, 167, 187, 0.5);
 
   color-scheme: dark;
 }

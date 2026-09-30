@@ -1,4 +1,4 @@
-import { parseLesson, type Lesson, type VocabItem } from './types';
+import { parseLesson, type Lesson, type VocabItem, type Level } from './types';
 import { lektion1 } from './lessons/lektion-1';
 import { lektion2 } from './lessons/lektion-2';
 import { lektion3 } from './lessons/lektion-3';
@@ -57,4 +57,20 @@ export function allVocab(): VocabItem[] {
       return [];
     })
   );
+}
+
+// Vocabulary grouped by CEFR level (deduped by German word within a level) —
+// powers the Textbook word grid.
+export function vocabByLevel(): Record<Level, VocabItem[]> {
+  const out: Record<Level, VocabItem[]> = { A1: [], A2: [], B1: [], B2: [] };
+  for (const l of lessons) {
+    const seen = new Set(out[l.level].map((v) => v.german));
+    for (const s of l.steps) {
+      const items = s.kind === 'vocab' ? [s.item] : s.kind === 'pronunciation' ? s.items : [];
+      for (const it of items) {
+        if (!seen.has(it.german)) { seen.add(it.german); out[l.level].push(it); }
+      }
+    }
+  }
+  return out;
 }

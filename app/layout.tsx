@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SyncManager } from "@/components/auth/SyncManager";
+import { AppChrome } from "@/components/shell/AppChrome";
 
 export const metadata: Metadata = {
   title: "Deutsch — Learn German A1",
@@ -22,7 +23,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <SyncManager />
-        {children}
+        <AppChrome>{children}</AppChrome>
       </body>
     </html>
   );

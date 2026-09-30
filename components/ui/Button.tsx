@@ -4,13 +4,13 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-rounded font-bold rounded-[14px] ' +
+  'inline-flex items-center justify-center gap-2 font-rounded font-bold rounded-full ' +
   'transition-[transform,background,border-color,filter,box-shadow] duration-150 ' +
   'active:scale-[.98] disabled:opacity-40 disabled:pointer-events-none select-none cursor-pointer';
 
 const variants: Record<Variant, string> = {
   primary: 'bg-primary text-primary-ink shadow-primary hover:brightness-[1.05]',
-  secondary: 'bg-card text-text border border-border shadow-sm hover:border-border-strong',
+  secondary: 'bg-[var(--soft)] text-[var(--soft-ink)] hover:brightness-[1.03]',
   ghost: 'bg-transparent text-text hover:bg-surface-2',
   danger: 'bg-[var(--bad)] text-white hover:brightness-[1.05]',
 };
