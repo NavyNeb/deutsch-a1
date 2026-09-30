@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion10: Lesson = {
-  id: 'a2-l10', level: 'A2', module: 4, number: 10,
+  id: 'a2-l10', level: 'A2', module: 6, number: 22,
   title: { de: 'Früher war das anders', en: 'It was different back then', fr: 'Avant, c’était différent' },
   theme: 'The simple past (Präteritum) of sein, haben, and the modal verbs',
   themeFr: 'Le prétérit (Präteritum) de sein, haben et des verbes modaux',

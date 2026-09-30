@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion10: Lesson = {
-  id: 'b1-l10', level: 'B1', module: 4, number: 10,
+  id: 'b1-l10', level: 'B1', module: 6, number: 22,
   title: { de: 'Verben mit Präposition', en: 'Verbs with prepositions', fr: 'Les verbes à préposition' },
   theme: 'Fixed verb + preposition combinations and da-/wo-compounds',
   themeFr: 'Les combinaisons verbe + préposition fixes et les composés da-/wo-',

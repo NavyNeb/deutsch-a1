@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion11: Lesson = {
-  id: 'a2-l11', level: 'A2', module: 4, number: 11,
+  id: 'a2-l11', level: 'A2', module: 4, number: 13,
   title: { de: 'Adjektive beschreiben', en: 'Describing with adjectives', fr: 'Décrire avec des adjectifs' },
   theme: 'Adjective endings before a noun (nominative and accusative)',
   themeFr: 'Les terminaisons des adjectifs devant un nom (nominatif et accusatif)',

@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion6: Lesson = {
-  id: 'b1-l6', level: 'B1', module: 2, number: 6,
+  id: 'b1-l6', level: 'B1', module: 2, number: 5,
   title: { de: 'Konnektoren', en: 'Connectors', fr: 'Les connecteurs' },
   theme: 'Linking ideas: obwohl, deshalb, trotzdem, damit',
   themeFr: 'Relier les idées : obwohl, deshalb, trotzdem, damit',

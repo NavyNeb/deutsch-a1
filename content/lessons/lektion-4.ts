@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion4: Lesson = {
-  id: 'l4', level: 'A1', module: 2, number: 4,
+  id: 'l4', level: 'A1', module: 1, number: 4,
   title: { de: 'Zahlen und Alter', en: 'Numbers and age', fr: 'Les nombres et l’âge' },
   theme: 'Numbers 0–20, age, and contact details',
   themeFr: 'Les nombres 0–20, l’âge et les coordonnées',

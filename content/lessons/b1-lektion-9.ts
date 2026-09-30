@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion9: Lesson = {
-  id: 'b1-l9', level: 'B1', module: 3, number: 9,
+  id: 'b1-l9', level: 'B1', module: 6, number: 21,
   title: { de: 'Indirekte Fragen', en: 'Indirect questions', fr: 'Les questions indirectes' },
   theme: 'Embedding questions politely with "ob" and question words',
   themeFr: 'Intégrer des questions poliment avec « ob » et les mots interrogatifs',

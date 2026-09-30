@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion9: Lesson = {
-  id: 'l9', level: 'A1', module: 3, number: 9,
+  id: 'l9', level: 'A1', module: 3, number: 11,
   title: { de: 'Wohnen', en: 'Living / Home', fr: 'Le logement' },
   theme: 'Home, rooms, furniture, and saying what there is',
   themeFr: 'Le logement, les pièces, les meubles et dire ce qu’il y a',

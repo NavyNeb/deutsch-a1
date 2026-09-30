@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion2: Lesson = {
-  id: 'b1-l2', level: 'B1', module: 1, number: 2,
+  id: 'b1-l2', level: 'B1', module: 3, number: 12,
   title: { de: 'Wenn ich könnte …', en: 'If I could …', fr: 'Si je pouvais …' },
   theme: 'Unreal conditions with "wenn" and the Konjunktiv II',
   themeFr: 'Les conditions irréelles avec « wenn » et le Konjunktiv II',

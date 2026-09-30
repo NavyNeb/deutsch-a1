@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion7: Lesson = {
-  id: 'b1-l7', level: 'B1', module: 3, number: 7,
+  id: 'b1-l7', level: 'B1', module: 2, number: 7,
   title: { de: 'Infinitiv mit „zu"', en: 'Infinitive with "zu"', fr: 'L’infinitif avec « zu »' },
   theme: 'Infinitive clauses with "zu" and purpose with "um … zu"',
   themeFr: 'Les propositions infinitives avec « zu » et le but avec « um … zu »',

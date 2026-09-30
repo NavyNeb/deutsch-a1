@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion5: Lesson = {
-  id: 'b1-l5', level: 'B1', module: 2, number: 5,
+  id: 'b1-l5', level: 'B1', module: 5, number: 18,
   title: { de: 'Das Passiv', en: 'The passive voice', fr: 'La voix passive' },
   theme: 'The present passive (werden + participle) and the agent with "von"',
   themeFr: 'Le passif présent (werden + participe) et l’agent avec « von »',

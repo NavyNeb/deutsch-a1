@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion11: Lesson = {
-  id: 'b1-l11', level: 'B1', module: 4, number: 11,
+  id: 'b1-l11', level: 'B1', module: 4, number: 13,
   title: { de: 'Hätte, wäre, wenn …', en: 'Would have, if only …', fr: 'J’aurais, si seulement …' },
   theme: 'The past Konjunktiv II: regrets and unreal situations in the past',
   themeFr: 'Le Konjunktiv II du passé : regrets et situations irréelles au passé',

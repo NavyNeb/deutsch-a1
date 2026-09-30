@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion5: Lesson = {
-  id: 'a2-l5', level: 'A2', module: 2, number: 5,
+  id: 'a2-l5', level: 'A2', module: 3, number: 10,
   title: { de: 'Der Dativ', en: 'The dative case', fr: 'Le datif' },
   theme: 'The dative: indirect objects, dative verbs, and dative pronouns',
   themeFr: 'Le datif : compléments d’objet indirect, verbes au datif et pronoms au datif',

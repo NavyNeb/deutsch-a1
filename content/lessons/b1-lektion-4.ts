@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion4: Lesson = {
-  id: 'b1-l4', level: 'B1', module: 2, number: 4,
+  id: 'b1-l4', level: 'B1', module: 4, number: 15,
   title: { de: 'Der Genitiv', en: 'The genitive case', fr: 'Le génitif' },
   theme: 'Possession and genitive prepositions (wegen, während, trotz)',
   themeFr: 'La possession et les prépositions au génitif (wegen, während, trotz)',

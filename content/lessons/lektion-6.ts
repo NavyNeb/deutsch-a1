@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion6: Lesson = {
-  id: 'l6', level: 'A1', module: 2, number: 6,
+  id: 'l6', level: 'A1', module: 3, number: 9,
   title: { de: 'Essen und Trinken', en: 'Food and drink', fr: 'Manger et boire' },
   theme: 'Food, drinks, articles, and saying what you like',
   themeFr: 'La nourriture, les boissons, les articles et dire ce qu’on aime',

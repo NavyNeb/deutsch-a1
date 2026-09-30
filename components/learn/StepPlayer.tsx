@@ -17,6 +17,7 @@ import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { SpeedToggle } from '@/components/ui/SpeedToggle';
 import { LessonResults } from './LessonResults';
+import { BookRefLinks } from './BookRefLinks';
 import { IntroStep } from './IntroStep';
 import { VocabStep } from './VocabStep';
 import { GrammarStep } from './GrammarStep';
@@ -105,11 +106,11 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
             <div className="flex-1 min-w-0 pb-5 sm:pb-0 sm:flex-none">
             <AnimatePresence mode="wait">
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
-                {step.kind === 'intro' && <IntroStep step={step} />}
+                {step.kind === 'intro' && <><IntroStep step={step} /><BookRefLinks lessonId={lesson.id} /></>}
                 {step.kind === 'vocab' && <VocabStep item={step.item} />}
                 {step.kind === 'grammar' && <GrammarStep note={step.note} />}
                 {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} focusFr={step.focusFr} items={step.items} />}
-                {step.kind === 'wrapup' && <WrapupStep summary={step.summary} summaryFr={step.summaryFr} />}
+                {step.kind === 'wrapup' && <><WrapupStep summary={step.summary} summaryFr={step.summaryFr} /><BookRefLinks lessonId={lesson.id} /></>}
                 {step.kind === 'exercise' && (
                   <ExerciseView
                     exercise={step.exercise}

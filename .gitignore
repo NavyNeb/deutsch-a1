@@ -44,3 +44,6 @@ ours-*.png
 
 # copyrighted textbook PDFs — local reference only, never publish
 /public/documents/
+
+# textbook PDFs are served only through /api/books (preview-only), never committed
+/private/

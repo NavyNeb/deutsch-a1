@@ -1,13 +1,15 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, BookMarked, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, BookMarked, Library, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { vocabByLevel, allVocab } from '@/content';
 import type { Level } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { WordCard } from './WordCard';
+import { BookLibrary } from './BookLibrary';
+import { pick } from '@/lib/i18n';
 
 const LEVELS: { lv: Level; diff: 'easy' | 'medium' | 'hard' }[] = [
   { lv: 'A1', diff: 'easy' },
@@ -26,7 +28,7 @@ const PER_PAGE = 12;
 export function TextbookView() {
   const { locale } = useLocale();
   const { state } = useProgress();
-  const [tab, setTab] = useState<'textbook' | 'dictionary'>('textbook');
+  const [tab, setTab] = useState<'books' | 'textbook' | 'dictionary'>('books');
   const [level, setLevel] = useState<Level>('A1');
   const [page, setPage] = useState(0);
 
@@ -48,6 +50,7 @@ export function TextbookView() {
       {/* Toolbar */}
       <div className="bg-card border border-border rounded-[20px] shadow-card px-4 sm:px-6 py-3.5 flex flex-wrap items-center gap-4 mb-7">
         <div className="flex items-center gap-1">
+          <ToolTab active={tab === 'books'} onClick={() => setTab('books')} icon={<Library size={17} strokeWidth={2.3} />} label={pick('Books', 'Livres', locale)} />
           <ToolTab active={tab === 'textbook'} onClick={() => setTab('textbook')} icon={<BookOpen size={17} strokeWidth={2.3} />} label={t('navTextbook', locale)} />
           <ToolTab active={tab === 'dictionary'} onClick={() => setTab('dictionary')} icon={<BookMarked size={17} strokeWidth={2.3} />} label={t('myWords', locale)} />
         </div>
@@ -58,6 +61,8 @@ export function TextbookView() {
           </Link>
         </div>
       </div>
+
+      {tab === 'books' && <BookLibrary />}
 
       {/* Level tabs */}
       {tab === 'textbook' && (
@@ -75,7 +80,7 @@ export function TextbookView() {
       )}
 
       {/* Grid */}
-      {shown.length === 0 ? (
+      {tab === 'books' ? null : shown.length === 0 ? (
         <div className="bg-card border border-border rounded-[20px] shadow-card p-10 text-center text-muted">
           {tab === 'dictionary' ? t('noWordsYet', locale) : '—'}
         </div>
@@ -86,7 +91,7 @@ export function TextbookView() {
       )}
 
       {/* Pagination */}
-      {pageCount > 1 && (
+      {tab !== 'books' && pageCount > 1 && (
         <>
         <div className="sm:hidden flex items-center justify-center gap-4 mt-9">
           <Pager label={<ChevronLeft size={18} />} disabled={page === 0} onClick={() => setPage((p) => Math.max(0, p - 1))} />

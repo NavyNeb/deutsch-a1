@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion4: Lesson = {
-  id: 'a2-l4', level: 'A2', module: 2, number: 4,
+  id: 'a2-l4', level: 'A2', module: 5, number: 17,
   title: { de: 'Vergleiche', en: 'Comparisons', fr: 'Les comparaisons' },
   theme: 'Comparing things with the comparative and superlative',
   themeFr: 'Comparer avec le comparatif et le superlatif',

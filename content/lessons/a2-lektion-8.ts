@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion8: Lesson = {
-  id: 'a2-l8', level: 'A2', module: 3, number: 8,
+  id: 'a2-l8', level: 'A2', module: 2, number: 8,
   title: { de: 'Wo oder wohin?', en: 'Where or where to?', fr: 'Où ou vers où ?' },
   theme: 'Two-way prepositions: accusative for direction, dative for location',
   themeFr: 'Les prépositions mixtes : accusatif pour la direction, datif pour le lieu',

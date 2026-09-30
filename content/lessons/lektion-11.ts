@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion11: Lesson = {
-  id: 'l11', level: 'A1', module: 4, number: 11,
+  id: 'l11', level: 'A1', module: 4, number: 13,
   title: { de: 'Verkehr und Wege', en: 'Transport and directions', fr: 'Les transports et le chemin' },
   theme: 'Getting around: transport, directions, and mit + dative',
   themeFr: 'Se déplacer : transports, directions, et mit + datif',

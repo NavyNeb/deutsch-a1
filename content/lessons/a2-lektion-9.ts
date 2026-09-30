@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion9: Lesson = {
-  id: 'a2-l9', level: 'A2', module: 3, number: 9,
+  id: 'a2-l9', level: 'A2', module: 5, number: 18,
   title: { de: 'Reflexive Verben', en: 'Reflexive verbs', fr: 'Les verbes pronominaux' },
   theme: 'Reflexive verbs, reflexive pronouns, and verbs with fixed prepositions',
   themeFr: 'Les verbes pronominaux, les pronoms réfléchis et les verbes à préposition fixe',

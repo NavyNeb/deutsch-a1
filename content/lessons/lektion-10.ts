@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion10: Lesson = {
-  id: 'l10', level: 'A1', module: 4, number: 10,
+  id: 'l10', level: 'A1', module: 4, number: 15,
   title: { de: 'Gesundheit und Körper', en: 'Health and the body', fr: 'La santé et le corps' },
   theme: 'Body parts, saying what hurts, and the modals müssen / dürfen',
   themeFr: 'Les parties du corps, dire ce qui fait mal, et les modaux müssen / dürfen',

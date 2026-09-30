@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion12: Lesson = {
-  id: 'b1-l12', level: 'B1', module: 4, number: 12,
+  id: 'b1-l12', level: 'B1', module: 7, number: 26,
   title: { de: 'Zweiteilige Konnektoren', en: 'Two-part connectors', fr: 'Les connecteurs doubles' },
   theme: 'Pairs like entweder…oder, nicht nur…sondern auch, and je…desto',
   themeFr: 'Les paires comme entweder…oder, nicht nur…sondern auch, et je…desto',

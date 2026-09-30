@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion8: Lesson = {
-  id: 'l8', level: 'A1', module: 3, number: 8,
+  id: 'l8', level: 'A1', module: 3, number: 10,
   title: { de: 'Einkaufen', en: 'Shopping', fr: 'Les courses' },
   theme: 'Shopping, prices, numbers to 100, and the accusative',
   themeFr: 'Faire les courses, les prix, les nombres jusqu’à 100 et l’accusatif',

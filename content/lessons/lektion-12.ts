@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion12: Lesson = {
-  id: 'l12', level: 'A1', module: 4, number: 12,
+  id: 'l12', level: 'A1', module: 5, number: 18,
   title: { de: 'Wetter und Jahreszeiten', en: 'Weather and seasons', fr: 'La météo et les saisons' },
   theme: 'Describing the weather, the seasons, and using impersonal "es"',
   themeFr: 'Décrire la météo, les saisons, et utiliser le « es » impersonnel',

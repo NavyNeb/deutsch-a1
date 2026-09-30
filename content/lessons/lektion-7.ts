@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion7: Lesson = {
-  id: 'l7', level: 'A1', module: 3, number: 7,
+  id: 'l7', level: 'A1', module: 2, number: 8,
   title: { de: 'Freizeit und Hobbys', en: 'Free time and hobbies', fr: 'Loisirs et passe-temps' },
   theme: 'Hobbies, free-time activities, and saying what you can and like to do',
   themeFr: 'Loisirs, activités de temps libre, et dire ce qu’on sait faire et aime faire',

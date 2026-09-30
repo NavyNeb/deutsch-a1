@@ -1,0 +1,85 @@
+import type { Lesson } from '../types';
+
+export const lektion15: Lesson = {
+  id: 'l15', level: 'A1', module: 3, number: 12,
+  title: { de: 'Mein Haus, dein Haus', en: 'My house, your house', fr: 'Ma maison, ta maison' },
+  theme: 'Rooms, possessives sein / ihr, names with -s, and giving opinions',
+  themeFr: 'Les pièces, les possessifs sein / ihr, les noms propres avec -s et donner son avis',
+  goals: ['Name rooms and parts of a house', 'Say "his" and "her" with sein / ihr', 'Say whose house it is: Ottos Haus', 'Ask and give opinions: "Wie findest du …?"'],
+  goalsFr: ['Nommer les pièces et les parties d’une maison', 'Dire « son / sa » avec sein / ihr', 'Dire à qui est la maison : Ottos Haus', 'Demander et donner son avis : « Wie findest du … ? »'],
+  steps: [
+    { kind: 'intro', title: 'Zu Besuch bei Otto 🏡', titleFr: 'En visite chez Otto 🏡',
+      scene: 'Otto has just moved into a little house with a garden. Lina and Sam visit him, look around every room and say what they think of it.',
+      sceneFr: 'Otto vient d’emménager dans une petite maison avec jardin. Lina et Sam lui rendent visite, regardent chaque pièce et disent ce qu’ils en pensent.',
+      goals: ['Name rooms and parts of a house', 'Use sein / ihr for his / her', 'Use the name + s form', 'Give your opinion with finden'],
+      goalsFr: ['Nommer les pièces et les parties d’une maison', 'Utiliser sein / ihr pour son / sa', 'Utiliser la forme nom + s', 'Donner son avis avec finden'] },
+
+    { kind: 'vocab', item: { id: 'l15-wohnzimmer', german: 'das Wohnzimmer', english: 'the living room', french: 'le salon', gender: 'das', syllables: ['WOHN', 'zim', 'mer'], pronunciation: 'dahss VOHN-tsim-mer', example: { de: 'Das Wohnzimmer hat ein Sofa.', en: 'The living room has a sofa.', fr: 'Le salon a un canapé.' } } },
+    { kind: 'vocab', item: { id: 'l15-schlafzimmer', german: 'das Schlafzimmer', english: 'the bedroom', french: 'la chambre', gender: 'das', syllables: ['SCHLAF', 'zim', 'mer'], pronunciation: 'dahss SHLAHF-tsim-mer', example: { de: 'Sein Schlafzimmer ist ruhig.', en: 'His bedroom is quiet.', fr: 'Sa chambre est calme.' } } },
+    { kind: 'vocab', item: { id: 'l15-keller', german: 'der Keller', english: 'the cellar / basement', french: 'la cave', gender: 'der', syllables: ['KEL', 'ler'], pronunciation: 'dair KEL-ler', example: { de: 'Der Keller ist dunkel.', en: 'The cellar is dark.', fr: 'La cave est sombre.' } } },
+    { kind: 'vocab', item: { id: 'l15-balkon', german: 'der Balkon', english: 'the balcony', french: 'le balcon', gender: 'der', syllables: ['bal', 'KON'], pronunciation: 'dair bal-KOHN', example: { de: 'Ich frühstücke auf dem Balkon.', en: 'I have breakfast on the balcony.', fr: 'Je prends le petit-déjeuner sur le balcon.' } } },
+    { kind: 'vocab', item: { id: 'l15-garten', german: 'der Garten', english: 'the garden', french: 'le jardin', gender: 'der', syllables: ['GAR', 'ten'], pronunciation: 'dair GAR-ten', example: { de: 'Ihr Garten ist sehr groß.', en: 'Her garden is very big.', fr: 'Son jardin est très grand.' } } },
+    { kind: 'vocab', item: { id: 'l15-garage', german: 'die Garage', english: 'the garage', french: 'le garage', gender: 'die', syllables: ['ga', 'RA', 'ge'], pronunciation: 'dee gah-RAH-zhe', example: { de: 'Das Auto steht in der Garage.', en: 'The car is in the garage.', fr: 'La voiture est dans le garage.' } } },
+    { kind: 'vocab', item: { id: 'l15-erdgeschoss', german: 'das Erdgeschoss', english: 'the ground floor', french: 'le rez-de-chaussée', gender: 'das', syllables: ['ERD', 'ge', 'schoss'], pronunciation: 'dahss AIRT-ge-shoss', example: { de: 'Die Küche ist im Erdgeschoss.', en: 'The kitchen is on the ground floor.', fr: 'La cuisine est au rez-de-chaussée.' } } },
+    { kind: 'vocab', item: { id: 'l15-miete', german: 'die Miete', english: 'the rent', french: 'le loyer', gender: 'die', syllables: ['MIE', 'te'], pronunciation: 'dee MEE-te', example: { de: 'Die Miete ist nicht teuer.', en: 'The rent is not expensive.', fr: 'Le loyer n’est pas cher.' } } },
+    { kind: 'vocab', item: { id: 'l15-nachbar', german: 'der Nachbar', english: 'the neighbour (male)', french: 'le voisin', gender: 'der', syllables: ['NACH', 'bar'], pronunciation: 'dair NAHKH-bar', example: { de: 'Mein Nachbar heißt Otto.', en: 'My neighbour is called Otto.', fr: 'Mon voisin s’appelle Otto.' } } },
+    { kind: 'vocab', item: { id: 'l15-gemuetlich', german: 'gemütlich', english: 'cosy', french: 'confortable / douillet', gender: null, syllables: ['ge', 'MÜT', 'lich'], pronunciation: 'ge-MUET-likh', example: { de: 'Das Wohnzimmer ist gemütlich.', en: 'The living room is cosy.', fr: 'Le salon est douillet.' } } },
+    { kind: 'vocab', item: { id: 'l15-schoen', german: 'schön', english: 'beautiful / nice', french: 'beau / joli', gender: null, syllables: ['SCHÖN'], pronunciation: 'shoen', example: { de: 'Der Garten ist schön.', en: 'The garden is beautiful.', fr: 'Le jardin est beau.' } } },
+    { kind: 'vocab', item: { id: 'l15-haesslich', german: 'hässlich', english: 'ugly', french: 'laid', gender: null, syllables: ['HÄSS', 'lich'], pronunciation: 'HESS-likh', example: { de: 'Die Lampe ist hässlich.', en: 'The lamp is ugly.', fr: 'La lampe est moche.' } } },
+    { kind: 'vocab', item: { id: 'l15-toll', german: 'toll', english: 'great / fantastic', french: 'génial / super', gender: null, syllables: ['TOLL'], pronunciation: 'toll', example: { de: 'Ich finde das Haus toll!', en: 'I think the house is great!', fr: 'Je trouve la maison géniale !' } } },
+    { kind: 'vocab', item: { id: 'l15-hell', german: 'hell', english: 'bright / light', french: 'lumineux / clair', gender: null, syllables: ['HELL'], pronunciation: 'hell', example: { de: 'Die Küche ist sehr hell.', en: 'The kitchen is very bright.', fr: 'La cuisine est très lumineuse.' } } },
+
+    { kind: 'grammar', note: {
+      id: 'l15-sein-ihr', title: 'His and her: sein / ihr', titleFr: 'Son / sa : sein / ihr',
+      explanationMd: 'You know **mein** and **dein**. For a man (or a thing) use **sein** (his / its); for a woman use **ihr** (her). The endings are the same as for **mein**: nothing for der/das nouns, **-e** for die nouns and plurals.\n\n- Otto hat ein Haus. → **Sein** Haus ist klein.\n- Lina hat einen Garten. → **Ihr** Garten ist groß.\n- Otto hat eine Garage. → **Seine** Garage ist alt.\n\nIn the **accusative** only the masculine changes (+ **en**): Sie mag **ihren** Balkon. Er zeigt **seinen** Keller. — Neuter, feminine and plural stay the same: Er mag **sein** Wohnzimmer, **seine** Küche, **seine** Fenster.',
+      explanationMdFr: 'Tu connais **mein** et **dein**. Pour un homme (ou une chose), utilise **sein** (son) ; pour une femme, **ihr** (son, à elle). Les terminaisons sont les mêmes que pour **mein** : rien pour les noms der/das, **-e** pour les noms die et les pluriels.\n\n- Otto hat ein Haus. → **Sein** Haus ist klein.\n- Lina hat einen Garten. → **Ihr** Garten ist groß.\n- Otto hat eine Garage. → **Seine** Garage ist alt.\n\nÀ l’**accusatif**, seul le masculin change (+ **en**) : Sie mag **ihren** Balkon. Er zeigt **seinen** Keller. — Le neutre, le féminin et le pluriel ne changent pas : Er mag **sein** Wohnzimmer, **seine** Küche, **seine** Fenster.',
+      examples: [
+        { de: 'Otto zeigt seinen Garten.', en: 'Otto shows his garden.', fr: 'Otto montre son jardin.' },
+        { de: 'Lina mag ihre Küche sehr.', en: 'Lina likes her kitchen a lot.', fr: 'Lina aime beaucoup sa cuisine.' },
+        { de: 'Sein Haus hat keinen Keller.', en: 'His house has no cellar.', fr: 'Sa maison n’a pas de cave.' },
+      ] } },
+
+    { kind: 'grammar', note: {
+      id: 'l15-genitiv-namen', title: 'Whose is it? Ottos Haus', titleFr: 'À qui est-ce ? Ottos Haus',
+      explanationMd: 'With first names you just add **-s** and put the name **before** the noun — no apostrophe:\n\n- Otto → **Ottos** Haus\n- Lina → **Linas** Garten\n- Names ending in s, ß, x, z only take an apostrophe: **Max’** Zimmer.\n\nThe alternative, common in speech, is **von** + name: das Haus **von** Otto.\n\nSay: **Das ist Ottos Haus.** / **Das ist das Haus von Otto.**',
+      explanationMdFr: 'Avec les prénoms, on ajoute simplement **-s** et on place le nom **avant** le nom commun — sans apostrophe :\n\n- Otto → **Ottos** Haus\n- Lina → **Linas** Garten\n- Les prénoms terminés par s, ß, x, z prennent seulement une apostrophe : **Max’** Zimmer.\n\nL’alternative, fréquente à l’oral, est **von** + prénom : das Haus **von** Otto.\n\nDis : **Das ist Ottos Haus.** / **Das ist das Haus von Otto.**',
+      examples: [
+        { de: 'Das ist Ottos Haus.', en: 'That is Otto’s house.', fr: 'C’est la maison d’Otto.' },
+        { de: 'Linas Küche ist sehr hell.', en: 'Lina’s kitchen is very bright.', fr: 'La cuisine de Lina est très lumineuse.' },
+        { de: 'Das ist die Wohnung von Sam.', en: 'That is Sam’s flat.', fr: 'C’est l’appartement de Sam.' },
+      ] } },
+
+    { kind: 'grammar', note: {
+      id: 'l15-meinung', title: 'Giving an opinion: "Wie findest du …?"', titleFr: 'Donner son avis : « Wie findest du … ? »',
+      explanationMd: 'Ask for an opinion with **Wie findest du …?** (What do you think of …?). The thing you talk about is in the **accusative**:\n\n- **Wie findest du** das Haus? — Ich finde **es** toll.\n- **Wie findest du** den Garten? — Ich finde **ihn** schön. (der → den / ihn)\n\nAfter **sein** or **finden**, the adjective never gets an ending: Der Garten ist **schön**. Ich finde die Küche **hell**.\n\nMake it stronger or weaker: **sehr** schön, **zu** klein (too small), **nicht so** gemütlich.',
+      explanationMdFr: 'Demande un avis avec **Wie findest du …?** (Comment trouves-tu … ?). La chose dont on parle est à l’**accusatif** :\n\n- **Wie findest du** das Haus ? — Ich finde **es** toll.\n- **Wie findest du** den Garten ? — Ich finde **ihn** schön. (der → den / ihn)\n\nAprès **sein** ou **finden**, l’adjectif ne prend jamais de terminaison : Der Garten ist **schön**. Ich finde die Küche **hell**.\n\nPour renforcer ou nuancer : **sehr** schön, **zu** klein (trop petit), **nicht so** gemütlich.',
+      examples: [
+        { de: 'Wie findest du Ottos Haus? – Ich finde es toll!', en: 'What do you think of Otto’s house? – I think it’s great!', fr: 'Comment trouves-tu la maison d’Otto ? – Je la trouve géniale !' },
+        { de: 'Ich finde den Keller zu dunkel.', en: 'I think the cellar is too dark.', fr: 'Je trouve la cave trop sombre.' },
+        { de: 'Das Sofa ist sehr gemütlich.', en: 'The sofa is very cosy.', fr: 'Le canapé est très confortable.' },
+      ] } },
+
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l15-e1', prompt: 'Lina hat einen Garten. ___ Garten ist groß.', promptFr: 'Lina hat einen Garten. ___ Garten ist groß.', answer: 'Ihr', hint: 'A woman owns it: use "her".', hintFr: 'C’est à une femme : utilise « son (à elle) ».' } },
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l15-e2', prompt: 'Otto hat eine Küche. ___ Küche ist klein.', promptFr: 'Otto hat eine Küche. ___ Küche ist klein.', answer: 'Seine', hint: 'A man owns it, and Küche is feminine: sein + e', hintFr: 'C’est à un homme et Küche est féminin : sein + e' } },
+    { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l15-e3', prompt: 'How do you say "Otto’s house"?', promptFr: 'Comment dit-on « la maison d’Otto » ?', options: ['Ottos Haus', 'Otto Haus', 'Haus Ottos’'], answer: 0, explain: 'Add -s to the name and put it before the noun, without an apostrophe.', explainFr: 'On ajoute -s au prénom et on le place avant le nom, sans apostrophe.', hint: 'Name + s, then the noun.', hintFr: 'Prénom + s, puis le nom.' } },
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l15-e4', prompt: 'Sie liebt ___ Balkon. (Lina, ihr + accusative masculine)', promptFr: 'Sie liebt ___ Balkon. (Lina, ihr + accusatif masculin)', answer: 'ihren', hint: 'Only the masculine adds -en in the accusative.', hintFr: 'Seul le masculin ajoute -en à l’accusatif.' } },
+    { kind: 'exercise', exercise: { type: 'match', id: 'l15-e5', pairs: [ { de: 'hässlich', en: 'ugly', fr: 'laid' }, { de: 'gemütlich', en: 'cosy', fr: 'douillet' }, { de: 'hell', en: 'bright', fr: 'lumineux' }, { de: 'toll', en: 'great', fr: 'génial' } ], hint: 'Match each adjective to its meaning.', hintFr: 'Associe chaque adjectif à sa signification.' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l15-e6', prompt: 'Listen. What is too small?', promptFr: 'Écoute. Qu’est-ce qui est trop petit ?', audio: { ttsText: 'Ich finde Ottos Haus toll, aber der Garten ist zu klein.' }, options: ['The house', 'The garden', 'The kitchen'], optionsFr: ['La maison', 'Le jardin', 'La cuisine'], answer: 1, hint: 'Listen for "zu klein".', hintFr: 'Écoute « zu klein ».' } },
+    { kind: 'exercise', exercise: { type: 'wordOrder', id: 'l15-e7', tokens: ['du', 'Wie', 'das', 'findest', 'Haus'], answer: ['Wie', 'findest', 'du', 'das', 'Haus'], hint: 'Question word first, then the verb, then the subject.', hintFr: 'Mot interrogatif d’abord, puis le verbe, puis le sujet.' } },
+    { kind: 'exercise', exercise: { type: 'articlePicker', id: 'l15-e8', word: 'Balkon', answer: 'der', hint: 'Masculine: "ein Balkon", "auf dem Balkon".', hintFr: 'Masculin : « ein Balkon », « auf dem Balkon ».' } },
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'l15-e9', prompt: 'Das ist die Wohnung ___ Sam. (= Sams Wohnung)', promptFr: 'Das ist die Wohnung ___ Sam. (= Sams Wohnung)', answer: 'von', hint: 'The spoken alternative to the name + s form.', hintFr: 'L’alternative orale à la forme nom + s.' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'l15-e10', prompt: 'Listen. Which room is cosy?', promptFr: 'Écoute. Quelle pièce est douillette ?', audio: { ttsText: 'Mein Nachbar hat ein Haus mit Garten. Sein Keller ist dunkel, aber sein Wohnzimmer ist sehr gemütlich.' }, options: ['The cellar', 'The garden', 'The living room'], optionsFr: ['La cave', 'Le jardin', 'Le salon'], answer: 2, hint: 'Listen for "gemütlich".', hintFr: 'Écoute « gemütlich ».' } },
+    { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'l15-e11', prompt: 'Sam shows his kitchen. Which sentence is right?', promptFr: 'Sam montre sa cuisine. Quelle phrase est correcte ?', options: ['Sam zeigt sein Küche.', 'Sam zeigt seine Küche.', 'Sam zeigt ihre Küche.'], answer: 1, explain: 'Sam is a man → sein; Küche is feminine → seine.', explainFr: 'Sam est un homme → sein ; Küche est féminin → seine.', hint: 'Who owns it, and what gender is the noun?', hintFr: 'À qui est-ce, et quel est le genre du nom ?' } },
+
+    { kind: 'pronunciation', focus: 'Umlauts and the soft "ch" in -lich: gemütlich, hässlich', focusFr: 'Les trémas et le « ch » doux de -lich : gemütlich, hässlich', items: [
+      { id: 'l15-gemuetlich-pron', german: 'gemütlich', english: 'cosy', french: 'douillet', gender: null, syllables: ['ge', 'MÜT', 'lich'], pronunciation: 'ge-MUET-likh', example: { de: 'Das Sofa ist gemütlich.', en: 'The sofa is cosy.', fr: 'Le canapé est confortable.' } },
+      { id: 'l15-haesslich-pron', german: 'hässlich', english: 'ugly', french: 'laid', gender: null, syllables: ['HÄSS', 'lich'], pronunciation: 'HESS-likh', example: { de: 'Der Teppich ist hässlich.', en: 'The carpet is ugly.', fr: 'Le tapis est moche.' } },
+      { id: 'l15-schlafzimmer-pron', german: 'das Schlafzimmer', english: 'the bedroom', french: 'la chambre', gender: 'das', syllables: ['SCHLAF', 'zim', 'mer'], pronunciation: 'dahss SHLAHF-tsim-mer', example: { de: 'Mein Schlafzimmer ist klein.', en: 'My bedroom is small.', fr: 'Ma chambre est petite.' } },
+      { id: 'l15-erdgeschoss-pron', german: 'das Erdgeschoss', english: 'the ground floor', french: 'le rez-de-chaussée', gender: 'das', syllables: ['ERD', 'ge', 'schoss'], pronunciation: 'dahss AIRT-ge-shoss', example: { de: 'Ich wohne im Erdgeschoss.', en: 'I live on the ground floor.', fr: 'J’habite au rez-de-chaussée.' } },
+      { id: 'l15-schoen-pron', german: 'schön', english: 'beautiful', french: 'beau', gender: null, syllables: ['SCHÖN'], pronunciation: 'shoen', example: { de: 'Der Balkon ist schön.', en: 'The balcony is beautiful.', fr: 'Le balcon est beau.' } },
+    ] },
+
+    { kind: 'wrapup', summary: 'You can now talk about houses and opinions. Say **sein** (his) and **ihr** (her) with the same endings as mein — masculine accusative adds **-en** (**seinen Garten**). Show ownership with names: **Ottos Haus** or **das Haus von Otto**. Ask **Wie findest du …?** and answer with **Ich finde … schön / toll / gemütlich / zu klein.** 🎉',
+      summaryFr: 'Tu sais maintenant parler de maisons et donner ton avis. Dis **sein** (son, à lui) et **ihr** (son, à elle) avec les mêmes terminaisons que mein — l’accusatif masculin ajoute **-en** (**seinen Garten**). Exprime la possession avec les prénoms : **Ottos Haus** ou **das Haus von Otto**. Demande **Wie findest du … ?** et réponds **Ich finde … schön / toll / gemütlich / zu klein.** 🎉' },
+  ],
+};

@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion8: Lesson = {
-  id: 'b1-l8', level: 'B1', module: 3, number: 8,
+  id: 'b1-l8', level: 'B1', module: 4, number: 14,
   title: { de: 'Vorher und nachher', en: 'Before and after', fr: 'Avant et après' },
   theme: 'The past perfect (Plusquamperfekt) and telling events in order with "nachdem"',
   themeFr: 'Le plus-que-parfait (Plusquamperfekt) et l’ordre des événements avec « nachdem »',

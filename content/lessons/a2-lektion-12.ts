@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion12: Lesson = {
-  id: 'a2-l12', level: 'A2', module: 4, number: 12,
+  id: 'a2-l12', level: 'A2', module: 6, number: 24,
   title: { de: 'Pläne und Zukunft', en: 'Plans and the future', fr: 'Projets et avenir' },
   theme: 'Talking about the future with "werden" and with the present tense',
   themeFr: 'Parler de l’avenir avec « werden » et avec le présent',

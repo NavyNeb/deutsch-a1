@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion7: Lesson = {
-  id: 'a2-l7', level: 'A2', module: 3, number: 7,
+  id: 'a2-l7', level: 'A2', module: 5, number: 19,
   title: { de: 'Warum? — weil und dass', en: 'Why? — weil and dass', fr: 'Pourquoi ? — weil et dass' },
   theme: 'Giving reasons and opinions with subordinate clauses (weil, dass)',
   themeFr: 'Donner des raisons et des opinions avec les subordonnées (weil, dass)',

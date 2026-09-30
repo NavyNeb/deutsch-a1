@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const b1lektion3: Lesson = {
-  id: 'b1-l3', level: 'B1', module: 1, number: 3,
+  id: 'b1-l3', level: 'B1', module: 3, number: 9,
   title: { de: 'Relativsätze', en: 'Relative clauses', fr: 'Les propositions relatives' },
   theme: 'Adding information with relative clauses (der/die/das)',
   themeFr: 'Ajouter des informations avec les propositions relatives (der/die/das)',

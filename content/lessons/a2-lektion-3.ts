@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion3: Lesson = {
-  id: 'a2-l3', level: 'A2', module: 1, number: 3,
+  id: 'a2-l3', level: 'A2', module: 2, number: 5,
   title: { de: 'Einladungen', en: 'Invitations', fr: 'Les invitations' },
   theme: 'Making plans: "wollen", invitations, and direction vs. location',
   themeFr: 'Faire des projets : « wollen », les invitations, et direction vs. lieu',

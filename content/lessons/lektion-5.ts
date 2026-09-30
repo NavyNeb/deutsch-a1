@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const lektion5: Lesson = {
-  id: 'l5', level: 'A1', module: 2, number: 5,
+  id: 'l5', level: 'A1', module: 2, number: 6,
   title: { de: 'Uhrzeit und Alltag', en: 'Time and daily routine', fr: 'L’heure et le quotidien' },
   theme: 'Telling the time, days of the week, and daily activities',
   themeFr: 'Dire l’heure, les jours de la semaine et les activités quotidiennes',

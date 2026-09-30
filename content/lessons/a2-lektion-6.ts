@@ -1,7 +1,7 @@
 import type { Lesson } from '../types';
 
 export const a2lektion6: Lesson = {
-  id: 'a2-l6', level: 'A2', module: 2, number: 6,
+  id: 'a2-l6', level: 'A2', module: 3, number: 12,
   title: { de: 'Kleidung und Aussehen', en: 'Clothes and appearance', fr: 'Les vêtements et l’apparence' },
   theme: 'Clothing, colours, and describing how people look',
   themeFr: 'Les vêtements, les couleurs et décrire l’apparence des gens',
