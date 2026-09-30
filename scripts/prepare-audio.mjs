@@ -3,6 +3,7 @@ import { readFile, copyFile, mkdir, access, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { officialTrackName, ttsFileName, TTS_VOICE } from '../lib/audio-names.mjs';
+import { SPEAKING_PROMPTS } from '../content/speaking-prompts.mjs';
 
 const OFFICIAL_SRC = process.env.MENSCHEN_AUDIO_DIR || 'C:/Users/F3LX_STOR/Downloads/Menschen A1 audio';
 const OUT = path.resolve('public/audio');
@@ -34,7 +35,7 @@ async function main() {
   const lessons = JSON.parse(await readFile(path.resolve('content/lessons.snapshot.json'), 'utf8'));
   await mkdir(OUT, { recursive: true });
   const { official, tts: contentTts } = collectAudioJobs(lessons);
-  const tts = [...new Set([...contentTts, ...UI_PHRASES])];
+  const tts = [...new Set([...contentTts, ...UI_PHRASES, ...SPEAKING_PROMPTS.map((p) => p.de)])];
 
   let copied = 0, generated = 0, skipped = 0, missing = [];
   for (const { lesson, activity } of official) {

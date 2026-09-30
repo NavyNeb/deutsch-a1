@@ -35,6 +35,21 @@ export function setPlaybackRate(rate: number): void {
   if (sharedAudio) sharedAudio.playbackRate = rate;
 }
 
+// Browser text-to-speech for text that has no pre-generated clip (e.g. any
+// dictionary word outside the lessons). Quality depends on the device's voices.
+export function speakText(text: string): void {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'de-DE';
+  const voices = synth.getVoices();
+  const voice = voices.find((v) => v.lang === 'de-DE') ?? voices.find((v) => v.lang.startsWith('de'));
+  if (voice) u.voice = voice;
+  u.rate = playbackRate;
+  synth.speak(u);
+}
+
 export function playAudio(src: string): Promise<void> {
   if (typeof window === 'undefined') return Promise.resolve();
   if (!sharedAudio) sharedAudio = new Audio();

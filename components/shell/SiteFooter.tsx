@@ -7,8 +7,10 @@ const LINKS: { href: string; key: UIKey }[] = [
   { href: '/', key: 'navHome' },
   { href: '/textbook', key: 'navTextbook' },
   { href: '/statistics', key: 'navStatistics' },
-  { href: '/games/sprint', key: 'navSprint' },
-  { href: '/games/audio', key: 'navAudioCall' },
+  { href: '/games', key: 'navGames' },
+  { href: '/speak', key: 'navSpeak' },
+  { href: '/write', key: 'navWrite' },
+  { href: '/dictionary', key: 'navDictionary' },
 ];
 
 export function SiteFooter() {
@@ -27,7 +29,13 @@ export function SiteFooter() {
           ))}
         </nav>
         <div className="flex-1" />
-        <p className="text-[13px] text-faint m-0">© Deutsch — a CEFR A1–B2 German course</p>
+        <div className="text-[13px] text-faint">
+          <p className="m-0">© Deutsch — a CEFR A1–B2 German course</p>
+          <p className="m-0 mt-1">
+            {t('footerCredits', locale)}{' '}
+            <a href="https://languagetool.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-primary">LanguageTool</a>
+          </p>
+        </div>
       </div>
     </footer>
   );

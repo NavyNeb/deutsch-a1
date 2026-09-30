@@ -2,16 +2,19 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { useLocale } from '@/lib/locale-store';
+import { t, type UIKey } from '@/lib/ui-strings';
 
 type AssistMode = 'explain' | 'examples' | 'quiz';
 
-const MODES: { mode: AssistMode; label: string }[] = [
-  { mode: 'explain', label: 'Explain more' },
-  { mode: 'examples', label: '5 more examples' },
-  { mode: 'quiz', label: 'Quiz me' },
+const MODES: { mode: AssistMode; label: UIKey }[] = [
+  { mode: 'explain', label: 'assistExplain' },
+  { mode: 'examples', label: 'assistExamples' },
+  { mode: 'quiz', label: 'assistQuiz' },
 ];
 
 export function AssistButtons({ term, context }: { term: string; context?: string }) {
+  const { locale } = useLocale();
   const [text, setText] = useState<string | null>(null);
   const [loading, setLoading] = useState<AssistMode | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -25,17 +28,17 @@ export function AssistButtons({ term, context }: { term: string; context?: strin
       const res = await fetch('/api/assist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode, term, context }),
+        body: JSON.stringify({ mode, term, context, locale }),
       });
       const data = (await res.json()) as { text: string };
       if (!res.ok) {
         setText(null);
-        setError(data.text || 'Assist is unavailable right now.');
+        setError(t('assistUnavailable', locale));
         return;
       }
       setText(data.text);
     } catch {
-      setError('Something went wrong asking for assist. Please try again.');
+      setError(t('assistError', locale));
     } finally {
       setLoading(null);
     }
@@ -46,7 +49,7 @@ export function AssistButtons({ term, context }: { term: string; context?: strin
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         {MODES.map(({ mode, label }) => (
           <Button key={mode} onClick={() => ask(mode)} disabled={loading !== null}>
-            {loading === mode ? '…' : label}
+            {loading === mode ? '…' : t(label, locale)}
           </Button>
         ))}
       </div>

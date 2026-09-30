@@ -139,7 +139,7 @@ export function QuizGame({
             <button onClick={start} className="inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
               <RotateCcw size={16} strokeWidth={2.5} /> {t('playAgain', locale)}
             </button>
-            <Link href="/" className="font-rounded font-bold text-[15px] text-text no-underline hover:text-primary transition">
+            <Link href="/games" className="font-rounded font-bold text-[15px] text-text no-underline hover:text-primary transition">
               {t('backToGames', locale)}
             </Link>
           </div>

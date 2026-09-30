@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, BookMarked, Zap, Headphones, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, BookMarked, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { vocabByLevel, allVocab } from '@/content';
 import type { Level } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
@@ -49,15 +49,12 @@ export function TextbookView() {
       <div className="bg-card border border-border rounded-[20px] shadow-card px-4 sm:px-6 py-3.5 flex flex-wrap items-center gap-4 mb-7">
         <div className="flex items-center gap-1">
           <ToolTab active={tab === 'textbook'} onClick={() => setTab('textbook')} icon={<BookOpen size={17} strokeWidth={2.3} />} label={t('navTextbook', locale)} />
-          <ToolTab active={tab === 'dictionary'} onClick={() => setTab('dictionary')} icon={<BookMarked size={17} strokeWidth={2.3} />} label={t('navDictionary', locale)} />
+          <ToolTab active={tab === 'dictionary'} onClick={() => setTab('dictionary')} icon={<BookMarked size={17} strokeWidth={2.3} />} label={t('myWords', locale)} />
         </div>
         <div className="flex-1" />
         <div className="flex items-center gap-2">
-          <Link href="/games/sprint" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--soft)] text-[var(--soft-ink)] font-rounded font-bold text-[13px] px-3.5 py-2.5 no-underline hover:brightness-[1.03] transition">
-            <Zap size={14} strokeWidth={2.4} fill="currentColor" stroke="none" /> {t('navSprint', locale)}
-          </Link>
-          <Link href="/games/audio" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-wash)] text-primary font-rounded font-bold text-[13px] px-3.5 py-2.5 no-underline hover:brightness-105 transition">
-            <Headphones size={14} strokeWidth={2.4} /> {t('navAudioCall', locale)}
+          <Link href="/games" className="inline-flex items-center gap-1.5 rounded-full bg-[var(--soft)] text-[var(--soft-ink)] font-rounded font-bold text-[13px] px-3.5 py-2.5 no-underline hover:brightness-[1.03] transition">
+            <Zap size={14} strokeWidth={2.4} fill="currentColor" stroke="none" /> {t('navGames', locale)}
           </Link>
         </div>
       </div>

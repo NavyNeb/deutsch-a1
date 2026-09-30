@@ -1,0 +1,5 @@
+German dictionary data derived from Wiktionary (https://en.wiktionary.org),
+extracted by wiktextract and distributed by kaikki.org (https://kaikki.org).
+Licensed under Creative Commons Attribution-ShareAlike 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+and GFDL. The files in this directory are a trimmed, reformatted derivative and are
+shared under the same license. Generated 2026-09-30.

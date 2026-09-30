@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "snapshot": "tsx scripts/snapshot.mjs",
-    "audio": "npm run snapshot && node scripts/prepare-audio.mjs"
+    "audio": "npm run snapshot && node scripts/prepare-audio.mjs",
+    "dict": "node scripts/build-dictionary.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
