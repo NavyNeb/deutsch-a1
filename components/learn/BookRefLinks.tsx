@@ -1,15 +1,15 @@
 'use client';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
-import { BOOK_REFS } from '@/lib/book-refs';
+import { BOOK_REFS, type BookRef } from '@/lib/book-refs';
 import { BOOKS } from '@/lib/books';
 import { useLocale } from '@/lib/locale-store';
 import { pick } from '@/lib/i18n';
 
 // "Go deeper" links into the preview-only textbook reader, at the pages that cover this lesson's topic.
-export function BookRefLinks({ lessonId }: { lessonId: string }) {
+export function BookRefLinks({ lessonId, refs: given }: { lessonId?: string; refs?: BookRef[] }) {
   const { locale } = useLocale();
-  const refs = BOOK_REFS[lessonId];
+  const refs = given ?? (lessonId ? BOOK_REFS[lessonId] : undefined);
   if (!refs?.length) return null;
   return (
     <div className="mt-3 rounded-[16px] border border-border bg-card px-4 py-3 shadow-card">
