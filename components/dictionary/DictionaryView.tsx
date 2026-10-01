@@ -11,6 +11,7 @@ import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
 import { GenderTag } from '@/components/ui/GenderTag';
+import { DictCardLink } from './DictCardLink';
 
 const POS_KEY: Record<string, UIKey> = {
   noun: 'posNoun', verb: 'posVerb', adj: 'posAdj', adv: 'posAdv', prep: 'posPrep',
@@ -159,7 +160,7 @@ export function DictionaryView() {
         <div>
           {needsMore && <p className="mb-4 text-[13.5px] text-muted">{t('dictTypeMore', locale)}</p>}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {cards.map((c) => <ResultCard key={`${c.entry.w}|${c.entry.p}|${c.kind}`} card={c} />)}
+            {cards.map((c) => <ResultCard key={`${c.entry.w}|${c.entry.p}|${c.kind}`} card={c} query={searched} />)}
           </div>
         </div>
       ) : !loading && searched === trimmed ? (
@@ -186,7 +187,7 @@ function Notice({ children, tone }: { children: React.ReactNode; tone?: 'bad' })
   );
 }
 
-function ResultCard({ card }: { card: Card }) {
+function ResultCard({ card, query }: { card: Card; query: string }) {
   const { entry, kind, via, lesson } = card;
   const { locale } = useLocale();
   const { state, toggleHardWord } = useProgress();
@@ -204,14 +205,15 @@ function ResultCard({ card }: { card: Card }) {
     : null;
 
   return (
-    <article className="bg-card border border-border rounded-[20px] shadow-card overflow-hidden flex flex-col">
-      <div className="p-4 pb-3.5 relative" style={{ background: bandBg }}>
+    <article className="relative bg-card border border-border rounded-[20px] shadow-card overflow-hidden flex flex-col transition hover:border-primary hover:shadow-pop">
+      <DictCardLink headword={entry.w} q={query} />
+      <div className="p-4 pb-3.5 relative pointer-events-none" style={{ background: bandBg }}>
         {lesson && (
           <button
             onClick={() => toggleHardWord(lesson.id)}
             aria-label={saved ? t('savedToReview', locale) : t('addToLearned', locale)}
             title={t('dictStarHint', locale)}
-            className={'absolute top-2 right-2 grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-amber' : 'text-faint hover:text-amber')}
+            className={'absolute top-2 right-2 z-10 pointer-events-auto grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-amber' : 'text-faint hover:text-amber')}
           >
             <Star size={17} strokeWidth={2.2} fill={saved ? 'currentColor' : 'none'} />
           </button>
@@ -231,7 +233,7 @@ function ResultCard({ card }: { card: Card }) {
           <button
             onClick={listen}
             aria-label={`${t('dictListen', locale)}: ${entry.w}`}
-            className="grid place-items-center shrink-0 w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
+            className="relative z-10 pointer-events-auto grid place-items-center shrink-0 w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
           >
             <Volume2 size={17} strokeWidth={2.2} />
           </button>
