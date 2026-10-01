@@ -88,3 +88,14 @@ UI: tense tabs (a segmented control that scrolls horizontally on phones, with a 
 - Rules are only as good as the principal parts; mitigated by the audit and the visible "check" state instead of silent errors.
 - Several Wiktionary entries mark both auxiliaries (`hat/ist`); the page shows both rather than choosing.
 - The dictionary is a static export of Wiktionary, so rare words may have thin senses; the page says so only through its content, not with error states.
+
+## Known gaps
+
+Result of `npm run audit` (conjugator vs the Wiktionary form shards): 8,562 verbs with confidence `ok`, 123,731 auditable forms, 99.53% matched. Forms identical to the lemma (wir/sie, infinitive-shaped) are skipped because the shards never list a lemma as a form of itself. The remaining ~580 misses are explainable and are not rule errors:
+
+- Defective or impersonal verbs where Wiktionary lists only third-person forms (besagen, bewölken, entströmen, knospen, schwanen, gereuen).
+- Rare or borrowed verbs where Wiktionary lists only a subset of the forms (facetimen, joken, klieren, mäandrieren, movieren, fisseln, strampeln, jungen).
+- Source `v` strings that are malformed or disagree with Wiktionary's own table (amtshandeln carries a `Main:` fragment; joken has `joket, jokete`; beschwören participle absent from the shards).
+- Verbs with `confidence: check` (113) are shown with the "check forms" banner.
+
+Fixed from the audit: Konjunktiv II of the werben family (würbe), and the du-form of verbs whose er-form already ends in -st (birst).

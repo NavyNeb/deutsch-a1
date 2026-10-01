@@ -219,3 +219,13 @@ describe('confidence', () => {
     expect(conjugate({ lemma: 'machen', v: 'macht, machte, hat gemacht' }).confidence).toBe('ok');
   });
 });
+
+describe('audit regressions', () => {
+  it('werben family takes würbe in Konjunktiv II', () => {
+    expect(t(conjugate({ lemma: 'bewerben', v: 'bewirbt, bewarb, hat beworben' }), 'konj2')[0]).toBe('bewürbe');
+    expect(t(conjugate({ lemma: 'werben', v: 'wirbt, warb, hat geworben' }), 'konj2')[0]).toBe('würbe');
+  });
+  it('a changed-vowel verb whose er-form ends in -st keeps one -st in the du-form', () => {
+    expect(t(conjugate({ lemma: 'bersten', v: 'birst, barst, ist geborsten' }), 'praesens').slice(0, 3)).toEqual(['berste', 'birst', 'birst']);
+  });
+});

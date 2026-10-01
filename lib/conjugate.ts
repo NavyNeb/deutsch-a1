@@ -150,6 +150,7 @@ const STRONG_KONJ2: [string, string][] = [
   ['half', 'hülfe'],
   ['starb', 'stürbe'],
   ['warf', 'würfe'],
+  ['warb', 'würbe'],
   ['begann', 'begönne'],
   ['gewann', 'gewönne'],
   ['galt', 'gölte'],
@@ -303,7 +304,7 @@ export function conjugate({ lemma, v }: { lemma: string; v?: string }): Conjugat
       changed = true;
       if (stem.endsWith('t')) {
         duStem = third;
-        du = third + 'st';
+        du = /st$/.test(third) ? third : third + 'st';
       } else {
         duStem = third.slice(0, -1);
         du = duStem + duEnding(duStem);
