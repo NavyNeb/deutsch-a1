@@ -70,6 +70,8 @@ import { b1lektion25 } from './lessons/b1-lektion-25';
 import { b1lektion26 } from './lessons/b1-lektion-26';
 
 // parseLesson validates at module load — a malformed lesson throws immediately.
+import { specials } from './specials';
+
 export const lessons: Lesson[] = [
   lektion1, lektion2, lektion3, lektion4, lektion5, lektion6,
   lektion7, lektion8, lektion9, lektion10, lektion11, lektion12,
@@ -88,7 +90,7 @@ export function getLesson(id: string): Lesson | undefined { return lessons.find(
 // Flattens every vocab item across all lessons — from `vocab` steps and `pronunciation` step items —
 // so features like hard-word lookup can resolve a vocab id without knowing which lesson it lives in.
 export function allVocab(): VocabItem[] {
-  return lessons.flatMap((l) =>
+  return [...lessons, ...specials].flatMap((l) =>
     l.steps.flatMap((s) => {
       if (s.kind === 'vocab') return [s.item];
       if (s.kind === 'pronunciation') return s.items;
