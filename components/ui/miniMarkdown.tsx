@@ -1,12 +1,15 @@
 import { Fragment } from 'react';
 
-// Tiny markdown subset for lesson content: paragraphs, **bold** inline, and -/• bullet lists.
+// Tiny markdown subset for lesson content: paragraphs, **bold** and *italic* inline, and -/• bullet lists.
 // Intentionally not a full markdown parser — keep it small and shared between learn & review modes.
 function renderInline(text: string, keyPrefix: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter((p) => p !== '');
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*\s][^*]*\*)/g).filter((p) => p !== '');
   return parts.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
+    if (part.length > 4 && part.startsWith('**') && part.endsWith('**')) {
       return <strong key={`${keyPrefix}-${i}`}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.length > 2 && part.startsWith('*') && part.endsWith('*')) {
+      return <em key={`${keyPrefix}-${i}`}>{part.slice(1, -1)}</em>;
     }
     return <Fragment key={`${keyPrefix}-${i}`}>{part}</Fragment>;
   });
