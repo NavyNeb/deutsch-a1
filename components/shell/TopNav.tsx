@@ -13,6 +13,7 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 const MAIN: { href: string; key: UIKey }[] = [
   { href: '/', key: 'navHome' },
   { href: '/textbook', key: 'navTextbook' },
+  { href: '/specials', key: 'navSpecials' },
   { href: '/games', key: 'navGames' },
   { href: '/speak', key: 'navSpeak' },
   { href: '/write', key: 'navWrite' },
@@ -46,7 +47,7 @@ export function TopNav() {
         <span className="hidden lg:block w-px h-6 bg-border" />
 
         {/* Primary links */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
           {MAIN.map((l) => (
             <Link key={l.href} href={l.href} className={linkCls(isActive(l.href))}>
               {t(l.key, locale)}

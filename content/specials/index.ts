@@ -14,3 +14,8 @@ export function specialsByGroup(): { group: SpecialGroup; items: Special[] }[] {
     .map((group) => ({ group, items: specials.filter((s) => s.special.group === group) }))
     .filter((g) => g.items.length > 0);
 }
+
+// Reverse lookup: the specials that list this lesson under `related`.
+export function relatedSpecials(lessonId: string): Special[] {
+  return specials.filter((s) => s.special.related.includes(lessonId));
+}

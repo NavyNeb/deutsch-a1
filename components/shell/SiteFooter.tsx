@@ -6,6 +6,7 @@ import { t, type UIKey } from '@/lib/ui-strings';
 const LINKS: { href: string; key: UIKey }[] = [
   { href: '/', key: 'navHome' },
   { href: '/textbook', key: 'navTextbook' },
+  { href: '/specials', key: 'navSpecials' },
   { href: '/statistics', key: 'navStatistics' },
   { href: '/games', key: 'navGames' },
   { href: '/speak', key: 'navSpeak' },

@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/Hero';
 import { HomeStats } from '@/components/home/HomeStats';
 import { DueTodayCard } from '@/components/home/DueTodayCard';
+import { SpecialsRow } from '@/components/home/SpecialsRow';
 import { LearningPath } from '@/components/home/LearningPath';
 import { OnboardingGate } from '@/components/home/OnboardingGate';
 
@@ -14,6 +15,7 @@ export default function Home() {
           <HomeStats />
           <DueTodayCard />
         </div>
+        <SpecialsRow />
         <LearningPath />
       </div>
     </>

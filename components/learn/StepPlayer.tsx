@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PanelLeft, ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import type { Lesson } from '@/content/types';
+import type { Lesson, Special } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
@@ -18,6 +18,7 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { SpeedToggle } from '@/components/ui/SpeedToggle';
 import { LessonResults } from './LessonResults';
 import { BookRefLinks } from './BookRefLinks';
+import { RelatedSpecials } from '@/components/specials/RelatedSpecials';
 import { IntroStep } from './IntroStep';
 import { VocabStep } from './VocabStep';
 import { GrammarStep } from './GrammarStep';
@@ -72,6 +73,7 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
   const quizAt = lesson.steps.findIndex((s) => s.kind === 'quiz');
   const retakeQuiz = () => { setRetaking(true); setFinished(false); setAnswered(false); setI(quizAt); };
   const isSpecial = lesson.id.startsWith('sp-');
+  const specialRefs = (lesson as Partial<Special>).special?.bookRefs;
 
   if (finished) {
     return (
@@ -124,11 +126,11 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
             <div className="flex-1 min-w-0 pb-5 sm:pb-0 sm:flex-none">
             <AnimatePresence mode="wait">
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
-                {step.kind === 'intro' && <><IntroStep step={step} /><BookRefLinks lessonId={lesson.id} /></>}
+                {step.kind === 'intro' && <><IntroStep step={step} /><BookRefLinks lessonId={lesson.id} refs={specialRefs} />{!isSpecial && <RelatedSpecials lessonId={lesson.id} />}</>}
                 {step.kind === 'vocab' && <VocabStep item={step.item} />}
                 {step.kind === 'grammar' && <GrammarStep note={step.note} />}
                 {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} focusFr={step.focusFr} items={step.items} />}
-                {step.kind === 'wrapup' && <><WrapupStep summary={step.summary} summaryFr={step.summaryFr} /><BookRefLinks lessonId={lesson.id} /></>}
+                {step.kind === 'wrapup' && <><WrapupStep summary={step.summary} summaryFr={step.summaryFr} /><BookRefLinks lessonId={lesson.id} refs={specialRefs} />{!isSpecial && <RelatedSpecials lessonId={lesson.id} />}</>}
                 {step.kind === 'chapter' && (
                   <ChapterDivider step={step} number={lesson.steps.slice(0, i + 1).filter((x) => x.kind === 'chapter').length} total={lesson.steps.filter((x) => x.kind === 'chapter').length} />
                 )}

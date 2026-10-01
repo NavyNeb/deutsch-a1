@@ -2,6 +2,8 @@
 import { useMemo } from 'react';
 import { Flame, Zap, GraduationCap, Star, Target, Trophy } from 'lucide-react';
 import { lessons } from '@/content';
+import { specials } from '@/content/specials';
+import { specialProgress } from '@/lib/specials-progress';
 import type { Level } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -37,6 +39,8 @@ export function StatisticsView() {
   const streak = currentStreak(state, today);
   const lessonsDone = lessons.filter((l) => lessonCompletion(state, l) >= 1).length;
 
+  const specialsPassed = specials.filter((sp) => specialProgress(state, sp).quizPassed).length;
+
   const accuracy = useMemo(() => {
     let total = 0, correct = 0;
     for (const l of Object.values(state.lessons)) {
@@ -58,7 +62,7 @@ export function StatisticsView() {
     { icon: <Zap size={20} className="text-primary" fill="currentColor" strokeWidth={0} />, value: level, label: t('currentLevel', locale), sub: `${into}/${span} XP` },
     { icon: <Flame size={20} className="text-amber" fill="currentColor" />, value: streak, label: t('dayStreak', locale) },
     { icon: <Star size={20} className="text-amber" fill="currentColor" />, value: state.xp, label: t('totalXp', locale) },
-    { icon: <GraduationCap size={20} className="text-primary" />, value: lessonsDone, label: t('lessonsDone', locale) },
+    { icon: <GraduationCap size={20} className="text-primary" />, value: lessonsDone, label: t('lessonsDone', locale), sub: specials.length ? `${specialsPassed}/${specials.length} ${t('navSpecials', locale)}` : undefined },
     { icon: <Trophy size={20} className="text-amber" />, value: state.hardWords.length, label: t('wordsSaved', locale) },
     { icon: <Target size={20} className="text-primary" />, value: accuracy === null ? '—' : `${accuracy}%`, label: t('accuracy', locale) },
   ];
