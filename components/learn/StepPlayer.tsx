@@ -23,9 +23,11 @@ import { VocabStep } from './VocabStep';
 import { GrammarStep } from './GrammarStep';
 import { PronunciationStep } from './PronunciationStep';
 import { WrapupStep } from './WrapupStep';
+import { ChapterDivider } from './ChapterDivider';
+import { QuizIntro } from './QuizIntro';
 import { ExerciseView } from '@/components/exercises/ExerciseView';
 
-export function StepPlayer({ lesson }: { lesson: Lesson }) {
+export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Lesson; exitHref?: string; reviewHref?: string }) {
   const router = useRouter();
   const { state, markStepDone, answerExercise, completeLesson } = useProgress();
   const { locale } = useLocale();
@@ -33,6 +35,7 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
   const [answered, setAnswered] = useState(false);
   const [navOpen, setNavOpen] = useState(true);
   const [finished, setFinished] = useState(false);
+  const [retaking, setRetaking] = useState(false);
   const step = lesson.steps[i];
   const isExercise = step.kind === 'exercise';
   const last = i === lesson.steps.length - 1;
@@ -49,7 +52,8 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
   const goTo = (target: number) => {
     const targetStep = lesson.steps[target];
     const alreadyDone = state.lessons[lesson.id]?.steps.includes(stepId(targetStep, target)) ?? false;
-    setAnswered(alreadyDone);
+    // A quiz retake must be answered afresh; everything else stays skippable once done.
+    setAnswered(alreadyDone && !(retaking && targetStep.kind === 'exercise'));
     setI(target);
   };
 
@@ -65,7 +69,21 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
     if (window.innerWidth < 768) setNavOpen(false);
   };
 
-  if (finished) return <LessonResults lesson={lesson} onHome={() => router.push('/')} />;
+  const quizAt = lesson.steps.findIndex((s) => s.kind === 'quiz');
+  const retakeQuiz = () => { setRetaking(true); setFinished(false); setAnswered(false); setI(quizAt); };
+  const isSpecial = lesson.id.startsWith('sp-');
+
+  if (finished) {
+    return (
+      <LessonResults
+        lesson={lesson}
+        onHome={() => router.push(exitHref)}
+        homeLabel={isSpecial ? t('backToSpecial', locale) : undefined}
+        reviewHref={reviewHref}
+        onRetakeQuiz={quizAt >= 0 ? retakeQuiz : undefined}
+      />
+    );
+  }
 
   return (
     <div className="min-h-[100dvh] flex">
@@ -111,6 +129,10 @@ export function StepPlayer({ lesson }: { lesson: Lesson }) {
                 {step.kind === 'grammar' && <GrammarStep note={step.note} />}
                 {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} focusFr={step.focusFr} items={step.items} />}
                 {step.kind === 'wrapup' && <><WrapupStep summary={step.summary} summaryFr={step.summaryFr} /><BookRefLinks lessonId={lesson.id} /></>}
+                {step.kind === 'chapter' && (
+                  <ChapterDivider step={step} number={lesson.steps.slice(0, i + 1).filter((x) => x.kind === 'chapter').length} total={lesson.steps.filter((x) => x.kind === 'chapter').length} />
+                )}
+                {step.kind === 'quiz' && <QuizIntro step={step} questions={lesson.steps.slice(i + 1).filter((x) => x.kind === 'exercise').length} />}
                 {step.kind === 'exercise' && (
                   <ExerciseView
                     exercise={step.exercise}

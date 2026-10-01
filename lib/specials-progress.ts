@@ -1,4 +1,4 @@
-import type { Special } from '@/content/types';
+import type { Lesson } from '@/content/types';
 import { stepId } from '@/components/learn/stepId';
 import type { ProgressState } from './progress';
 
@@ -10,7 +10,7 @@ export interface SpecialProgress {
 }
 
 // Everything is derived from the lesson-shaped progress record stored under the special's id.
-export function specialProgress(s: ProgressState, sp: Special): SpecialProgress {
+export function specialProgress(s: ProgressState, sp: Pick<Lesson, 'id' | 'steps'>): SpecialProgress {
   const rec = s.lessons[sp.id];
   const done = new Set(rec?.steps ?? []);
   const results = rec?.exercises ?? {};

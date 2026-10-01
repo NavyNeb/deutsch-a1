@@ -23,6 +23,12 @@ function labelFor(step: LessonStep, index: number, lesson: Lesson): string {
       return 'Aussprache';
     case 'wrapup':
       return 'Fertig';
+    case 'chapter': {
+      const n = lesson.steps.slice(0, index + 1).filter((x) => x.kind === 'chapter').length;
+      return `Kapitel ${n}: ${step.title}`;
+    }
+    case 'quiz':
+      return step.title;
     default:
       return `Schritt ${index + 1}`;
   }

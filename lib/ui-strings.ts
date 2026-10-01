@@ -350,6 +350,17 @@ export const UI = {
   assistUnavailable: { en: 'Assist is unavailable right now.', fr: "L'assistant est indisponible pour le moment." },
   assistError: { en: 'Something went wrong asking for assist. Please try again.', fr: "Un problème est survenu avec l'assistant. Réessaie." },
   deleteDataConfirm: { en: 'Permanently delete your synced cloud data? Your local progress on this device stays.', fr: 'Supprimer définitivement tes données synchronisées ? Ta progression locale sur cet appareil reste.' },
+  chapterLabel: { en: 'Chapter', fr: 'Chapitre' },
+  quizLabel: { en: 'Final quiz', fr: 'Quiz final' },
+  quizQuestions: { en: 'questions', fr: 'questions' },
+  quizPassMark: { en: 'pass mark', fr: 'seuil de réussite' },
+  quizRetake: { en: 'You can retake it as often as you like — your best result counts.', fr: 'Tu peux le refaire autant que tu veux — ton meilleur résultat compte.' },
+  quizPassed: { en: 'Quiz passed', fr: 'Quiz réussi' },
+  quizNotPassed: { en: 'Not passed yet', fr: 'Pas encore réussi' },
+  quizScore: { en: 'Quiz score', fr: 'Score du quiz' },
+  retakeQuiz: { en: 'Retake the quiz', fr: 'Refaire le quiz' },
+  backToSpecial: { en: 'Back to the special', fr: 'Retour au spécial' },
+  reviewThisSpecial: { en: 'Review this special', fr: 'Réviser ce spécial' },
 } as const;
 
 export type UIKey = keyof typeof UI;

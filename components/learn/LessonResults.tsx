@@ -7,6 +7,7 @@ import { t } from '@/lib/ui-strings';
 import { Mascot } from '@/components/ui/Mascot';
 import { Confetti } from '@/components/ui/Confetti';
 import { Button } from '@/components/ui/Button';
+import { specialProgress } from '@/lib/specials-progress';
 
 function Stat({ value, label, accent }: { value: string; label: string; accent?: boolean }) {
   return (
@@ -19,11 +20,15 @@ function Stat({ value, label, accent }: { value: string; label: string; accent?:
   );
 }
 
-export function LessonResults({ lesson, onHome }: { lesson: Lesson; onHome: () => void }) {
+export function LessonResults({ lesson, onHome, homeLabel, reviewHref, onRetakeQuiz }: {
+  lesson: Lesson; onHome: () => void; homeLabel?: string; reviewHref?: string; onRetakeQuiz?: () => void;
+}) {
   const { state } = useProgress();
   const { locale } = useLocale();
 
-  const exerciseSteps = lesson.steps.filter((s) => s.kind === 'exercise');
+  const quizAt = lesson.steps.findIndex((s) => s.kind === 'quiz');
+  const quiz = quizAt >= 0 ? specialProgress(state, lesson) : null;
+  const exerciseSteps = lesson.steps.flatMap((s, i) => (s.kind === 'exercise' && (quizAt < 0 || i < quizAt) ? [s] : []));
   const results = state.lessons[lesson.id]?.exercises ?? {};
   const total = exerciseSteps.length;
   const correct = exerciseSteps.filter((s) => results[s.exercise.id] === true).length;
@@ -42,16 +47,23 @@ export function LessonResults({ lesson, onHome }: { lesson: Lesson; onHome: () =
         <h1 className="text-[32px] font-extrabold mt-4 mb-1">{t('lessonComplete', locale)}</h1>
         <p className="text-muted m-0 mb-6">{t('greatJob', locale)}</p>
 
+        {quiz && (
+          <p role="status" className={'font-rounded font-bold m-0 mb-4 ' + (quiz.quizPassed ? 'text-primary' : 'text-muted')}>
+            {quiz.quizPassed ? t('quizPassed', locale) : t('quizNotPassed', locale)}
+          </p>
+        )}
         <div className="flex gap-3 mb-7">
-          {total > 0 && <Stat value={`${correct}/${total}`} label={t('exercisesCorrect', locale)} accent />}
+          {quiz && <Stat value={`${quiz.quizCorrect}/${quiz.quizTotal}`} label={t('quizScore', locale)} accent />}
+          {total > 0 && <Stat value={`${correct}/${total}`} label={t('exercisesCorrect', locale)} accent={!quiz} />}
           <Stat value={String(wordsLearned)} label={t('wordsLearned', locale)} />
           {saved > 0 && <Stat value={String(saved)} label={t('savedForReview', locale)} />}
         </div>
 
         <div className="flex flex-col gap-2.5">
-          <Button onClick={onHome} className="w-full justify-center">{t('backToHome', locale)}</Button>
+          <Button onClick={onHome} className="w-full justify-center">{homeLabel ?? t('backToHome', locale)}</Button>
+          {quiz && onRetakeQuiz && <Button variant="secondary" onClick={onRetakeQuiz} className="w-full justify-center">{t('retakeQuiz', locale)}</Button>}
           <Link
-            href={`/lesson/${lesson.id}/review`}
+            href={reviewHref ?? `/lesson/${lesson.id}/review`}
             className="w-full text-center py-3 rounded-[14px] font-rounded font-bold text-primary bg-[var(--primary-wash)]
               no-underline transition hover:brightness-105"
           >
