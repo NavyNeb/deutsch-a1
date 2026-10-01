@@ -21,25 +21,36 @@ export function MiniMarkdown({ md }: { md: string }) {
     <>
       {blocks.map((block, bi) => {
         const lines = block.split('\n').map((l) => l.trim()).filter(Boolean);
-        const isList = lines.length > 0 && lines.every((l) => l.startsWith('-') || l.startsWith('•'));
-        if (isList) {
-          return (
-            <ul key={bi} className="my-2 pl-5 grid gap-1 marker:text-primary">
-              {lines.map((l, li) => (
-                <li key={li}>{renderInline(l.replace(/^[-•]\s*/, ''), `${bi}-${li}`)}</li>
-              ))}
-            </ul>
-          );
+        const isBullet = (l: string) => l.startsWith('-') || l.startsWith('•');
+        // Split into runs so a heading line followed by bullets renders as text + list.
+        const runs: { list: boolean; lines: string[] }[] = [];
+        for (const l of lines) {
+          const list = isBullet(l);
+          const last = runs[runs.length - 1];
+          if (last && last.list === list) last.lines.push(l);
+          else runs.push({ list, lines: [l] });
         }
         return (
-          <p key={bi} className="my-2 leading-relaxed">
-            {lines.map((l, li) => (
-              <Fragment key={li}>
-                {li > 0 && <br />}
-                {renderInline(l, `${bi}-${li}`)}
-              </Fragment>
-            ))}
-          </p>
+          <Fragment key={bi}>
+            {runs.map((run, ri) =>
+              run.list ? (
+                <ul key={ri} className="my-2 pl-5 grid gap-1 marker:text-primary">
+                  {run.lines.map((l, li) => (
+                    <li key={li}>{renderInline(l.replace(/^[-•]\s*/, ''), `${bi}-${ri}-${li}`)}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p key={ri} className="my-2 leading-relaxed">
+                  {run.lines.map((l, li) => (
+                    <Fragment key={li}>
+                      {li > 0 && <br />}
+                      {renderInline(l, `${bi}-${ri}-${li}`)}
+                    </Fragment>
+                  ))}
+                </p>
+              ),
+            )}
+          </Fragment>
         );
       })}
     </>

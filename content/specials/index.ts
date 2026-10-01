@@ -17,6 +17,7 @@ import { wechselpraepositionen } from './wechselpraepositionen';
 import { wortstellung } from './wortstellung';
 import { negation } from './negation';
 import { konnektoren } from './konnektoren';
+import { hauptNebensaetze } from './haupt-nebensaetze';
 import { relativsaetze } from './relativsaetze';
 import { infinitivZu } from './infinitiv-zu';
 import { indirekteRede } from './indirekte-rede';
@@ -40,7 +41,7 @@ const raw: unknown[] = [
   wortstellung, negation, konnektoren, relativsaetze, infinitivZu, indirekteRede,
   farbenKleidung, familie, koerperGesundheit, essenRestaurant, wohnenMoebel,
   zahlenGeldZeit, reisenWege, arbeitBerufe, wetterNatur,
-  modalpartikeln, falscheFreunde, briefeEmails, redewendungen,
+  modalpartikeln, falscheFreunde, briefeEmails, redewendungen, hauptNebensaetze,
 ];
 
 export const specials: Special[] = raw.map(parseSpecial).sort((a, b) => a.number - b.number);

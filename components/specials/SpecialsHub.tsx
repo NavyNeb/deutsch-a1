@@ -1,34 +1,41 @@
 'use client';
 import { useMemo, useState } from 'react';
-import type { Special, SpecialGroup } from '@/content/types';
+import type { Level, Special, SpecialGroup } from '@/content/types';
 import { specials as registry } from '@/content/specials';
-import { GROUP_ORDER, GROUP_LABEL } from '@/content/specials/meta';
+import { GROUP_ORDER } from '@/content/specials/meta';
 import { specialProgress } from '@/lib/specials-progress';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
-import { pick } from '@/lib/i18n';
 import { Segmented } from '@/components/ui/Segmented';
 import { SpecialCard } from './SpecialCard';
 
-type Filter = 'all' | SpecialGroup;
+const LEVEL_ORDER: Level[] = ['A1', 'A2', 'B1', 'B2'];
+type Filter = 'all' | Level;
+
+const groupRank = (g: SpecialGroup) => GROUP_ORDER.indexOf(g);
 
 export function SpecialsHub({ items = registry }: { items?: Special[] }) {
   const { locale } = useLocale();
   const { state } = useProgress();
   const [filter, setFilter] = useState<Filter>('all');
 
-  const groups = useMemo(
-    () => GROUP_ORDER
-      .map((group) => ({ group, items: items.filter((s) => s.special.group === group) }))
-      .filter((g) => g.items.length > 0),
+  const levels = useMemo(
+    () => LEVEL_ORDER
+      .map((level) => ({
+        level,
+        items: items
+          .filter((s) => s.special.levels[0] === level)
+          .sort((a, b) => groupRank(a.special.group) - groupRank(b.special.group) || a.number - b.number),
+      }))
+      .filter((l) => l.items.length > 0),
     [items],
   );
-  const visible = filter === 'all' ? groups : groups.filter((g) => g.group === filter);
+  const visible = filter === 'all' ? levels : levels.filter((l) => l.level === filter);
 
   const options: { value: Filter; label: string }[] = [
     { value: 'all', label: t('specialsAll', locale) },
-    ...groups.map((g) => ({ value: g.group as Filter, label: pick(GROUP_LABEL[g.group].en, GROUP_LABEL[g.group].fr, locale) })),
+    ...levels.map((l) => ({ value: l.level as Filter, label: l.level })),
   ];
 
   return (
@@ -40,19 +47,21 @@ export function SpecialsHub({ items = registry }: { items?: Special[] }) {
         <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('specialsSubtitle', locale)}</p>
       </header>
 
-      {groups.length > 1 && (
+      {levels.length > 1 && (
         <div className="mb-8 overflow-x-auto -mx-1 px-1 pb-1">
-          <Segmented<Filter> value={filter} options={options} onChange={setFilter} label={t('specialsGroupFilter', locale)} />
+          <Segmented<Filter> value={filter} options={options} onChange={setFilter} label={t('specialsLevelFilter', locale)} />
         </div>
       )}
 
       {visible.length === 0 && <p className="text-muted">{t('specialsEmpty', locale)}</p>}
 
       <div className="grid gap-10">
-        {visible.map(({ group, items: list }) => (
-          <section key={group} aria-labelledby={`grp-${group}`}>
-            <h2 id={`grp-${group}`} className="font-rounded font-extrabold text-[22px] text-text m-0 mb-4">
-              {pick(GROUP_LABEL[group].en, GROUP_LABEL[group].fr, locale)}
+        {visible.map(({ level, items: list }) => (
+          <section key={level} aria-labelledby={`lvl-${level}`}>
+            <h2 id={`lvl-${level}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-rounded font-extrabold text-[22px] text-text m-0 mb-4">
+              <span>{level}</span>
+              <span className="text-[15px] font-bold text-muted">{t(`specialsLevel${level}`, locale)}</span>
+              <span className="label tabular-nums text-muted">{list.length}</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {list.map((sp) => (
