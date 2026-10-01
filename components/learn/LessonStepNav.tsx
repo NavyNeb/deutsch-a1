@@ -1,112 +1,173 @@
 'use client';
-import { Lock, Check } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Lock, Check, ChevronLeft, X } from 'lucide-react';
 import type { Lesson, LessonStep } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
+import { pick } from '@/lib/i18n';
 import { t } from '@/lib/ui-strings';
 import { lessonCompletion } from '@/lib/progress';
 import { stepId } from './stepId';
+import { buildSections, sectionIndexOf } from './sections';
 
 function labelFor(step: LessonStep, index: number, lesson: Lesson): string {
   switch (step.kind) {
-    case 'intro':
-      return 'Einstieg';
     case 'vocab':
       return step.item.german;
     case 'grammar':
       return step.note.title;
     case 'exercise': {
-      const exerciseNumber = lesson.steps.slice(0, index + 1).filter((s) => s.kind === 'exercise').length;
-      return `Übung ${exerciseNumber}`;
+      const n = lesson.steps.slice(0, index + 1).filter((s) => s.kind === 'exercise').length;
+      return `Übung ${n}`;
     }
     case 'pronunciation':
       return 'Aussprache';
-    case 'wrapup':
-      return 'Fertig';
-    case 'chapter': {
-      const n = lesson.steps.slice(0, index + 1).filter((x) => x.kind === 'chapter').length;
-      return `Kapitel ${n}: ${step.title}`;
-    }
-    case 'quiz':
-      return step.title;
     default:
       return `Schritt ${index + 1}`;
   }
 }
 
-// Collapsible in-lesson navigation: every step in order, with a completion
-// indicator and a jump-to-any-step click handler. Renders nothing when closed —
-// the toggle button lives in the parent (StepPlayer) so it stays visible even
-// when the panel itself is collapsed.
+// Table of contents for a lesson: sections (Einstieg, chapters, quiz, Fertig)
+// with the steps of the current section unfolded beneath it. Unlock rules: any
+// completed step, the current one and the next after the furthest reached are
+// open; the rest stay locked until the lesson is finished once.
 export function LessonStepNav({
   lesson,
   current,
   onJump,
-  open,
+  onClose,
+  onCollapse,
 }: {
   lesson: Lesson;
   current: number;
   onJump: (index: number) => void;
-  open: boolean;
+  onClose?: () => void;
+  onCollapse?: () => void;
 }) {
   const { state } = useProgress();
   const { locale } = useLocale();
+  const currentRef = useRef<HTMLButtonElement>(null);
   const doneSteps = state.lessons[lesson.id]?.steps ?? [];
 
-  // Progressive unlocking: you can reach any step you've completed, the current
-  // step, and the very next one after your furthest-reached step — but not skip
-  // ahead into unseen cards on a first pass. Once the whole lesson is finished,
-  // everything unlocks so you can jump straight to any card to review fast.
   const fullyComplete = lessonCompletion(state, lesson) >= 1;
   let furthest = current;
   lesson.steps.forEach((s, idx) => {
     if (doneSteps.includes(stepId(s, idx))) furthest = Math.max(furthest, idx);
   });
   const unlockedThrough = furthest + 1;
+  const isLocked = (index: number) => !fullyComplete && index > unlockedThrough;
+  const isDone = (index: number) => doneSteps.includes(stepId(lesson.steps[index], index));
 
-  if (!open) return null;
+  const sections = buildSections(lesson);
+  const currentSection = sectionIndexOf(sections, current);
+
+  useEffect(() => {
+    currentRef.current?.scrollIntoView?.({ block: 'nearest' });
+  }, [current]);
 
   return (
-    <nav
-      aria-label={t('lessonStepsNav', locale)}
-      className="fixed inset-y-0 left-0 z-50 w-[min(300px,86vw)] shadow-pop border-r border-border h-[100dvh] overflow-y-auto overflow-x-hidden overscroll-contain
-        pt-[max(4rem,env(safe-area-inset-top))] px-2.5 pb-[max(1.5rem,env(safe-area-inset-bottom))] bg-bg-soft
-        md:sticky md:top-0 md:z-auto md:w-[260px] md:min-w-[260px] md:shrink-0 md:shadow-none"
-    >
-      <ol className="list-none m-0 p-0 grid gap-0.5">
-        {lesson.steps.map((step, index) => {
-          const id = stepId(step, index);
-          const isDone = doneSteps.includes(id);
-          const isCurrent = index === current;
-          const locked = !fullyComplete && index > unlockedThrough;
+    <nav aria-label={t('lessonStepsNav', locale)} className="flex flex-col min-h-0">
+      <div className="flex items-center justify-between gap-2 px-3 pt-3 pb-2">
+        <span className="label">{t('contents', locale)}</span>
+        {onCollapse && (
+          <button
+            type="button"
+            onClick={onCollapse}
+            aria-label={t('hideContents', locale)}
+            className="grid place-items-center w-8 h-8 rounded-lg border-none bg-transparent text-muted hover:bg-surface-2 hover:text-text cursor-pointer transition-colors"
+          >
+            <ChevronLeft size={18} strokeWidth={2.2} />
+          </button>
+        )}
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={t('closeLessonNav', locale)}
+            className="grid place-items-center w-10 h-10 rounded-lg border-none bg-transparent text-muted hover:bg-surface-2 hover:text-text cursor-pointer transition-colors"
+          >
+            <X size={18} strokeWidth={2.2} />
+          </button>
+        )}
+      </div>
+
+      <ol className="list-none m-0 p-0 pb-3 grid">
+        {sections.map((section, si) => {
+          const isCurrent = si === currentSection;
+          const locked = isLocked(section.start);
+          const total = section.end - section.start + 1;
+          const doneCount = Array.from({ length: total }, (_, k) => section.start + k).filter(isDone).length;
+          const sectionDone = doneCount === total;
+          const subStart =
+            section.kind === 'chapter' || section.kind === 'quiz' ? section.start + 1
+            : section.kind === 'intro' || section.kind === 'wrapup' ? section.end + 1
+            : section.start;
+          const showSteps = isCurrent && subStart <= section.end;
           return (
-            <li key={id}>
+            <li key={section.key}>
               <button
                 type="button"
-                onClick={() => { if (!locked) onJump(index); }}
+                ref={isCurrent ? currentRef : undefined}
+                onClick={() => { if (!locked) onJump(section.start); }}
                 disabled={locked}
                 aria-current={isCurrent ? 'step' : undefined}
                 title={locked ? t('completeEarlierSteps', locale) : undefined}
                 className={
-                  'w-full text-left flex items-center gap-2 px-2.5 py-3 md:py-2 rounded-[10px] border-none transition-colors ' +
-                  (locked ? 'cursor-not-allowed text-faint' : 'cursor-pointer ') +
-                  (isCurrent ? 'bg-[var(--primary-wash)] text-primary font-semibold' : locked ? '' : 'text-text hover:bg-surface-2')
+                  'w-full text-left flex items-center gap-2.5 pl-3 pr-3 py-3 md:py-2.5 border-0 border-l-[3px] border-solid transition-colors ' +
+                  (isCurrent
+                    ? 'border-l-primary bg-[var(--primary-wash)] text-primary font-semibold '
+                    : 'border-l-transparent ' + (locked ? 'text-faint cursor-not-allowed ' : 'bg-transparent text-text hover:bg-surface-2 cursor-pointer '))
                 }
               >
-                <span className={'text-xs min-w-[18px] tabular-nums ' + (locked ? 'text-faint' : 'text-muted')}>{index + 1}</span>
-                <span className="flex-1 text-sm overflow-hidden text-ellipsis whitespace-nowrap font-rounded">
-                  {labelFor(step, index, lesson)}
+                <span className="flex-1 min-w-0 text-[13.5px] leading-snug font-rounded">
+                  {pick(section.label, section.labelFr, locale)}
                 </span>
-                <span aria-hidden="true" className="shrink-0 grid place-items-center w-4 h-4">
+                <span aria-hidden="true" className="shrink-0 flex items-center gap-1.5 text-xs tabular-nums">
                   {locked ? (
                     <Lock size={12} strokeWidth={2.2} />
-                  ) : isDone ? (
+                  ) : sectionDone ? (
                     <Check size={14} strokeWidth={2.6} className="text-primary" />
-                  ) : (
-                    <span className="w-1 h-1 rounded-full bg-muted" />
-                  )}
+                  ) : total > 1 ? (
+                    <span className="text-muted">{doneCount}/{total}</span>
+                  ) : null}
                 </span>
               </button>
+
+              {showSteps && (
+                <ol className="list-none m-0 py-1 pl-6 pr-2 grid gap-0.5 border-0 border-l-[3px] border-solid border-l-primary bg-[var(--primary-wash)]/40">
+                  {Array.from({ length: section.end - subStart + 1 }, (_, k) => subStart + k).map((index) => {
+                    const stepLocked = isLocked(index);
+                    const stepCurrent = index === current;
+                    return (
+                      <li key={index}>
+                        <button
+                          type="button"
+                          onClick={() => { if (!stepLocked) onJump(index); }}
+                          disabled={stepLocked}
+                          aria-current={stepCurrent ? 'step' : undefined}
+                          title={stepLocked ? t('completeEarlierSteps', locale) : undefined}
+                          className={
+                            'w-full text-left flex items-center gap-2 px-2 py-2 md:py-1.5 rounded-lg border-none bg-transparent transition-colors text-[13px] ' +
+                            (stepLocked ? 'text-faint cursor-not-allowed ' : 'cursor-pointer hover:bg-surface-2 ') +
+                            (stepCurrent ? 'font-semibold text-primary' : stepLocked ? '' : 'text-text-2')
+                          }
+                        >
+                          <span className="flex-1 min-w-0 truncate">{labelFor(lesson.steps[index], index, lesson)}</span>
+                          <span aria-hidden="true" className="shrink-0 grid place-items-center w-4 h-4">
+                            {stepLocked ? (
+                              <Lock size={11} strokeWidth={2.2} />
+                            ) : isDone(index) ? (
+                              <Check size={13} strokeWidth={2.6} className="text-primary" />
+                            ) : (
+                              <span className="w-1 h-1 rounded-full bg-muted" />
+                            )}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ol>
+              )}
             </li>
           );
         })}

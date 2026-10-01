@@ -13,6 +13,9 @@ export const UI = {
   openLessonNav: { en: 'Open lesson navigation', fr: 'Ouvrir la navigation de la leçon' },
   closeLessonNav: { en: 'Close lesson navigation', fr: 'Fermer la navigation de la leçon' },
   lessonStepsNav: { en: 'Lesson steps', fr: 'Étapes de la leçon' },
+  contents: { en: 'Contents', fr: 'Sommaire' },
+  hideContents: { en: 'Hide contents', fr: 'Masquer le sommaire' },
+  showContents: { en: 'Show contents', fr: 'Afficher le sommaire' },
   completeEarlierSteps: {
     en: 'Complete the earlier steps to unlock this one',
     fr: 'Termine les étapes précédentes pour déverrouiller celle-ci',
