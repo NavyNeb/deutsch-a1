@@ -2,36 +2,21 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, Volume2, Star, X, BookOpen, Loader2 } from 'lucide-react';
 import { allVocab } from '@/content';
-import type { Gender, VocabItem } from '@/content/types';
+import type { VocabItem } from '@/content/types';
 import { searchDictionary, MIN_QUERY_LETTERS, type DictEntry, type DictHit, type DictHitKind } from '@/lib/dictionary';
 import { fold, letters } from '@/lib/dict-shared.mjs';
 import { ttsSrc, playAudio, speakText } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
-import { t, type UIKey } from '@/lib/ui-strings';
+import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
 import { GenderTag } from '@/components/ui/GenderTag';
 import { DictCardLink } from './DictCardLink';
+import { POS_KEY, articlesOf, lessonToEntry } from './entry-utils';
 
-const POS_KEY: Record<string, UIKey> = {
-  noun: 'posNoun', verb: 'posVerb', adj: 'posAdj', adv: 'posAdv', prep: 'posPrep',
-  conj: 'posConj', pron: 'posPron', num: 'posNum', intj: 'posIntj', det: 'posDet', article: 'posDet', particle: 'posPart', part: 'posPart',
-};
-const GENDER_ARTICLE: Record<string, Gender> = { m: 'der', f: 'die', n: 'das' };
 const SUGGESTIONS = ['Haus', 'gehen', 'schön', 'house', 'Mädchen', 'Straße'];
 
 type Card = { entry: DictEntry; kind: DictHitKind; via?: string; lesson?: VocabItem };
-
-function articlesOf(g?: string): Gender[] {
-  if (!g) return [];
-  return g.split('/').map((x) => GENDER_ARTICLE[x.trim()]).filter((x): x is NonNullable<Gender> => Boolean(x));
-}
-
-// A lesson word rendered with the same card as dictionary entries.
-function lessonToEntry(v: VocabItem): DictEntry {
-  const g = v.gender === 'der' ? 'm' : v.gender === 'die' ? 'f' : v.gender === 'das' ? 'n' : undefined;
-  return { w: v.german, p: v.gender ? 'noun' : '', g, s: [v.english], x: [v.example.de, v.example.en] };
-}
 
 export function DictionaryView() {
   const { locale } = useLocale();
