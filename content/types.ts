@@ -49,6 +49,8 @@ export const LessonStepSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('exercise'), exercise: ExerciseSchema }),
   z.object({ kind: z.literal('pronunciation'), focus: z.string(), focusFr: z.string().optional(), items: z.array(VocabItemSchema) }),
   z.object({ kind: z.literal('wrapup'), summary: z.string(), summaryFr: z.string().optional() }),
+  z.object({ kind: z.literal('chapter'), title: z.string(), titleFr: z.string().optional(), blurb: z.string().optional(), blurbFr: z.string().optional() }),
+  z.object({ kind: z.literal('quiz'), title: z.string(), titleFr: z.string().optional(), passMark: z.number().min(0).max(1).default(0.8) }),
 ]);
 export type LessonStep = z.infer<typeof LessonStepSchema>;
 
@@ -70,3 +72,22 @@ export const LessonSchema = z.object({
 export type Lesson = z.infer<typeof LessonSchema>;
 
 export function parseLesson(data: unknown): Lesson { return LessonSchema.parse(data); }
+
+export const SpecialGroupSchema = z.enum(['verbs', 'cases', 'sentences', 'words', 'life']);
+export type SpecialGroup = z.infer<typeof SpecialGroupSchema>;
+
+const BookRefSchema = z.object({ book: z.string(), lektion: z.number().optional(), start: z.number(), end: z.number() });
+
+export const SpecialSchema = LessonSchema.extend({
+  id: z.string().regex(/^sp-[a-z0-9-]+$/),
+  special: z.object({
+    slug: z.string().regex(/^[a-z0-9-]+$/),
+    group: SpecialGroupSchema,
+    levels: z.tuple([LevelSchema, LevelSchema]),
+    related: z.array(z.string()),
+    bookRefs: z.array(BookRefSchema).default([]),
+  }),
+});
+export type Special = z.infer<typeof SpecialSchema>;
+
+export function parseSpecial(data: unknown): Special { return SpecialSchema.parse(data); }

@@ -19,11 +19,11 @@ export function BookRefLinks({ lessonId }: { lessonId: string }) {
           const book = BOOKS.find((b) => b.id === r.book);
           return (
             <Link
-              key={`${r.book}-${r.lektion}`}
+              key={`${r.book}-${r.lektion ?? r.start}`}
               href={`/textbook/read/${r.book}?page=${r.start}`}
               className="tap-area inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1.5 text-[13px] font-rounded font-bold text-text-2 no-underline hover:border-primary hover:text-primary"
             >
-              {book?.title ?? r.book} · {pick('Lektion', 'Leçon', locale)} {r.lektion} · p. {r.start}–{r.end}
+              {book?.title ?? r.book}{r.lektion != null && <> · {pick('Lektion', 'Leçon', locale)} {r.lektion}</>} · p. {r.start}–{r.end}
             </Link>
           );
         })}

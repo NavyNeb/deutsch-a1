@@ -119,7 +119,9 @@ export function withStepDone(s: ProgressState, lessonId: string, stepId: string)
 }
 export function withExerciseResult(s: ProgressState, lessonId: string, exId: string, correct: boolean): ProgressState {
   const l = ensure(s, lessonId);
-  return { ...s, lessons: { ...s.lessons, [lessonId]: { ...l, exercises: { ...l.exercises, [exId]: correct } } } };
+  // Special-course quizzes keep the best result, so a failed retake never undoes a pass (same rule as mergeProgress).
+  const keep = lessonId.startsWith('sp-') && l.exercises[exId] === true;
+  return { ...s, lessons: { ...s.lessons, [lessonId]: { ...l, exercises: { ...l.exercises, [exId]: correct || keep } } } };
 }
 
 // --- hard words + their SRS cards ----------------------------------------

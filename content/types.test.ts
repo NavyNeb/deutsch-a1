@@ -23,3 +23,30 @@ describe('parseLesson', () => {
     expect(() => parseLesson(bad)).toThrow();
   });
 });
+
+import { LessonStepSchema, SpecialSchema, parseSpecial } from './types';
+
+const specialBase = {
+  id: 'sp-modalverben', number: 1, level: 'A2', title: { de: 'Modalverben', en: 'Modal verbs', fr: 'Verbes modaux' },
+  theme: 'verbs', goals: ['g'],
+  special: { slug: 'modalverben', group: 'verbs', levels: ['A1', 'B1'], related: ['l7'] },
+  steps: [{ kind: 'intro', title: 'x', goals: [] }],
+};
+
+describe('special-course schema', () => {
+  it('parses chapter and quiz steps, defaulting passMark to 0.8', () => {
+    expect(LessonStepSchema.parse({ kind: 'chapter', title: 'Kapitel' }).kind).toBe('chapter');
+    const q = LessonStepSchema.parse({ kind: 'quiz', title: 'Quiz' });
+    expect(q.kind === 'quiz' && q.passMark).toBe(0.8);
+  });
+  it('accepts sp- ids and rejects lesson ids', () => {
+    expect(parseSpecial(specialBase).id).toBe('sp-modalverben');
+    expect(() => parseSpecial({ ...specialBase, id: 'lesson-1' })).toThrow();
+    expect(SpecialSchema.safeParse({ ...specialBase, special: { ...specialBase.special, group: 'nope' } }).success).toBe(false);
+  });
+  it('defaults bookRefs to empty and allows a ref without lektion', () => {
+    expect(parseSpecial(specialBase).special.bookRefs).toEqual([]);
+    const p = parseSpecial({ ...specialBase, special: { ...specialBase.special, bookRefs: [{ book: 'daf-grammatiktrainer', start: 206, end: 210 }] } });
+    expect(p.special.bookRefs[0].lektion).toBeUndefined();
+  });
+});
