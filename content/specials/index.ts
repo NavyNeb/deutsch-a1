@@ -1,7 +1,12 @@
 import { parseSpecial, type Special, type SpecialGroup } from '../types';
 import { GROUP_ORDER } from './meta';
 
-const raw: unknown[] = [];
+import { modalverben } from './modalverben';
+import { konjunktiv2 } from './konjunktiv-2';
+import { wortstellung } from './wortstellung';
+import { farbenKleidung } from './farben-kleidung';
+
+const raw: unknown[] = [modalverben, konjunktiv2, wortstellung, farbenKleidung];
 
 export const specials: Special[] = raw.map(parseSpecial).sort((a, b) => a.number - b.number);
 
