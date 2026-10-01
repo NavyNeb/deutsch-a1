@@ -1,8 +1,10 @@
 'use client';
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { conjugate, TENSE_IDS, type Row, type TenseId } from '@/lib/conjugate';
 import type { DictEntry } from '@/lib/dictionary';
 import { TENSE_GUIDE } from '@/content/grammar/tense-guide';
+import { getSpecial } from '@/content/specials';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
@@ -43,6 +45,7 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
   if (!active) return null;
   const guide = TENSE_GUIDE[active];
   const rows = c.tenses[active];
+  const special = guide.specialSlug ? getSpecial(guide.specialSlug) : undefined;
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
     const next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
@@ -91,6 +94,11 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
               </li>
             ))}
           </ul>
+          {special && (
+            <Link href={`/specials/${special.special.slug}`} className="inline-flex w-fit items-center rounded-full border border-border bg-card px-3 py-1.5 text-[13px] font-rounded font-bold text-primary no-underline hover:border-primary">
+              {t('dictLearnMoreSpecial', locale)}: {special.title.de} →
+            </Link>
+          )}
         </div>
 
         <TableShell caption={TENSE_TAB[active]}><FormRows rows={rows} tense={active} /></TableShell>

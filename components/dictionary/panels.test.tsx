@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { VerbPanel } from './VerbPanel';
 import { NounPanel } from './NounPanel';
 import { AdjectivePanel } from './AdjectivePanel';
+import { allVocab } from '@/content';
 
 vi.mock('@/lib/audio', () => ({ speakText: vi.fn(), ttsSrc: (s: string) => s, playAudio: vi.fn() }));
 
@@ -36,6 +37,18 @@ describe('VerbPanel', () => {
     expect(screen.getAllByText(/würde machen/).length).toBeGreaterThan(0);
     fireEvent.click(screen.getByRole('tab', { name: 'Passiv' }));
     expect(screen.getAllByText(/worden/).length).toBeGreaterThan(0);
+  });
+
+  it('links the Perfekt tab to its special course', () => {
+    render(<VerbPanel entry={{ w: 'gehen', p: 'verb', v: 'geht, ging, ist gegangen', s: [] }} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Perfekt' }));
+    expect(screen.getByRole('link', { name: /Perfekt/ }).getAttribute('href')).toBe('/specials/perfekt');
+  });
+});
+
+describe('specials in the dictionary corpus', () => {
+  it('feeds special-course vocab into allVocab', () => {
+    expect(allVocab().some((v) => v.id.startsWith('sp-'))).toBe(true);
   });
 });
 

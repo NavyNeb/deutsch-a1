@@ -216,6 +216,7 @@ export const UI = {
   dictTenses: { en: 'Tenses', fr: 'Temps' },
   dictHowToForm: { en: 'How it is formed', fr: 'Comment on la forme' },
   dictWhenToUse: { en: 'When to use it', fr: 'Quand l’utiliser' },
+  dictLearnMoreSpecial: { en: 'Full special course', fr: 'Cours spécial complet' },
   dictAuxBoth: { en: 'This verb takes haben or sein depending on its meaning.', fr: 'Ce verbe se conjugue avec haben ou sein selon son sens.' },
   dictSeparableNote: { en: 'Separable verb: the prefix goes to the end of the main clause.', fr: 'Verbe séparable : le préfixe passe à la fin de la proposition principale.' },
   dictWuerdeForm: { en: 'Everyday alternative with würde + infinitive', fr: 'Alternative courante avec würde + infinitif' },
