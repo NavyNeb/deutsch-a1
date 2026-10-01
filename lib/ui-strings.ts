@@ -165,6 +165,18 @@ export const UI = {
   tapWhatYouHear: { en: 'Tap the word you hear', fr: 'Tape le mot que tu entends' },
   replayAudio: { en: 'Replay', fr: 'Réécouter' },
   xpEarned: { en: 'XP earned', fr: 'XP gagnés' },
+  reviewRound: { en: 'Review your round', fr: 'Revois ta partie' },
+  roundAccuracy: { en: 'correct', fr: 'justes' },
+  missedWords: { en: 'To work on', fr: 'À revoir' },
+  missedWordsHint: { en: 'Words you got wrong — listen, read the example and try again.', fr: 'Les mots que tu as ratés — écoute, lis l’exemple et réessaie.' },
+  correctWords: { en: 'You got these right', fr: 'Tu as réussi ceux-ci' },
+  perfectRound: { en: 'Perfect round — no mistakes!', fr: 'Partie parfaite — aucune erreur !' },
+  noAnswers: { en: 'No answers this round — start again to see a review.', fr: 'Aucune réponse cette fois — rejoue pour voir le bilan.' },
+  youChose: { en: 'You chose', fr: 'Tu as choisi' },
+  missedTimes: { en: 'missed ×', fr: 'raté ×' },
+  practiceMissed: { en: 'Practise missed words', fr: 'Retravailler les mots ratés' },
+  practiceRound: { en: 'Practice round', fr: 'Série d’entraînement' },
+  openWordPage: { en: 'Word page', fr: 'Fiche du mot' },
 
   // Statistics
   statsTitle: { en: 'Your statistics', fr: 'Tes statistiques' },

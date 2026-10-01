@@ -1,11 +1,12 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Volume2, Timer, Trophy, Check, X, ArrowRight, RotateCcw } from 'lucide-react';
+import { Volume2, Timer, Trophy, Check, X, ArrowRight, RotateCcw, Target } from 'lucide-react';
 import { allVocab } from '@/content';
 import type { VocabItem } from '@/content/types';
 import { ttsSrc, playAudio } from '@/lib/audio';
-import { buildQuestions, loadBest, saveBest, type Question } from '@/lib/game';
+import { buildPracticeQuestions, buildQuestions, loadBest, saveBest, summarizeRound, type Answer, type Question } from '@/lib/game';
+import { RoundReview } from './RoundReview';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
@@ -42,6 +43,8 @@ export function QuizGame({
   const [time, setTime] = useState(DURATION);
   const [picked, setPicked] = useState<number | null>(null);
   const [best, setBest] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [practice, setPractice] = useState(false);
   const awarded = useRef(false);
 
   useEffect(() => { setBest(loadBest(mode)); }, [mode]);
@@ -50,8 +53,12 @@ export function QuizGame({
 
   const speak = useCallback((item: VocabItem) => playAudio(ttsSrc(item.german)), []);
 
-  const start = () => {
-    setQuestions(buildQuestions(pool, N));
+  // A normal round, or — given the words just missed — a practice round of only those.
+  const start = (practiceWords?: VocabItem[]) => {
+    const isPractice = !!practiceWords?.length;
+    setQuestions(isPractice ? buildPracticeQuestions(pool, practiceWords) : buildQuestions(pool, N));
+    setPractice(isPractice);
+    setAnswers([]);
     setIdx(0); setScore(0); setTime(DURATION); setPicked(null);
     awarded.current = false;
     setPhase('playing');
@@ -68,10 +75,10 @@ export function QuizGame({
   useEffect(() => {
     if (phase === 'playing' && time <= 0) {
       setPhase('over');
-      saveBest(mode, score);
+      if (!practice) { saveBest(mode, score); setBest(loadBest(mode)); }
       if (!awarded.current) { awarded.current = true; awardXp(score); }
     }
-  }, [time, phase, score, mode, awardXp]);
+  }, [time, phase, score, mode, practice, awardXp]);
 
   // Auto-play the prompt when an audio question appears
   useEffect(() => {
@@ -82,14 +89,15 @@ export function QuizGame({
     if (picked !== null || !q) return;
     setPicked(i);
     const correct = i === q.answer;
+    setAnswers((a) => [...a, { question: q, picked: i, correct }]);
     if (correct) { setScore((s) => s + 1); setTime((t) => Math.min(DURATION, t + BONUS)); }
+    const next = idx + 1;
     setTimeout(() => {
       setPicked(null);
-      setIdx((prev) => {
-        const next = prev + 1;
-        if (next >= questions.length) { setQuestions(buildQuestions(pool, N)); return 0; }
-        return next;
-      });
+      if (next < questions.length) { setIdx(next); return; }
+      // Out of questions: a practice round ends here, a normal one reshuffles and keeps going.
+      if (practice) setTime(0);
+      else { setQuestions(buildQuestions(pool, N)); setIdx(0); }
     }, correct ? 320 : 620);
   };
 
@@ -105,7 +113,7 @@ export function QuizGame({
             <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-2 max-w-[46ch]">{t(taglineKey, locale)}</p>
             <p className="text-muted text-[14px] leading-relaxed mb-7 max-w-[48ch]">{t(howToKey, locale)}</p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-              <button onClick={start} className="inline-flex items-center justify-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+              <button onClick={() => start()} className="inline-flex items-center justify-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
                 {t('startGame', locale)} <ArrowRight size={17} strokeWidth={2.5} />
               </button>
               {best > 0 && (
@@ -123,11 +131,13 @@ export function QuizGame({
 
   // ---- OVER ----
   if (phase === 'over') {
-    const isBest = score >= best && score > 0;
+    const isBest = !practice && score >= best && score > 0;
+    const summary = summarizeRound(answers);
     return (
       <Shell gradient={gradient}>
-        <div className="max-w-[520px] mx-auto text-center">
+        <div className="max-w-[620px] mx-auto text-center">
           <GameArt src={illustration} small />
+          {practice && <p className="font-rounded font-extrabold text-primary text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
           {isBest && <p className="font-rounded font-extrabold text-amber text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
           <p className="label text-muted mt-2">{t('yourScore', locale)}</p>
           <div className="font-rounded font-extrabold text-[64px] leading-none text-text tabular-nums my-1">{score}</div>
@@ -135,14 +145,22 @@ export function QuizGame({
             <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-amber" /> {t('best', locale)} {Math.max(best, score)}</span>
             <span className="inline-flex items-center gap-1.5">+{score} {t('xpEarned', locale)}</span>
           </div>
-          <div className="flex items-center justify-center gap-3">
-            <button onClick={start} className="inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {summary.missed.length > 0 && (
+              <button onClick={() => start(summary.missed.map((m) => m.item))} className="inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+                <Target size={16} strokeWidth={2.5} /> {t('practiceMissed', locale)} ({summary.missed.length})
+              </button>
+            )}
+            <button onClick={() => start()} className={summary.missed.length > 0
+              ? 'inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary bg-[var(--primary-wash)] rounded-full px-6 py-3.5 hover:brightness-105 active:scale-[.98] transition'
+              : 'inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition'}>
               <RotateCcw size={16} strokeWidth={2.5} /> {t('playAgain', locale)}
             </button>
-            <Link href="/games" className="font-rounded font-bold text-[15px] text-text no-underline hover:text-primary transition">
+            <Link href="/games" className="font-rounded font-bold text-[15px] text-text no-underline hover:text-primary transition px-2 py-3">
               {t('backToGames', locale)}
             </Link>
           </div>
+          <RoundReview summary={summary} />
         </div>
       </Shell>
     );
