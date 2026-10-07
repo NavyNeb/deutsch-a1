@@ -9,6 +9,7 @@ import { useUser } from '@/lib/useUser';
 import { supabaseConfigured } from '@/lib/supabase/config';
 import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { InstallMenuItem } from '@/components/pwa/InstallMenuItem';
 
 const MAIN: { href: string; key: UIKey }[] = [
   { href: '/', key: 'navHome' },
@@ -88,6 +89,7 @@ export function TopNav() {
                 {t(l.key, locale)}
               </Link>
             ))}
+            <InstallMenuItem onDone={() => setMobileOpen(false)} />
             <div className="flex items-center gap-2 pt-2">
               <LanguageToggle />
               <ThemeToggle />

@@ -30,5 +30,5 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   // Run on pages, skip static assets and audio so they load without auth work.
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|audio/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|ico)$).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|sw.js|manifest.webmanifest|audio/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|ico)$).*)'],
 };

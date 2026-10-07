@@ -2,10 +2,15 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SyncManager } from "@/components/auth/SyncManager";
 import { AppChrome } from "@/components/shell/AppChrome";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "Deutsch — Learn German A1",
   description: "A premium German A1 course — guided lessons, exercises, spaced review, and native audio.",
+  applicationName: "Deutsch",
+  appleWebApp: { capable: true, title: "Deutsch", statusBarStyle: "default" },
+  formatDetection: { telephone: false },
+  icons: { apple: "/icons/apple-touch-icon.png" },
 };
 
 export const viewport: Viewport = {
@@ -33,6 +38,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <SyncManager />
+        <ServiceWorkerRegister />
         <AppChrome>{children}</AppChrome>
       </body>
     </html>

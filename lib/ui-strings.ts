@@ -400,6 +400,30 @@ export const UI = {
   specialsEmpty: { en: 'Nothing here yet.', fr: 'Rien ici pour l’instant.' },
   specialsRowTitle: { en: 'Special courses', fr: 'Cours spéciaux' },
   specialsSeeAll: { en: 'See all', fr: 'Tout voir' },
+
+  installTitle: { en: 'Install Deutsch on your phone', fr: 'Installe Deutsch sur ton téléphone' },
+  installBody: {
+    en: 'Open it from your home screen like an app, full screen and ready offline.',
+    fr: 'Ouvre-le depuis ton écran d’accueil comme une appli, en plein écran et même hors ligne.',
+  },
+  installButton: { en: 'Install', fr: 'Installer' },
+  installMenu: { en: 'Install app', fr: 'Installer l’appli' },
+  installIos: {
+    en: 'Tap the Share icon, then “Add to Home Screen”.',
+    fr: 'Touche l’icône Partager, puis « Sur l’écran d’accueil ».',
+  },
+  installDismiss: { en: 'Not now', fr: 'Plus tard' },
+  offlineBar: {
+    en: 'You’re offline — pages you’ve already opened still work.',
+    fr: 'Tu es hors ligne — les pages déjà ouvertes fonctionnent encore.',
+  },
+  offlineTitle: { en: 'You’re offline', fr: 'Tu es hors ligne' },
+  offlineBody: {
+    en: 'This page isn’t saved on your device yet. Reconnect to load it — lessons and words you’ve already opened stay available.',
+    fr: 'Cette page n’est pas encore enregistrée sur ton appareil. Reconnecte-toi pour la charger — les leçons et les mots déjà ouverts restent disponibles.',
+  },
+  offlineRetry: { en: 'Try again', fr: 'Réessayer' },
+  offlineHome: { en: 'Go to Home', fr: 'Aller à l’accueil' },
 } as const;
 
 export type UIKey = keyof typeof UI;
