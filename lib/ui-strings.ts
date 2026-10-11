@@ -459,6 +459,13 @@ export const UI = {
   examSets: { en: 'practice sets', fr: 'séries' },
   examBest: { en: 'Best', fr: 'Meilleur' },
   examNotTried: { en: 'Not tried', fr: 'Pas encore fait' },
+  examDrillTitle: { en: 'Practise by part', fr: 'S’entraîner par partie' },
+  examDrillHint: {
+    en: 'Pick one part of the exam and work through it across every set.',
+    fr: 'Choisis une partie de l’examen et travaille-la dans toutes les séries.',
+  },
+  examFullSets: { en: 'Full practice sets', fr: 'Séries complètes' },
+  examAllSets: { en: 'All sets', fr: 'Toutes les séries' },
   examFormat: { en: 'Exam format', fr: 'Format de l’examen' },
   examBack: { en: 'Back', fr: 'Retour' },
   examTimed: { en: 'Timer', fr: 'Minuteur' },

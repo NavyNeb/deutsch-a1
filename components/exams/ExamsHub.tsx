@@ -1,13 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { ALL_EXAM_SETS } from '@/content/exams';
 import { BOARD_LABEL, BOARDS, EXAM_LEVELS, FORMATS } from '@/content/exams/formats';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { Card } from '@/components/ui/Card';
 
-export function ExamsHub() {
+export function ExamsHub({ counts }: { counts: Record<string, number> }) {
   const { locale } = useLocale();
   return (
     <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
@@ -22,7 +21,7 @@ export function ExamsHub() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {EXAM_LEVELS.map((level) => {
               const fmt = FORMATS[board][level];
-              const count = ALL_EXAM_SETS.filter((s) => s.board === board && s.level === level).length;
+              const count = counts[`${board}-${level}`] ?? 0;
               return (
                 <Link key={level} href={`/exams/${board}/${level.toLowerCase()}`} className="no-underline text-text">
                   <Card interactive className="h-full">

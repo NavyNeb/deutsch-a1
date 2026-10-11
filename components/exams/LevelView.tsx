@@ -54,10 +54,42 @@ export function LevelView({ board, level, sets }: { board: Board; level: ExamLev
         </p>
       </Card>
 
+      {sets.length > 0 && (
+        <section className="mb-10">
+          <h2 className="font-rounded font-extrabold text-[20px] m-0 mb-1">{t('examDrillTitle', locale)}</h2>
+          <p className="m-0 mb-4 text-[14px] text-muted">{t('examDrillHint', locale)}</p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {SKILLS.map(({ skill, icon: Icon, label }) => {
+              const parts = skill === 'lesen' ? fmt.lesen.parts : skill === 'schreiben' ? fmt.schreiben.tasks : fmt.sprechen.parts;
+              return (
+                <Card key={skill}>
+                  <p className="m-0 mb-3 flex items-center gap-2 font-rounded font-extrabold text-[16px]">
+                    <Icon size={18} className="text-primary" />{t(label, locale)}
+                  </p>
+                  <ul className="m-0 flex list-none flex-col gap-2 p-0">
+                    {parts.map((p) => (
+                      <li key={p.teil}>
+                        <Link
+                          href={`/exams/${board}/${level.toLowerCase()}/part/${skill}/${p.teil}`}
+                          className="flex min-h-[44px] items-center justify-between gap-3 rounded-[12px] border border-border bg-surface-2 px-3.5 py-2 no-underline text-text transition hover:border-border-strong hover:bg-card"
+                        >
+                          <span lang="de" className="min-w-0 truncate text-[14px]"><b className="mr-1.5 font-rounded">Teil {p.teil}</b><span className="text-muted">{p.what}</span></span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <h2 className="font-rounded font-extrabold text-[20px] m-0 mb-4">{t('examFullSets', locale)}</h2>
       {sets.length === 0 ? (
         <p className="text-text-2">{t('examComingSoon', locale)}</p>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="grid gap-4 md:grid-cols-2">
           {sets.map((set) => (
             <Card key={set.id}>
               <h3 className="font-rounded font-extrabold text-[20px] m-0 mb-4">{t('examSet', locale)} {set.number}</h3>

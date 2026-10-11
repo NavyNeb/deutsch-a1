@@ -10,7 +10,7 @@ import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { Button } from '@/components/ui/Button';
-import { ExamTopBar, PartHeading, TextCard, TimerPill, TranslationToggle, TrLine, useCountdown } from './shared';
+import { ExamTopBar, PartHeading, partScope, TextCard, TimerPill, TranslationToggle, TrLine, useCountdown } from './shared';
 
 const XP_DAILY_CAP = 60;
 
@@ -134,7 +134,7 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
   );
 }
 
-export function LesenRunner({ set }: { set: ExamSet }) {
+export function LesenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
   const { locale } = useLocale();
   const { awardXp } = useProgress();
   const fmt = FORMATS[set.board][set.level];
@@ -142,16 +142,21 @@ export function LesenRunner({ set }: { set: ExamSet }) {
   const [checked, setChecked] = useState(false);
   const [timed, setTimed] = useState(false);
   const [xp, setXp] = useState(0);
-  const countdown = useCountdown(fmt.lesen.minutes, timed && !checked);
+  const scope = partScope(set, 'lesen', teil);
+  const total = fmt.lesen.parts.reduce((n, p) => n + p.items, 0);
+  const own = fmt.lesen.parts.find((p) => p.teil === teil)?.items ?? total;
+  const minutes = teil ? Math.max(3, Math.round((fmt.lesen.minutes * own) / total)) : fmt.lesen.minutes;
+  const countdown = useCountdown(minutes, timed && !checked);
 
-  const result = scoreLesen(set.lesen, answers);
+  const parts = teil ? set.lesen.filter((p) => p.teil === teil) : set.lesen;
+  const result = scoreLesen(parts, answers);
   const answeredCount = Object.values(answers).filter((v) => v !== undefined).length;
   const isPassed = passed(result.percent, fmt.passPercent);
 
   const check = () => {
     setChecked(true);
-    recordExamResult(set.id, 'lesen', result.percent);
-    const granted = claimPracticeXp(`exam:${set.id}:lesen`, isPassed ? 20 : 10, XP_DAILY_CAP);
+    recordExamResult(scope.progressId, 'lesen', result.percent);
+    const granted = claimPracticeXp(`exam:${scope.progressId}:lesen`, isPassed ? 20 : 10, XP_DAILY_CAP);
     if (granted > 0) awardXp(granted);
     setXp(granted);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -165,15 +170,15 @@ export function LesenRunner({ set }: { set: ExamSet }) {
   return (
     <div className="mx-auto max-w-[820px] px-5 py-8 md:py-12">
       <ExamTopBar
-        backHref={`/exams/${set.board}/${set.level.toLowerCase()}`}
+        backHref={scope.backHref}
         backLabel={t('examBack', locale)}
-        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examLesen', locale)}`}
+        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examLesen', locale)}${scope.titleTail}`}
       >
         <TranslationToggle />
         <button type="button" onClick={() => setTimed((v) => !v)} aria-pressed={timed} disabled={checked}
           className={'rounded-full border px-3.5 py-2 text-[13.5px] font-rounded font-bold transition disabled:opacity-40 ' +
             (timed ? 'border-primary bg-[var(--primary-wash)] text-primary' : 'border-border bg-card text-text-2 hover:bg-surface-2')}>
-          {t('examTimed', locale)} · {fmt.lesen.minutes} {t('examMinutes', locale)}
+          {t('examTimed', locale)} · {minutes} {t('examMinutes', locale)}
         </button>
         {timed && !checked && <TimerPill left={countdown.left} locale={locale} />}
       </ExamTopBar>
@@ -186,14 +191,14 @@ export function LesenRunner({ set }: { set: ExamSet }) {
             {xp > 0 && ` · +${xp} ${t('examXpEarned', locale)}`}
           </p>
           <ul className="m-0 mt-3 flex list-none flex-wrap gap-x-5 gap-y-1 p-0 text-[14px] text-text-2">
-            {set.lesen.map((p, i) => (
+            {parts.map((p, i) => (
               <li key={p.id}>Teil {p.teil}: <b>{result.perPart[i].correct}/{result.perPart[i].total}</b></li>
             ))}
           </ul>
         </div>
       )}
 
-      {set.lesen.map((part, i) => (
+      {parts.map((part, i) => (
         <PartView key={part.id} part={part} answers={answers} checked={checked} perItem={result.perPart[i].perItem}
           setAnswer={(id, v) => setAnswers((a) => ({ ...a, [id]: v }))} />
       ))}

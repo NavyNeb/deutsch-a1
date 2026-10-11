@@ -12,7 +12,7 @@ import { useGrammarCheck } from '@/lib/useGrammarCheck';
 import { MAX_CHARS } from '@/lib/languagetool';
 import { t } from '@/lib/ui-strings';
 import { Button } from '@/components/ui/Button';
-import { ExamTopBar, PartHeading, TextCard, TranslationToggle, TrLine } from './shared';
+import { ExamTopBar, PartHeading, partScope, TextCard, TranslationToggle, TrLine } from './shared';
 
 const XP_DAILY_CAP = 60;
 
@@ -176,7 +176,9 @@ function MessageTaskView({ task, locale, onDone }: { task: MessageTask; locale: 
   );
 }
 
-export function SchreibenRunner({ set }: { set: ExamSet }) {
+export function SchreibenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
+  const scope = partScope(set, 'schreiben', teil);
+  const tasks = teil ? set.schreiben.filter((t) => t.teil === teil) : set.schreiben;
   const { locale } = useLocale();
   const { awardXp } = useProgress();
   const [done, setDone] = useState<Set<string>>(new Set());
@@ -186,20 +188,20 @@ export function SchreibenRunner({ set }: { set: ExamSet }) {
     if (granted > 0) awardXp(granted);
     const next = new Set(done).add(taskId);
     setDone(next);
-    if (next.size === set.schreiben.length) recordExamResult(set.id, 'schreiben', 100);
+    if (next.size === tasks.length) recordExamResult(scope.progressId, 'schreiben', 100);
     return granted;
   };
 
   return (
     <div className="mx-auto max-w-[820px] px-5 py-8 md:py-12">
       <ExamTopBar
-        backHref={`/exams/${set.board}/${set.level.toLowerCase()}`}
+        backHref={scope.backHref}
         backLabel={t('examBack', locale)}
-        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examSchreiben', locale)}`}
+        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examSchreiben', locale)}${scope.titleTail}`}
       >
         <TranslationToggle />
       </ExamTopBar>
-      {set.schreiben.map((task) =>
+      {tasks.map((task) =>
         task.kind === 'form'
           ? <FormTaskView key={task.id} task={task} locale={locale} onDone={onDone} />
           : <MessageTaskView key={task.id} task={task} locale={locale} onDone={onDone} />,

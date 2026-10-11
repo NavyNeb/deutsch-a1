@@ -12,7 +12,7 @@ import { useProgress } from '@/lib/progress-store';
 import { useLocale, type Locale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { Button } from '@/components/ui/Button';
-import { ExamTopBar, PartHeading, TranslationToggle, TrLine } from './shared';
+import { ExamTopBar, PartHeading, partScope, TranslationToggle, TrLine } from './shared';
 
 const XP_DAILY_CAP = 60;
 
@@ -64,7 +64,9 @@ function PromptCard({ prompt, index, total, locale }: { prompt: SprechenPart['pr
   );
 }
 
-export function SprechenRunner({ set }: { set: ExamSet }) {
+export function SprechenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
+  const scope = partScope(set, 'sprechen', teil);
+  const parts = teil ? set.sprechen.filter((p) => p.teil === teil) : set.sprechen;
   const { locale } = useLocale();
   const { awardXp } = useProgress();
   const [done, setDone] = useState<Set<string>>(new Set());
@@ -74,21 +76,21 @@ export function SprechenRunner({ set }: { set: ExamSet }) {
     if (granted > 0) awardXp(granted);
     const next = new Set(done).add(part.id);
     setDone(next);
-    if (next.size === set.sprechen.length) recordExamResult(set.id, 'sprechen', 100);
+    if (next.size === parts.length) recordExamResult(scope.progressId, 'sprechen', 100);
   };
 
   return (
     <div className="mx-auto max-w-[820px] px-5 py-8 md:py-12">
       <ExamTopBar
-        backHref={`/exams/${set.board}/${set.level.toLowerCase()}`}
+        backHref={scope.backHref}
         backLabel={t('examBack', locale)}
-        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examSprechen', locale)}`}
+        title={`${BOARD_LABEL[set.board]} ${set.level} · ${t('examSet', locale)} ${set.number} · ${t('examSprechen', locale)}${scope.titleTail}`}
       >
         <TranslationToggle />
       </ExamTopBar>
       <p className="m-0 mb-8 max-w-[64ch] text-[14px] leading-relaxed text-muted">{t('examSpeakNote', locale)}</p>
 
-      {set.sprechen.map((part) => (
+      {parts.map((part) => (
         <section key={part.id} className="mb-12">
           <PartHeading teil={part.teil} title={part.title} instruction={part.instruction} instructionTr={part.instructionTr} />
           <ul className="m-0 flex list-none flex-col gap-4 p-0">

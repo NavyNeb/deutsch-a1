@@ -124,3 +124,13 @@ export function PartHeading({ teil, title, instruction, instructionTr }: {
     </header>
   );
 }
+
+// Single-part practice: where to go back to, the progress key and the title suffix.
+export function partScope(set: { id: string; board: string; level: string; number: number }, skill: string, teil?: number) {
+  const level = set.level.toLowerCase();
+  return {
+    progressId: teil ? `${set.id}#${teil}` : set.id,
+    backHref: teil ? `/exams/${set.board}/${level}/part/${skill}/${teil}` : `/exams/${set.board}/${level}`,
+    titleTail: teil ? ` · Teil ${teil}` : '',
+  };
+}
