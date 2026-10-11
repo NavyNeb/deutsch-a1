@@ -19,6 +19,7 @@ const MAIN: { href: string; key: UIKey }[] = [
   { href: '/speak', key: 'navSpeak' },
   { href: '/write', key: 'navWrite' },
   { href: '/dictionary', key: 'navDictionary' },
+  { href: '/exams', key: 'navExams' },
   { href: '/statistics', key: 'navStatistics' },
 ];
 
@@ -45,10 +46,10 @@ export function TopNav() {
         <Link href="/" className="font-rounded font-extrabold text-[20px] tracking-tight text-text no-underline shrink-0">
           Deutsch<span className="text-primary">.</span>
         </Link>
-        <span className="hidden lg:block w-px h-6 bg-border" />
+        <span className="hidden xl:block w-px h-6 bg-border" />
 
         {/* Primary links */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+        <nav className="hidden xl:flex items-center gap-6">
           {MAIN.map((l) => (
             <Link key={l.href} href={l.href} className={linkCls(isActive(l.href))}>
               {t(l.key, locale)}
@@ -59,7 +60,7 @@ export function TopNav() {
         <div className="flex-1" />
 
         {/* Right controls */}
-        <div className="hidden lg:flex items-center gap-2.5">
+        <div className="hidden xl:flex items-center gap-2.5">
           <LanguageToggle />
           <ThemeToggle />
           <AccountArea user={user} configured={supabaseConfigured} locale={locale} />
@@ -67,7 +68,7 @@ export function TopNav() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden grid place-items-center w-10 h-10 rounded-full border border-border text-text"
+          className="xl:hidden grid place-items-center w-10 h-10 rounded-full border border-border text-text"
           aria-label={t('openMenu', locale)}
           onClick={() => setMobileOpen((o) => !o)}
         >
@@ -77,7 +78,7 @@ export function TopNav() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-card">
+        <div className="xl:hidden border-t border-border bg-card">
           <div className="mx-auto max-w-[1200px] px-5 py-3 grid gap-1">
             {MAIN.map((l) => (
               <Link

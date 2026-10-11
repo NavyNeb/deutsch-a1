@@ -12,6 +12,7 @@ const LINKS: { href: string; key: UIKey }[] = [
   { href: '/speak', key: 'navSpeak' },
   { href: '/write', key: 'navWrite' },
   { href: '/dictionary', key: 'navDictionary' },
+  { href: '/exams', key: 'navExams' },
 ];
 
 export function SiteFooter() {

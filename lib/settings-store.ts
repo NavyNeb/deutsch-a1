@@ -4,11 +4,12 @@ import { useSyncExternalStore } from 'react';
 export type Settings = {
   dailyGoal: number; // target XP per day
   onboarded: boolean; // has the learner completed first-run setup
+  examTranslations: boolean; // show EN/FR translations inside exam-preparation tasks
 };
 
 export const DAILY_GOAL_OPTIONS = [20, 30, 50, 100] as const;
 
-const DEFAULTS: Settings = { dailyGoal: 30, onboarded: false };
+const DEFAULTS: Settings = { dailyGoal: 30, onboarded: false, examTranslations: false };
 const KEY = 'deutsch-a1-settings';
 
 function load(): Settings {
@@ -49,6 +50,7 @@ export function useSettings() {
   return {
     settings: s,
     setDailyGoal: (dailyGoal: number) => set({ ...state, dailyGoal }),
+    setExamTranslations: (examTranslations: boolean) => set({ ...state, examTranslations }),
     completeOnboarding: (dailyGoal: number) => set({ ...state, dailyGoal, onboarded: true }),
   };
 }

@@ -10,6 +10,7 @@ import { t, type UIKey } from '@/lib/ui-strings';
 import { levelForXp, currentStreak, dateKey } from '@/lib/progress';
 import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import { SpeedToggle } from '@/components/ui/SpeedToggle';
+import { Segmented } from '@/components/ui/Segmented';
 import { Card } from '@/components/ui/Card';
 import { ActivityCalendar } from '@/components/home/ActivityCalendar';
 
@@ -57,7 +58,7 @@ function ThemeChoice() {
 
 export function SettingsView() {
   const { state } = useProgress();
-  const { settings, setDailyGoal } = useSettings();
+  const { settings, setDailyGoal, setExamTranslations } = useSettings();
   const { locale } = useLocale();
   const streak = currentStreak(state, dateKey(Date.now()));
   const wordsSaved = state.hardWords.length;
@@ -93,6 +94,24 @@ export function SettingsView() {
           <Row label={t('theme', locale)}><ThemeChoice /></Row>
           <Row label={t('language', locale)}><LanguageToggle /></Row>
           <Row label={t('playbackSpeed', locale)}><SpeedToggle /></Row>
+        </Card>
+
+        <Card>
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <b className="font-rounded font-semibold text-[15px] block">{t('examTranslations', locale)}</b>
+              <p className="m-0 mt-0.5 text-[13px] text-muted">{t('examTranslationsHint', locale)}</p>
+            </div>
+            <Segmented
+              label={t('examTranslations', locale)}
+              value={settings.examTranslations ? 'on' : 'off'}
+              onChange={(v) => setExamTranslations(v === 'on')}
+              options={[
+                { value: 'off', label: t('off', locale) },
+                { value: 'on', label: t('on', locale) },
+              ]}
+            />
+          </div>
         </Card>
 
         <Card>
