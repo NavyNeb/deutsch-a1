@@ -157,6 +157,7 @@ body { overflow-x: clip; -webkit-tap-highlight-color: transparent; }
 a, button, [role="button"], summary, label { touch-action: manipulation; }
 
 /* Extends a small control's touch target ~8px on every side without changing its look */
+.tap-area { position: relative; }
 .tap-area::before { content: ''; position: absolute; inset: -8px; }
 
 /* iOS Safari zooms the page when a focused field is under 16px */
