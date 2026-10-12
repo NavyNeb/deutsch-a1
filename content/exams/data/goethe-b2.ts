@@ -4,6 +4,11 @@ import { goetheB2s2 } from './goethe-b2-s2';
 import { goetheB2s3 } from './goethe-b2-s3';
 import { goetheB2s4 } from './goethe-b2-s4';
 import { goetheB2s5 } from './goethe-b2-s5';
+import { goetheB2s6 } from './goethe-b2-s6';
+import { goetheB2s7 } from './goethe-b2-s7';
+import { goetheB2s8 } from './goethe-b2-s8';
+import { goetheB2s9 } from './goethe-b2-s9';
+import { goetheB2s10 } from './goethe-b2-s10';
 
 // Original practice material modelled on the Goethe-Zertifikat B2 format. Not an official paper.
 
@@ -269,4 +274,4 @@ const set1: ExamSetInput = {
   ],
 };
 
-export const GOETHE_B2: ExamSetInput[] = [set1, goetheB2s2, goetheB2s3, goetheB2s4, goetheB2s5];
+export const GOETHE_B2: ExamSetInput[] = [set1, goetheB2s2, goetheB2s3, goetheB2s4, goetheB2s5, goetheB2s6, goetheB2s7, goetheB2s8, goetheB2s9, goetheB2s10];
