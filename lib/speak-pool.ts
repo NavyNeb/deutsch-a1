@@ -2,12 +2,12 @@ import { lessons } from '@/content';
 import { SPEAKING_PROMPTS } from '@/content/speaking-prompts.mjs';
 import { fnv1a } from './audio-names.mjs';
 
-export type SpeakLevel = 'A1' | 'A2' | 'B1';
-export const SPEAK_LEVELS: SpeakLevel[] = ['A1', 'A2', 'B1'];
+export type SpeakLevel = 'A1' | 'A2' | 'B1' | 'B2';
+export const SPEAK_LEVELS: SpeakLevel[] = ['A1', 'A2', 'B1', 'B2'];
 
 export type SpeakItem = { id: string; level: SpeakLevel; de: string; en: string; fr?: string; authored: boolean };
 
-const MAX_WORDS: Record<SpeakLevel, number> = { A1: 8, A2: 12, B1: 16 };
+const MAX_WORDS: Record<SpeakLevel, number> = { A1: 8, A2: 12, B1: 16, B2: 20 };
 const MIN_WORDS = 3;
 
 const wordCount = (s: string) => s.trim().split(/\s+/).length;

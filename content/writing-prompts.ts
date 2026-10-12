@@ -2,7 +2,7 @@ import type { Level } from './types';
 
 export type WritingPrompt = {
   id: string;
-  level: Exclude<Level, 'B2'>;
+  level: Level;
   title: string;
   titleFr: string;
   task: string;
@@ -88,6 +88,48 @@ export const WRITING_PROMPTS: WritingPrompt[] = [
     task: 'Describe a trip you will never forget: where, with whom, what happened and why it stayed with you.',
     taskFr: "Décris un voyage inoubliable : où, avec qui, ce qui s'est passé et pourquoi il t'est resté en mémoire.",
     hints: ['Vor … Jahren bin ich nach … gereist.', 'Nachdem wir angekommen waren, …', 'Besonders beeindruckt hat mich …', 'Ich werde nie vergessen, wie …'],
+  },
+  {
+    id: 'wr-b2-forum', level: 'B2', minWords: 150,
+    title: 'Forum post: home office', titleFr: 'Message de forum : télétravail',
+    task: 'In a forum people discuss whether working from home should become the norm. Write a post of about 150 words: give your opinion, justify it with two arguments, and mention one counter-argument.',
+    taskFr: 'Dans un forum, on discute pour savoir si le télétravail doit devenir la norme. Écris un message d’environ 150 mots : donne ton opinion, justifie-la avec deux arguments et mentionne un contre-argument.',
+    hints: ['Meiner Meinung nach …', 'Dafür spricht, dass …', 'Zwar …, aber …', 'Man könnte einwenden, dass …', 'Zusammenfassend lässt sich sagen, dass …'],
+  },
+  {
+    id: 'wr-b2-complaint', level: 'B2', minWords: 120,
+    title: 'Formal complaint', titleFr: 'Réclamation formelle',
+    task: 'Your heating has been broken for three weeks. Write a formal email to your landlord: describe the problem, state what you expect and set a deadline.',
+    taskFr: 'Ton chauffage est en panne depuis trois semaines. Écris un e-mail formel à ton propriétaire : décris le problème, dis ce que tu attends et fixe un délai.',
+    hints: ['Sehr geehrte Damen und Herren,', 'Leider muss ich feststellen, dass …', 'Ich fordere Sie auf, … zu …', 'Ich setze Ihnen eine Frist bis …', 'Mit freundlichen Grüßen'],
+  },
+  {
+    id: 'wr-b2-summary', level: 'B2', minWords: 100,
+    title: 'Summarise a chart', titleFr: 'Résumer un graphique',
+    task: 'A survey shows that online shopping has grown from 20 % to 45 % in ten years while shopping in town centres has fallen. Describe the chart and draw a conclusion.',
+    taskFr: 'Un sondage montre que les achats en ligne sont passés de 20 % à 45 % en dix ans alors que les achats en centre-ville ont baissé. Décris le graphique et tire une conclusion.',
+    hints: ['Die Grafik zeigt, …', 'Der Anteil ist von … auf … gestiegen.', 'Es ist ein deutlicher Rückgang zu beobachten.', 'Daraus lässt sich schließen, dass …'],
+  },
+  {
+    id: 'wr-b2-application', level: 'B2', minWords: 120,
+    title: 'Cover letter', titleFr: 'Lettre de motivation',
+    task: 'You apply for a job as project assistant. Write the main part of your cover letter: your qualifications, your experience and why you fit the company.',
+    taskFr: 'Tu postules pour un poste d’assistant de projet. Rédige le corps de ta lettre de motivation : tes qualifications, ton expérience et pourquoi tu correspondes à l’entreprise.',
+    hints: ['Ich bewerbe mich als …', 'Ich verfüge über …', 'Meine größte Stärke ist …', 'Ich würde gern Verantwortung übernehmen.', 'Ich freue mich auf Ihre Rückmeldung.'],
+  },
+  {
+    id: 'wr-b2-review', level: 'B2', minWords: 120,
+    title: 'Review a book or film', titleFr: 'Critique d’un livre ou d’un film',
+    task: 'Write a review of a book or film you know: plot, characters, what you liked and what not, and whether you recommend it.',
+    taskFr: 'Rédige la critique d’un livre ou d’un film que tu connais : intrigue, personnages, ce que tu as aimé ou non, et si tu le recommandes.',
+    hints: ['Im Mittelpunkt steht …', 'Die Handlung ist fesselnd / vorhersehbar.', 'Es wirkt, als ob …', 'Leider …', 'Ich kann das Buch nur empfehlen.'],
+  },
+  {
+    id: 'wr-b2-reported', level: 'B2', minWords: 100,
+    title: 'Report a statement', titleFr: 'Rapporter une déclaration',
+    task: 'Your colleague said in a meeting: “Ich habe das Projekt gestern abgeschlossen. Morgen präsentiere ich die Ergebnisse. Kommen Sie bitte um zehn Uhr.” Report what he said in a short email to your boss, using reported speech.',
+    taskFr: 'Ton collègue a dit en réunion : « Ich habe das Projekt gestern abgeschlossen. Morgen präsentiere ich die Ergebnisse. Kommen Sie bitte um zehn Uhr. » Rapporte ses propos dans un court e-mail à ton chef, en utilisant le discours indirect.',
+    hints: ['Herr Müller sagte, er habe das Projekt abgeschlossen.', 'Er werde die Ergebnisse präsentieren.', 'Er bat uns, um zehn Uhr zu kommen.', 'Laut Herrn Müller …'],
   },
 ];
 

@@ -75,6 +75,25 @@ export const FORMATS: Record<Board, Record<ExamLevel, ExamFormat>> = {
       ] },
       passPercent: 60, verified: true,
     },
+    B2: {
+      name: 'Goethe-Zertifikat B2',
+      lesen: { minutes: 65, parts: [
+        { teil: 1, kind: 'multipleChoice', items: 6, what: 'Blog- oder Forumsbeitrag' },
+        { teil: 2, kind: 'multipleChoice', items: 6, what: 'Zeitungs- oder Zeitschriftenartikel' },
+        { teil: 3, kind: 'trueFalse', items: 6, what: 'Meinungen im Forum (Ja/Nein)' },
+        { teil: 4, kind: 'matching', items: 6, what: 'Aussagen zu Texten zuordnen (x = kein Text passt)' },
+        { teil: 5, kind: 'multipleChoice', items: 6, what: 'Sachtext, Regeln oder Anleitung' },
+      ] },
+      schreiben: { minutes: 75, tasks: [
+        { teil: 1, kind: 'message', words: '≈ 150', what: 'Forumsbeitrag mit Meinung und Begründung' },
+        { teil: 2, kind: 'message', words: '≈ 100', what: 'Formelle E-Mail' },
+      ] },
+      sprechen: { minutes: 15, pair: true, parts: [
+        { teil: 1, what: 'Ein Thema präsentieren (Vortrag)' },
+        { teil: 2, what: 'Diskutieren und eine Lösung finden' },
+      ] },
+      passPercent: 60, verified: false,
+    },
   },
   telc: {
     A1: {
@@ -132,9 +151,28 @@ export const FORMATS: Record<Board, Record<ExamLevel, ExamFormat>> = {
       ] },
       passPercent: 60, verified: true,
     },
+    B2: {
+      name: 'telc Deutsch B2',
+      lesen: { minutes: 90, parts: [
+        { teil: 1, kind: 'matching', items: 5, what: 'Leseverstehen: Überschriften a–j zu fünf Texten' },
+        { teil: 2, kind: 'multipleChoice', items: 5, what: 'Leseverstehen: ein längerer Text' },
+        { teil: 3, kind: 'matching', items: 10, what: 'Leseverstehen: zehn Situationen, zwölf Anzeigen (x = keine passt)' },
+        { teil: 4, kind: 'multipleChoice', items: 10, what: 'Sprachbausteine 1: Grammatik (Lücken 21–30)' },
+        { teil: 5, kind: 'matching', items: 10, what: 'Sprachbausteine 2: Wortschatz, 15 Wörter für 10 Lücken (31–40)' },
+      ] },
+      schreiben: { minutes: 30, tasks: [
+        { teil: 1, kind: 'message', words: '≈ 150', what: 'Brief oder E-Mail als Antwort (Leitpunkte)' },
+      ] },
+      sprechen: { minutes: 15, pair: true, parts: [
+        { teil: 1, what: 'Ein Thema präsentieren' },
+        { teil: 2, what: 'Über ein Thema diskutieren' },
+        { teil: 3, what: 'Gemeinsam eine Aufgabe lösen' },
+      ] },
+      passPercent: 60, verified: false,
+    },
   },
 };
 
 export const BOARD_LABEL: Record<Board, string> = { goethe: 'Goethe', telc: 'telc' };
-export const EXAM_LEVELS: ExamLevel[] = ['A1', 'A2', 'B1'];
+export const EXAM_LEVELS: ExamLevel[] = ['A1', 'A2', 'B1', 'B2'];
 export const BOARDS: Board[] = ['goethe', 'telc'];

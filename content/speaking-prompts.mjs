@@ -1,6 +1,6 @@
 // Authored sentences for the Speak studio. Plain .mjs so scripts/prepare-audio.mjs
 // can import it to generate the reference audio.
-// level: 'A1' | 'A2' | 'B1'
+// level: 'A1' | 'A2' | 'B1' | 'B2'
 export const SPEAKING_PROMPTS = [
   // A1
   { id: 'sp-a1-01', level: 'A1', topic: 'greetings', de: 'Guten Morgen! Wie geht es Ihnen?', en: 'Good morning! How are you?', fr: 'Bonjour ! Comment allez-vous ?' },
@@ -36,4 +36,13 @@ export const SPEAKING_PROMPTS = [
   { id: 'sp-b1-06', level: 'B1', topic: 'past', de: 'Nachdem ich das Studium beendet hatte, bin ich in eine andere Stadt gezogen.', en: 'After I had finished my studies, I moved to another city.', fr: "Après avoir terminé mes études, j'ai déménagé dans une autre ville." },
   { id: 'sp-b1-07', level: 'B1', topic: 'opinion', de: 'Es ist wichtig, dass jeder Mensch die Möglichkeit hat, eine Ausbildung zu machen.', en: 'It is important that everyone has the opportunity to get an education.', fr: "Il est important que chacun ait la possibilité de faire une formation." },
   { id: 'sp-b1-08', level: 'B1', topic: 'relative clauses', de: 'Das Buch, das du mir empfohlen hast, hat mir sehr gut gefallen.', en: 'I really liked the book that you recommended to me.', fr: "Le livre que tu m'as recommandé m'a beaucoup plu." },
+  // B2
+  { id: 'sp-b2-01', level: 'B2', topic: 'opinion', de: 'Meiner Meinung nach überwiegen die Vorteile des Homeoffice, auch wenn der Kontakt zu den Kollegen fehlt.', en: 'In my opinion the advantages of working from home outweigh the disadvantages, even if contact with colleagues is missing.', fr: 'À mon avis, les avantages du télétravail l’emportent, même si le contact avec les collègues manque.' },
+  { id: 'sp-b2-02', level: 'B2', topic: 'concession', de: 'Obwohl die Preise gestiegen sind, kaufen viele Menschen weiterhin online ein.', en: 'Although prices have risen, many people continue to shop online.', fr: 'Bien que les prix aient augmenté, beaucoup de gens continuent d’acheter en ligne.' },
+  { id: 'sp-b2-03', level: 'B2', topic: 'reported speech', de: 'Der Minister sagte, er sei zuversichtlich, dass das Gesetz im Mai in Kraft treten werde.', en: 'The minister said he was confident that the law would come into force in May.', fr: 'Le ministre a dit être confiant que la loi entrerait en vigueur en mai.' },
+  { id: 'sp-b2-04', level: 'B2', topic: 'assumption', de: 'Sie dürfte den Zug verpasst haben, sonst wäre sie längst hier.', en: 'She has probably missed the train, otherwise she would have been here long ago.', fr: 'Elle a probablement raté le train, sinon elle serait là depuis longtemps.' },
+  { id: 'sp-b2-05', level: 'B2', topic: 'formal', de: 'Ich wäre Ihnen dankbar, wenn Sie mir die Unterlagen bis Freitag zusenden könnten.', en: 'I would be grateful if you could send me the documents by Friday.', fr: 'Je vous serais reconnaissant de bien vouloir m’envoyer les documents d’ici vendredi.' },
+  { id: 'sp-b2-06', level: 'B2', topic: 'passive', de: 'Das Problem lässt sich nur lösen, wenn alle Beteiligten Verantwortung übernehmen.', en: 'The problem can only be solved if everyone involved takes responsibility.', fr: 'Le problème ne peut être résolu que si tous les participants assument leurs responsabilités.' },
+  { id: 'sp-b2-07', level: 'B2', topic: 'infinitive', de: 'Er lernt täglich Deutsch, um in Zukunft in Berlin arbeiten zu können.', en: 'He studies German every day so that he can work in Berlin in the future.', fr: 'Il apprend l’allemand chaque jour pour pouvoir travailler à Berlin à l’avenir.' },
+  { id: 'sp-b2-08', level: 'B2', topic: 'chart', de: 'Die Grafik zeigt, dass der Anteil der Online-Käufe von zwanzig auf fünfundvierzig Prozent gestiegen ist.', en: 'The chart shows that the share of online purchases has risen from twenty to forty-five percent.', fr: 'Le graphique montre que la part des achats en ligne est passée de vingt à quarante-cinq pour cent.' },
 ];

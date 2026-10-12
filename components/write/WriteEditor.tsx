@@ -14,7 +14,7 @@ import { Card } from '@/components/ui/Card';
 import { Segmented } from '@/components/ui/Segmented';
 
 type Level = WritingPrompt['level'];
-const LEVELS: Level[] = ['A1', 'A2', 'B1'];
+const LEVELS: Level[] = ['A1', 'A2', 'B1', 'B2'];
 const FREE_MIN_WORDS = 10;
 const XP_FINISH = 15;
 const XP_DAILY_CAP = 45;
