@@ -5,7 +5,7 @@ import { BOOKS } from '@/lib/books';
 // @ts-ignore -- plain .mjs script without type declarations
 import { collectAudioJobs } from '../../scripts/prepare-audio.mjs';
 
-const MIN_SPECIALS = 33;
+const MIN_SPECIALS = 41;
 
 describe('special courses', () => {
   it('registers the expected number of specials with unique ids and matching slugs', () => {

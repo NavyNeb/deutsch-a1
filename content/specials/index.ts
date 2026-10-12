@@ -34,6 +34,14 @@ import { modalpartikeln } from './modalpartikeln';
 import { falscheFreunde } from './falsche-freunde';
 import { briefeEmails } from './briefe-emails';
 import { redewendungen } from './redewendungen';
+import { nominalstil } from './nominalstil';
+import { konjunktiv1 } from './konjunktiv-1';
+import { funktionsverbgefuege } from './funktionsverbgefuege';
+import { partizipialattribute } from './partizipialattribute';
+import { passiversatzformen } from './passiversatzformen';
+import { vermutungen } from './vermutungen';
+import { eroerterung } from './eroerterung';
+import { formelleKorrespondenz } from './formelle-korrespondenz';
 
 const raw: unknown[] = [
   modalverben, trennbareVerben, perfekt, praeteritum, konjunktiv2, passiv, reflexiveVerben, verbenPraepositionen,
@@ -42,6 +50,8 @@ const raw: unknown[] = [
   farbenKleidung, familie, koerperGesundheit, essenRestaurant, wohnenMoebel,
   zahlenGeldZeit, reisenWege, arbeitBerufe, wetterNatur,
   modalpartikeln, falscheFreunde, briefeEmails, redewendungen, hauptNebensaetze,
+  nominalstil, konjunktiv1, funktionsverbgefuege, partizipialattribute,
+  passiversatzformen, vermutungen, eroerterung, formelleKorrespondenz,
 ];
 
 export const specials: Special[] = raw.map(parseSpecial).sort((a, b) => a.number - b.number);
