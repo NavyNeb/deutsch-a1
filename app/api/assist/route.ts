@@ -3,7 +3,7 @@ import { assistEnabledServer, ASSIST_MODELS } from '@/lib/assist-config';
 
 type AssistMode = 'explain' | 'examples' | 'quiz' | 'grammar-explain';
 type Locale = 'en' | 'fr';
-type Level = 'A1' | 'A2' | 'B1';
+type Level = 'A1' | 'A2' | 'B1' | 'B2';
 
 const MODES: AssistMode[] = ['explain', 'examples', 'quiz', 'grammar-explain'];
 const LANGUAGE: Record<Locale, string> = { en: 'English', fr: 'French' };
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     const message = str(body.message, 300);
     if (!sentence || !snippet || !message) return fail('Invalid input', 400);
     const replacement = typeof body.replacement === 'string' ? body.replacement.slice(0, 120) : '';
-    const level: Level = body.level === 'A2' || body.level === 'B1' ? body.level : 'A1';
+    const level: Level = body.level === 'A2' || body.level === 'B1' || body.level === 'B2' ? body.level : 'A1';
     system =
       `You are a warm, concise German tutor for a ${level} learner. Reply in ${language}. ` +
       'Plain text only, no markdown. Never invent rules; if the flagged suggestion looks wrong for the sentence, say so.';

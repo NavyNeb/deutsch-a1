@@ -5,7 +5,7 @@ export type Tr = z.infer<typeof TrSchema>;
 
 export const BoardSchema = z.enum(['goethe', 'telc']);
 export type Board = z.infer<typeof BoardSchema>;
-export const ExamLevelSchema = z.enum(['A1', 'A2', 'B1']);
+export const ExamLevelSchema = z.enum(['A1', 'A2', 'B1', 'B2']);
 export type ExamLevel = z.infer<typeof ExamLevelSchema>;
 export const SkillSchema = z.enum(['lesen', 'schreiben', 'sprechen']);
 export type Skill = z.infer<typeof SkillSchema>;

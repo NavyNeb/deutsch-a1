@@ -435,8 +435,8 @@ export const UI = {
   navExams: { en: 'Exams', fr: 'Examens' },
   examsTitle: { en: 'Exam preparation', fr: 'Préparation aux examens' },
   examsSubtitle: {
-    en: 'Practise reading, writing and speaking for Goethe and telc at A1, A2 and B1. Tasks are in German only, like the real exam. You can switch on translations in Settings or inside a task.',
-    fr: 'Entraîne-toi à la lecture, à l’écriture et à l’oral pour le Goethe et le telc en A1, A2 et B1. Les consignes sont en allemand uniquement, comme à l’examen. Tu peux activer les traductions dans les réglages ou dans un exercice.',
+    en: 'Practise reading, writing and speaking for Goethe and telc at A1, A2, B1 and B2. Tasks are in German only, like the real exam. You can switch on translations in Settings or inside a task.',
+    fr: 'Entraîne-toi à la lecture, à l’écriture et à l’oral pour le Goethe et le telc en A1, A2, B1 et B2. Les consignes sont en allemand uniquement, comme à l’examen. Tu peux activer les traductions dans les réglages ou dans un exercice.',
   },
   examsDisclaimer: {
     en: 'Original practice material modelled on the official exam formats. These are not official exam papers. Check the exam board’s current format before your exam.',

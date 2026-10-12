@@ -1,0 +1,64 @@
+import type { Lesson } from '../types';
+
+export const b2lektion10: Lesson = {
+  id: 'b2-l10', level: 'B2', module: 4, number: 10,
+  title: { de: 'Konzessive Sätze', en: 'Concessive clauses', fr: 'Les concessives' },
+  theme: 'Expressing contrast and concession: obwohl, obgleich, wenn auch, selbst wenn, trotz + Genitiv, ungeachtet',
+  themeFr: 'Exprimer contraste et concession : obwohl, obgleich, wenn auch, selbst wenn, trotz + génitif, ungeachtet',
+  goals: ['Use a wide range of concessive connectors', 'Distinguish "obwohl" from "selbst wenn"', 'Use "trotz" + genitive (and dative in speech)', 'Vary between clause and noun-phrase constructions'],
+  goalsFr: ['Employer un large éventail de connecteurs concessifs', 'Distinguer « obwohl » de « selbst wenn »', 'Utiliser « trotz » + génitif (et datif à l’oral)', 'Varier entre propositions et groupes nominaux'],
+  steps: [
+    { kind: 'intro', title: 'Trotz allem! 💪', titleFr: 'Malgré tout ! 💪',
+      scene: 'A marathon runner explains why she kept going despite the rain and injury.', sceneFr: 'Une marathonienne explique pourquoi elle a continué malgré la pluie et la blessure.',
+      goals: ['Say "although" in several ways', 'Express "even if"', 'Use "trotz" correctly', 'Write concessions in formal style'],
+      goalsFr: ['Dire « bien que » de plusieurs façons', 'Exprimer « même si »', 'Utiliser « trotz » correctement', 'Écrire des concessions dans un style formel'] },
+
+    { kind: 'vocab', item: { id: 'b2l10-obgleich', german: 'obgleich', english: 'although (formal)', french: 'quoique', gender: null, syllables: ['ob', 'GLEICH'], pronunciation: 'op-GLYKH', example: { de: 'Obgleich er müde war, arbeitete er weiter.', en: 'Although he was tired, he kept working.', fr: 'Quoiqu’il fût fatigué, il a continué à travailler.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-obschon', german: 'obschon', english: 'although (literary)', french: 'bien que (littéraire)', gender: null, syllables: ['ob', 'SCHON'], pronunciation: 'op-SHOHN', example: { de: 'Obschon es regnete, gingen wir hinaus.', en: 'Although it rained, we went out.', fr: 'Bien qu’il pleuve, nous sommes sortis.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-selbst-wenn', german: 'selbst wenn', english: 'even if', french: 'même si', gender: null, syllables: ['SELBST', 'WENN'], pronunciation: 'ZELPST ven', example: { de: 'Selbst wenn es teuer ist, kaufe ich es.', en: 'Even if it is expensive, I will buy it.', fr: 'Même si c’est cher, je l’achète.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-wenn-auch', german: 'wenn auch', english: 'even though', french: 'même si (concessif)', gender: null, syllables: ['WENN', 'AUCH'], pronunciation: 'ven owkh', example: { de: 'Es ist, wenn auch schwer, machbar.', en: 'It is feasible, if difficult.', fr: 'C’est faisable, même si difficile.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-trotz', german: 'trotz', english: 'despite', french: 'malgré', gender: null, syllables: ['TROTZ'], pronunciation: 'trots', example: { de: 'Trotz des Regens gehen wir spazieren.', en: 'Despite the rain we go for a walk.', fr: 'Malgré la pluie, nous allons nous promener.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-ungeachtet', german: 'ungeachtet', english: 'regardless of', french: 'indépendamment de', gender: null, syllables: ['UN', 'ge', 'ach', 'tet'], pronunciation: 'OON-ge-akh-tet', example: { de: 'Ungeachtet der Kritik machte er weiter.', en: 'Regardless of the criticism he carried on.', fr: 'Indépendamment des critiques, il a continué.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-dennoch', german: 'dennoch', english: 'nevertheless', french: 'néanmoins', gender: null, syllables: ['DEN', 'noch'], pronunciation: 'DEN-nokh', example: { de: 'Es war schwer, dennoch gaben wir nicht auf.', en: 'It was hard, nevertheless we didn’t give up.', fr: 'C’était dur, néanmoins nous n’avons pas abandonné.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-gleichwohl', german: 'gleichwohl', english: 'all the same', french: 'quand même', gender: null, syllables: ['GLEICH', 'wohl'], pronunciation: 'GLYKH-vohl', example: { de: 'Der Plan ist riskant, gleichwohl lohnt er sich.', en: 'The plan is risky, all the same it pays off.', fr: 'Le plan est risqué, il en vaut quand même la peine.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-hindernis', german: 'das Hindernis', english: 'the obstacle', french: 'l’obstacle', gender: 'das', syllables: ['HIN', 'der', 'nis'], pronunciation: 'das HIN-der-nis', example: { de: 'Trotz aller Hindernisse kam sie an.', en: 'Despite all obstacles she arrived.', fr: 'Malgré tous les obstacles, elle est arrivée.' } } },
+    { kind: 'vocab', item: { id: 'b2l10-durchhalten', german: 'durchhalten', english: 'to persevere', french: 'tenir bon', gender: null, syllables: ['DURCH', 'hal', 'ten'], pronunciation: 'DOORKH-hal-ten', example: { de: 'Wir müssen noch zwei Wochen durchhalten.', en: 'We must hold out two more weeks.', fr: 'Nous devons tenir encore deux semaines.' } } },
+
+    { kind: 'grammar', note: {
+      id: 'b2l10-conc-note', title: 'Concessive connectors compared', titleFr: 'Comparer les connecteurs concessifs',
+      explanationMd: '**Subordinating** (verb at the end): **obwohl**, **obgleich**, **obschon** (more formal), **wenn auch**.\n*Obwohl es regnet, gehen wir.*\n\n**Main-clause adverbs** (verb in position 2 after them): **trotzdem**, **dennoch**, **gleichwohl**, **nichtsdestotrotz**.\n*Es regnet. Dennoch gehen wir.*\n\n**selbst wenn / auch wenn** = **even if** (a hypothetical, not a real fact): *Selbst wenn es regnet, gehe ich.* Compare **obwohl** = a real fact: *Obwohl es regnet, …*',
+      explanationMdFr: '**Subordonnants** (verbe à la fin) : **obwohl**, **obgleich**, **obschon** (plus soutenus), **wenn auch**.\n*Obwohl es regnet, gehen wir.*\n\n**Adverbes de principale** (verbe en position 2 après eux) : **trotzdem**, **dennoch**, **gleichwohl**, **nichtsdestotrotz**.\n*Es regnet. Dennoch gehen wir.*\n\n**selbst wenn / auch wenn** = **même si** (hypothétique, pas un fait) : *Selbst wenn es regnet, gehe ich.* Compare **obwohl** = un fait réel : *Obwohl es regnet, …*',
+      examples: [
+        { de: 'Obgleich er jung ist, hat er viel erreicht.', en: 'Although he is young, he has achieved a lot.', fr: 'Quoiqu’il soit jeune, il a beaucoup accompli.' },
+        { de: 'Selbst wenn du recht hast, bleibe ich bei meiner Meinung.', en: 'Even if you are right, I stick to my opinion.', fr: 'Même si tu as raison, je reste sur mon opinion.' },
+      ] } },
+
+    { kind: 'grammar', note: {
+      id: 'b2l10-trotz-note', title: 'trotz + noun: genitive (and dative)', titleFr: 'trotz + nom : génitif (et datif)',
+      explanationMd: '**trotz** takes the **genitive** in standard written German: *trotz **des** Regens, trotz **der** Kälte, trotz **seiner** Krankheit.*\nIn speech, the **dative** is common: *trotz dem Regen.* Prefer the genitive in writing and exams.\n\nSimilar: **ungeachtet** + Genitiv (*ungeachtet der Warnung*).\n\nA clause with **obwohl** can be shortened to a noun phrase with **trotz**: *Obwohl es regnete* → *Trotz des Regens*.',
+      explanationMdFr: '**trotz** se construit avec le **génitif** à l’écrit standard : *trotz **des** Regens, trotz **der** Kälte, trotz **seiner** Krankheit.*\nÀ l’oral, le **datif** est courant : *trotz dem Regen.* Préfère le génitif à l’écrit et aux examens.\n\nSimilaire : **ungeachtet** + génitif (*ungeachtet der Warnung*).\n\nUne proposition en **obwohl** peut être raccourcie en groupe nominal avec **trotz** : *Obwohl es regnete* → *Trotz des Regens*.',
+      examples: [
+        { de: 'Trotz der Kälte gingen wir schwimmen.', en: 'Despite the cold we went swimming.', fr: 'Malgré le froid, nous sommes allés nager.' },
+        { de: 'Trotz seiner Krankheit arbeitet er weiter.', en: 'Despite his illness he keeps working.', fr: 'Malgré sa maladie, il continue à travailler.' },
+      ] } },
+
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'b2l10-e1', prompt: '___ es regnet, gehen wir spazieren. (although)', answer: 'Obwohl', hint: 'subordinating → verb at the end', hintFr: 'subordonnant → verbe à la fin' } },
+    { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'b2l10-e2', prompt: 'Which means "even if" (hypothetical)?', promptFr: 'Lequel signifie « même si » (hypothétique) ?', options: ['obwohl', 'selbst wenn', 'trotzdem'], answer: 1, explain: '"selbst wenn" = even if.', explainFr: '« selbst wenn » = même si.', hint: 'hypothetical', hintFr: 'hypothétique' } },
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'b2l10-e3', prompt: 'Trotz ___ Regens gehen wir. (der Regen — genitive)', answer: 'des', hint: 'masculine genitive: des … -s', hintFr: 'génitif masculin : des … -s' } },
+    { kind: 'exercise', exercise: { type: 'wordOrder', id: 'b2l10-e4', tokens: ['gehen', 'Dennoch', 'wir', 'schwimmen'], answer: ['Dennoch', 'gehen', 'wir', 'schwimmen'], hint: 'dennoch takes position 1; verb next.', hintFr: 'dennoch est en position 1 ; verbe ensuite.' } },
+    { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'b2l10-e5', prompt: 'Shorten: "Obwohl er krank war, …"', promptFr: 'Raccourcis : « Obwohl er krank war, … »', options: ['Trotz seiner Krankheit …', 'Wegen seiner Krankheit …', 'Trotz er krank …'], answer: 0, explain: 'trotz + genitive noun.', explainFr: 'trotz + nom au génitif.', hint: 'obwohl → trotz', hintFr: 'obwohl → trotz' } },
+    { kind: 'exercise', exercise: { type: 'match', id: 'b2l10-e6', pairs: [ { de: 'obgleich', en: 'although (formal)', fr: 'quoique' }, { de: 'selbst wenn', en: 'even if', fr: 'même si' }, { de: 'ungeachtet', en: 'regardless of', fr: 'indépendamment de' }, { de: 'durchhalten', en: 'to persevere', fr: 'tenir bon' } ], hint: 'Match each word to its meaning.', hintFr: 'Associe chaque mot à sa signification.' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'b2l10-e7', prompt: 'Listen. What does the speaker do?', promptFr: 'Écoute. Que fait le locuteur ?', audio: { ttsText: 'Selbst wenn es morgen regnet, werde ich laufen.' }, options: ['Will run even if it rains', 'Will stay home', 'Will cancel the run'], optionsFr: ['Courra même s’il pleut', 'Restera à la maison', 'Annulera la course'], answer: 0, hint: 'selbst wenn = even if.', hintFr: 'selbst wenn = même si.' } },
+    { kind: 'exercise', exercise: { type: 'fillBlank', id: 'b2l10-e8', prompt: 'Es war schwer, ___ gaben wir nicht auf. (nevertheless)', answer: 'dennoch', hint: 'main-clause adverb', hintFr: 'adverbe de principale' } },
+    { kind: 'exercise', exercise: { type: 'multipleChoice', id: 'b2l10-e9', prompt: 'Which sentence is grammatically correct?', promptFr: 'Quelle phrase est correcte ?', options: ['Obwohl es regnet, wir gehen.', 'Obwohl es regnet, gehen wir.', 'Obwohl es regnet, wir gehen nicht.'], answer: 1, explain: 'After a subordinate clause the main verb comes first.', explainFr: 'Après une subordonnée, le verbe principal vient en premier.', hint: 'Verb right after the comma.', hintFr: 'Verbe juste après la virgule.' } },
+    { kind: 'exercise', exercise: { type: 'listenChoose', id: 'b2l10-e10', prompt: 'Listen. What did she do?', promptFr: 'Écoute. Qu’a-t-elle fait ?', audio: { ttsText: 'Trotz aller Hindernisse kam sie pünktlich an.' }, options: ['Arrived on time', 'Gave up', 'Stayed home'], optionsFr: ['Est arrivée à l’heure', 'A abandonné', 'Est restée chez elle'], answer: 0, hint: 'trotz = despite.', hintFr: 'trotz = malgré.' } },
+
+    { kind: 'pronunciation', focus: 'Stress the second syllable of obwohl/obgleich and the first of dennoch/trotzdem: "obWOHL", "obGLEICH", "DENNoch", "TROTZdem"', focusFr: 'Accentue la 2e syllabe de obwohl/obgleich et la 1re de dennoch/trotzdem : « obWOHL », « obGLEICH », « DENNoch », « TROTZdem »', items: [
+      { id: 'b2l10-obgleich-pron', german: 'obgleich', english: 'although', french: 'quoique', gender: null, syllables: ['ob', 'GLEICH'], pronunciation: 'op-GLYKH', example: { de: 'Obgleich es spät ist, bleibe ich.', en: 'Although it is late, I stay.', fr: 'Quoiqu’il soit tard, je reste.' } },
+      { id: 'b2l10-hindernis-pron', german: 'Hindernis', english: 'obstacle', french: 'obstacle', gender: null, syllables: ['HIN', 'der', 'nis'], pronunciation: 'HIN-der-nis', example: { de: 'Das ist ein Hindernis.', en: 'That is an obstacle.', fr: 'C’est un obstacle.' } },
+    ] },
+
+    { kind: 'wrapup', summary: 'You can now express concession in many registers: **obwohl / obgleich / wenn auch** (subordinate), **trotzdem / dennoch / gleichwohl** (main clause), **trotz + Genitiv / ungeachtet**, and **selbst wenn** for hypothetical "even if". 🎉',
+      summaryFr: 'Tu peux maintenant exprimer la concession à plusieurs registres : **obwohl / obgleich / wenn auch** (subordonnants), **trotzdem / dennoch / gleichwohl** (principale), **trotz + génitif / ungeachtet**, et **selbst wenn** pour le « même si » hypothétique. 🎉' },
+  ],
+};
