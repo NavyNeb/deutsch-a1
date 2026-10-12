@@ -1,5 +1,9 @@
 import type { ExamSetInput } from '../types';
 import { txt, tf, mc, mt, lesenTF, lesenMC, lesenMatch, message, speak } from './b2-kit';
+import { goetheB2s2 } from './goethe-b2-s2';
+import { goetheB2s3 } from './goethe-b2-s3';
+import { goetheB2s4 } from './goethe-b2-s4';
+import { goetheB2s5 } from './goethe-b2-s5';
 
 // Original practice material modelled on the Goethe-Zertifikat B2 format. Not an official paper.
 
@@ -265,4 +269,4 @@ const set1: ExamSetInput = {
   ],
 };
 
-export const GOETHE_B2: ExamSetInput[] = [set1];
+export const GOETHE_B2: ExamSetInput[] = [set1, goetheB2s2, goetheB2s3, goetheB2s4, goetheB2s5];
