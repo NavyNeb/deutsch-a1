@@ -1,6 +1,14 @@
 import type { ExamSetInput } from '../types';
 import { txt, mt, mc, gap, word, lesenMatch, lesenMC, message, speak } from './b2-kit';
 import { telcB2s2 } from './telc-b2-s2';
+import { telcB2s3 } from './telc-b2-s3';
+import { telcB2s4 } from './telc-b2-s4';
+import { telcB2s5 } from './telc-b2-s5';
+import { telcB2s6 } from './telc-b2-s6';
+import { telcB2s7 } from './telc-b2-s7';
+import { telcB2s8 } from './telc-b2-s8';
+import { telcB2s9 } from './telc-b2-s9';
+import { telcB2s10 } from './telc-b2-s10';
 
 // Original practice material modelled on the telc Deutsch B2 format. Not an official paper.
 
@@ -224,4 +232,4 @@ const set1: ExamSetInput = {
   ],
 };
 
-export const TELC_B2: ExamSetInput[] = [set1, telcB2s2];
+export const TELC_B2: ExamSetInput[] = [set1, telcB2s2, telcB2s3, telcB2s4, telcB2s5, telcB2s6, telcB2s7, telcB2s8, telcB2s9, telcB2s10];
