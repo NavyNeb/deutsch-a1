@@ -85,6 +85,15 @@ import { b2lektion14 } from './lessons/b2-lektion-14';
 import { b2lektion15 } from './lessons/b2-lektion-15';
 import { b2lektion16 } from './lessons/b2-lektion-16';
 import { b2lektion17 } from './lessons/b2-lektion-17';
+import { b2lektion18 } from './lessons/b2-lektion-18';
+import { b2lektion19 } from './lessons/b2-lektion-19';
+import { b2lektion20 } from './lessons/b2-lektion-20';
+import { b2lektion21 } from './lessons/b2-lektion-21';
+import { b2lektion22 } from './lessons/b2-lektion-22';
+import { b2lektion23 } from './lessons/b2-lektion-23';
+import { b2lektion24 } from './lessons/b2-lektion-24';
+import { b2lektion25 } from './lessons/b2-lektion-25';
+import { b2lektion26 } from './lessons/b2-lektion-26';
 
 // parseLesson validates at module load — a malformed lesson throws immediately.
 import { specials } from './specials';
@@ -103,7 +112,8 @@ export const lessons: Lesson[] = [
   b1lektion20, b1lektion21, b1lektion22, b1lektion23, b1lektion24, b1lektion25, b1lektion26,
   b2lektion1, b2lektion2, b2lektion3, b2lektion4, b2lektion5, b2lektion6,
   b2lektion7, b2lektion8, b2lektion9, b2lektion10, b2lektion11, b2lektion12, b2lektion13,
-  b2lektion14, b2lektion15, b2lektion16, b2lektion17,
+  b2lektion14, b2lektion15, b2lektion16, b2lektion17, b2lektion18, b2lektion19, b2lektion20,
+  b2lektion21, b2lektion22, b2lektion23, b2lektion24, b2lektion25, b2lektion26,
 ].map(parseLesson);
 export function getLesson(id: string): Lesson | undefined { return lessons.find((l) => l.id === id); }
 
