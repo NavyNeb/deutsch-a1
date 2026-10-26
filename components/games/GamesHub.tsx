@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Trophy, Repeat } from 'lucide-react';
+import { ArrowRight, Trophy, Repeat, Mic, PenLine, Sparkles } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { loadBest } from '@/lib/game';
@@ -11,6 +11,7 @@ type Game = {
   mode?: 'text' | 'audio';
   gradient: string;
   illustration?: string;
+  icon?: 'mic' | 'pen' | 'spark';
   titleKey: UIKey;
   taglineKey: UIKey;
   ctaKey: UIKey;
@@ -34,7 +35,24 @@ const GAMES: Game[] = [
     gradient: 'linear-gradient(135deg,#C9822B,#E8B05C)',
     titleKey: 'reviewGameTitle', taglineKey: 'reviewGameTagline', ctaKey: 'startReview',
   },
+  {
+    href: '/speak', icon: 'mic',
+    gradient: 'linear-gradient(135deg,#C4566B,#E88BA0)',
+    titleKey: 'navSpeak', taglineKey: 'practiceSpeakTagline', ctaKey: 'openCta',
+  },
+  {
+    href: '/write', icon: 'pen',
+    gradient: 'linear-gradient(135deg,#4F7F5A,#86B590)',
+    titleKey: 'navWrite', taglineKey: 'practiceWriteTagline', ctaKey: 'openCta',
+  },
+  {
+    href: '/specials', icon: 'spark',
+    gradient: 'linear-gradient(135deg,#5B6FB8,#8EA0E0)',
+    titleKey: 'navSpecials', taglineKey: 'practiceSpecialsTagline', ctaKey: 'openCta',
+  },
 ];
+
+const ICONS = { mic: Mic, pen: PenLine, spark: Sparkles };
 
 export function GamesHub() {
   const { locale } = useLocale();
@@ -67,8 +85,8 @@ export function GamesHub() {
                     className="h-[152px] w-auto select-none pointer-events-none drop-shadow-[0_10px_16px_rgba(0,0,0,0.22)] transition-transform duration-200 group-hover:scale-105"
                   />
                 ) : (
-                  <span className="grid place-items-center self-center w-20 h-20 rounded-full bg-white/25 text-white backdrop-blur-sm transition-transform duration-200 group-hover:rotate-180">
-                    <Repeat size={38} strokeWidth={2.3} />
+                  <span className="grid place-items-center self-center w-20 h-20 rounded-full bg-white/25 text-white backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
+                    {(() => { const I = g.icon ? ICONS[g.icon] : Repeat; return <I size={38} strokeWidth={2.3} />; })()}
                   </span>
                 )}
                 {score > 0 && (

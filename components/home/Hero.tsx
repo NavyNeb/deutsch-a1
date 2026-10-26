@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Zap, ArrowRight, Flame, Sparkles } from 'lucide-react';
-import { lessons, allVocab } from '@/content';
+import { ArrowRight } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 
 const HEAD = {
@@ -12,13 +11,6 @@ const HEAD = {
 export function Hero() {
   const { locale } = useLocale();
   const c = HEAD[locale === 'fr' ? 'fr' : 'en'];
-  const words = allVocab().length;
-  const stats = [
-    { n: `${lessons.length}`, l: locale === 'fr' ? 'Leçons' : 'Lessons' },
-    { n: '4', l: locale === 'fr' ? 'Niveaux' : 'Levels' },
-    { n: `${words}+`, l: locale === 'fr' ? 'Mots' : 'Words' },
-  ];
-
   return (
     <section className="mx-auto max-w-[1200px] px-5 pt-5 pb-4 md:pt-14 md:pb-8 grid md:grid-cols-[1.02fr_0.98fr] gap-6 md:gap-10 items-center">
       <div className="order-2 md:order-1">
@@ -39,18 +31,6 @@ export function Hero() {
             {c.browse} <ArrowRight size={16} strokeWidth={2.5} />
           </Link>
         </div>
-
-        <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-8 mt-6 sm:mt-9">
-          {stats.map((s) => (
-            <div key={s.l} className="flex items-center gap-2.5">
-              <Zap size={22} className="text-primary" fill="currentColor" strokeWidth={0} />
-              <div>
-                <div className="font-rounded font-extrabold text-[24px] leading-none text-text tabular-nums">{s.n}</div>
-                <div className="text-[13px] text-muted mt-0.5">{s.l}</div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Hero illustration: recolored 3D characters on a soft brand blob, with gamy floating badges */}
@@ -68,29 +48,6 @@ export function Hero() {
             className="relative z-10 w-[82%] mx-auto block select-none pointer-events-none drop-shadow-[0_18px_28px_rgba(0,0,0,0.14)]"
             draggable={false}
           />
-
-          {/* gamy floating badges */}
-          <div className="absolute z-20 left-[2%] top-[16%] bg-card border border-border rounded-2xl shadow-pop px-3 py-2 flex items-center gap-2 rotate-[-6deg]">
-            <span className="grid place-items-center w-8 h-8 rounded-full bg-[var(--amber-wash)] text-amber"><Flame size={17} strokeWidth={2.4} fill="currentColor" /></span>
-            <div className="leading-tight">
-              <div className="font-rounded font-extrabold text-[15px] text-text tabular-nums">5</div>
-              <div className="text-[11px] text-muted -mt-0.5">{locale === 'fr' ? 'jours' : 'day streak'}</div>
-            </div>
-          </div>
-
-          <div className="absolute z-20 right-[0%] top-[40%] bg-card border border-border rounded-2xl shadow-pop px-3 py-2 flex items-center gap-2 rotate-[5deg]">
-            <span className="grid place-items-center w-8 h-8 rounded-full bg-[var(--primary-wash)] text-primary"><Sparkles size={16} strokeWidth={2.4} /></span>
-            <div className="font-rounded font-extrabold text-[14px] text-text">+10 XP</div>
-          </div>
-
-          <div className="absolute z-20 left-[8%] bottom-[10%] bg-card border border-border rounded-2xl shadow-pop px-3 py-2 flex items-center gap-2.5 rotate-[3deg]">
-            {(['der', 'die', 'das'] as const).map((g) => (
-              <span key={g} className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: `var(--${g})` }} />
-                <span className="font-rounded font-bold text-[12px] text-text-2">{g}</span>
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>

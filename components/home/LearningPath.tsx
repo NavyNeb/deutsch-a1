@@ -1,5 +1,5 @@
 'use client';
-import { Lock } from 'lucide-react';
+import { ChevronDown, Lock } from 'lucide-react';
 import { lessons } from '@/content';
 import type { Level } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
@@ -25,6 +25,8 @@ export function LearningPath() {
   const firstEmpty = LEVELS.find((lv) => !lessons.some((l) => l.level === lv));
   const shownLevels = firstEmpty && !activeLevels.includes(firstEmpty) ? [...activeLevels, firstEmpty] : activeLevels;
 
+  const current = shownLevels.find((lv) => lessons.some((l) => l.level === lv && lessonCompletion(state, l) < 1)) ?? shownLevels[0];
+
   return (
     <section className="mt-2">
       <h2 className="font-rounded font-extrabold text-[22px] text-text m-0 mb-5">{t('yourCourse', locale)}</h2>
@@ -34,8 +36,8 @@ export function LearningPath() {
           const done = levelLessons.filter((l) => lessonCompletion(state, l) >= 1).length;
 
           return (
-            <div key={lv}>
-              <div className="flex items-center gap-2.5 mb-4">
+            <details key={lv} open={lv === current} className="group/lv">
+              <summary className="flex items-center gap-2.5 mb-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <span className="font-rounded font-extrabold text-[13px] text-primary-ink bg-primary rounded-[10px] px-2.5 py-1">{lv}</span>
                 <span className="font-rounded font-bold text-[16px] text-text">{LEVEL_NAME[lv][locale === 'fr' ? 'fr' : 'en']}</span>
                 {levelLessons.length > 0 && (
@@ -43,7 +45,8 @@ export function LearningPath() {
                     {done}/{levelLessons.length} {t('lektionen', locale)}
                   </span>
                 )}
-              </div>
+                <ChevronDown size={18} className="text-muted transition-transform group-open/lv:rotate-180" aria-hidden="true" />
+              </summary>
 
               {levelLessons.length > 0 ? (
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
@@ -62,7 +65,7 @@ export function LearningPath() {
                   </div>
                 </div>
               )}
-            </div>
+            </details>
           );
         })}
       </div>

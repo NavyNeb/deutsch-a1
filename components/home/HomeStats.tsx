@@ -20,16 +20,16 @@ export function HomeStats() {
   const { level, into, span } = levelProgress(state.xp);
 
   return (
-    <div className="grid grid-cols-3 gap-3 mb-8">
+    <div className="grid grid-cols-3 gap-3 mb-6">
       {/* Streak */}
-      <div className="bg-card border border-border rounded-[18px] shadow-card p-4 flex flex-col items-center justify-center text-center">
+      <div className="bg-card border border-border rounded-[18px] shadow-card p-3 flex flex-col items-center justify-center text-center">
         <Flame className="text-[var(--amber)]" size={22} fill="currentColor" aria-hidden="true" />
         <div className="font-rounded font-extrabold text-[24px] tabular-nums mt-1">{streak}</div>
         <div className="label text-muted">{t('dayStreak', locale)}</div>
       </div>
 
       {/* Daily goal ring */}
-      <div className="bg-card border border-border rounded-[18px] shadow-card p-4 flex flex-col items-center justify-center text-center">
+      <div className="bg-card border border-border rounded-[18px] shadow-card p-3 flex flex-col items-center justify-center text-center">
         <svg width={48} height={48} viewBox="0 0 48 48" aria-hidden="true">
           <circle cx={24} cy={24} r={R} fill="none" stroke="var(--surface-3)" strokeWidth={5} />
           <circle
@@ -45,7 +45,7 @@ export function HomeStats() {
       </div>
 
       {/* Level + XP bar */}
-      <div className="bg-card border border-border rounded-[18px] shadow-card p-4 flex flex-col items-center justify-center text-center">
+      <div className="bg-card border border-border rounded-[18px] shadow-card p-3 flex flex-col items-center justify-center text-center">
         <div className="font-rounded font-extrabold text-[24px] tabular-nums text-primary">{level}</div>
         <div className="w-full h-1.5 bg-surface-3 rounded-full overflow-hidden mt-1.5 mb-1">
           <div

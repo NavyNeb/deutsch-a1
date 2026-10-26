@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { BarChart3, Menu, X } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { useUser } from '@/lib/useUser';
@@ -14,19 +14,15 @@ import { InstallMenuItem } from '@/components/pwa/InstallMenuItem';
 const MAIN: { href: string; key: UIKey }[] = [
   { href: '/', key: 'navHome' },
   { href: '/textbook', key: 'navTextbook' },
-  { href: '/specials', key: 'navSpecials' },
-  { href: '/games', key: 'navGames' },
-  { href: '/speak', key: 'navSpeak' },
-  { href: '/write', key: 'navWrite' },
-  { href: '/dictionary', key: 'navDictionary' },
+  { href: '/games', key: 'navPractice' },
   { href: '/exams', key: 'navExams' },
-  { href: '/statistics', key: 'navStatistics' },
+  { href: '/dictionary', key: 'navDictionary' },
 ];
 
 function useActive() {
   const p = usePathname();
   return (href: string) =>
-    href === '/' ? p === '/' : href === '/games' ? p.startsWith('/games') || p.startsWith('/practice') : p.startsWith(href);
+    href === '/' ? p === '/' : href === '/games' ? ['/games', '/practice', '/speak', '/write', '/specials'].some((x) => p.startsWith(x)) : p.startsWith(href);
 }
 
 export function TopNav() {
@@ -46,10 +42,10 @@ export function TopNav() {
         <Link href="/" className="font-rounded font-extrabold text-[20px] tracking-tight text-text no-underline shrink-0">
           Deutsch<span className="text-primary">.</span>
         </Link>
-        <span className="hidden xl:block w-px h-6 bg-border" />
+        <span className="hidden md:block w-px h-6 bg-border" />
 
         {/* Primary links */}
-        <nav className="hidden xl:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           {MAIN.map((l) => (
             <Link key={l.href} href={l.href} className={linkCls(isActive(l.href))}>
               {t(l.key, locale)}
@@ -60,15 +56,18 @@ export function TopNav() {
         <div className="flex-1" />
 
         {/* Right controls */}
-        <div className="hidden xl:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2.5">
           <LanguageToggle />
           <ThemeToggle />
+          <Link href="/statistics" aria-label={t('navStatistics', locale)} title={t('navStatistics', locale)} className="grid place-items-center w-10 h-10 rounded-full border border-border text-text-2 hover:text-text">
+            <BarChart3 size={18} />
+          </Link>
           <AccountArea user={user} configured={supabaseConfigured} locale={locale} />
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="xl:hidden grid place-items-center w-10 h-10 rounded-full border border-border text-text"
+          className="md:hidden grid place-items-center w-10 h-10 rounded-full border border-border text-text"
           aria-label={t('openMenu', locale)}
           onClick={() => setMobileOpen((o) => !o)}
         >
@@ -78,7 +77,7 @@ export function TopNav() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-border bg-card">
+        <div className="md:hidden border-t border-border bg-card">
           <div className="mx-auto max-w-[1200px] px-5 py-3 grid gap-1">
             {MAIN.map((l) => (
               <Link
@@ -90,6 +89,9 @@ export function TopNav() {
                 {t(l.key, locale)}
               </Link>
             ))}
+            <Link href="/statistics" onClick={() => setMobileOpen(false)} className="rounded-[12px] px-3 py-2.5 font-rounded font-semibold no-underline text-text-2 hover:bg-surface-2">
+              {t('navStatistics', locale)}
+            </Link>
             <InstallMenuItem onDone={() => setMobileOpen(false)} />
             <div className="flex items-center gap-2 pt-2">
               <LanguageToggle />
