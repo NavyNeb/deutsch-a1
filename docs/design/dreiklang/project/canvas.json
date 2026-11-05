@@ -1,0 +1,31 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-05T12:00:00Z" },
+  "title": "Deutsch — Dreiklang Redesign",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 2480, "title": "Design language — Dreiklang" },
+    "Today.dc.html": { "x": 0, "y": 2600, "w": 1440, "h": 1080, "expand": "fill", "title": "Heute — Today (desktop)" },
+    "Today-Mobile.dc.html": { "x": 1520, "y": 2600, "w": 390, "h": 844, "title": "Heute — Today (phone)" },
+    "Path.dc.html": { "x": 0, "y": 3800, "w": 1440, "h": 1180, "expand": "fill", "title": "Weg — The path (desktop)" },
+    "Lesson-Word.dc.html": { "x": 0, "y": 5100, "w": 1440, "h": 900, "expand": "fill", "title": "Lesson — Wortkarte (desktop)" },
+    "Lesson-Word-Mobile.dc.html": { "x": 1520, "y": 5100, "w": 390, "h": 844, "title": "Lesson — Wortkarte (phone)" },
+    "Library.dc.html": { "x": 0, "y": 6120, "w": 1440, "h": 960, "expand": "fill", "title": "Bibliothek + ⌘K search" },
+    "Exercise-Mobile.dc.html": { "x": 1520, "y": 6120, "w": 390, "h": 844, "is_interactive": true, "title": "Exercise + feedback (interactive)" },
+    "Complete-Mobile.dc.html": { "x": 1990, "y": 6120, "w": 390, "h": 844, "title": "Lektion geschafft (phone)" }
+  },
+  "order": [
+    "Main.dc.html",
+    "Today.dc.html",
+    "Today-Mobile.dc.html",
+    "Path.dc.html",
+    "Lesson-Word.dc.html",
+    "Lesson-Word-Mobile.dc.html",
+    "Library.dc.html",
+    "Exercise-Mobile.dc.html",
+    "Complete-Mobile.dc.html"
+  ],
+  "notes": {},
+  "designSystems": []
+}
