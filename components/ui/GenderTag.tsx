@@ -1,21 +1,21 @@
 import type { Gender } from '@/content/types';
-
-const COLOR: Record<string, string> = { der: 'var(--der)', die: 'var(--die)', das: 'var(--das)' };
+import { genderMeta } from '@/lib/gender';
+import { GenderShape } from './GenderShape';
 
 export function GenderTag({ gender }: { gender: Gender }) {
-  if (!gender) return null;
-  const c = COLOR[gender];
+  const meta = genderMeta(gender);
+  if (!meta) return null;
   return (
     <span
-      className="label"
+      className="inline-flex items-center gap-1.5 font-display font-semibold text-[14px]"
       style={{
-        color: c,
-        border: `1px solid ${c}`,
-        background: `color-mix(in srgb, ${c} 12%, transparent)`,
+        color: meta.text,
+        background: `color-mix(in srgb, ${meta.fill} 14%, transparent)`,
         borderRadius: 999,
-        padding: '2px 9px',
+        padding: '3px 11px 3px 9px',
       }}
     >
+      <GenderShape gender={gender} size={9} />
       {gender}
     </span>
   );
