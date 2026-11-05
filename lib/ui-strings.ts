@@ -137,6 +137,14 @@ export const UI = {
 
   // Top navigation / shell
   navHome: { en: 'Home', fr: 'Accueil' },
+  navToday: { en: 'Today', fr: 'Aujourd’hui' },
+  navPath: { en: 'Path', fr: 'Parcours' },
+  navLibrary: { en: 'Library', fr: 'Bibliothèque' },
+  navMe: { en: 'You', fr: 'Toi' },
+  navMain: { en: 'Main', fr: 'Principal' },
+  navTabs: { en: 'Tabs', fr: 'Onglets' },
+  searchAnything: { en: 'Search anything', fr: 'Tout rechercher' },
+  streakDays: { en: 'in a row', fr: 'd’affilée' },
   navTextbook: { en: 'Textbook', fr: 'Manuel' },
   navStatistics: { en: 'Statistics', fr: 'Statistiques' },
   navGames: { en: 'Games', fr: 'Jeux' },
