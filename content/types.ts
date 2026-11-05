@@ -67,6 +67,7 @@ export const LessonSchema = z.object({
   themeFr: z.string().optional(),
   goals: z.array(z.string()),
   goalsFr: z.array(z.string()).optional(),
+  canDo: z.object({ de: z.string(), en: z.string(), fr: z.string().optional() }).optional(), // "Ich kann …" line for the path screen
   steps: z.array(LessonStepSchema).min(1),
 });
 export type Lesson = z.infer<typeof LessonSchema>;
