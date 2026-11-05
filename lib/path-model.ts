@@ -6,15 +6,20 @@ type Tri = { de: string; en: string; fr: string };
 
 export const LEVELS: Level[] = ['A1', 'A2', 'B1', 'B2'];
 
-/** Placeholder chapter names for A1 (the content model only has module numbers). */
+export const LEVEL_NAME: Record<Level, { en: string; fr: string }> = {
+  A1: { en: 'Beginner', fr: 'Débutant' },
+  A2: { en: 'Elementary', fr: 'Élémentaire' },
+  B1: { en: 'Intermediate', fr: 'Intermédiaire' },
+  B2: { en: 'Upper intermediate', fr: 'Intermédiaire supérieur' },
+};
+
+/** Placeholder chapter names for A1's five modules (the content model only has module numbers). */
 export const CHAPTER_NAMES: Record<string, Tri> = {
   'A1-1': { de: 'Kennenlernen', en: 'Getting to know each other', fr: 'Faire connaissance' },
   'A1-2': { de: 'Alltag & Dinge', en: 'Daily life & things', fr: 'Quotidien et objets' },
   'A1-3': { de: 'Freizeit & Essen', en: 'Free time & food', fr: 'Loisirs et repas' },
-  'A1-4': { de: 'Zuhause', en: 'At home', fr: 'Chez soi' },
-  'A1-5': { de: 'Unterwegs', en: 'On the go', fr: 'En chemin' },
-  'A1-6': { de: 'Jahreslauf', en: 'The year', fr: 'L’année' },
-  'A1-7': { de: 'Mehr zu üben', en: 'More to practise', fr: 'Pour s’exercer' },
+  'A1-4': { de: 'Unterwegs', en: 'On the go', fr: 'En chemin' },
+  'A1-5': { de: 'Jahreslauf', en: 'The year', fr: 'L’année' },
 };
 
 export type Chapter = { key: string; level: Level; module: number; name: Tri; lessons: Lesson[] };

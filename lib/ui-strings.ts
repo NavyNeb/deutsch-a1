@@ -137,6 +137,9 @@ export const UI = {
 
   // Top navigation / shell
   navHome: { en: 'Home', fr: 'Accueil' },
+  pathOpenNote: { en: 'All lessons are open — we just point the way', fr: 'Toutes les leçons sont ouvertes — on te montre juste le chemin' },
+  chaptersWord: { en: 'chapters', fr: 'chapitres' },
+  groupLevels: { en: 'Levels', fr: 'Niveaux' },
   stepWord: { en: 'Step', fr: 'Étape' },
   ofWord: { en: 'of', fr: 'sur' },
   minLeft: { en: 'min left', fr: 'min restantes' },
