@@ -8,7 +8,7 @@ import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
-import { lessonGlyph } from '@/lib/lesson-visuals';
+import { LessonArt } from '@/components/ui/LessonArt';
 import { GROUP_BAND } from '@/lib/special-visuals';
 import { GROUP_LABEL } from '@/content/specials/meta';
 import { BookRefLinks } from '@/components/learn/BookRefLinks';
@@ -44,7 +44,7 @@ export function SpecialOverview({ special }: { special: Special }) {
           <span className="font-rounded font-bold text-[12px] opacity-90">{pick(group.en, group.fr, locale)}</span>
         </div>
         <div className="flex items-start gap-4">
-          <span aria-hidden="true" className="text-[52px] leading-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.2)]">{lessonGlyph(special)}</span>
+          <span className="relative block shrink-0 w-[64px] h-[64px]"><LessonArt lesson={special} /></span>
           <div className="min-w-0">
             <h1 className="font-rounded font-extrabold text-[clamp(28px,5vw,40px)] leading-tight m-0 break-words">{special.title.de}</h1>
             <p className="m-0 mt-1 text-[16px] opacity-90">{pick(special.title.en, special.title.fr, locale)}</p>

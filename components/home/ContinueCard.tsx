@@ -7,7 +7,7 @@ import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
 import { lessonCompletion } from '@/lib/progress';
-import { lessonBand, lessonGlyph } from '@/lib/lesson-visuals';
+import { LessonArt } from '@/components/ui/LessonArt';
 
 export function ContinueCard() {
   const { state } = useProgress();
@@ -16,7 +16,6 @@ export function ContinueCard() {
   const next = ordered.find((l) => lessonCompletion(state, l) < 1);
   if (!next) return null;
   const pct = Math.round(lessonCompletion(state, next) * 100);
-  const band = lessonBand(next);
 
   return (
     <Link
@@ -24,9 +23,7 @@ export function ContinueCard() {
       className="group flex items-center gap-4 mb-4 p-4 sm:p-5 rounded-[22px] no-underline text-inherit border border-border bg-card shadow-card
         transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-pop"
     >
-      <span className="grid place-items-center shrink-0 w-16 h-16 rounded-[18px] text-[34px]" style={{ background: band.grad }}>
-        {lessonGlyph(next)}
-      </span>
+      <span className="relative shrink-0 w-16 h-16 rounded-[18px] bg-surface-2 p-2"><LessonArt lesson={next} /></span>
       <div className="min-w-0 flex-1">
         <span className="label text-muted">{next.level} · L{next.number}{pct > 0 ? ` · ${pct}%` : ''}</span>
         <h2 className="font-rounded font-extrabold text-[20px] leading-tight m-0 mt-0.5 truncate">{next.title.de}</h2>

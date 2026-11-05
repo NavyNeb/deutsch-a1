@@ -6,7 +6,7 @@ import type { SpecialProgress } from '@/lib/specials-progress';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
-import { lessonGlyph } from '@/lib/lesson-visuals';
+import { LessonArt } from '@/components/ui/LessonArt';
 import { GROUP_BAND } from '@/lib/special-visuals';
 
 export function levelRange(sp: Special): string {
@@ -29,9 +29,7 @@ export function SpecialCard({ special, progress }: { special: Special; progress:
         transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-1 hover:shadow-pop hover:border-border-strong"
     >
       <div className="relative h-[84px] flex items-center px-4" style={{ background: band.grad }}>
-        <span aria-hidden="true" className="text-[40px] leading-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.18)] transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-6">
-          {lessonGlyph(special)}
-        </span>
+        <span className="relative block w-[56px] h-[56px]"><LessonArt lesson={special} /></span>
         <span
           className="absolute top-3 right-4 font-rounded font-extrabold text-[11px] tracking-wide rounded-full px-2 py-0.5 backdrop-blur-sm"
           style={{ background: 'rgba(255,255,255,0.22)', color: band.ink }}

@@ -5,7 +5,7 @@ import type { Lesson } from '@/content/types';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
-import { lessonBand, lessonGlyph } from '@/lib/lesson-visuals';
+import { LessonArt } from '@/components/ui/LessonArt';
 
 const R = 15;
 const C = 2 * Math.PI * R;
@@ -15,8 +15,6 @@ export function LessonCard({ lesson, completion }: { lesson: Lesson; completion:
   const pct = Math.max(0, Math.min(1, completion));
   const complete = pct >= 1;
   const started = pct > 0 && !complete;
-  const band = lessonBand(lesson);
-  const glyph = lessonGlyph(lesson);
 
   return (
     <Link
@@ -24,41 +22,38 @@ export function LessonCard({ lesson, completion }: { lesson: Lesson; completion:
       className="group relative flex flex-col bg-card border border-border rounded-[22px] shadow-card overflow-hidden no-underline text-inherit
         transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-1 hover:shadow-pop hover:border-border-strong"
     >
-      {/* Illustrated colour band */}
-      <div className="relative h-[92px] flex items-center px-4" style={{ background: band.grad }}>
-        <span className="text-[44px] leading-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.18)] transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-6">
-          {glyph}
-        </span>
-        <span
-          className="absolute top-3 left-4 font-rounded font-extrabold text-[11px] tracking-wide rounded-full px-2 py-0.5 backdrop-blur-sm"
-          style={{ background: 'rgba(255,255,255,0.22)', color: band.ink }}
-        >
+      {/* Generated artwork + progress */}
+      <div className="relative h-[92px] bg-surface-2 overflow-hidden">
+        <div className="absolute right-4 top-3 bottom-3 w-[76px]">
+          <LessonArt lesson={lesson} />
+        </div>
+        <span className="absolute top-3 left-4 font-sans font-semibold text-[12px] tracking-wide rounded-full px-2 py-0.5 bg-surface-3 text-text-2">
           {lesson.level} · L{lesson.number}
         </span>
 
         {/* progress ring / done badge */}
-        <span className="absolute top-2.5 right-3 grid place-items-center w-11 h-11">
+        <span className="absolute bottom-2.5 left-3 grid place-items-center w-11 h-11">
           {complete ? (
-            <span className="grid place-items-center w-8 h-8 rounded-full bg-white text-[color:var(--good)] shadow-sm">
+            <span className="grid place-items-center w-8 h-8 rounded-full bg-text text-bg">
               <Check size={18} strokeWidth={3} />
             </span>
           ) : (
             <>
               <svg width={40} height={40} viewBox="0 0 40 40" aria-hidden="true">
-                <circle cx={20} cy={20} r={R} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth={4} />
+                <circle cx={20} cy={20} r={R} fill="none" stroke="var(--s3)" strokeWidth={4} />
                 <circle
-                  cx={20} cy={20} r={R} fill="none" stroke="#fff" strokeWidth={4}
+                  cx={20} cy={20} r={R} fill="none" stroke="var(--t1)" strokeWidth={4}
                   strokeDasharray={C} strokeDashoffset={C * (1 - pct)}
                   strokeLinecap="round" transform="rotate(-90 20 20)"
                 />
               </svg>
               {started && (
-                <span className="absolute font-rounded font-extrabold text-[10px] text-white tabular-nums">
+                <span className="absolute font-sans font-semibold text-[12px] text-text tabular-nums">
                   {Math.round(pct * 100)}
                 </span>
               )}
               {!started && (
-                <Play className="absolute text-white" size={14} strokeWidth={2.6} fill="currentColor" />
+                <Play className="absolute text-text" size={14} strokeWidth={2.6} fill="currentColor" />
               )}
             </>
           )}
