@@ -1,4 +1,7 @@
-// Placeholder until its screen lands (see docs/superpowers/plans/2026-11-05-dreiklang-redesign.md).
-export default function Page() {
-  return <div className="mx-auto max-w-[1100px] px-5 py-10" />;
+import { Welcome } from '@/components/home/Welcome';
+
+export const metadata = { title: 'Deutsch — Learn German A1 to B2' };
+
+export default function WelcomePage() {
+  return <Welcome />;
 }
