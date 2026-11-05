@@ -14,7 +14,7 @@ export function DueTodayCard() {
 
   return (
     <Link
-      href="/practice"
+      href="/practice/review"
       className="flex items-center gap-4 mb-6 p-4 rounded-[18px] no-underline text-inherit
         border border-[color:color-mix(in_srgb,var(--primary)_35%,transparent)]
         bg-[linear-gradient(120deg,var(--primary-wash),transparent)]

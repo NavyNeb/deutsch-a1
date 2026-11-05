@@ -31,7 +31,7 @@ const GAMES: Game[] = [
     titleKey: 'audioTitle', taglineKey: 'audioTagline', ctaKey: 'playNow',
   },
   {
-    href: '/practice',
+    href: '/practice/review',
     gradient: 'linear-gradient(135deg,#C9822B,#E8B05C)',
     titleKey: 'reviewGameTitle', taglineKey: 'reviewGameTagline', ctaKey: 'startReview',
   },
