@@ -42,8 +42,8 @@ function PromptCard({ prompt, index, total, locale }: { prompt: SprechenPart['pr
         </Button>
       </div>
 
-      {sr.ready && !sr.supported && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember)]">{t('examSpeakUnsupported', locale)}</p>}
-      {sr.error && !sr.listening && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember)]">{t(sr.error === 'denied' ? 'speakDenied' : 'speakNoSpeech', locale)}</p>}
+      {sr.ready && !sr.supported && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember-t)]">{t('examSpeakUnsupported', locale)}</p>}
+      {sr.error && !sr.listening && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember-t)]">{t(sr.error === 'denied' ? 'speakDenied' : 'speakNoSpeech', locale)}</p>}
 
       {best && (
         <p className="m-0 mt-3 text-[14.5px]">

@@ -36,6 +36,8 @@
   --color-das-text: var(--das-t);
   --color-ok: var(--ok);
   --color-ember: var(--ember);
+  --color-ok-text: var(--ok-t);
+  --color-ember-text: var(--ember-t);
   /* Compatibility: the in-progress textbook reader (not yet landed) still uses text-primary / bg-primary. */
   --color-primary: var(--cta);
 
@@ -74,6 +76,8 @@
   --das-t: #FFCB45;
   --ok: #46E0A0;
   --ember: #FF9150;
+  --ok-t: #46E0A0;
+  --ember-t: #FF9150;
   --cta: #F5F3EE;
   --cta-i: #09090B;
   --ring: rgba(245, 243, 238, 0.55);
@@ -104,6 +108,8 @@
   --das-t: #7A5600;
   --ok: #0E9F6E;
   --ember: #D9601A;
+  --ok-t: #046C48;
+  --ember-t: #A8420A;
   --cta: #111114;
   --cta-i: #F5F3EE;
   --ring: rgba(17, 17, 20, 0.5);

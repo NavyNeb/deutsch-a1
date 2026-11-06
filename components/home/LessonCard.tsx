@@ -69,9 +69,9 @@ export function LessonCard({ lesson, completion }: { lesson: Lesson; completion:
             className={
               'font-display font-bold text-[12px] rounded-full px-2.5 py-1 ' +
               (complete
-                ? 'bg-[var(--ok-wash)] text-[var(--ok)]'
+                ? 'bg-[var(--ok-wash)] text-[var(--ok-t)]'
                 : started
-                  ? 'bg-[var(--ember-wash)] text-ember'
+                  ? 'bg-[var(--ember-wash)] text-ember-text'
                   : 'bg-surface-2 text-text')
             }
           >

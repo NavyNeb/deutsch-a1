@@ -203,7 +203,7 @@ export function WriteEditor() {
     : words === 0 ? ''
     : visible.length === 0 ? t('writeAllGood', locale)
     : `${visible.length} ${t('writeIssuesUnit', locale)}`;
-  const statusTone = status === 'paused' || status === 'error' ? 'text-[var(--ember)]' : status === 'done' && visible.length === 0 && words > 0 ? 'text-[var(--ok)]' : 'text-muted';
+  const statusTone = status === 'paused' || status === 'error' ? 'text-[var(--ember-t)]' : status === 'done' && visible.length === 0 && words > 0 ? 'text-[var(--ok-t)]' : 'text-muted';
 
   return (
     <div className="mx-auto max-w-[820px] px-5 py-8 md:py-12">
@@ -263,7 +263,7 @@ export function WriteEditor() {
       {finish && (
         <div role="status" className="rounded-[16px] border border-border bg-[var(--ok-wash)] px-5 py-4 mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="font-display font-extrabold text-[20px] m-0 text-[var(--ok)]">{t('writeDone', locale)}</p>
+            <p className="font-display font-extrabold text-[20px] m-0 text-[var(--ok-t)]">{t('writeDone', locale)}</p>
             <p className="m-0 mt-1 text-[14.5px] text-text-2">
               {finish.words} {t('wordsUnit', locale)}
               {' · '}
@@ -366,7 +366,7 @@ export function WriteEditor() {
                       <span className="text-[12px] font-display font-bold tracking-wider text-muted uppercase">{t(KIND_LABEL[issue.kind], locale)}</span>
                     </div>
                     <p lang="de" className="m-0 text-[16px]">
-                      <span className="rounded-[6px] bg-[var(--ember-wash)] px-1.5 text-[var(--ember)] line-through decoration-1">{snippet}</span>
+                      <span className="rounded-[6px] bg-[var(--ember-wash)] px-1.5 text-[var(--ember-t)] line-through decoration-1">{snippet}</span>
                     </p>
                     {issue.replacements.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-2">
@@ -376,7 +376,7 @@ export function WriteEditor() {
                             type="button"
                             lang="de"
                             onClick={(e) => { e.stopPropagation(); replaceWith(issue, r); }}
-                            className="rounded-full border border-[var(--ok)] bg-[var(--ok-wash)] px-3.5 py-1.5 font-display font-bold text-[15px] text-[var(--ok)] hover:brightness-95 active:scale-[0.98] transition"
+                            className="rounded-full border border-[var(--ok)] bg-[var(--ok-wash)] px-3.5 py-1.5 font-display font-bold text-[15px] text-[var(--ok-t)] hover:brightness-95 active:scale-[0.98] transition"
                           >
                             {r}
                           </button>
@@ -387,7 +387,7 @@ export function WriteEditor() {
                     {w?.state === 'done' && (
                       <p className="m-0 mt-3 rounded-[12px] bg-surface-2 px-3.5 py-3 text-[14.5px] leading-relaxed whitespace-pre-wrap">{w.text}</p>
                     )}
-                    {w?.state === 'error' && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember)]">{t('writeWhyError', locale)}</p>}
+                    {w?.state === 'error' && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember-t)]">{t('writeWhyError', locale)}</p>}
                     <div className="mt-3 flex items-center gap-2">
                       {ASSIST_ON && (
                         <Button variant="secondary" size="sm" onClick={(e) => { e.stopPropagation(); explain(issue); }} disabled={w?.state === 'loading'}>

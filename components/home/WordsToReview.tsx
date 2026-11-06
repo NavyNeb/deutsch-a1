@@ -51,7 +51,7 @@ export function WordsToReview() {
                   aria-label={`${t('removeWord', locale)} ${item.german} ${t('fromReview', locale)}`}
                   onClick={() => toggleHardWord(item.id)}
                   className="grid place-items-center shrink-0 w-8 h-8 rounded-full text-muted border border-border
-                    transition-[background,color,border-color] duration-150 hover:text-[var(--ember)] hover:border-[var(--ember)] hover:bg-[var(--ember-wash)]"
+                    transition-[background,color,border-color] duration-150 hover:text-[var(--ember-t)] hover:border-[var(--ember)] hover:bg-[var(--ember-wash)]"
                 >
                   <X size={15} strokeWidth={2.4} />
                 </button>

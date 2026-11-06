@@ -24,7 +24,7 @@ export function WordCard({ item }: { item: VocabItem }) {
         <button
           onClick={() => toggleHardWord(item.id)}
           aria-label={saved ? t('savedToReview', locale) : t('addToLearned', locale)}
-          className={'absolute top-2 right-2 grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-ember' : 'text-muted hover:text-ember')}
+          className={'absolute top-2 right-2 grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-ember-text' : 'text-muted hover:text-ember-text')}
         >
           <Star size={17} strokeWidth={2.2} fill={saved ? 'currentColor' : 'none'} />
         </button>
@@ -62,7 +62,7 @@ export function WordCard({ item }: { item: VocabItem }) {
           className={
             'w-full inline-flex items-center justify-center gap-1.5 rounded-full py-3 font-display font-bold text-[14px] transition ' +
             (saved
-              ? 'bg-[var(--ok-wash)] text-[var(--ok)] hover:brightness-[0.98]'
+              ? 'bg-[var(--ok-wash)] text-[var(--ok-t)] hover:brightness-[0.98]'
               : 'bg-[var(--s3)] text-[var(--t1)] hover:brightness-[1.03]')
           }
         >

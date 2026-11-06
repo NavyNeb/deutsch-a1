@@ -2,9 +2,9 @@ import { Check } from 'lucide-react';
 
 type Kind = 'richtig' | 'fast';
 
-const TONE: Record<Kind, { heading: string; color: string; border: string }> = {
-  richtig: { heading: 'Richtig!', color: 'var(--ok)', border: 'var(--ok)' },
-  fast: { heading: 'Fast!', color: 'var(--ember)', border: 'var(--ember)' },
+const TONE: Record<Kind, { heading: string; color: string; text: string; border: string }> = {
+  richtig: { heading: 'Richtig!', color: 'var(--ok)', text: 'var(--ok-t)', border: 'var(--ok)' },
+  fast: { heading: 'Fast!', color: 'var(--ember)', text: 'var(--ember-t)', border: 'var(--ember)' },
 };
 
 /**
@@ -46,7 +46,7 @@ export function FeedbackSheet({
               <Check size={20} strokeWidth={2.6} />
             </span>
           )}
-          <span className="font-display font-semibold text-[34px] leading-none tracking-[-0.01em]" style={{ color: tone.color }}>{tone.heading}</span>
+          <span className="font-display font-semibold text-[34px] leading-none tracking-[-0.01em]" style={{ color: tone.text }}>{tone.heading}</span>
         </div>
 
         {answer && (

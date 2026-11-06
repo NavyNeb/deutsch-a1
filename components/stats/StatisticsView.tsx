@@ -60,10 +60,10 @@ export function StatisticsView() {
 
   const cards = [
     { icon: <Zap size={20} className="text-text" fill="currentColor" strokeWidth={0} />, value: level, label: t('currentLevel', locale), sub: `${into}/${span} XP` },
-    { icon: <Flame size={20} className="text-ember" fill="currentColor" />, value: streak, label: t('dayStreak', locale) },
-    { icon: <Star size={20} className="text-ember" fill="currentColor" />, value: state.xp, label: t('totalXp', locale) },
+    { icon: <Flame size={20} className="text-ember-text" fill="currentColor" />, value: streak, label: t('dayStreak', locale) },
+    { icon: <Star size={20} className="text-ember-text" fill="currentColor" />, value: state.xp, label: t('totalXp', locale) },
     { icon: <GraduationCap size={20} className="text-text" />, value: lessonsDone, label: t('lessonsDone', locale), sub: specials.length ? `${specialsPassed}/${specials.length} ${t('navSpecials', locale)}` : undefined },
-    { icon: <Trophy size={20} className="text-ember" />, value: state.hardWords.length, label: t('wordsSaved', locale) },
+    { icon: <Trophy size={20} className="text-ember-text" />, value: state.hardWords.length, label: t('wordsSaved', locale) },
     { icon: <Target size={20} className="text-text" />, value: accuracy === null ? '—' : `${accuracy}%`, label: t('accuracy', locale) },
   ];
 

@@ -32,6 +32,12 @@ function contrast(a: string, b: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+function mix(fg: string, bg: string, pct: number): string {
+  const a = parseInt(fg.slice(1), 16), b = parseInt(bg.slice(1), 16);
+  const ch = (shift: number) => Math.round(((a >> shift) & 255) * pct + ((b >> shift) & 255) * (1 - pct));
+  return '#' + [16, 8, 0].map((sh) => ch(sh).toString(16).padStart(2, '0')).join('');
+}
+
 const themes = { dark: tokens(':root'), light: tokens('[data-theme="light"]') } as const;
 
 describe('design tokens', () => {
@@ -60,6 +66,19 @@ describe('design tokens', () => {
   it('cta text meets 7:1 in both themes', () => {
     for (const [name, t] of Object.entries(themes)) {
       expect(contrast(t['cta-i'], t['cta']), name).toBeGreaterThanOrEqual(7);
+    }
+  });
+
+  it('feedback text colours meet 4.5:1 on their own 15% tint (the Richtig!/Fast! sheets) in both themes', () => {
+    for (const [name, t] of Object.entries(themes)) {
+      expect(t['ok-t'], `${name} has an ok text token`).toBeTruthy();
+      expect(t['ember-t'], `${name} has an ember text token`).toBeTruthy();
+      expect(contrast(t['ok-t'], mix(t['ok'], t['s1'], 0.15)), `${name}: ok-t on ok sheet`).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(t['ember-t'], mix(t['ember'], t['s1'], 0.15)), `${name}: ember-t on ember sheet`).toBeGreaterThanOrEqual(4.5);
+      for (const bg of ['ink', 's1']) {
+        expect(contrast(t['ok-t'], t[bg]), `${name}: ok-t on ${bg}`).toBeGreaterThanOrEqual(4.5);
+        expect(contrast(t['ember-t'], t[bg]), `${name}: ember-t on ${bg}`).toBeGreaterThanOrEqual(4.5);
+      }
     }
   });
 });

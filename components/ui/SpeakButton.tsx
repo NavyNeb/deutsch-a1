@@ -33,7 +33,7 @@ export function SpeakButton({ target, size = 34 }: { target: string; size?: numb
       {listening && <span className="text-muted text-sm">{t('listening', locale)}</span>}
       {alternatives != null && !listening && (
         ok ? (
-          <span className="text-ok text-sm font-semibold">✓ {t('soundsGood', locale)}</span>
+          <span className="text-ok-text text-sm font-semibold">✓ {t('soundsGood', locale)}</span>
         ) : (
           <span className="text-muted text-sm">{t('notQuiteHeard', locale)}: „{best?.text ?? alternatives[0] ?? '…'}“</span>
         )

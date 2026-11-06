@@ -33,7 +33,8 @@ describe('TodayView', () => {
     for (const id of ['l1-hallo', 'l1-gutentag']) s.cards[id] = newCard(past);
     replaceProgress(s);
     render(<TodayView />);
-    expect(screen.getByLabelText('words due')).toHaveTextContent('2');
+    expect(screen.getByTestId('due-count')).toHaveTextContent('2');
+    expect(screen.getByTestId('due-count')).not.toHaveAttribute('aria-label');
   });
 
   it('renders the five sections', () => {

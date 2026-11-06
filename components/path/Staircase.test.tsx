@@ -46,4 +46,12 @@ describe('Staircase', () => {
     expect(screen.getByRole('button', { name: /A2/ })).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByRole('button', { name: /A1/ })).toHaveAttribute('aria-pressed', 'false');
   });
+
+  it('the progress fill stays translucent so the level label remains readable at any progress', () => {
+    const { container } = render(<Staircase levels={[{ level: 'A1', done: 18, total: 18 }, { level: 'A2', done: 0, total: 12 }, { level: 'B1', done: 0, total: 12 }, { level: 'B2', done: 0, total: 0 }]} selected="A1" onSelect={() => {}} />);
+    const fill = container.querySelector('[data-fill]') as HTMLElement;
+    expect(fill).not.toBeNull();
+    expect(fill.className).toMatch(/bg-text\/(10|15|20)/);
+    expect(fill.className).not.toMatch(/bg-text\/(7|8|9)\d|bg-text(?![/\w-])/);
+  });
 });

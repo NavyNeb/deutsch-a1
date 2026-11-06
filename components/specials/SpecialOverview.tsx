@@ -76,7 +76,7 @@ export function SpecialOverview({ special }: { special: Special }) {
         <ol className="m-0 p-0 list-none grid gap-2.5">
           {chapters.map(({ step, id }, i) => (
             <li key={id} className="flex gap-3 rounded-[16px] border border-border bg-card px-4 py-3.5">
-              <span className={'grid place-items-center shrink-0 w-8 h-8 rounded-full font-display font-extrabold text-[14px] ' + (done.has(id) ? 'bg-[var(--ok-wash)] text-[var(--ok)]' : 'bg-surface-2 text-text')}>{i + 1}</span>
+              <span className={'grid place-items-center shrink-0 w-8 h-8 rounded-full font-display font-extrabold text-[14px] ' + (done.has(id) ? 'bg-[var(--ok-wash)] text-[var(--ok-t)]' : 'bg-surface-2 text-text')}>{i + 1}</span>
               <div className="min-w-0">
                 <h3 className="font-display font-bold text-[16px] text-text m-0">{pick(step.title, step.titleFr ?? step.title, locale)}</h3>
                 {(step.blurb || step.blurbFr) && <p className="m-0 mt-0.5 text-[14px] text-muted leading-relaxed">{pick(step.blurb ?? '', step.blurbFr ?? step.blurb ?? '', locale)}</p>}

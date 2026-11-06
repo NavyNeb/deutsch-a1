@@ -35,4 +35,10 @@ describe('GoalCard', () => {
     expect(screen.getByRole('img', { name: '100%' })).toBeInTheDocument();
     expect(screen.getByText('Daily goal reached. Well done.')).toBeInTheDocument();
   });
+
+  it('the remaining-XP line does not claim one lesson is enough', () => {
+    replaceSettings({ dailyGoal: 100 });
+    render(<GoalCard />);
+    expect(screen.getByText('100 XP to go', { exact: false }).textContent).not.toMatch(/lesson|leçon/i);
+  });
 });

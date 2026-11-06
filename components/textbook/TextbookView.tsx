@@ -19,9 +19,9 @@ const LEVELS: { lv: Level; diff: 'easy' | 'medium' | 'hard' }[] = [
 ];
 const DIFF_LABEL: Record<'easy' | 'medium' | 'hard', UIKey> = { easy: 'easy', medium: 'medium', hard: 'hard' };
 const DIFF_CLS: Record<'easy' | 'medium' | 'hard', string> = {
-  easy: 'bg-[var(--ok-wash)] text-[var(--ok)]',
-  medium: 'bg-[var(--ember-wash)] text-[var(--ember)]',
-  hard: 'bg-[var(--ember-wash)] text-[var(--ember)]',
+  easy: 'bg-[var(--ok-wash)] text-[var(--ok-t)]',
+  medium: 'bg-[var(--ember-wash)] text-[var(--ember-t)]',
+  hard: 'bg-[var(--ember-wash)] text-[var(--ember-t)]',
 };
 const PER_PAGE = 12;
 

@@ -53,7 +53,7 @@ export function AccountView() {
       <div className="grid gap-4">
         <Card>
           <div className="flex items-center gap-3">
-            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-[var(--ok-wash)] text-[var(--ok)] shrink-0">
+            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-[var(--ok-wash)] text-[var(--ok-t)] shrink-0">
               <Cloud size={20} strokeWidth={2.2} />
             </span>
             <div className="min-w-0">
@@ -71,7 +71,7 @@ export function AccountView() {
             await supabase.from('user_state').delete().eq('user_id', user.id);
             await supabase.auth.signOut();
           }}
-          className="inline-flex items-center justify-center gap-1.5 text-[var(--ember)] text-sm font-display font-semibold py-2 hover:underline"
+          className="inline-flex items-center justify-center gap-1.5 text-[var(--ember-t)] text-sm font-display font-semibold py-2 hover:underline"
         >
           <Trash2 size={15} strokeWidth={2.2} /> {t('deleteData', locale)}
         </button>

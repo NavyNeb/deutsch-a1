@@ -118,7 +118,7 @@ export function QuizGame({
               </button>
               {best > 0 && (
                 <span className="inline-flex items-center gap-1.5 label text-muted">
-                  <Trophy size={15} className="text-ember" /> {t('best', locale)} {best}
+                  <Trophy size={15} className="text-ember-text" /> {t('best', locale)} {best}
                 </span>
               )}
             </div>
@@ -138,11 +138,11 @@ export function QuizGame({
         <div className="max-w-[620px] mx-auto text-center">
           <GameArt src={illustration} small />
           {practice && <p className="font-display font-extrabold text-text text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
-          {isBest && <p className="font-display font-extrabold text-ember text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
+          {isBest && <p className="font-display font-extrabold text-ember-text text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
           <p className="label text-muted mt-2">{t('yourScore', locale)}</p>
           <div className="font-display font-extrabold text-[64px] leading-none text-text tabular-nums my-1">{score}</div>
           <div className="flex items-center justify-center gap-6 mt-3 mb-8 text-[14px] text-muted">
-            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-ember" /> {t('best', locale)} {Math.max(best, score)}</span>
+            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-ember-text" /> {t('best', locale)} {Math.max(best, score)}</span>
             <span className="inline-flex items-center gap-1.5">+{score} {t('xpEarned', locale)}</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -173,15 +173,15 @@ export function QuizGame({
       {/* HUD */}
       <div className="flex items-center gap-4 mb-6">
         <div className="inline-flex items-center gap-2 font-display font-extrabold text-[18px] tabular-nums text-text">
-          <Timer size={18} className={time <= 10 ? 'text-ember' : 'text-text'} strokeWidth={2.4} />
-          <span className={time <= 10 ? 'text-ember' : ''}>{time}s</span>
+          <Timer size={18} className={time <= 10 ? 'text-ember-text' : 'text-text'} strokeWidth={2.4} />
+          <span className={time <= 10 ? 'text-ember-text' : ''}>{time}s</span>
         </div>
         <div className="flex-1 h-2.5 rounded-full bg-surface-3 overflow-hidden">
           <div className="h-full rounded-full transition-[width] duration-1000 ease-linear"
             style={{ width: `${timePct * 100}%`, background: time <= 10 ? 'var(--ember)' : 'linear-gradient(90deg,var(--t1),var(--t1))' }} />
         </div>
         <div className="inline-flex items-center gap-1.5 font-display font-extrabold text-[18px] tabular-nums text-text">
-          <span className="text-ember">★</span> {score}
+          <span className="text-ember-text">★</span> {score}
         </div>
       </div>
 
@@ -212,8 +212,8 @@ export function QuizGame({
           const isPicked = picked === i;
           let cls = 'bg-card border-border hover:border-text hover:-translate-y-0.5';
           if (picked !== null) {
-            if (isAnswer) cls = 'bg-[var(--ok-wash)] border-[var(--ok)] text-[var(--ok)]';
-            else if (isPicked) cls = 'bg-[var(--ember-wash)] border-[var(--ember)] text-[var(--ember)]';
+            if (isAnswer) cls = 'bg-[var(--ok-wash)] border-[var(--ok)] text-[var(--ok-t)]';
+            else if (isPicked) cls = 'bg-[var(--ember-wash)] border-[var(--ember)] text-[var(--ember-t)]';
             else cls = 'bg-card border-border opacity-55';
           }
           return (

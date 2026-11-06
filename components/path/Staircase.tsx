@@ -30,8 +30,8 @@ export function Staircase({ levels, selected, onSelect }: { levels: LevelSummary
               (empty ? 'border-dashed border-border-strong bg-transparent cursor-not-allowed' : on ? 'bg-surface-2 border-border-strong cursor-pointer' : 'bg-card border-border cursor-pointer hover:bg-surface-2')
             }
           >
-            {!empty && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 bg-text/85" style={{ height: `${Math.round(fraction * 100)}%` }} />}
-            <span className="absolute left-5 top-4 block">
+            {!empty && fraction > 0 && <span aria-hidden="true" data-fill className="absolute inset-x-0 bottom-0 bg-text/15 border-t-2 border-text" style={{ height: `${Math.round(fraction * 100)}%` }} />}
+            <span className="absolute left-5 top-4 block z-10">
               <span className={'block font-display font-bold text-[32px] leading-none ' + (on ? 'text-text' : empty ? 'text-muted' : 'text-text-2')}>{lv.level}</span>
               <span className="block text-[12px] text-text-2 mt-1">{empty ? t('comingSoon', locale) : `${lv.done} / ${lv.total}`}</span>
             </span>

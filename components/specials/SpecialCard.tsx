@@ -50,7 +50,7 @@ export function SpecialCard({ special, progress }: { special: Special; progress:
             <span
               className={
                 'font-display font-bold text-[12px] rounded-full px-2.5 py-1 ' +
-                (passed ? 'bg-[var(--ok-wash)] text-[var(--ok)]' : started ? 'bg-[var(--ember-wash)] text-ember' : 'bg-surface-2 text-text')
+                (passed ? 'bg-[var(--ok-wash)] text-[var(--ok-t)]' : started ? 'bg-[var(--ember-wash)] text-ember-text' : 'bg-surface-2 text-text')
               }
             >
               {status}

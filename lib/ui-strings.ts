@@ -152,7 +152,7 @@ export const UI = {
   stepWord: { en: 'Step', fr: 'Étape' },
   ofWord: { en: 'of', fr: 'sur' },
   minLeft: { en: 'min left', fr: 'min restantes' },
-  xpToGo: { en: 'XP to go — finishing the lesson gets you there.', fr: 'XP restants — finir la leçon suffit.' },
+  xpToGo: { en: 'XP to go today.', fr: 'XP restants aujourd’hui.' },
   goalReached: { en: 'Daily goal reached. Well done.', fr: 'Objectif du jour atteint. Bravo.' },
   allLessonsDone: { en: 'Every lesson is complete. Review or explore the library.', fr: 'Toutes les leçons sont terminées. Révise ou explore la bibliothèque.' },
   qpSprint: { en: '60 s · match pairs', fr: '60 s · associer' },

@@ -16,9 +16,9 @@ const XP_DAILY_CAP = 60;
 
 const chip = (active: boolean, state?: 'good' | 'bad' | 'missed') =>
   'min-h-[44px] min-w-[44px] rounded-full border px-4 py-2 font-display font-bold text-[15px] transition disabled:cursor-default ' +
-  (state === 'good' ? 'border-[var(--ok)] bg-[var(--ok-wash)] text-[var(--ok)]'
-    : state === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]'
-    : state === 'missed' ? 'border-[var(--ok)] border-dashed text-[var(--ok)]'
+  (state === 'good' ? 'border-[var(--ok)] bg-[var(--ok-wash)] text-[var(--ok-t)]'
+    : state === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember-t)]'
+    : state === 'missed' ? 'border-[var(--ok)] border-dashed text-[var(--ok-t)]'
     : active ? 'border-text bg-surface-2 text-text'
     : 'border-border bg-card text-text-2 hover:bg-surface-2');
 
@@ -119,7 +119,7 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
 
               {checked && (
                 <div className="mt-3 flex items-start gap-2 text-[14px] leading-relaxed">
-                  {ok ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--ok)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-[var(--ember)]" />}
+                  {ok ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--ok-t)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-[var(--ember-t)]" />}
                   <span className="text-text-2">
                     {!answered && <b className="mr-1">{t('examNoAnswer', locale)}.</b>}
                     {item.explain?.[locale]}
@@ -186,7 +186,7 @@ export function LesenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
       {checked && (
         <div role="status" className={'mb-8 rounded-[18px] border p-5 ' + (isPassed ? 'border-[var(--ok)] bg-[var(--ok-wash)]' : 'border-border bg-card')}>
           <p className="m-0 font-display font-extrabold text-[28px]">{result.correct} / {result.total} <span className="text-muted text-[18px]">({result.percent}%)</span></p>
-          <p className={'m-0 mt-1 font-display font-bold ' + (isPassed ? 'text-[var(--ok)]' : 'text-text-2')}>
+          <p className={'m-0 mt-1 font-display font-bold ' + (isPassed ? 'text-[var(--ok-t)]' : 'text-text-2')}>
             {isPassed ? t('examPassed', locale) : t('examNotPassed', locale)} · {t('examPassMark', locale)} {fmt.passPercent}%
             {xp > 0 && ` · +${xp} ${t('examXpEarned', locale)}`}
           </p>

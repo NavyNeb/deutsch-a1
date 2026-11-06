@@ -133,8 +133,8 @@ export function ReviewSession() {
                 }
               >
                 <span className="flex-1">{o}</span>
-                {variant === 'correct' && <Check size={17} strokeWidth={2.6} className="text-[var(--ok)]" aria-hidden="true" />}
-                {variant === 'wrong' && <X size={17} strokeWidth={2.6} className="text-[var(--ember)]" aria-hidden="true" />}
+                {variant === 'correct' && <Check size={17} strokeWidth={2.6} className="text-[var(--ok-t)]" aria-hidden="true" />}
+                {variant === 'wrong' && <X size={17} strokeWidth={2.6} className="text-[var(--ember-t)]" aria-hidden="true" />}
               </button>
             );
           })}

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
@@ -26,6 +26,7 @@ import { ExerciseView } from '@/components/exercises/ExerciseView';
 
 const isTextField = (el: EventTarget | null) =>
   el instanceof HTMLElement && (['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName) || el.closest('[contenteditable="true"]') !== null);
+const FOCUSABLE = 'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 const isInteractive = (el: EventTarget | null) => el instanceof HTMLElement && el.closest('button, a, [role="button"]') !== null;
 
 export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Lesson; exitHref?: string; reviewHref?: string }) {
@@ -35,6 +36,8 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
   const [i, setI] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
   const [finished, setFinished] = useState(false);
   const [retaking, setRetaking] = useState(false);
   const step = lesson.steps[i];
@@ -64,6 +67,30 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
   const jumpFromNav = (target: number) => {
     goTo(target);
     setDrawerOpen(false);
+  };
+
+  const openDrawer = () => { returnFocus.current = document.activeElement as HTMLElement | null; setDrawerOpen(true); };
+
+  // The contents drawer is a modal: focus moves in, Escape closes from anywhere, focus returns to the opener.
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const panel = drawerRef.current;
+    const first = panel?.querySelector<HTMLElement>(FOCUSABLE);
+    (first ?? panel)?.focus();
+    const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.preventDefault(); setDrawerOpen(false); } };
+    window.addEventListener('keydown', onEsc);
+    return () => { window.removeEventListener('keydown', onEsc); returnFocus.current?.focus?.(); };
+  }, [drawerOpen]);
+
+  const trapTab = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const items = Array.from(drawerRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []);
+    if (!items.length) { e.preventDefault(); return; }
+    const first = items[0];
+    const lastItem = items[items.length - 1];
+    const active = document.activeElement;
+    if (e.shiftKey && (active === first || active === drawerRef.current)) { e.preventDefault(); lastItem.focus(); }
+    else if (!e.shiftKey && active === lastItem) { e.preventDefault(); first.focus(); }
   };
 
   // Keyboard: Space / → advance, ← goes back. Never while typing in a field (answers contain spaces),
@@ -105,20 +132,24 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
 
   return (
     <div className="min-h-[100dvh] bg-bg flex flex-col">
-      <LessonTopBar lesson={lesson} segments={segmentsFor(lesson, i)} onClose={() => router.push(exitHref)} onOpenContents={() => setDrawerOpen(true)} />
+      <LessonTopBar lesson={lesson} segments={segmentsFor(lesson, i)} onClose={() => router.push(exitHref)} onOpenContents={openDrawer} />
 
       {drawerOpen && (
         <div className="fixed inset-0 z-50">
           <button
             type="button"
             aria-label={t('closeLessonNav', locale)}
+            tabIndex={-1}
             onClick={() => setDrawerOpen(false)}
             className="absolute inset-0 w-full border-0 cursor-default bg-black/55"
           />
           <div
+            ref={drawerRef}
             role="dialog"
+            aria-modal="true"
+            tabIndex={-1}
             aria-label={t('lessonStepsNav', locale)}
-            onKeyDown={(e) => { if (e.key === 'Escape') setDrawerOpen(false); }}
+            onKeyDown={trapTab}
             className="absolute inset-y-0 left-0 w-[min(360px,90vw)] bg-card border-r border-border-strong overflow-y-auto overscroll-contain pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
           >
             <LessonStepNav lesson={lesson} current={i} onJump={jumpFromNav} onClose={() => setDrawerOpen(false)} />

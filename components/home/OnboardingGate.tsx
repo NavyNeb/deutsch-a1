@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useSettings, DAILY_GOAL_OPTIONS } from '@/lib/settings-store';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
+import { useProgress } from '@/lib/progress-store';
+import { useUser } from '@/lib/useUser';
+import { isFreshVisitor } from '@/lib/visitor';
 import { Button } from '@/components/ui/Button';
 import { GenderShape } from '@/components/ui/GenderShape';
 
@@ -13,13 +16,16 @@ const GOAL_MINUTES: Record<number, number> = { 20: 5, 30: 10, 50: 20, 100: 40 };
 export function OnboardingGate() {
   const { settings, completeOnboarding } = useSettings();
   const { locale } = useLocale();
+  const { state } = useProgress();
+  const user = useUser();
   const [mounted, setMounted] = useState(false);
   const [goal, setGoal] = useState(30);
 
   // Gate on mount so server and first client render agree (both null), then the
   // overlay appears only for a genuinely un-onboarded learner — no SSR flash.
   useEffect(() => setMounted(true), []);
-  if (!mounted || settings.onboarded) return null;
+  // A brand-new visitor sees the welcome page first; the pace question comes once they have started.
+  if (!mounted || settings.onboarded || isFreshVisitor(state, user !== null)) return null;
 
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="onboarding-title" className="fixed inset-0 z-50 grid place-items-center p-6 bg-bg/90 backdrop-blur-[7px]">

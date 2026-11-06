@@ -49,7 +49,7 @@ function FormTaskView({ task, locale, onDone }: { task: FormTask; locale: Locale
                   className={'w-full rounded-[12px] border bg-transparent px-3.5 py-3 text-[16px] outline-none transition-colors focus:border-text ' +
                     (result ? (ok ? 'border-[var(--ok)]' : 'border-[var(--ember)]') : 'border-border')}
                 />
-                {result && !ok && <span lang="de" className="mt-1 block text-[13.5px] text-[var(--ok)]">{t('examCorrectIs', locale)}: {f.accept[0]}</span>}
+                {result && !ok && <span lang="de" className="mt-1 block text-[13.5px] text-[var(--ok-t)]">{t('examCorrectIs', locale)}: {f.accept[0]}</span>}
               </label>
             );
           })}
@@ -95,7 +95,7 @@ function MessageTaskView({ task, locale, onDone }: { task: MessageTask; locale: 
         {task.points.map((p) => (
           <li key={p.id} className="flex items-start gap-2.5 rounded-[14px] border border-border bg-card px-4 py-3">
             {text.trim() ? (
-              covered[p.id] ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--ok)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-muted" />
+              covered[p.id] ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--ok-t)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-muted" />
             ) : <span className="mt-0.5 h-[18px] w-[18px] shrink-0 rounded-full border border-border" />}
             <span><span lang="de" className="text-[15.5px]">{p.de}</span><TrLine tr={p.tr} /></span>
           </li>
@@ -120,12 +120,12 @@ function MessageTaskView({ task, locale, onDone }: { task: MessageTask; locale: 
           <span className="font-normal text-muted"> · {t('examTarget', locale)} {task.minWords}–{task.maxWords}</span>
         </span>
         {words > 0 && (
-          <span className={length === 'ok' ? 'text-[var(--ok)]' : 'text-[var(--ember)]'}>{t(lengthLabel, locale)}</span>
+          <span className={length === 'ok' ? 'text-[var(--ok-t)]' : 'text-[var(--ember-t)]'}>{t(lengthLabel, locale)}</span>
         )}
         {words > 0 && (
           <>
-            <span className={frame.greeting ? 'text-[var(--ok)]' : 'text-muted'}>{frame.greeting ? '✓' : '○'} {t('examGreeting', locale)}</span>
-            <span className={frame.closing ? 'text-[var(--ok)]' : 'text-muted'}>{frame.closing ? '✓' : '○'} {t('examClosing', locale)}</span>
+            <span className={frame.greeting ? 'text-[var(--ok-t)]' : 'text-muted'}>{frame.greeting ? '✓' : '○'} {t('examGreeting', locale)}</span>
+            <span className={frame.closing ? 'text-[var(--ok-t)]' : 'text-muted'}>{frame.closing ? '✓' : '○'} {t('examClosing', locale)}</span>
           </>
         )}
       </div>
@@ -137,15 +137,15 @@ function MessageTaskView({ task, locale, onDone }: { task: MessageTask; locale: 
       {grammar && words > 0 && (
         <div className="mt-3 rounded-[16px] border border-border bg-card p-4" aria-live="polite">
           {check.status === 'checking' && <p className="m-0 flex items-center gap-2 text-[14px] text-muted"><Loader2 size={14} className="animate-spin" />{t('writeChecking', locale)}</p>}
-          {check.status === 'paused' && <p className="m-0 text-[14px] text-[var(--ember)]">{t('writePaused', locale)}</p>}
-          {check.status === 'error' && <p className="m-0 text-[14px] text-[var(--ember)]">{t('writeCheckError', locale)}</p>}
-          {check.status === 'done' && check.issues.length === 0 && <p className="m-0 text-[14px] text-[var(--ok)]">{t('writeAllGood', locale)}</p>}
+          {check.status === 'paused' && <p className="m-0 text-[14px] text-[var(--ember-t)]">{t('writePaused', locale)}</p>}
+          {check.status === 'error' && <p className="m-0 text-[14px] text-[var(--ember-t)]">{t('writeCheckError', locale)}</p>}
+          {check.status === 'done' && check.issues.length === 0 && <p className="m-0 text-[14px] text-[var(--ok-t)]">{t('writeAllGood', locale)}</p>}
           {check.issues.length > 0 && (
             <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {check.issues.slice(0, 8).map((i) => (
                 <li key={i.id} className="text-[14.5px]">
-                  <span lang="de" className="rounded-[6px] bg-[var(--ember-wash)] px-1.5 text-[var(--ember)] line-through">{check.checkedText.slice(i.offset, i.offset + i.length)}</span>
-                  {i.replacements[0] && <span lang="de" className="ml-2 rounded-[6px] bg-[var(--ok-wash)] px-1.5 text-[var(--ok)]">{i.replacements[0]}</span>}
+                  <span lang="de" className="rounded-[6px] bg-[var(--ember-wash)] px-1.5 text-[var(--ember-t)] line-through">{check.checkedText.slice(i.offset, i.offset + i.length)}</span>
+                  {i.replacements[0] && <span lang="de" className="ml-2 rounded-[6px] bg-[var(--ok-wash)] px-1.5 text-[var(--ok-t)]">{i.replacements[0]}</span>}
                   {i.message && <span className="mt-0.5 block text-[13.5px] text-muted">{i.message}</span>}
                 </li>
               ))}
@@ -161,7 +161,7 @@ function MessageTaskView({ task, locale, onDone }: { task: MessageTask; locale: 
         <Button size="sm" variant="secondary" onClick={() => setShowModel((v) => !v)}>
           {showModel ? <EyeOff size={16} /> : <Eye size={16} />}{t(showModel ? 'examHideModel' : 'examShowModel', locale)}
         </Button>
-        {finished && <span role="status" className="text-[14px] font-display font-bold text-[var(--ok)]">{xp > 0 ? `+${xp} ${t('examXpEarned', locale)}` : t('writeXpAlready', locale)}</span>}
+        {finished && <span role="status" className="text-[14px] font-display font-bold text-[var(--ok-t)]">{xp > 0 ? `+${xp} ${t('examXpEarned', locale)}` : t('writeXpAlready', locale)}</span>}
       </div>
       <p className="m-0 mt-3 max-w-[64ch] text-[13px] leading-relaxed text-muted">{t('examSelfCheckNote', locale)}</p>
 

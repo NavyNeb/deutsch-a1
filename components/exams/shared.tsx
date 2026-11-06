@@ -70,7 +70,7 @@ export function TimerPill({ left, locale }: { left: number; locale: 'en' | 'fr' 
       role="timer"
       className={
         'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13.5px] font-display font-bold tabular-nums ' +
-        (over ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]' : 'border-border bg-card text-text-2')
+        (over ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember-t)]' : 'border-border bg-card text-text-2')
       }
     >
       <Clock size={15} />

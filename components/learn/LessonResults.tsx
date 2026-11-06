@@ -63,7 +63,7 @@ export function LessonResults({ lesson, onHome, homeLabel, reviewHref, onRetakeQ
         <p className="font-display text-[20px] text-text-2 m-0">{lesson.title.de}</p>
 
         {quiz && (
-          <p role="status" className={'font-semibold m-0 mt-4 ' + (quiz.quizPassed ? 'text-ok' : 'text-text-2')}>
+          <p role="status" className={'font-semibold m-0 mt-4 ' + (quiz.quizPassed ? 'text-ok-text' : 'text-text-2')}>
             {quiz.quizPassed ? t('quizPassed', locale) : t('quizNotPassed', locale)}
           </p>
         )}

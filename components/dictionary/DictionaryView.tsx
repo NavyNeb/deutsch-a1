@@ -166,7 +166,7 @@ export function DictionaryView() {
 
 function Notice({ children, tone }: { children: React.ReactNode; tone?: 'bad' }) {
   return (
-    <div className={'rounded-[18px] border px-5 py-4 text-[15px] flex flex-wrap items-center ' + (tone === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]' : 'border-border bg-card text-text-2')}>
+    <div className={'rounded-[18px] border px-5 py-4 text-[15px] flex flex-wrap items-center ' + (tone === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember-t)]' : 'border-border bg-card text-text-2')}>
       {children}
     </div>
   );
@@ -198,7 +198,7 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
             onClick={() => toggleHardWord(lesson.id)}
             aria-label={saved ? t('savedToReview', locale) : t('addToLearned', locale)}
             title={t('dictStarHint', locale)}
-            className={'absolute top-2 right-2 z-10 pointer-events-auto grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-ember' : 'text-muted hover:text-ember')}
+            className={'absolute top-2 right-2 z-10 pointer-events-auto grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-ember-text' : 'text-muted hover:text-ember-text')}
           >
             <Star size={17} strokeWidth={2.2} fill={saved ? 'currentColor' : 'none'} />
           </button>

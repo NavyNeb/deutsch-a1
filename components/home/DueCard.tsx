@@ -19,7 +19,7 @@ export function DueCard() {
     <section data-testid="today-due" className="relative overflow-hidden rounded-[24px] border border-border bg-card p-8 min-h-[300px]">
       <div className="eyebrow">Wiederholen</div>
       <div className="flex items-baseline gap-2.5 mt-5">
-        <span aria-label={t('wordsDue', locale)} className="font-display font-semibold text-[72px] leading-none tracking-[-0.03em] tabular-nums">{due.length}</span>
+        <span data-testid="due-count" className="font-display font-semibold text-[72px] leading-none tracking-[-0.03em] tabular-nums">{due.length}</span>
         <span className="text-[15px] text-text-2">{t('wordsDue', locale)}</span>
       </div>
 

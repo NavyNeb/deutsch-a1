@@ -146,7 +146,7 @@ export function SettingsView() {
               <div className="label text-muted">{t('level', locale)}</div>
             </div>
             <div className="flex-1">
-              <div className="font-display font-extrabold text-[24px] tabular-nums text-[var(--ember)]">{streak}</div>
+              <div className="font-display font-extrabold text-[24px] tabular-nums text-[var(--ember-t)]">{streak}</div>
               <div className="label text-muted">{t('dayStreak', locale)}</div>
             </div>
             <div className="flex-1">

@@ -28,9 +28,9 @@ const ERROR_KEY: Record<SpeechError, UIKey> = {
 };
 
 const STATUS_CLS: Record<WordStatus, string> = {
-  ok: 'bg-[var(--ok-wash)] text-[var(--ok)]',
-  near: 'bg-[var(--ember-wash)] text-[var(--ember)]',
-  missed: 'bg-[var(--ember-wash)] text-[var(--ember)]',
+  ok: 'bg-[var(--ok-wash)] text-[var(--ok-t)]',
+  near: 'bg-[var(--ember-wash)] text-[var(--ember-t)]',
+  missed: 'bg-[var(--ember-wash)] text-[var(--ember-t)]',
 };
 
 export function SpeakStudio() {
@@ -190,7 +190,7 @@ export function SpeakStudio() {
             )}
 
             {sr.error && !sr.listening && (
-              <p role="alert" className="mt-4 text-center text-[14.5px] text-[var(--ember)]">{t(ERROR_KEY[sr.error], locale)}</p>
+              <p role="alert" className="mt-4 text-center text-[14.5px] text-[var(--ember-t)]">{t(ERROR_KEY[sr.error], locale)}</p>
             )}
 
             {best && (

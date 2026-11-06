@@ -36,9 +36,9 @@ function MissedCard({ m }: { m: MissedWord }) {
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
             <span className="font-display font-extrabold text-[20px] text-text">{item.german}</span>
             <GenderTag gender={item.gender} />
-            {m.misses > 1 && <span className="label text-[var(--ember)]">{t('missedTimes', locale)}{m.misses}</span>}
+            {m.misses > 1 && <span className="label text-[var(--ember-t)]">{t('missedTimes', locale)}{m.misses}</span>}
           </div>
-          <p className="m-0 mt-1 flex items-center gap-1.5 text-[15px] font-semibold text-[var(--ok)]">
+          <p className="m-0 mt-1 flex items-center gap-1.5 text-[15px] font-semibold text-[var(--ok-t)]">
             <Check size={15} strokeWidth={3} aria-hidden="true" /> {meaning(item, locale)}
           </p>
         </div>
@@ -47,11 +47,11 @@ function MissedCard({ m }: { m: MissedWord }) {
 
       {m.wrongPicks.length > 0 && (
         <p className="m-0 mt-2.5 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[14px] text-text-2">
-          <X size={14} strokeWidth={3} className="text-[var(--ember)] shrink-0" aria-hidden="true" />
+          <X size={14} strokeWidth={3} className="text-[var(--ember-t)] shrink-0" aria-hidden="true" />
           <span className="text-muted">{t('youChose', locale)}:</span>
           {m.wrongPicks.map((w, i) => (
             <span key={w.id}>
-              <span className="font-semibold text-[var(--ember)]">{meaning(w, locale)}</span>
+              <span className="font-semibold text-[var(--ember-t)]">{meaning(w, locale)}</span>
               <span className="text-muted"> ({w.german})</span>
               {i < m.wrongPicks.length - 1 ? ',' : ''}
             </span>
@@ -91,7 +91,7 @@ export function RoundReview({ summary }: { summary: RoundSummary }) {
       </div>
 
       {summary.missed.length === 0 ? (
-        <p className="rounded-2xl border border-border bg-[var(--ok-wash)] text-[var(--ok)] font-display font-bold text-[16px] text-center px-4 py-5 m-0">
+        <p className="rounded-2xl border border-border bg-[var(--ok-wash)] text-[var(--ok-t)] font-display font-bold text-[16px] text-center px-4 py-5 m-0">
           🎉 {t('perfectRound', locale)}
         </p>
       ) : (
@@ -109,7 +109,7 @@ export function RoundReview({ summary }: { summary: RoundSummary }) {
       {summary.right.length > 0 && (
         <details className="mt-6 rounded-2xl border border-border bg-card group">
           <summary className="flex items-center gap-2 cursor-pointer list-none px-4 py-3.5 font-display font-bold text-[15px] text-text [&::-webkit-details-marker]:hidden">
-            <Check size={16} strokeWidth={3} className="text-[var(--ok)]" aria-hidden="true" />
+            <Check size={16} strokeWidth={3} className="text-[var(--ok-t)]" aria-hidden="true" />
             {t('correctWords', locale)} <span className="text-muted tabular-nums">({summary.right.length})</span>
           </summary>
           <ul className="list-none m-0 px-4 pb-3 grid">
