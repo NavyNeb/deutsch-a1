@@ -27,9 +27,9 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 
 function ThemeChoice() {
   const { locale } = useLocale();
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   useEffect(() => {
-    setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+    setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   }, []);
   const choose = (next: 'light' | 'dark') => {
     setTheme(next);

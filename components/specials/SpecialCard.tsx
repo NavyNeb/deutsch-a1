@@ -7,7 +7,6 @@ import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
 import { LessonArt } from '@/components/ui/LessonArt';
-import { GROUP_BAND } from '@/lib/special-visuals';
 
 export function levelRange(sp: Special): string {
   const [a, b] = sp.special.levels;
@@ -16,7 +15,6 @@ export function levelRange(sp: Special): string {
 
 export function SpecialCard({ special, progress }: { special: Special; progress: SpecialProgress }) {
   const { locale } = useLocale();
-  const band = GROUP_BAND[special.special.group];
   const passed = progress.quizPassed;
   const started = !passed && (progress.stepsDone > 0 || progress.quizAnswered > 0);
   const pct = progress.stepsTotal ? progress.stepsDone / progress.stepsTotal : 0;
@@ -28,16 +26,15 @@ export function SpecialCard({ special, progress }: { special: Special; progress:
       className="group relative flex flex-col bg-card border border-border rounded-[22px] shadow-card overflow-hidden no-underline text-inherit
         transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-1 hover:shadow-pop hover:border-border-strong"
     >
-      <div className="relative h-[84px] flex items-center px-4" style={{ background: band.grad }}>
+      <div className="relative h-[84px] flex items-center px-4 bg-surface-2">
         <span className="relative block w-[56px] h-[56px]"><LessonArt lesson={special} /></span>
         <span
-          className="absolute top-3 right-4 font-rounded font-extrabold text-[11px] tracking-wide rounded-full px-2 py-0.5 backdrop-blur-sm"
-          style={{ background: 'rgba(255,255,255,0.22)', color: band.ink }}
+          className="absolute top-3 right-4 font-sans font-semibold text-[12px] tracking-wide rounded-full px-2 py-0.5 bg-surface-3 text-text-2"
         >
           {levelRange(special)}
         </span>
         {passed && (
-          <span className="absolute top-2.5 left-3 grid place-items-center w-7 h-7 rounded-full bg-white text-[color:var(--good)] shadow-sm" aria-hidden="true">
+          <span className="absolute top-2.5 left-3 grid place-items-center w-7 h-7 rounded-full bg-text text-bg" aria-hidden="true">
             <Check size={16} strokeWidth={3} />
           </span>
         )}
