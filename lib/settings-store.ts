@@ -47,6 +47,16 @@ export function getSettingsState(): Settings {
 export function replaceSettings(next: Partial<Settings>) { set({ ...state, ...next }); }
 export function subscribeSettings(l: () => void) { return subscribe(l); }
 
+// Another tab saved new settings: take them, so this tab never writes a stale copy back over them.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== null && e.key !== KEY) return;
+    state = load();
+    hydrated = true;
+    listeners.forEach((l) => l());
+  });
+}
+
 export function useSettings() {
   const s = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   return {

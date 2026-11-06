@@ -120,4 +120,10 @@ describe('HelpPanel', () => {
     expect(screen.getByRole('tab', { name: 'Cette page' })).toBeInTheDocument();
     act(() => hook.result.current.setLocale('en'));
   });
+
+  it('sits right of the rail when Kumpel is on the left', () => {
+    replaceSettings({ kumpel: { side: 'left' } });
+    setup();
+    expect(screen.getByRole('dialog').className).toContain('md:left-[288px]');
+  });
 });

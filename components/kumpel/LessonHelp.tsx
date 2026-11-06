@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { ArrowRight, Gauge, Languages, ListTree, Mic, PenLine, Play, Star, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Gauge, Languages, ListTree, Mic, PenLine, Play, Star, X, type LucideIcon } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pickL } from '@/lib/kumpel-copy';
@@ -74,7 +74,15 @@ export function LessonHelp({ kind, onClose }: { kind: StepKind; onClose: () => v
         <div className="flex items-center gap-3 mb-1.5">
           <KumpelFace mood="point" size={38} />
           <div className="eyebrow flex-1">Kumpel · Hilfe</div>
-          <kbd className="text-[12px] text-muted border border-border-strong rounded-md px-2 py-0.5">esc</kbd>
+          <kbd className="hidden sm:inline text-[12px] text-muted border border-border-strong rounded-md px-2 py-0.5">esc</kbd>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={t('kumpelClose', locale)}
+            className="grid place-items-center w-11 h-11 rounded-full border border-border-strong bg-transparent text-text cursor-pointer hover:bg-surface-2"
+          >
+            <X size={20} strokeWidth={1.8} aria-hidden="true" />
+          </button>
         </div>
         <h2 className="mt-2.5 mb-3 font-display font-semibold text-[26px] leading-[1.1] tracking-[-0.02em]">{pickL(help.title, locale)}</h2>
 

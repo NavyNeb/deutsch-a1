@@ -4,6 +4,8 @@ import { lessons } from '@/content';
 import { buildPaletteIndex, searchPalette } from '@/lib/palette-index';
 import { addRecent, clearRecents, getRecents } from '@/lib/recent-searches';
 import { replaceSettings } from '@/lib/settings-store';
+import { emptyProgress } from '@/lib/progress';
+import { replaceProgress } from '@/lib/progress-store';
 
 const push = vi.fn();
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push }), usePathname: () => '/' }));
@@ -14,7 +16,14 @@ vi.mock('@/lib/dictionary', () => ({
 
 import { CommandPalette } from './CommandPalette';
 
-beforeEach(() => { push.mockClear(); localStorage.clear(); clearRecents(); });
+beforeEach(() => {
+  push.mockClear();
+  localStorage.clear();
+  clearRecents();
+  const p = emptyProgress();
+  p.xp = 10; // a learner who has started: Heute is the real Heute
+  replaceProgress(p);
+});
 
 const open = () => fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
 
@@ -169,5 +178,14 @@ describe('CommandPalette', () => {
     await act(async () => {});
     expect(screen.queryByRole('option', { name: /Kumpel/ })).toBeNull();
     replaceSettings({ kumpel: undefined });
+  });
+
+  it('hides the Kumpel command on the welcome page a brand-new visitor sees', async () => {
+    replaceProgress(emptyProgress());
+    render(<CommandPalette />);
+    open();
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'kum' } });
+    await act(async () => {});
+    expect(screen.queryByRole('option', { name: /Kumpel/ })).toBeNull();
   });
 });

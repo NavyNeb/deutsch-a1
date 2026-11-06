@@ -79,4 +79,22 @@ describe('KumpelSettings', () => {
       expect(screen.getByRole('button', { name: 'Relancer la visite' })).toBeInTheDocument();
     });
   });
+
+  it('shows Show Kumpel as off after Ruhe, bitte, and turning it on un-mutes', () => {
+    replaceSettings({ kumpel: { muted: true, enabled: true } });
+    render(<KumpelSettings />);
+    const sw = screen.getByRole('switch', { name: 'Show Kumpel' });
+    expect(sw).toHaveAttribute('aria-checked', 'false');
+    fireEvent.click(sw);
+    expect(saved().muted).toBe(false);
+    expect(saved().enabled).toBe(true);
+    expect(screen.getByRole('switch', { name: 'Show Kumpel' })).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('stacks each action under its text on narrow phones so French labels fit', () => {
+    render(<KumpelSettings />);
+    const row = screen.getByRole('button', { name: 'Reset all hints' }).parentElement!;
+    expect(row.className).toContain('max-sm:flex-col');
+    expect(row.className).toContain('max-sm:items-start');
+  });
 });

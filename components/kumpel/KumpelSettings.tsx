@@ -1,16 +1,16 @@
 'use client';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
-import { useKumpel } from '@/lib/kumpel-store';
+import { isVisible, useKumpel } from '@/lib/kumpel-store';
 import { openKumpel } from '@/lib/kumpel-events';
 import { Card } from '@/components/ui/Card';
 import { Segmented } from '@/components/ui/Segmented';
 import { Switch } from '@/components/ui/Switch';
 import { KumpelFace } from './KumpelFace';
 
-function Row({ title, hint, className = '', children }: { title: string; hint: string; className?: string; children: React.ReactNode }) {
+function Row({ title, hint, className = '', stack = false, children }: { title: string; hint: string; className?: string; stack?: boolean; children: React.ReactNode }) {
   return (
-    <div className={'flex items-center gap-4 py-4 border-b border-border last:border-b-0 ' + className}>
+    <div className={'flex items-center gap-4 py-4 border-b border-border last:border-b-0 ' + (stack ? 'max-sm:flex-col max-sm:items-start ' : '') + className}>
       <div className="flex-1 min-w-0">
         <b className="block font-display font-semibold text-[16px]">{title}</b>
         <p className="m-0 mt-1 text-[13px] leading-[1.45] text-text-2">{hint}</p>
@@ -36,7 +36,11 @@ export function KumpelSettings() {
       </div>
 
       <Row title={t('kumpelShow', locale)} hint={t('kumpelShowHint', locale)}>
-        <Switch checked={state.enabled} onChange={(enabled) => update({ enabled })} label={t('kumpelShow', locale)} />
+        <Switch
+          checked={isVisible(state)}
+          onChange={(on) => update(on ? { enabled: true, muted: false } : { enabled: false })}
+          label={t('kumpelShow', locale)}
+        />
       </Row>
 
       <Row title={t('kumpelPosition', locale)} hint={t('kumpelPhoneNote', locale)} className="max-md:hidden">
@@ -67,7 +71,7 @@ export function KumpelSettings() {
         />
       </Row>
 
-      <Row title="Tour starten" hint={t('kumpelRestartHint', locale)}>
+      <Row title="Tour starten" hint={t('kumpelRestartHint', locale)} stack>
         <button
           type="button"
           className={outlineButton}
@@ -81,7 +85,7 @@ export function KumpelSettings() {
         </button>
       </Row>
 
-      <Row title={t('kumpelResetHints', locale)} hint={t('kumpelResetHintsHint', locale)}>
+      <Row title={t('kumpelResetHints', locale)} hint={t('kumpelResetHintsHint', locale)} stack>
         <button type="button" className={outlineButton} onClick={resetHints}>{t('kumpelResetHints', locale)}</button>
       </Row>
 

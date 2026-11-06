@@ -2,6 +2,15 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { replaceSettings } from '@/lib/settings-store';
+import { emptyProgress } from '@/lib/progress';
+import { replaceProgress } from '@/lib/progress-store';
+
+/** A learner who has started, so Heute is the real Heute and not the welcome page. */
+function started() {
+  const p = emptyProgress();
+  p.xp = 10;
+  replaceProgress(p);
+}
 
 let pathname = '/';
 vi.mock('next/navigation', () => ({
@@ -17,6 +26,7 @@ beforeEach(() => {
   pathname = '/';
   localStorage.clear();
   replaceSettings({ kumpel: undefined });
+  started();
 });
 
 describe('Kumpel (resting buddy)', () => {
@@ -52,7 +62,7 @@ describe('Kumpel (resting buddy)', () => {
     replaceSettings({ kumpel: { side: 'left' } });
     render(<Kumpel />);
     const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
-    expect(b.className).toContain('md:left-6');
+    expect(b.className).toContain('md:left-[288px]'); // clear of the 264px rail
     expect(b.className).toContain('right-4');
     expect(b.className).not.toContain('md:right-6');
   });
@@ -163,5 +173,19 @@ describe('Kumpel (resting buddy)', () => {
       expect(saved().welcomed).toBe(true);
       expect(saved().tourDone).not.toBe(true);
     });
+  });
+
+  it('stays away from the welcome page a brand-new visitor sees on /', async () => {
+    replaceProgress(emptyProgress());
+    render(<Kumpel />);
+    await act(async () => {});
+    expect(button()).toBeNull();
+  });
+
+  it('a brand-new visitor still gets Kumpel on other pages', async () => {
+    replaceProgress(emptyProgress());
+    pathname = '/library';
+    render(<Kumpel />);
+    expect(await screen.findByRole('button', { name: 'Open Kumpel help' })).toBeInTheDocument();
   });
 });

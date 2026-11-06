@@ -1,13 +1,12 @@
 'use client';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 import type { Gender, Lesson } from '@/content/types';
 import { MIN_QUERY_LETTERS, searchDictionary, type DictHit } from '@/lib/dictionary';
 import { letters } from '@/lib/dict-shared.mjs';
 import { KUMPEL_HREF, buildPaletteIndex, searchPalette, type PaletteItem } from '@/lib/palette-index';
-import { isVisible, useKumpel } from '@/lib/kumpel-store';
-import { pageGroupFor } from '@/lib/kumpel-pages';
+import { useKumpelAvailable } from '@/lib/kumpel-available';
 import { openKumpel } from '@/lib/kumpel-events';
 import { addRecent, useRecents } from '@/lib/recent-searches';
 import { useLocale } from '@/lib/locale-store';
@@ -27,8 +26,7 @@ const domId = (s: string) => s.replace(/[^\w-]/g, '_');
 
 export function CommandPalette() {
   const router = useRouter();
-  const pathname = usePathname();
-  const { state: kumpel } = useKumpel();
+  const { on: kumpelOn } = useKumpelAvailable();
   const { locale } = useLocale();
   const listId = useId();
   const [open, setOpen] = useState(false);
@@ -92,7 +90,6 @@ export function CommandPalette() {
   }, [open, query]);
 
   // The Kumpel command only makes sense where Kumpel can actually appear.
-  const kumpelOn = isVisible(kumpel) && pageGroupFor(pathname) !== null;
   const index = useMemo(
     () => buildPaletteIndex(lessons, locale).filter((i) => i.href !== KUMPEL_HREF || kumpelOn),
     [lessons, locale, kumpelOn],

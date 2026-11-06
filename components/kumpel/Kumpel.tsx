@@ -1,15 +1,13 @@
 'use client';
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useReducedMotion } from 'framer-motion';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
-import { isHelloDue, isVisible, localDay, useKumpel } from '@/lib/kumpel-store';
-import { pageGroupFor, type PageGroupId } from '@/lib/kumpel-pages';
+import { isHelloDue, localDay, useKumpel } from '@/lib/kumpel-store';
+import type { PageGroupId } from '@/lib/kumpel-pages';
+import { useKumpelAvailable } from '@/lib/kumpel-available';
 import { useSettings } from '@/lib/settings-store';
-import { useProgress } from '@/lib/progress-store';
-import { useUser } from '@/lib/useUser';
-import { isFreshVisitor } from '@/lib/visitor';
 import { KUMPEL_EVENT, openKumpel, type KumpelOpenDetail } from '@/lib/kumpel-events';
 import { KumpelFace } from './KumpelFace';
 import { HelpPanel } from './HelpPanel';
@@ -21,28 +19,23 @@ type Panel = 'closed' | 'here' | 'ask';
 
 // Phones: above the tab bar. The path page also has a fixed "start lesson" bar there, so the buddy sits above that too.
 const BOTTOM = 'bottom-[calc(88px+env(safe-area-inset-bottom))] md:bottom-6';
+const BOTTOM_PATH = 'bottom-[calc(168px+env(safe-area-inset-bottom))] md:bottom-[calc(160px+env(safe-area-inset-bottom))] lg:bottom-6';
 const HINT_KEY: Record<PageGroupId, UIKey> = {
   today: 'kumpelHintToday', path: 'kumpelHintPath', practice: 'kumpelHintPractice', library: 'kumpelHintLibrary', me: 'kumpelHintMe',
 };
-const BOTTOM_PATH = 'bottom-[calc(168px+env(safe-area-inset-bottom))] md:bottom-[calc(160px+env(safe-area-inset-bottom))] lg:bottom-6';
-
-const subscribeNever = () => () => {};
 
 export function Kumpel() {
   const pathname = usePathname();
   const { locale } = useLocale();
   const { state, update, markSeen, finishHello, snoozeHello, muteForever } = useKumpel();
   const { settings } = useSettings();
-  const { state: progress } = useProgress();
-  const user = useUser();
+  const { group, on } = useKumpelAvailable();
   const calm = useReducedMotion() || state.motion === 'calm';
-  // False on the server and during hydration, true afterwards: the buddy never flashes for a muted learner.
-  const mounted = useSyncExternalStore(subscribeNever, () => true, () => false);
   const [panel, setPanel] = useState<Panel>('closed');
   const [tour, setTour] = useState(false);
   const [announce, setAnnounce] = useState('');
   const [hint, setHint] = useState<PageGroupId | null>(null);
-  const group = pageGroupFor(pathname);
+  const [helloOpen, setHelloOpen] = useState(false);
   const btnRef = useRef<HTMLButtonElement>(null);
   const groupRef = useRef(group);
   useEffect(() => { groupRef.current = group; });
@@ -76,14 +69,18 @@ export function Kumpel() {
   }, [update, locale]);
 
   // The hello: once, on Heute, for someone who has started learning and answered the pace question.
-  const helloDue =
-    mounted && group === 'today' && settings.onboarded && !isFreshVisitor(progress, user !== null) &&
-    isHelloDue(state, localDay(new Date()));
-  const helloShown = helloDue && panel === 'closed' && !tour;
+  // It stays open for this visit once it has appeared, and showing it counts as "Später" so it never returns by itself today.
+  const helloDue = on && group === 'today' && settings.onboarded && isHelloDue(state, localDay(new Date()));
+  if (helloDue && !helloOpen && panel === 'closed' && !tour) setHelloOpen(true);
+  if (helloOpen && (!on || group !== 'today' || panel !== 'closed' || tour)) setHelloOpen(false);
+  useEffect(() => {
+    if (helloOpen) snoozeHello(false);
+  }, [helloOpen, snoozeHello]);
+  const helloShown = helloOpen;
 
   // A page hint, the first time each kind of page is visited after the hello.
   const hintWanted =
-    mounted && !!group && isVisible(state) && state.hints && state.welcomed &&
+    on && !!group && state.hints && state.welcomed &&
     panel === 'closed' && !tour && !helloShown && !state.seen.includes(group);
   if (hintWanted && hint !== group) setHint(group);
   if (hint && hint !== group && !hintWanted) setHint(null);
@@ -92,12 +89,14 @@ export function Kumpel() {
     if (hint && hint === group) markSeen(hint);
   }, [hint, group, markSeen]);
 
-  if (!mounted || !group || !isVisible(state)) return null;
+  if (!on || !group) return null;
 
-  const side = state.side === 'left' ? 'md:left-6' : 'md:right-6';
+  // On the left the buddy and its cards clear the 264px rail (288px = rail + a 24px gutter).
+  const left = state.side === 'left';
+  const side = left ? 'md:left-[288px]' : 'md:right-6';
   const bottom = group === 'path' ? BOTTOM_PATH : BOTTOM;
-  const hintSide = state.side === 'left' ? 'md:right-auto md:left-[104px]' : 'md:right-[104px]';
-  const helloSide = state.side === 'left' ? 'md:right-auto md:left-6' : 'md:right-6';
+  const hintSide = left ? 'md:right-auto md:left-[368px]' : 'md:right-[104px]';
+  const helloSide = left ? 'md:right-auto md:left-[288px]' : 'md:left-auto md:right-6';
   const showHint = hint === group && panel === 'closed' && !tour && !helloShown;
   return (
     <>
@@ -122,9 +121,9 @@ export function Kumpel() {
     {tour && <Tour onClose={closeTour} />}
     {helloShown && (
       <Hello
-        className={`left-4 right-4 bottom-[calc(160px+env(safe-area-inset-bottom))] md:left-auto md:w-[420px] md:bottom-[100px] ${helloSide}`}
+        className={`left-4 right-4 bottom-[calc(160px+env(safe-area-inset-bottom))] md:w-[420px] md:bottom-[100px] ${helloSide}`}
         onTour={() => { finishHello(); openKumpel({ tour: true }); }}
-        onLater={snoozeHello}
+        onLater={() => { snoozeHello(); setHelloOpen(false); }}
         onMute={muteForever}
       />
     )}

@@ -50,4 +50,18 @@ describe('LessonHelp', () => {
     expect(document.activeElement).toBe(opener);
     opener.remove();
   });
+
+  it('has a labelled close button that works, so touch and screen-reader users can leave', () => {
+    const onClose = vi.fn();
+    render(<LessonHelp kind="vocab" onClose={onClose} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('keeps Tab inside, cycling through the close button', () => {
+    render(<LessonHelp kind="vocab" onClose={vi.fn()} />);
+    screen.getByRole('button', { name: 'Close' }).focus();
+    fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Tab' });
+    expect(screen.getByRole('dialog').contains(document.activeElement)).toBe(true);
+  });
 });

@@ -5,6 +5,7 @@ import {
   KUMPEL_DEFAULTS,
   isHelloDue,
   isVisible,
+  mergeKumpel,
   localDay,
   nextLocalDay,
   resolveKumpel,
@@ -69,6 +70,41 @@ describe('isHelloDue / isVisible', () => {
   });
 });
 
+describe('updatedAt', () => {
+  it('keeps a valid timestamp and drops a bad one', () => {
+    expect(resolveKumpel({ updatedAt: '2026-11-06T10:00:00.000Z' }).updatedAt).toBe('2026-11-06T10:00:00.000Z');
+    expect(resolveKumpel({ updatedAt: 'yesterday' }).updatedAt).toBeNull();
+    expect(resolveKumpel({ updatedAt: 5 }).updatedAt).toBeNull();
+  });
+});
+
+describe('mergeKumpel', () => {
+  const OLD = '2026-11-06T09:00:00.000Z';
+  const NEW = '2026-11-06T10:00:00.000Z';
+
+  it('takes the cloud copy when this device has never touched Kumpel', () => {
+    expect(mergeKumpel(undefined, { side: 'left', updatedAt: OLD }).side).toBe('left');
+  });
+
+  it('the newer write wins as a whole', () => {
+    const cloudNewer = mergeKumpel({ muted: true, updatedAt: OLD }, { muted: false, updatedAt: NEW });
+    expect(cloudNewer.muted).toBe(false);
+    const localNewer = mergeKumpel({ muted: true, updatedAt: NEW }, { muted: false, updatedAt: OLD });
+    expect(localNewer.muted).toBe(true);
+  });
+
+  it('welcomed and tourDone only ever turn on', () => {
+    const merged = mergeKumpel({ welcomed: true, updatedAt: OLD }, { tourDone: true, updatedAt: NEW });
+    expect(merged.welcomed).toBe(true);
+    expect(merged.tourDone).toBe(true);
+  });
+
+  it('a junk cloud value never beats a real local state', () => {
+    expect(mergeKumpel({ muted: true, updatedAt: OLD }, 'garbage').muted).toBe(true);
+    expect(mergeKumpel({ muted: true }, [1, 2]).muted).toBe(true);
+  });
+});
+
 describe('useKumpel', () => {
   beforeEach(() => {
     localStorage.clear();
@@ -101,6 +137,14 @@ describe('useKumpel', () => {
     act(() => result.current.finishHello());
     expect(result.current.state.welcomed).toBe(true);
     expect(result.current.state.snoozeUntil).toBeNull();
+  });
+
+  it('explicit actions stamp updatedAt but markSeen does not', () => {
+    const { result } = renderHook(() => useKumpel());
+    act(() => result.current.markSeen('today'));
+    expect(result.current.state.updatedAt).toBeNull();
+    act(() => result.current.update({ side: 'left' }));
+    expect(result.current.state.updatedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
   });
 
   it('markSeen is idempotent and resetHints empties the list', () => {

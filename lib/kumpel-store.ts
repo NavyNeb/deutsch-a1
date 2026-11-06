@@ -17,6 +17,8 @@ export type KumpelState = {
   snoozeUntil: string | null; // local day (YYYY-MM-DD) before which the hello stays quiet
   tourDone: boolean;
   seen: string[]; // page groups whose hint has already been shown
+  /** When the learner last changed something on purpose (ISO). Last write wins when devices sync; markSeen never stamps it. */
+  updatedAt: string | null;
 };
 
 export const KUMPEL_DEFAULTS: KumpelState = {
@@ -29,6 +31,7 @@ export const KUMPEL_DEFAULTS: KumpelState = {
   snoozeUntil: null,
   tourDone: false,
   seen: [],
+  updatedAt: null,
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -49,6 +52,7 @@ export function resolveKumpel(raw: unknown): KumpelState {
     snoozeUntil: typeof r.snoozeUntil === 'string' && DAY.test(r.snoozeUntil) ? r.snoozeUntil : null,
     tourDone: bool('tourDone'),
     seen: Array.isArray(r.seen) ? r.seen.filter((x): x is string => typeof x === 'string') : [],
+    updatedAt: typeof r.updatedAt === 'string' && !Number.isNaN(Date.parse(r.updatedAt)) ? r.updatedAt : null,
   };
 }
 
@@ -76,8 +80,21 @@ function current(): KumpelState {
   return resolveKumpel(getSettingsState().kumpel);
 }
 
-function patch(next: Partial<KumpelState>) {
-  replaceSettings({ kumpel: { ...getSettingsState().kumpel, ...next } });
+/** An explicit change stamps `updatedAt`; automatic bookkeeping (a hint was shown) passes `stamp = false`. */
+function patch(next: Partial<KumpelState>, stamp = true) {
+  replaceSettings({ kumpel: { ...getSettingsState().kumpel, ...next, ...(stamp ? { updatedAt: new Date().toISOString() } : {}) } });
+}
+
+/**
+ * Reconciles this device's Kumpel state with the account's copy: the newer deliberate write wins as a whole
+ * (so a mute or an un-mute made anywhere sticks), and `welcomed` / `tourDone` only ever turn on.
+ */
+export function mergeKumpel(local: unknown, cloud: unknown): KumpelState {
+  const c = resolveKumpel(cloud);
+  if (local === undefined || local === null) return c;
+  const l = resolveKumpel(local);
+  const winner = (c.updatedAt ?? '') > (l.updatedAt ?? '') ? c : l;
+  return { ...winner, welcomed: l.welcomed || c.welcomed, tourDone: l.tourDone || c.tourDone };
 }
 
 export function useKumpel() {
@@ -88,10 +105,11 @@ export function useKumpel() {
   const update = useCallback((next: Partial<KumpelState>) => patch(next), []);
   const markSeen = useCallback((id: string) => {
     const seen = current().seen;
-    if (!seen.includes(id)) patch({ seen: [...seen, id] });
+    if (!seen.includes(id)) patch({ seen: [...seen, id] }, false);
   }, []);
   const resetHints = useCallback(() => patch({ seen: [] }), []);
-  const snoozeHello = useCallback(() => patch({ snoozeUntil: nextLocalDay(new Date()) }), []);
+  // `explicit = false` is the automatic snooze when the hello first appears (showing it counts as "later").
+  const snoozeHello = useCallback((explicit = true) => patch({ snoozeUntil: nextLocalDay(new Date()) }, explicit), []);
   const muteForever = useCallback(() => patch({ muted: true, welcomed: true }), []);
   const finishHello = useCallback(() => patch({ welcomed: true, snoozeUntil: null }), []);
 

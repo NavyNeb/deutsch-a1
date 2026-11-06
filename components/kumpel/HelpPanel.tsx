@@ -52,7 +52,7 @@ export function HelpPanel({ group, tab, onTab, onClose, onStartTour }: Props) {
     else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
   };
 
-  const side = state.side === 'left' ? 'md:left-6' : 'md:right-6';
+  const side = state.side === 'left' ? 'md:left-[288px]' : 'md:right-6';
   const chips = help.questions.slice(0, 3);
 
   return (

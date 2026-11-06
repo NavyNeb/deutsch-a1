@@ -117,4 +117,33 @@ describe('first hello', () => {
     expect(screen.queryByRole('dialog', HELLO)).toBeNull();
     expect(screen.queryByRole('button', { name: 'Open Kumpel help' })).toBeNull();
   });
+
+  it('shows only once even if it is ignored: a later visit stays quiet', async () => {
+    ready();
+    const first = render(<Kumpel />);
+    await screen.findByRole('dialog', HELLO);
+    first.unmount();
+    render(<Kumpel />);
+    await screen.findByRole('button', { name: 'Open Kumpel help' });
+    expect(screen.queryByRole('dialog', HELLO)).toBeNull();
+    expect(saved().snoozeUntil).toBe(nextLocalDay(new Date()));
+  });
+
+  it('does not come back after the help panel was used', async () => {
+    ready();
+    render(<Kumpel />);
+    await screen.findByRole('dialog', HELLO);
+    fireEvent.click(screen.getByRole('button', { name: 'Open Kumpel help' }));
+    expect(screen.queryByRole('dialog', HELLO)).toBeNull();
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+    expect(screen.queryByRole('dialog', HELLO)).toBeNull();
+  });
+
+  it('sits right of the rail when Kumpel is on the left', async () => {
+    ready({ side: 'left' });
+    render(<Kumpel />);
+    const dialog = await screen.findByRole('dialog', HELLO);
+    expect(dialog.className).toContain('md:left-[288px]');
+    expect(dialog.className).not.toContain('md:left-auto');
+  });
 });
