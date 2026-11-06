@@ -1,107 +1,75 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Trophy, Repeat, Mic, PenLine, Sparkles } from 'lucide-react';
+import { ArrowRight, Headphones, Mic, PenLine, Repeat, Sparkles, Timer, Trophy, type LucideIcon } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { loadBest } from '@/lib/game';
+import { useProgress } from '@/lib/progress-store';
+import { dueVocabIds } from '@/lib/progress';
 
-type Game = {
+type Tool = {
   href: string;
   mode?: 'text' | 'audio';
-  gradient: string;
-  illustration?: string;
-  icon?: 'mic' | 'pen' | 'spark';
+  review?: boolean;
+  icon: LucideIcon;
   titleKey: UIKey;
   taglineKey: UIKey;
   ctaKey: UIKey;
 };
 
-const GAMES: Game[] = [
-  {
-    href: '/games/sprint', mode: 'text',
-    gradient: 'linear-gradient(135deg,#2B788B,#57A9BC)',
-    illustration: '/illustrations/runner.png',
-    titleKey: 'sprintTitle', taglineKey: 'sprintTagline', ctaKey: 'playNow',
-  },
-  {
-    href: '/games/audio', mode: 'audio',
-    gradient: 'linear-gradient(135deg,#7A6BC4,#A99BE4)',
-    illustration: '/illustrations/greeter.png',
-    titleKey: 'audioTitle', taglineKey: 'audioTagline', ctaKey: 'playNow',
-  },
-  {
-    href: '/practice',
-    gradient: 'linear-gradient(135deg,#C9822B,#E8B05C)',
-    titleKey: 'reviewGameTitle', taglineKey: 'reviewGameTagline', ctaKey: 'startReview',
-  },
-  {
-    href: '/speak', icon: 'mic',
-    gradient: 'linear-gradient(135deg,#C4566B,#E88BA0)',
-    titleKey: 'navSpeak', taglineKey: 'practiceSpeakTagline', ctaKey: 'openCta',
-  },
-  {
-    href: '/write', icon: 'pen',
-    gradient: 'linear-gradient(135deg,#4F7F5A,#86B590)',
-    titleKey: 'navWrite', taglineKey: 'practiceWriteTagline', ctaKey: 'openCta',
-  },
-  {
-    href: '/specials', icon: 'spark',
-    gradient: 'linear-gradient(135deg,#5B6FB8,#8EA0E0)',
-    titleKey: 'navSpecials', taglineKey: 'practiceSpecialsTagline', ctaKey: 'openCta',
-  },
+const TOOLS: Tool[] = [
+  { href: '/games/sprint', mode: 'text', icon: Timer, titleKey: 'sprintTitle', taglineKey: 'sprintTagline', ctaKey: 'playNow' },
+  { href: '/games/audio', mode: 'audio', icon: Headphones, titleKey: 'audioTitle', taglineKey: 'audioTagline', ctaKey: 'playNow' },
+  { href: '/practice/review', review: true, icon: Repeat, titleKey: 'reviewGameTitle', taglineKey: 'reviewGameTagline', ctaKey: 'startReview' },
+  { href: '/speak', icon: Mic, titleKey: 'navSpeak', taglineKey: 'practiceSpeakTagline', ctaKey: 'openCta' },
+  { href: '/write', icon: PenLine, titleKey: 'navWrite', taglineKey: 'practiceWriteTagline', ctaKey: 'openCta' },
+  { href: '/specials', icon: Sparkles, titleKey: 'navSpecials', taglineKey: 'practiceSpecialsTagline', ctaKey: 'openCta' },
 ];
-
-const ICONS = { mic: Mic, pen: PenLine, spark: Sparkles };
 
 export function GamesHub() {
   const { locale } = useLocale();
+  const { state } = useProgress();
   const [best, setBest] = useState<Record<string, number>>({});
   useEffect(() => { setBest({ text: loadBest('text'), audio: loadBest('audio') }); }, []);
+  const due = dueVocabIds(state, Date.now()).length;
 
   return (
-    <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
-      <header className="mb-8 max-w-[56ch]">
-        <h1 className="font-rounded font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
-          {t('gamesHubTitle', locale)}
-        </h1>
-        <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('gamesHubSubtitle', locale)}</p>
-      </header>
+    <div className="mx-auto max-w-[1100px] px-5 py-8 md:px-14 md:py-12">
+      <div className="eyebrow mb-4">Üben · {t('gamesHubTitle', locale)}</div>
+      <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] m-0">Üben.</h1>
+      <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-10 max-w-[56ch]">{t('gamesHubSubtitle', locale)}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {GAMES.map((g) => {
-          const score = g.mode ? best[g.mode] ?? 0 : 0;
+        {TOOLS.map((tool) => {
+          const score = tool.mode ? best[tool.mode] ?? 0 : 0;
+          const Icon = tool.icon;
           return (
             <Link
-              key={g.href}
-              href={g.href}
-              className="group relative flex flex-col bg-card border border-border rounded-[22px] shadow-card overflow-hidden no-underline text-inherit
-                transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-1 hover:shadow-pop hover:border-border-strong"
+              key={tool.href}
+              href={tool.href}
+              className="group relative flex flex-col min-h-[240px] rounded-[24px] border border-border bg-card p-7 no-underline text-text transition hover:bg-surface-2 hover:border-border-strong"
             >
-              <div className="relative h-[168px] flex items-end justify-center overflow-hidden" style={{ background: g.gradient }}>
-                {g.illustration ? (
-                  <img
-                    src={g.illustration} alt="" draggable={false}
-                    className="h-[152px] w-auto select-none pointer-events-none drop-shadow-[0_10px_16px_rgba(0,0,0,0.22)] transition-transform duration-200 group-hover:scale-105"
-                  />
-                ) : (
-                  <span className="grid place-items-center self-center w-20 h-20 rounded-full bg-white/25 text-white backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
-                    {(() => { const I = g.icon ? ICONS[g.icon] : Repeat; return <I size={38} strokeWidth={2.3} />; })()}
-                  </span>
+              <div className="flex items-start justify-between">
+                <span className="grid place-items-center w-12 h-12 rounded-full border border-border-strong text-text-2">
+                  <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                {tool.review && (
+                  <span className="font-display font-semibold text-[44px] leading-none tabular-nums">{due}</span>
                 )}
                 {score > 0 && (
-                  <span className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-white/90 text-[color:var(--amber)] font-rounded font-extrabold text-[12px] px-2.5 py-1">
-                    <Trophy size={13} strokeWidth={2.6} /> {t('best', locale)} {score}
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-border-strong text-[12px] font-semibold px-2.5 py-1 text-text-2">
+                    <Trophy size={13} strokeWidth={2} aria-hidden="true" /> {t('best', locale)} {score}
                   </span>
                 )}
               </div>
-              <div className="flex-1 flex flex-col p-5">
-                <h2 className="font-rounded font-extrabold text-[20px] leading-tight text-text m-0">{t(g.titleKey, locale)}</h2>
-                <p className="text-muted text-[14px] leading-relaxed m-0 mt-1.5">{t(g.taglineKey, locale)}</p>
-                <span className="mt-auto pt-4 inline-flex items-center gap-1.5 font-rounded font-bold text-[14px] text-primary">
-                  {t(g.ctaKey, locale)} <ArrowRight size={16} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </div>
+              <h2 className="font-display font-semibold text-[26px] leading-tight m-0 mt-6">{t(tool.titleKey, locale)}</h2>
+              <p className="text-muted text-[15px] leading-relaxed m-0 mt-2">
+                {tool.review ? (due === 0 ? t('nothingDue', locale) : `${due} ${t('wordsDue', locale)} — ${t(tool.taglineKey, locale)}`) : t(tool.taglineKey, locale)}
+              </p>
+              <span className="mt-auto pt-5 inline-flex items-center gap-1.5 font-semibold text-[14px] text-text">
+                {t(tool.ctaKey, locale)} <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+              </span>
             </Link>
           );
         })}

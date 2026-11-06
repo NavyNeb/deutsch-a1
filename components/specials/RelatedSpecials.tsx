@@ -20,7 +20,7 @@ export function RelatedSpecials({ lessonId, items }: { lessonId: string; items?:
           <Link
             key={sp.id}
             href={`/specials/${sp.special.slug}`}
-            className="tap-area inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1.5 text-[13px] font-rounded font-bold text-text-2 no-underline hover:border-primary hover:text-primary"
+            className="tap-area inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1.5 text-[13px] font-display font-bold text-text-2 no-underline hover:border-text hover:text-text"
           >
             {sp.title.de} · {pick(sp.title.en, sp.title.fr, locale)}
           </Link>

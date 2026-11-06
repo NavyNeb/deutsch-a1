@@ -9,11 +9,9 @@ export function Card({ children, className = '', padded = true, interactive = fa
   return (
     <div
       className={
-        'bg-card border border-border rounded-[18px] shadow-card ' +
+        'bg-card border border-border rounded-[24px] ' +
         (padded ? 'p-6 ' : '') +
-        (interactive
-          ? 'transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-0.5 hover:shadow-pop hover:border-border-strong '
-          : '') +
+        (interactive ? 'transition-[transform,border-color,background] duration-150 hover:-translate-y-0.5 hover:border-border-strong ' : '') +
         className
       }
     >

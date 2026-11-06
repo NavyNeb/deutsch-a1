@@ -115,18 +115,18 @@ export function LessonStepNav({
                 className={
                   'w-full text-left flex items-center gap-2.5 pl-3 pr-3 py-3 md:py-2.5 border-0 border-l-[3px] border-solid transition-colors ' +
                   (isCurrent
-                    ? 'border-l-primary bg-[var(--primary-wash)] text-primary font-semibold '
-                    : 'border-l-transparent ' + (locked ? 'text-faint cursor-not-allowed ' : 'bg-transparent text-text hover:bg-surface-2 cursor-pointer '))
+                    ? 'border-l-primary bg-surface-2 text-text font-semibold '
+                    : 'border-l-transparent ' + (locked ? 'text-muted cursor-not-allowed ' : 'bg-transparent text-text hover:bg-surface-2 cursor-pointer '))
                 }
               >
-                <span className="flex-1 min-w-0 text-[13.5px] leading-snug font-rounded">
+                <span className="flex-1 min-w-0 text-[13.5px] leading-snug font-display">
                   {pick(section.label, section.labelFr, locale)}
                 </span>
                 <span aria-hidden="true" className="shrink-0 flex items-center gap-1.5 text-xs tabular-nums">
                   {locked ? (
                     <Lock size={12} strokeWidth={2.2} />
                   ) : sectionDone ? (
-                    <Check size={14} strokeWidth={2.6} className="text-primary" />
+                    <Check size={14} strokeWidth={2.6} className="text-text" />
                   ) : total > 1 ? (
                     <span className="text-muted">{doneCount}/{total}</span>
                   ) : null}
@@ -134,7 +134,7 @@ export function LessonStepNav({
               </button>
 
               {showSteps && (
-                <ol className="list-none m-0 py-1 pl-6 pr-2 grid gap-0.5 border-0 border-l-[3px] border-solid border-l-primary bg-[var(--primary-wash)]/40">
+                <ol className="list-none m-0 py-1 pl-6 pr-2 grid gap-0.5 border-0 border-l-[3px] border-solid border-l-primary bg-surface-2/40">
                   {Array.from({ length: section.end - subStart + 1 }, (_, k) => subStart + k).map((index) => {
                     const stepLocked = isLocked(index);
                     const stepCurrent = index === current;
@@ -148,8 +148,8 @@ export function LessonStepNav({
                           title={stepLocked ? t('completeEarlierSteps', locale) : undefined}
                           className={
                             'w-full text-left flex items-center gap-2 px-2 py-2 md:py-1.5 rounded-lg border-none bg-transparent transition-colors text-[13px] ' +
-                            (stepLocked ? 'text-faint cursor-not-allowed ' : 'cursor-pointer hover:bg-surface-2 ') +
-                            (stepCurrent ? 'font-semibold text-primary' : stepLocked ? '' : 'text-text-2')
+                            (stepLocked ? 'text-muted cursor-not-allowed ' : 'cursor-pointer hover:bg-surface-2 ') +
+                            (stepCurrent ? 'font-semibold text-text' : stepLocked ? '' : 'text-text-2')
                           }
                         >
                           <span className="flex-1 min-w-0 truncate">{labelFor(lesson.steps[index], index, lesson)}</span>
@@ -157,7 +157,7 @@ export function LessonStepNav({
                             {stepLocked ? (
                               <Lock size={11} strokeWidth={2.2} />
                             ) : isDone(index) ? (
-                              <Check size={13} strokeWidth={2.6} className="text-primary" />
+                              <Check size={13} strokeWidth={2.6} className="text-text" />
                             ) : (
                               <span className="w-1 h-1 rounded-full bg-muted" />
                             )}

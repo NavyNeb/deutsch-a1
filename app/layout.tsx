@@ -18,13 +18,13 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F6F5F4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0F1417" },
+    { media: "(prefers-color-scheme: light)", color: "#F1EDE4" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090B" },
   ],
 };
 
-// Applies the saved theme before first paint so light mode never flashes dark.
-const themeInit = `try{var t=localStorage.getItem('deutsch-a1-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}`;
+// Dark is the default. Applies a saved "light" (Papier) choice before first paint so it never flashes dark.
+const themeInit = `try{if(localStorage.getItem('deutsch-a1-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}`;
 
 export default function RootLayout({
   children,

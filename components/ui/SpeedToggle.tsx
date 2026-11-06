@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Gauge } from 'lucide-react';
 import { getPlaybackRate, setPlaybackRate } from '@/lib/audio';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
@@ -27,12 +26,11 @@ export function SpeedToggle() {
       aria-label={slow ? t('speedSlow', locale) : t('speedNormal', locale)}
       title={t('playbackSpeed', locale)}
       className={
-        'inline-flex items-center shrink-0 gap-1.5 h-10 sm:h-9 px-2.5 rounded-full border shadow-sm text-[13px] font-rounded font-bold ' +
-        'tabular-nums transition-[border-color,background,transform] duration-150 active:scale-95 cursor-pointer ' +
-        (slow ? 'border-primary text-primary bg-[var(--primary-wash)]' : 'border-border text-text-2 bg-card hover:border-border-strong')
+        'grid place-items-center shrink-0 w-11 h-11 rounded-full border bg-transparent text-[14px] font-semibold tabular-nums ' +
+        'transition-[border-color,background,transform] duration-150 active:scale-95 cursor-pointer hover:bg-surface-2 ' +
+        (slow ? 'border-text text-text' : 'border-border-strong text-text')
       }
     >
-      <Gauge size={15} strokeWidth={2.2} aria-hidden="true" />
       {rate}×
     </button>
   );

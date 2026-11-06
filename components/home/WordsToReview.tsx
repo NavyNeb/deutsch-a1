@@ -41,7 +41,7 @@ export function WordsToReview() {
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-[20px] font-bold font-rounded">{item.german}</span>
+                    <span className="text-[20px] font-bold font-display">{item.german}</span>
                     <GenderTag gender={item.gender} />
                   </div>
                   <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>
@@ -51,7 +51,7 @@ export function WordsToReview() {
                   aria-label={`${t('removeWord', locale)} ${item.german} ${t('fromReview', locale)}`}
                   onClick={() => toggleHardWord(item.id)}
                   className="grid place-items-center shrink-0 w-8 h-8 rounded-full text-muted border border-border
-                    transition-[background,color,border-color] duration-150 hover:text-[var(--bad)] hover:border-[var(--bad)] hover:bg-[var(--bad-wash)]"
+                    transition-[background,color,border-color] duration-150 hover:text-[var(--ember-t)] hover:border-[var(--ember)] hover:bg-[var(--ember-wash)]"
                 >
                   <X size={15} strokeWidth={2.4} />
                 </button>

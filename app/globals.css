@@ -1,54 +1,55 @@
 @import "tailwindcss";
 
-/* ---- Self-hosted Poppins (latin) — matches the GlobalTalk display type ---- */
-@font-face { font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/poppins-400.woff2") format("woff2"); }
-@font-face { font-family: "Poppins"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/poppins-500.woff2") format("woff2"); }
-@font-face { font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/poppins-600.woff2") format("woff2"); }
-@font-face { font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/poppins-700.woff2") format("woff2"); }
-@font-face { font-family: "Poppins"; font-style: normal; font-weight: 800; font-display: swap; src: url("/fonts/poppins-800.woff2") format("woff2"); }
+/* ---- Self-hosted variable fonts: Jost (German / display voice), Inter (explanation voice) ---- */
+@font-face { font-family: "Jost"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("/fonts/jost-latin-ext-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Jost"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("/fonts/jost-latin-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-latin-ext-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-latin-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
 /* ============================================================================
-   Deutsch — design system (warm, learner-focused premium)
-   Light-first. Dark theme via [data-theme="dark"] on <html>.
-   Semantic colors are runtime CSS vars so the theme toggle re-resolves every
-   Tailwind color utility (that's what @theme inline buys us).
+   Dreiklang — design language
+   Ink and paper. Colour is grammar: der = square/cobalt, die = circle/rose,
+   das = triangle/sun. Dark is the default; "Papier" (light) via [data-theme="light"]
+   on <html> or on any wrapper element (e.g. the exam area).
    ========================================================================= */
 
 @theme inline {
-  /* colors → semantic runtime vars (themeable) */
-  --color-bg: var(--bg);
-  --color-bg-soft: var(--bg-soft);
-  --color-card: var(--card);
-  --color-surface-2: var(--surface-2);
-  --color-surface-3: var(--surface-3);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-2);
-  --color-text: var(--text);
-  --color-text-2: var(--text-2);
-  --color-muted: var(--muted);
-  --color-faint: var(--faint);
-  --color-primary: var(--primary);
-  --color-primary-2: var(--primary-2);
-  --color-primary-ink: var(--primary-ink);
+  /* colors → runtime vars (themeable, also when scoped to a wrapper) */
+  --color-bg: var(--ink);
+  --color-bg-soft: var(--s1);
+  --color-card: var(--s1);
+  --color-surface-2: var(--s2);
+  --color-surface-3: var(--s3);
+  --color-border: var(--line);
+  --color-border-strong: var(--line2);
+  --color-text: var(--t1);
+  --color-text-2: var(--t2);
+  --color-muted: var(--t3);
+  --color-faint: var(--t3);
+  --color-cta: var(--cta);
+  --color-cta-ink: var(--cta-i);
   --color-der: var(--der);
   --color-die: var(--die);
   --color-das: var(--das);
-  --color-amber: var(--amber);
-  --color-good: var(--good);
-  --color-bad: var(--bad);
+  --color-der-text: var(--der-t);
+  --color-die-text: var(--die-t);
+  --color-das-text: var(--das-t);
+  --color-ok: var(--ok);
+  --color-ember: var(--ember);
+  --color-ok-text: var(--ok-t);
+  --color-ember-text: var(--ember-t);
+  /* Compatibility: the in-progress textbook reader (not yet landed) still uses text-primary / bg-primary. */
+  --color-primary: var(--cta);
 
-  /* shadows (themeable) */
   --shadow-sm: var(--shadow-sm-v);
   --shadow-card: var(--shadow-v);
   --shadow-pop: var(--shadow-lg-v);
-  --shadow-primary: var(--shadow-primary-v);
 
-  /* type — self-hosted Poppins (geometric, rounded) for the GlobalTalk look */
-  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-rounded: "Poppins", ui-rounded, "SF Pro Rounded", "Nunito", -apple-system, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Jost", "Futura", "Century Gothic", -apple-system, sans-serif;
+  --font-rounded: "Jost", "Futura", "Century Gothic", -apple-system, sans-serif; /* compat, see above */
   --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
 
-  /* radii */
   --radius-xs: 8px;
   --radius-sm: 10px;
   --radius: 14px;
@@ -56,96 +57,93 @@
   --radius-xl: 26px;
 }
 
-/* ---- Light theme (default) — "GlobalTalk" teal on warm off-white -------- */
+/* ---- Dark (default) ------------------------------------------------------ */
 :root {
-  --bg: #F6F5F4;
-  --bg-soft: #EFEEEA;
-  --card: #FFFFFF;
-  --surface-2: #F0EFEB;
-  --surface-3: #E4E2DD;
-  --border: rgba(20, 18, 12, 0.10);
-  --border-2: rgba(20, 18, 12, 0.16);
-  --text: #14140F;
-  --text-2: #4A4A46;
-  --muted: #6E6E68;
-  --faint: #A2A29B;
-  --primary: #2B788B;
-  --primary-2: #35899E;
-  --primary-ink: #FFFFFF;
-  --der: #2F6BF0;
-  --die: #E05A96;
-  --das: #1F9E68;
-  --amber: #E8A020;
-  --good: #1F9E68;
-  --bad: #DC4A4A;
-  --soft: #C3DCE3;
-  --soft-ink: #24697A;
-
-  --primary-wash: #E4EFF2;
-  --amber-wash: #FBF0DD;
-  --good-wash: #E4F4EC;
-  --bad-wash: #FBEBEB;
-  --accent-wash: var(--primary-wash);
-  --ring: rgba(43, 120, 139, 0.5);
-
-  --shadow-sm-v: 0 1px 2px rgba(20, 18, 12, 0.05), 0 1px 3px rgba(20, 18, 12, 0.06);
-  --shadow-v: 0 6px 20px -8px rgba(20, 18, 12, 0.12), 0 2px 6px -3px rgba(20, 18, 12, 0.08);
-  --shadow-lg-v: 0 24px 50px -26px rgba(20, 18, 12, 0.28);
-  --shadow-primary-v: 0 10px 24px -10px rgba(43, 120, 139, 0.45);
-
-  /* --- backward-compat aliases (legacy inline styles reference these) --- */
-  --paper: var(--bg);
-  --ink: var(--text);
-  --accent: var(--primary);
-  --font-serif: var(--font-rounded);
-
-  color-scheme: light;
-}
-
-/* ---- Dark theme --------------------------------------------------------- */
-[data-theme="dark"] {
-  --bg: #0F1417;
-  --bg-soft: #12191D;
-  --card: #172026;
-  --surface-2: #1D272D;
-  --surface-3: #28353C;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-2: rgba(255, 255, 255, 0.16);
-  --text: #ECEFEF;
-  --text-2: #B2BCC0;
-  --muted: #879197;
-  --faint: #59656B;
-  --primary: #4FA7BB;
-  --primary-2: #6CBFD1;
-  --primary-ink: #08242C;
-  --der: #5A93FF;
-  --die: #FF83B0;
-  --das: #46C79A;
-  --amber: #EFB45A;
-  --good: #46C79A;
-  --bad: #FF6B6B;
-  --soft: rgba(79, 167, 187, 0.20);
-  --soft-ink: #8FD2E1;
-
-  --primary-wash: rgba(79, 167, 187, 0.16);
-  --amber-wash: rgba(239, 180, 90, 0.14);
-  --good-wash: rgba(70, 199, 154, 0.13);
-  --bad-wash: rgba(255, 107, 107, 0.12);
-  --accent-wash: var(--primary-wash);
-  --ring: rgba(79, 167, 187, 0.6);
+  --ink: #09090B;
+  --s1: #111114;
+  --s2: #17171B;
+  --s3: #222228;
+  --line: rgba(255, 255, 255, 0.08);
+  --line2: rgba(255, 255, 255, 0.16);
+  --t1: #F5F3EE;
+  --t2: #B7B4AD;
+  --t3: #8F8C85;
+  --der: #5B8CFF;
+  --die: #FF6F96;
+  --das: #FFCB45;
+  --der-t: #8DAEFF;
+  --die-t: #FF8FAE;
+  --das-t: #FFCB45;
+  --ok: #46E0A0;
+  --ember: #FF9150;
+  --ok-t: #46E0A0;
+  --ember-t: #FF9150;
+  --cta: #F5F3EE;
+  --cta-i: #09090B;
+  --ring: rgba(245, 243, 238, 0.55);
 
   --shadow-sm-v: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-v: 0 6px 20px -10px rgba(0, 0, 0, 0.7);
-  --shadow-lg-v: 0 30px 60px -30px rgba(0, 0, 0, 0.85);
-  --shadow-primary-v: 0 10px 24px -10px rgba(79, 167, 187, 0.5);
+  --shadow-v: none;
+  --shadow-lg-v: 0 30px 70px -24px rgba(0, 0, 0, 0.7);
 
   color-scheme: dark;
 }
 
+/* ---- Papier (light) ------------------------------------------------------ */
+[data-theme="light"] {
+  --ink: #F1EDE4;
+  --s1: #FAF7F0;
+  --s2: #FFFFFF;
+  --s3: #E8E3D8;
+  --line: rgba(20, 18, 12, 0.10);
+  --line2: rgba(20, 18, 12, 0.18);
+  --t1: #111114;
+  --t2: #47443E;
+  --t3: #6B675F;
+  --der: #2F5FF0;
+  --die: #E83E73;
+  --das: #F4B400;
+  --der-t: #2447C9;
+  --die-t: #C2285D;
+  --das-t: #7A5600;
+  --ok: #0E9F6E;
+  --ember: #D9601A;
+  --ok-t: #046C48;
+  --ember-t: #A8420A;
+  --cta: #111114;
+  --cta-i: #F5F3EE;
+  --ring: rgba(17, 17, 20, 0.5);
+
+  --shadow-sm-v: 0 1px 2px rgba(20, 18, 12, 0.06);
+  --shadow-v: none;
+  --shadow-lg-v: 0 24px 50px -26px rgba(20, 18, 12, 0.3);
+
+  color-scheme: light;
+}
+
+/* ---- Short names derived from the tokens above. Declared on every theme scope so a
+   scoped wrapper (data-theme="light" on a div, e.g. the exam area) re-resolves them. ---- */
+:root, [data-theme="light"], [data-theme="dark"] {
+  --bg: var(--ink);
+  --bg-soft: var(--s1);
+  --card: var(--s1);
+  --surface-2: var(--s2);
+  --surface-3: var(--s3);
+  --border: var(--line);
+  --border-2: var(--line2);
+  --text: var(--t1);
+  --text-2: var(--t2);
+  --muted: var(--t3);
+  --faint: var(--t3);
+  --ok-wash: color-mix(in srgb, var(--ok) 14%, transparent);
+  --ember-wash: color-mix(in srgb, var(--ember) 14%, transparent);
+  --primary: var(--cta); /* compat for the in-progress textbook reader */
+}
+
 /* ---- base --------------------------------------------------------------- */
 body {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--ink);
+  color: var(--t1);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -166,7 +164,7 @@ a, button, [role="button"], summary, label { touch-action: manipulation; }
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-rounded);
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
@@ -179,27 +177,41 @@ h1, h2, h3, h4 {
 }
 :focus:not(:focus-visible) { outline: none; }
 
-::selection { background: var(--accent-wash); }
+::selection { background: color-mix(in srgb, var(--t1) 22%, transparent); }
 
-/* utility retained from the old system */
-.label {
-  font-size: 10px;
+/* Small caps label. Never smaller than 12px. */
+.label, .eyebrow {
+  font-size: 12px;
+  line-height: 1.2;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--t3);
   font-weight: 600;
 }
 
 /* themed scrollbar (webkit) */
-* { scrollbar-color: var(--surface-3) transparent; }
+* { scrollbar-color: var(--s3) transparent; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-3);
+  background: var(--s3);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--border-2); }
+::-webkit-scrollbar-thumb:hover { background: var(--line2); }
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.sheet-up { animation: sheet-up 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); }
+
+@keyframes click-shut {
+  0% { transform: translateY(-6px) scale(0.96); }
+  55% { transform: translateY(0) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+}
+.click-shut { animation: click-shut 0.24s cubic-bezier(0.3, 1.4, 0.5, 1); }
 
 @keyframes confetti-fly {
   0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }

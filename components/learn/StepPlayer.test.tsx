@@ -17,6 +17,7 @@ vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
 // plain DOM elements.
 vi.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
+  useReducedMotion: () => true,
   motion: new Proxy(
     {},
     {

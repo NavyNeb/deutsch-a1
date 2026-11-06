@@ -21,7 +21,7 @@ export function SpecialReview({ special }: { special: Special }) {
 
   return (
     <div className="max-w-[720px] mx-auto p-6 pb-24">
-      <Link href={`/specials/${special.special.slug}`} className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-primary hover:underline">
+      <Link href={`/specials/${special.special.slug}`} className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-text hover:underline">
         <ArrowLeft size={16} strokeWidth={2.4} /> {t('back', locale)}
       </Link>
       <header className="mt-2 mb-8 flex justify-between items-start gap-4">
@@ -51,7 +51,7 @@ export function SpecialReview({ special }: { special: Special }) {
                 <MiniMarkdown md={pick(note.explanationMd, note.explanationMdFr, locale)} />
                 <div className="grid gap-2.5 mt-4">
                   {note.examples.map((ex, j) => (
-                    <div key={j} className="border-l-[3px] border-primary pl-3 flex gap-2.5 items-center">
+                    <div key={j} className="border-l-[3px] border-text pl-3 flex gap-2.5 items-center">
                       <div className="flex-1">
                         <em className="not-italic font-medium">{ex.de}</em><br />
                         <span className="text-muted text-sm">{pick(ex.en, ex.fr, locale)}</span>
@@ -70,7 +70,7 @@ export function SpecialReview({ special }: { special: Special }) {
                 <div className="flex items-center gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-rounded font-bold text-[20px]">{item.german}</span>
+                      <span className="font-display font-bold text-[20px]">{item.german}</span>
                       <GenderTag gender={item.gender} />
                     </div>
                     <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>

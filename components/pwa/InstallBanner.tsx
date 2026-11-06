@@ -40,16 +40,16 @@ export function InstallBanner() {
     <div
       role="region"
       aria-label={t('installTitle', locale)}
-      className="relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-3 mb-6 p-4 pr-11 rounded-[18px] border border-[color:color-mix(in_srgb,var(--primary)_35%,transparent)] bg-[linear-gradient(120deg,var(--primary-wash),transparent)]"
+      className="relative grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-3 mb-6 p-4 pr-11 rounded-[18px] border border-[color:color-mix(in_srgb,var(--t1)_35%,transparent)] bg-[linear-gradient(120deg,var(--s2),transparent)]"
     >
-      <span className="grid place-items-center shrink-0 w-11 h-11 rounded-[13px] bg-[var(--primary-wash)] text-primary">
+      <span className="grid place-items-center shrink-0 w-11 h-11 rounded-[13px] bg-surface-2 text-text">
         <Smartphone size={20} strokeWidth={2.2} />
       </span>
       <div className="min-w-0">
-        <b className="font-rounded font-bold text-[15px] block">{t('installTitle', locale)}</b>
+        <b className="font-display font-bold text-[15px] block">{t('installTitle', locale)}</b>
         {state === 'ios' ? (
           <p className="m-0 text-[13px] text-text-2">
-            <Share size={14} className="inline -mt-0.5 mr-1 text-primary" aria-hidden="true" />
+            <Share size={14} className="inline -mt-0.5 mr-1 text-text" aria-hidden="true" />
             {t('installIos', locale)}
           </p>
         ) : (

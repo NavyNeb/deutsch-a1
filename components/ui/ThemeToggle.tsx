@@ -6,12 +6,12 @@ type Theme = 'light' | 'dark';
 const KEY = 'deutsch-a1-theme';
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
-  // Sync from the attribute the pre-paint script may have already set.
+  // Dark is the default; sync from the attribute the pre-paint script may have set (a saved "light").
   useEffect(() => {
     const current = document.documentElement.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'dark' : 'light');
+    setTheme(current === 'light' ? 'light' : 'dark');
   }, []);
 
   function toggle() {

@@ -22,7 +22,7 @@ export function AdjectivePanel({ entry }: { entry: DictEntry }) {
           {rows.map(([label, form]) => (
             <tr key={label} className="border-t border-border first:border-t-0">
               <th scope="row" className="text-left font-semibold text-muted px-4 py-1.5 w-[34%] whitespace-nowrap">{label}</th>
-              <td className="py-1.5 pr-2 font-rounded font-bold text-text">{form}</td>
+              <td className="py-1.5 pr-2 font-display font-bold text-text">{form}</td>
               <td className="w-12 pr-2 text-right"><PlayButton text={form} /></td>
             </tr>
           ))}

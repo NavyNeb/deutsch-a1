@@ -29,7 +29,7 @@ export function LearningPath() {
 
   return (
     <section className="mt-2">
-      <h2 className="font-rounded font-extrabold text-[22px] text-text m-0 mb-5">{t('yourCourse', locale)}</h2>
+      <h2 className="font-display font-extrabold text-[22px] text-text m-0 mb-5">{t('yourCourse', locale)}</h2>
       <div className="grid gap-9">
         {shownLevels.map((lv) => {
           const levelLessons = lessons.filter((l) => l.level === lv).sort((a, b) => a.number - b.number);
@@ -38,8 +38,8 @@ export function LearningPath() {
           return (
             <details key={lv} open={lv === current} className="group/lv">
               <summary className="flex items-center gap-2.5 mb-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                <span className="font-rounded font-extrabold text-[13px] text-primary-ink bg-primary rounded-[10px] px-2.5 py-1">{lv}</span>
-                <span className="font-rounded font-bold text-[16px] text-text">{LEVEL_NAME[lv][locale === 'fr' ? 'fr' : 'en']}</span>
+                <span className="font-display font-extrabold text-[13px] text-cta-ink bg-cta rounded-[10px] px-2.5 py-1">{lv}</span>
+                <span className="font-display font-bold text-[16px] text-text">{LEVEL_NAME[lv][locale === 'fr' ? 'fr' : 'en']}</span>
                 {levelLessons.length > 0 && (
                   <span className="label text-muted ml-auto tabular-nums">
                     {done}/{levelLessons.length} {t('lektionen', locale)}
@@ -56,7 +56,7 @@ export function LearningPath() {
                 </div>
               ) : (
                 <div className="flex items-center gap-4 p-5 bg-card/60 border border-border border-dashed rounded-[20px] opacity-70">
-                  <span className="grid place-items-center shrink-0 w-12 h-12 rounded-full bg-surface-2 text-faint">
+                  <span className="grid place-items-center shrink-0 w-12 h-12 rounded-full bg-surface-2 text-muted">
                     <Lock size={18} strokeWidth={2.2} />
                   </span>
                   <div>

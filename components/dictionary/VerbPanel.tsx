@@ -27,7 +27,7 @@ function FormRows({ rows, tense }: { rows: Row[]; tense: TenseId | 'variant' }) 
         return (
           <tr key={i} className="border-t border-border first:border-t-0">
             <th scope="row" className="text-left font-semibold text-muted px-4 py-1.5 w-[28%] whitespace-nowrap">{r.pronoun}</th>
-            <td className="py-1.5 pr-2 font-rounded font-bold text-text">{r.text}</td>
+            <td className="py-1.5 pr-2 font-display font-bold text-text">{r.text}</td>
             <td className="w-12 pr-2 text-right"><PlayButton text={spoken} /></td>
           </tr>
         );
@@ -73,7 +73,7 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
             tabIndex={id === active ? 0 : -1}
             onClick={() => setTense(id)}
             onKeyDown={(e) => onKey(e, i)}
-            className={'shrink-0 h-10 rounded-full px-4 font-rounded font-bold text-[14px] border transition whitespace-nowrap ' + (id === active ? 'bg-primary text-white border-primary' : 'bg-card text-text-2 border-border hover:border-primary hover:text-primary')}
+            className={'shrink-0 h-10 rounded-full px-4 font-display font-bold text-[14px] border transition whitespace-nowrap ' + (id === active ? 'bg-cta text-white border-text' : 'bg-card text-text-2 border-border hover:border-text hover:text-text')}
           >
             {TENSE_TAB[id]}
           </button>
@@ -81,7 +81,7 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
       </div>
 
       <div id="tense-panel" role="tabpanel" aria-labelledby={`tense-tab-${active}`} className="grid gap-4">
-        <h3 className="font-rounded font-extrabold text-[17px] text-text m-0">{t(TENSE_KEY[active], locale)}</h3>
+        <h3 className="font-display font-extrabold text-[17px] text-text m-0">{t(TENSE_KEY[active], locale)}</h3>
 
         <div className="rounded-[16px] border border-border bg-surface-2 p-4 grid gap-3 text-[14.5px] leading-relaxed text-text-2">
           <div><div className="label text-muted mb-0.5">{t('dictHowToForm', locale)}</div>{pick(guide.how.en, guide.how.fr, locale)}</div>
@@ -95,7 +95,7 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
             ))}
           </ul>
           {special && (
-            <Link href={`/specials/${special.special.slug}`} className="inline-flex w-fit items-center rounded-full border border-border bg-card px-3 py-1.5 text-[13px] font-rounded font-bold text-primary no-underline hover:border-primary">
+            <Link href={`/specials/${special.special.slug}`} className="inline-flex w-fit items-center rounded-full border border-border bg-card px-3 py-1.5 text-[13px] font-display font-bold text-text no-underline hover:border-text">
               {t('dictLearnMoreSpecial', locale)}: {special.title.de} →
             </Link>
           )}
