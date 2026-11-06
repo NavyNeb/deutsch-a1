@@ -13,7 +13,15 @@
     "Lesson-Word-Mobile.dc.html": { "x": 1520, "y": 5100, "w": 390, "h": 844, "title": "Lesson — Wortkarte (phone)" },
     "Library.dc.html": { "x": 0, "y": 6120, "w": 1440, "h": 960, "expand": "fill", "title": "Bibliothek + ⌘K search" },
     "Exercise-Mobile.dc.html": { "x": 1520, "y": 6120, "w": 390, "h": 844, "is_interactive": true, "title": "Exercise + feedback (interactive)" },
-    "Complete-Mobile.dc.html": { "x": 1990, "y": 6120, "w": 390, "h": 844, "title": "Lektion geschafft (phone)" }
+    "Complete-Mobile.dc.html": { "x": 1990, "y": 6120, "w": 390, "h": 844, "title": "Lektion geschafft (phone)" },
+    "Buddy-Language.dc.html": { "x": 0, "y": 7400, "w": 1440, "h": 1400, "title": "Kumpel — the buddy (character, moods, rules)" },
+    "Buddy-Live.dc.html": { "x": 0, "y": 8920, "w": 1440, "h": 900, "is_interactive": true, "title": "Kumpel — live prototype (click the buddy)" },
+    "Buddy-Welcome.dc.html": { "x": 1520, "y": 8920, "w": 1440, "h": 900, "title": "Kumpel — first hello" },
+    "Buddy-Lesson.dc.html": { "x": 0, "y": 9940, "w": 1440, "h": 900, "title": "Kumpel — inside a lesson (the ? help)" },
+    "Buddy-Mobile-Closed.dc.html": { "x": 1520, "y": 9940, "w": 390, "h": 844, "title": "Kumpel — phone, resting" },
+    "Buddy-Mobile-Sheet.dc.html": { "x": 1990, "y": 9940, "w": 390, "h": 844, "title": "Kumpel — phone, help sheet" },
+    "Buddy-Mobile-Tour.dc.html": { "x": 2460, "y": 9940, "w": 390, "h": 844, "title": "Kumpel — phone, tour step" },
+    "Buddy-Settings.dc.html": { "x": 0, "y": 11000, "w": 760, "h": 700, "title": "Kumpel — settings" }
   },
   "order": [
     "Main.dc.html",
@@ -24,7 +32,15 @@
     "Lesson-Word-Mobile.dc.html",
     "Library.dc.html",
     "Exercise-Mobile.dc.html",
-    "Complete-Mobile.dc.html"
+    "Complete-Mobile.dc.html",
+    "Buddy-Language.dc.html",
+    "Buddy-Live.dc.html",
+    "Buddy-Welcome.dc.html",
+    "Buddy-Lesson.dc.html",
+    "Buddy-Mobile-Closed.dc.html",
+    "Buddy-Mobile-Sheet.dc.html",
+    "Buddy-Mobile-Tour.dc.html",
+    "Buddy-Settings.dc.html"
   ],
   "notes": {},
   "designSystems": []
