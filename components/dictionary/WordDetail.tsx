@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ArrowLeft, BookOpen, Loader2, Volume2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, Loader2, Play } from 'lucide-react';
 import { allVocab } from '@/content';
 import { entriesFor, loadMeta, type DictEntry } from '@/lib/dictionary';
 import { fold } from '@/lib/dict-shared.mjs';
@@ -12,7 +12,10 @@ import { ttsSrc, playAudio, speakText } from '@/lib/audio';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
-import { GenderTag } from '@/components/ui/GenderTag';
+import { genderMeta } from '@/lib/gender';
+import { fitSize } from '@/lib/fit-size';
+import { addRecent } from '@/lib/recent-searches';
+import { SearchTrigger } from './SearchTrigger';
 import { POS_KEY, articlesOf, lessonToEntry } from './entry-utils';
 import { VerbPanel } from './VerbPanel';
 import { NounPanel } from './NounPanel';
@@ -69,7 +72,19 @@ export function WordDetail({ word }: { word: string }) {
     let alive = true;
     setState({ status: 'loading' });
     resolveWord(word).then(
-      (data) => alive && setState({ status: 'done', data }),
+      (data) => {
+        if (!alive) return;
+        setState({ status: 'done', data });
+        const first = data.entries[0];
+        if (first) {
+          const art = articlesOf(first.g);
+          addRecent({
+            title: art.length === 1 ? `${art[0]} ${first.w}` : first.w,
+            subtitle: first.s[0],
+            href: `/dictionary/${encodeURIComponent(first.w)}`,
+          });
+        }
+      },
       () => alive && setState({ status: 'error' }),
     );
     return () => { alive = false; };
@@ -82,8 +97,11 @@ export function WordDetail({ word }: { word: string }) {
   );
 
   return (
-    <main className="mx-auto w-full max-w-[880px] px-4 py-5 pb-24 grid gap-5">
-      {back}
+    <main className="mx-auto w-full max-w-[960px] px-5 md:px-10 py-6 md:py-10 pb-24 grid gap-6">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        {back}
+        <div className="flex-1 basis-[260px] max-w-[460px] ml-auto"><SearchTrigger compact query={q ?? ''} /></div>
+      </div>
       {state.status === 'loading' && (
         <p role="status" className="inline-flex items-center gap-2 text-muted m-0"><Loader2 size={16} className="animate-spin" /> {t('dictLoadingWord', locale)}</p>
       )}
@@ -109,33 +127,59 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
   const posKey = POS_KEY[entry.p];
   const lessonVocab = useMemo(() => allVocab().find((v) => v.german === entry.w), [entry.w]);
   const sentences = useMemo(() => lessonSentences(formsOf(entry)), [entry]);
-  const bandBg = arts[0] ? `color-mix(in srgb, var(--${arts[0]}) 13%, var(--card))` : 'var(--s2)';
+  const meta = arts.length === 1 ? genderMeta(arts[0]) : null;
+  const bandBg = meta ? `color-mix(in srgb, ${meta.fill} 11%, var(--s1))` : 'var(--s1)';
+  const bandBorder = meta ? `color-mix(in srgb, ${meta.fill} 28%, transparent)` : 'var(--line)';
   const listen = () => (lessonVocab ? playAudio(ttsSrc(lessonVocab.german)) : speakText(entry.w));
   const Heading = first ? 'h1' : 'h2';
 
   return (
     <article className="grid gap-5">
-      <header className="rounded-[20px] border border-border p-5" style={{ background: bandBg }}>
-        <div className="flex flex-wrap items-center gap-1.5 mb-2 min-h-[20px]">
-          {arts.map((a) => <GenderTag key={a} gender={a} />)}
-          {posKey && <span className="label text-muted">{t(posKey, locale)}</span>}
+      <header className="relative overflow-hidden rounded-[32px] border p-7 md:p-10" style={{ background: bandBg, borderColor: bandBorder }}>
+        {meta && (
+          <span
+            aria-hidden="true"
+            className="absolute -right-12 -bottom-20 opacity-[0.09] pointer-events-none"
+            style={{
+              width: 300, height: 300, background: meta.fill,
+              borderRadius: meta.shape === 'circle' ? '50%' : undefined,
+              clipPath: meta.shape === 'triangle' ? 'polygon(50% 0, 100% 100%, 0 100%)' : undefined,
+            }}
+          />
+        )}
+        <div className="relative flex flex-wrap items-center gap-2.5 mb-5 min-h-[20px]">
+          {posKey && <span className="eyebrow">{t(posKey, locale)}</span>}
         </div>
-        <div className="flex items-center justify-between gap-3">
-          <Heading className="font-display font-extrabold text-[32px] leading-tight text-text m-0 break-words min-w-0">{entry.w}</Heading>
+        {arts.length > 0 && (
+          <div
+            data-article={meta ? meta.gender : 'multi'}
+            className="relative font-display font-light leading-none tracking-[-0.02em] text-[clamp(30px,6vw,52px)] -mb-1"
+            style={{ color: meta ? meta.text : 'var(--t2)' }}
+          >
+            {arts.join(' / ')}
+          </div>
+        )}
+        <div className="relative flex items-start justify-between gap-4">
+          <Heading
+            className="font-display font-bold leading-[0.95] tracking-[-0.045em] text-text m-0 break-words min-w-0"
+            style={{ fontSize: fitSize(entry.w, 112, 760, 140) }}
+          >
+            {entry.w}
+          </Heading>
           <button
             type="button"
             onClick={listen}
             aria-label={`${t('dictListen', locale)}: ${entry.w}`}
-            className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-card text-text shadow-sm hover:brightness-105 active:scale-90 transition"
+            className="grid place-items-center shrink-0 w-14 h-14 rounded-full border-0 bg-cta text-cta-ink cursor-pointer active:scale-95 transition"
           >
-            <Volume2 size={19} strokeWidth={2.2} />
+            <Play size={22} fill="currentColor" aria-hidden="true" />
           </button>
         </div>
-        {entry.ipa && <div className="font-mono text-[14px] text-text mt-1">/{entry.ipa}/</div>}
+        {entry.ipa && <div className="relative font-mono text-[15px] text-text-2 mt-3">/{entry.ipa}/</div>}
         {(entry.pl || entry.gen) && (
-          <dl className="m-0 mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[14px]">
-            {entry.pl && <><dt className="text-muted">{t('dictPlural', locale)}</dt><dd className="m-0 text-text font-semibold">{entry.pl}</dd></>}
-            {entry.gen && <><dt className="text-muted">{t('dictGenitive', locale)}</dt><dd className="m-0 text-text font-semibold">{entry.gen}</dd></>}
+          <dl className="relative m-0 mt-6 flex flex-wrap gap-3">
+            {entry.pl && <div className="rounded-full border border-border-strong bg-bg/40 px-4 py-2 flex items-baseline gap-2.5"><dt className="eyebrow">{t('dictPlural', locale)}</dt><dd className="m-0 font-display font-semibold text-[18px] text-text">{entry.pl}</dd></div>}
+            {entry.gen && <div className="rounded-full border border-border-strong bg-bg/40 px-4 py-2 flex items-baseline gap-2.5"><dt className="eyebrow">{t('dictGenitive', locale)}</dt><dd className="m-0 font-display font-semibold text-[18px] text-text">{entry.gen}</dd></div>}
           </dl>
         )}
       </header>
@@ -143,21 +187,23 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
       {fromLesson && <p className="m-0 text-[13.5px] text-muted">{t('dictFromLessonsOnly', locale)}</p>}
 
       <section aria-labelledby={`meanings-${entry.p}-${entry.w}`} className="grid gap-2">
-        <h2 id={`meanings-${entry.p}-${entry.w}`} className="label text-muted m-0">{t('dictMeanings', locale)}</h2>
-        <ol className="m-0 pl-5 list-decimal marker:text-muted grid gap-1.5 text-text-2 text-[15.5px]">
-          {(lessonVocab ? [pick(lessonVocab.english, lessonVocab.french, locale), ...entry.s.filter((g) => g !== lessonVocab.english)] : entry.s).map((m, i) => <li key={i}>{m}</li>)}
+        <h2 id={`meanings-${entry.p}-${entry.w}`} className="eyebrow m-0 mb-1">{t('dictMeanings', locale)}</h2>
+        <ol className="m-0 pl-6 list-decimal marker:text-muted grid gap-2 text-text-2 text-[17px]">
+          {(lessonVocab ? [pick(lessonVocab.english, lessonVocab.french, locale), ...entry.s.filter((g) => g !== lessonVocab.english)] : entry.s).map((m, i) => (
+            <li key={i} className={i === 0 ? 'font-display font-medium text-[26px] leading-snug text-text' : undefined}>{m}</li>
+          ))}
         </ol>
         {entry.x && (
-          <p className="m-0 mt-1 text-[14px] text-muted leading-relaxed">
-            <span className="label mr-2">{t('dictExample', locale)}</span>
-            <span className="text-text">{entry.x[0]}</span>{entry.x[1] && <> — {entry.x[1]}</>}
+          <p className="m-0 mt-3 rounded-[22px] border border-border bg-card px-6 py-5 text-[15px] text-muted leading-relaxed">
+            <span className="eyebrow block mb-2">{t('dictExample', locale)}</span>
+            <span className="font-display font-medium text-[22px] leading-snug text-text">{entry.x[0]}</span>{entry.x[1] && <span className="block mt-1">{entry.x[1]}</span>}
           </p>
         )}
       </section>
 
       {sentences.length > 0 && (
         <section aria-labelledby={`lessons-${entry.p}-${entry.w}`} className="grid gap-2">
-          <h2 id={`lessons-${entry.p}-${entry.w}`} className="label text-muted m-0 inline-flex items-center gap-1.5"><BookOpen size={13} strokeWidth={2.6} /> {t('dictInOurLessons', locale)}</h2>
+          <h2 id={`lessons-${entry.p}-${entry.w}`} className="eyebrow m-0 inline-flex items-center gap-1.5"><BookOpen size={13} strokeWidth={2.6} /> {t('dictInOurLessons', locale)}</h2>
           <ul className="m-0 p-0 list-none grid gap-2">
             {sentences.map((s) => (
               <li key={s.de} className="rounded-[14px] border border-border bg-card px-4 py-3 text-[14.5px]">

@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { lessons } from '@/content';
 import { buildPaletteIndex, searchPalette } from '@/lib/palette-index';
+import { addRecent, clearRecents, getRecents } from '@/lib/recent-searches';
 
 const push = vi.fn();
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push }), usePathname: () => '/' }));
@@ -12,7 +13,7 @@ vi.mock('@/lib/dictionary', () => ({
 
 import { CommandPalette } from './CommandPalette';
 
-beforeEach(() => push.mockClear());
+beforeEach(() => { push.mockClear(); localStorage.clear(); clearRecents(); });
 
 const open = () => fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
 
@@ -69,5 +70,78 @@ describe('CommandPalette', () => {
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.keyDown(input, { key: 'Enter' });
     expect(push).toHaveBeenCalledWith(results[1].href);
+  });
+
+  it('shows recent searches first when empty, newest first, and they navigate', async () => {
+    addRecent({ title: 'Haus', subtitle: 'house', href: '/dictionary/Haus' });
+    addRecent({ title: 'gehen', subtitle: 'to go', href: '/dictionary/gehen' });
+    render(<CommandPalette />);
+    open();
+    expect(screen.getByText('Zuletzt')).toBeInTheDocument();
+    const options = screen.getAllByRole('option');
+    expect(options[0]).toHaveTextContent('gehen');
+    expect(options[1]).toHaveTextContent('Haus');
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' });
+    expect(push).toHaveBeenCalledWith('/dictionary/gehen');
+  });
+
+  it('shows no recents section when nothing was searched yet', () => {
+    render(<CommandPalette />);
+    open();
+    expect(screen.queryByText('Zuletzt')).toBeNull();
+  });
+
+  it('remembers what you opened', async () => {
+    render(<CommandPalette />);
+    open();
+    const input = screen.getByRole('combobox');
+    fireEvent.change(input, { target: { value: 'gegen' } });
+    const top = searchPalette('gegen', buildPaletteIndex(lessons, 'en'))[0];
+    await waitFor(() => expect(screen.getAllByRole('option')[0]).toHaveTextContent(top.title));
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(getRecents()[0]).toMatchObject({ href: top.href, title: top.title });
+  });
+
+  it('can clear the recents', async () => {
+    addRecent({ title: 'Haus', href: '/dictionary/Haus' });
+    render(<CommandPalette />);
+    open();
+    fireEvent.click(screen.getByRole('button', { name: /clear recent/i }));
+    expect(getRecents()).toEqual([]);
+    expect(screen.queryByText('Zuletzt')).toBeNull();
+  });
+
+  it('opens with a prefilled query when the opener passes one (the dictionary search bar)', () => {
+    render(<CommandPalette />);
+    act(() => { window.dispatchEvent(new CustomEvent('open-palette', { detail: { query: 'haus' } })); });
+    expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe('haus');
+  });
+
+  it('offers "all results" for a typed word, linking to the dictionary results page', () => {
+    render(<CommandPalette />);
+    open();
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'haus' } });
+    const all = screen.getAllByRole('option').find((o) => /all results for/i.test(o.textContent ?? ''))!;
+    expect(all).toBeTruthy();
+    fireEvent.click(all);
+    expect(push).toHaveBeenCalledWith('/dictionary?q=haus');
+  });
+
+  it('Ctrl+K while open closes it and the next open starts clean', () => {
+    render(<CommandPalette />);
+    open();
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'stale' } });
+    open();
+    expect(screen.queryByRole('dialog')).toBeNull();
+    open();
+    expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe('');
+  });
+
+  it('option ids stay valid for words containing spaces', () => {
+    render(<CommandPalette />);
+    open();
+    addRecent({ title: 'künstliche Intelligenz', href: '/dictionary/k%C3%BCnstliche%20Intelligenz' });
+    act(() => { window.dispatchEvent(new CustomEvent('open-palette')); });
+    for (const o of screen.getAllByRole('option')) expect(o.id).not.toMatch(/\s/);
   });
 });

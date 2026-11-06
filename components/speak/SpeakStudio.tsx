@@ -177,8 +177,8 @@ export function SpeakStudio() {
                   onClick={sr.listening ? sr.stop : sr.listen}
                   aria-label={t(sr.listening ? 'speakStop' : 'speakTap', locale)}
                   className={
-                    'grid place-items-center w-[76px] h-[76px] rounded-full text-white  transition active:scale-95 ' +
-                    (sr.listening ? 'bg-[var(--ember)] animate-pulse' : 'bg-cta')
+                    'grid place-items-center w-[76px] h-[76px] rounded-full transition active:scale-95 ' +
+                    (sr.listening ? 'bg-[var(--ember)] text-[#1A0C02] animate-pulse' : 'bg-cta text-cta-ink')
                   }
                 >
                   {sr.listening ? <Square size={28} fill="currentColor" /> : <Mic size={32} />}

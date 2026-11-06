@@ -4,6 +4,7 @@ import type { VocabItem } from '@/content/types';
 import { playAudio, ttsSrc } from '@/lib/audio';
 import { genderMeta, splitArticle } from '@/lib/gender';
 import { highlightExample } from '@/lib/example-highlight';
+import { fitSize } from '@/lib/fit-size';
 import { useShowTranslation } from '@/lib/lesson-prefs';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -14,12 +15,6 @@ import { SyllableStress } from '@/components/ui/SyllableStress';
 import { AssistButtons } from '@/components/assist/AssistButtons';
 
 const tool = 'grid place-items-center w-12 h-12 rounded-full border border-border-strong bg-transparent text-text cursor-pointer transition hover:bg-surface-2 active:scale-95';
-
-/** Font size that keeps long nouns on screen: 176px for short words, smaller as the word grows. */
-function nounSize(noun: string): string {
-  const em = Math.max(1, noun.length) * 0.52;
-  return `min(176px, calc(700px / ${em.toFixed(2)}), calc((100vw - 48px) / ${em.toFixed(2)}))`;
-}
 
 export function VocabStep({
   item,
@@ -64,7 +59,7 @@ export function VocabStep({
             {meta.gender}
           </div>
         )}
-        <h2 className="font-display font-bold leading-[0.95] tracking-[-0.045em] m-0 break-words max-w-full" style={{ fontSize: nounSize(noun) }}>{noun}</h2>
+        <h2 className="font-display font-bold leading-[0.95] tracking-[-0.045em] m-0 break-words max-w-full" style={{ fontSize: fitSize(noun, 176, 700) }}>{noun}</h2>
 
         <div className="flex items-center justify-center flex-wrap gap-x-5 gap-y-2 mt-5">
           <span className="text-[22px]"><SyllableStress syllables={item.syllables} gender={item.gender} /></span>

@@ -73,7 +73,7 @@ export function VerbPanel({ entry }: { entry: DictEntry }) {
             tabIndex={id === active ? 0 : -1}
             onClick={() => setTense(id)}
             onKeyDown={(e) => onKey(e, i)}
-            className={'shrink-0 h-10 rounded-full px-4 font-display font-bold text-[14px] border transition whitespace-nowrap ' + (id === active ? 'bg-cta text-white border-text' : 'bg-card text-text-2 border-border hover:border-text hover:text-text')}
+            className={'shrink-0 h-10 rounded-full px-4 font-display font-bold text-[14px] border transition whitespace-nowrap ' + (id === active ? 'bg-cta text-cta-ink border-cta' : 'bg-card text-text-2 border-border-strong hover:border-text hover:text-text')}
           >
             {TENSE_TAB[id]}
           </button>
