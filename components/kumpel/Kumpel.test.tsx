@@ -146,7 +146,7 @@ describe('Kumpel (resting buddy)', () => {
       expect(await screen.findByRole('dialog', { name: 'Tour' })).toBeInTheDocument();
       for (let k = 0; k < 5; k++) fireEvent.click(screen.getByRole('button', { name: /^(Weiter|Fertig)$/ }));
       expect(screen.queryByRole('dialog', { name: 'Tour' })).toBeNull();
-      expect(screen.getByRole('status')).toHaveTextContent('Tour finished');
+      expect(screen.getByTestId('kumpel-announce')).toHaveTextContent('Tour finished');
       expect(saved().tourDone).toBe(true);
       expect(saved().welcomed).toBe(true);
       expect(document.activeElement).toBe(b);

@@ -229,6 +229,12 @@ h1, h2, h3, h4 {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+.kumpel-fade { animation: kumpel-fade 0.2s ease-out; }
+@keyframes kumpel-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.kumpel-bob { animation: kumpel-bob 4.5s ease-in-out infinite; }
 @media (max-width: 767px) {
   .kumpel-panel { animation: sheet-up 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); }
 }

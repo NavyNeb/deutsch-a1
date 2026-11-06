@@ -579,6 +579,18 @@ export const UI = {
   kumpelAsk: { en: 'Ask for help', fr: 'Demander de l’aide' },
   kumpelYourBuddyOn: { en: 'Your buddy · on', fr: 'Ton compagnon · sur' },
   kumpelTourLabel: { en: 'Tour', fr: 'Visite guidée' },
+  kumpelHelloEyebrow: { en: 'First time here?', fr: 'Première visite ?' },
+  kumpelHelloBody: {
+    en: 'I will be right here whenever you want to know how something works. Want a one-minute tour of the app?',
+    fr: 'Je serai là chaque fois que tu voudras savoir comment quelque chose fonctionne. Une visite de l’appli en une minute ?',
+  },
+  kumpelHelloMute: { en: 'Not for you?', fr: 'Pas pour toi ?' },
+  kumpelHelloMuteNote: { en: 'I won’t ask again.', fr: 'Je ne te le redemanderai pas.' },
+  kumpelHintToday: { en: 'Tap me any time to see how this page works.', fr: 'Touche-moi quand tu veux pour voir comment cette page fonctionne.' },
+  kumpelHintPath: { en: 'Tap me to see how levels and lessons fit together.', fr: 'Touche-moi pour voir comment niveaux et leçons s’organisent.' },
+  kumpelHintPractice: { en: 'Not sure which game to pick? Tap me.', fr: 'Pas sûr du jeu à choisir ? Touche-moi.' },
+  kumpelHintLibrary: { en: 'Looking for something? Tap me and I will show you how.', fr: 'Tu cherches quelque chose ? Touche-moi, je t’explique.' },
+  kumpelHintMe: { en: 'Your settings live here. Tap me if you get lost.', fr: 'Tes réglages sont ici. Touche-moi si tu te perds.' },
   kumpelTourEnd: { en: 'Tour finished. Kumpel stays in the bottom corner.', fr: 'Visite terminée. Kumpel reste dans le coin en bas.' },
 } as const;
 
