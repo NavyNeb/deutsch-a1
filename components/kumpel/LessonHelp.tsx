@@ -21,7 +21,7 @@ export function LessonHelp({ kind, onClose }: { kind: StepKind; onClose: () => v
   const help = lessonHelpFor(kind);
   const ref = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
+  useEffect(() => { onCloseRef.current = onClose; });
 
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;

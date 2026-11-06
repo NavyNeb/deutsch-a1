@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { useReducedMotion } from 'framer-motion';
 import { useLocale } from '@/lib/locale-store';
@@ -26,6 +26,8 @@ const HINT_KEY: Record<PageGroupId, UIKey> = {
 };
 const BOTTOM_PATH = 'bottom-[calc(168px+env(safe-area-inset-bottom))] md:bottom-[calc(160px+env(safe-area-inset-bottom))] lg:bottom-6';
 
+const subscribeNever = () => () => {};
+
 export function Kumpel() {
   const pathname = usePathname();
   const { locale } = useLocale();
@@ -34,7 +36,8 @@ export function Kumpel() {
   const { state: progress } = useProgress();
   const user = useUser();
   const calm = useReducedMotion() || state.motion === 'calm';
-  const [mounted, setMounted] = useState(false);
+  // False on the server and during hydration, true afterwards: the buddy never flashes for a muted learner.
+  const mounted = useSyncExternalStore(subscribeNever, () => true, () => false);
   const [panel, setPanel] = useState<Panel>('closed');
   const [tour, setTour] = useState(false);
   const [announce, setAnnounce] = useState('');
@@ -42,13 +45,11 @@ export function Kumpel() {
   const group = pageGroupFor(pathname);
   const btnRef = useRef<HTMLButtonElement>(null);
   const groupRef = useRef(group);
-  groupRef.current = group;
+  useEffect(() => { groupRef.current = group; });
 
-  // Server and first client render agree (nothing); the buddy appears after mount so a muted learner never sees a flash.
-  useEffect(() => setMounted(true), []);
-
-  // A new page starts with the panel closed.
-  useEffect(() => setPanel('closed'), [pathname]);
+  // A new page starts with the panel closed (adjusting state while rendering, as React recommends).
+  const [panelPath, setPanelPath] = useState(pathname);
+  if (panelPath !== pathname) { setPanelPath(pathname); setPanel('closed'); }
 
   const onOpen = useCallback((e: Event) => {
     if (!groupRef.current) return;
@@ -80,14 +81,16 @@ export function Kumpel() {
     isHelloDue(state, localDay(new Date()));
   const helloShown = helloDue && panel === 'closed' && !tour;
 
-  // A page hint, the first time each kind of page is visited after the hello. It is remembered the moment it shows.
+  // A page hint, the first time each kind of page is visited after the hello.
+  const hintWanted =
+    mounted && !!group && isVisible(state) && state.hints && state.welcomed &&
+    panel === 'closed' && !tour && !helloShown && !state.seen.includes(group);
+  if (hintWanted && hint !== group) setHint(group);
+  if (hint && hint !== group && !hintWanted) setHint(null);
+  // It is remembered the moment it shows, so a reload or a second tab never repeats it.
   useEffect(() => {
-    if (!mounted || !group || !isVisible(state) || !state.hints || !state.welcomed) return;
-    if (panel !== 'closed' || tour || helloShown || state.seen.includes(group)) return;
-    setHint(group);
-    markSeen(group);
-  }, [mounted, group, state, panel, tour, helloShown, markSeen]);
-  useEffect(() => { if (hint && hint !== group) setHint(null); }, [group, hint]);
+    if (hint && hint === group) markSeen(hint);
+  }, [hint, group, markSeen]);
 
   if (!mounted || !group || !isVisible(state)) return null;
 

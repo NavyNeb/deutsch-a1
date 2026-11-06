@@ -28,12 +28,10 @@ export function Tour({ onClose }: { onClose: (reason: 'done' | 'skip') => void }
   const [index, setIndex] = useState(0);
   const [rect, setRect] = useState<Rect | null>(null);
   const [view, setView] = useState({ w: 1280, h: 800 });
-  const [cardPos, setCardPos] = useState<{ top: number; left: number } | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
   const routerRef = useRef(router);
-  routerRef.current = router;
+  useEffect(() => { onCloseRef.current = onClose; routerRef.current = router; });
   const startPath = useRef(pathname);
 
   // Remember who had focus so it can go back when the tour ends.
@@ -83,6 +81,8 @@ export function Tour({ onClose }: { onClose: (reason: 'done' | 'skip') => void }
   useLayoutEffect(() => {
     if (!stop) return;
     findTarget(stop.target)?.scrollIntoView?.({ block: 'nearest' });
+    // Reading the target's layout is syncing with the DOM, which is what effects are for.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     measure();
     window.addEventListener('resize', measure);
     window.addEventListener('scroll', measure, true);
@@ -93,11 +93,8 @@ export function Tour({ onClose }: { onClose: (reason: 'done' | 'skip') => void }
   }, [stop, measure]);
 
   const phone = view.w < 768;
-  useLayoutEffect(() => {
-    if (!rect || phone) { setCardPos(null); return; }
-    const card = cardRef.current;
-    setCardPos(placeCard(rect, view.w, view.h, card?.offsetWidth || 360, card?.offsetHeight || 240));
-  }, [rect, view, phone, i]);
+  // The card is about 360×260 on desktop; placing it from that estimate avoids a measure-then-move flicker.
+  const cardPos = rect && !phone ? placeCard(rect, view.w, view.h, 360, 260) : null;
 
   const shown = !!(stop && rect);
   useEffect(() => {

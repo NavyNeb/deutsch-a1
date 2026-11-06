@@ -6,7 +6,7 @@ const SHOW_MS = 6000;
 /** A small speech bubble beside the buddy. It goes away by itself, or on any tap, scroll or key press. */
 export function Hint({ text, onDone, className }: { text: string; onDone: () => void; className: string }) {
   const doneRef = useRef(onDone);
-  doneRef.current = onDone;
+  useEffect(() => { doneRef.current = onDone; });
 
   useEffect(() => {
     const done = () => doneRef.current();

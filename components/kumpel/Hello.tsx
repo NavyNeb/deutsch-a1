@@ -18,7 +18,7 @@ export function Hello({ onTour, onLater, onMute, className }: Props) {
   const titleId = useId();
   const primary = useRef<HTMLButtonElement>(null);
   const laterRef = useRef(onLater);
-  laterRef.current = onLater;
+  useEffect(() => { laterRef.current = onLater; });
 
   useEffect(() => { primary.current?.focus(); }, []);
 

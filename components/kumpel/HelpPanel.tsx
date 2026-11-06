@@ -24,7 +24,7 @@ export function HelpPanel({ group, tab, onTab, onClose, onStartTour }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [openQ, setOpenQ] = useState<number | null>(null);
   const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
+  useEffect(() => { onCloseRef.current = onClose; });
 
   // Move focus in, and hand it back to whatever opened the panel.
   useEffect(() => {
