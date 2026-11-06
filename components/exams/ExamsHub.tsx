@@ -11,13 +11,13 @@ export function ExamsHub({ counts }: { counts: Record<string, number> }) {
   return (
     <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
       <header className="mb-8 max-w-[64ch]">
-        <h1 className="font-rounded font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] m-0">{t('examsTitle', locale)}</h1>
+        <h1 className="font-display font-semibold text-[clamp(36px,5vw,52px)] leading-[1.05] tracking-[-0.03em] m-0">{t('examsTitle', locale)}</h1>
         <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('examsSubtitle', locale)}</p>
       </header>
 
       {BOARDS.map((board) => (
         <section key={board} className="mb-10">
-          <h2 className="font-rounded font-extrabold text-[24px] m-0 mb-4">{BOARD_LABEL[board]}</h2>
+          <h2 className="font-display font-semibold text-[26px] m-0 mb-4">{BOARD_LABEL[board]}</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {EXAM_LEVELS.map((level) => {
               const fmt = FORMATS[board][level];
@@ -26,7 +26,7 @@ export function ExamsHub({ counts }: { counts: Record<string, number> }) {
                 <Link key={level} href={`/exams/${board}/${level.toLowerCase()}`} className="no-underline text-text">
                   <Card interactive className="h-full">
                     <div className="flex items-start justify-between gap-3">
-                      <span className="font-rounded font-extrabold text-[34px] leading-none text-primary">{level}</span>
+                      <span className="font-display font-bold text-[34px] leading-none text-text">{level}</span>
                       <ArrowRight size={18} className="mt-1 text-muted" />
                     </div>
                     <p className="m-0 mt-3 font-rounded font-bold text-[16px]">{fmt.name}</p>
