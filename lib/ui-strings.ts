@@ -76,7 +76,7 @@ export const UI = {
   exercisesCorrect: { en: 'Exercises correct', fr: 'Exercices réussis' },
   wordsLearned: { en: 'Words learned', fr: 'Mots appris' },
   savedForReview: { en: 'Saved to review', fr: 'À réviser' },
-  backToHome: { en: 'Back to home', fr: 'Retour à l’accueil' },
+  backToHome: { en: 'Back to Today', fr: 'Retour à Aujourd’hui' },
   reviewThisLesson: { en: 'Review this lesson', fr: 'Réviser cette leçon' },
 
   // Audio speed
@@ -144,6 +144,8 @@ export const UI = {
   transOn: { en: 'on', fr: 'oui' },
   transOff: { en: 'off', fr: 'non' },
   closeLesson: { en: 'Close lesson', fr: 'Fermer la leçon' },
+  daysInARow: { en: 'in a row — one block added to your tower.', fr: 'd’affilée — un bloc de plus sur ta tour.' },
+  nextLessonCta: { en: 'Nächste Lektion', fr: 'Nächste Lektion' },
   stepWord: { en: 'Step', fr: 'Étape' },
   ofWord: { en: 'of', fr: 'sur' },
   minLeft: { en: 'min left', fr: 'min restantes' },
