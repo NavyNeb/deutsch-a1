@@ -2,6 +2,7 @@
 import type { ArticleGender } from '@/lib/gender';
 import { genderMeta } from '@/lib/gender';
 import { GenderShape } from '@/components/ui/GenderShape';
+import { haptics } from '@/lib/haptics';
 
 const ARTICLES: ArticleGender[] = ['der', 'die', 'das'];
 
@@ -11,12 +12,15 @@ export function ArticleTiles({
   onChange,
   disabled = false,
   correct,
+  result,
 }: {
   value: ArticleGender | undefined;
   onChange: (a: ArticleGender) => void;
   disabled?: boolean;
   /** Set only once the answer has been revealed: that tile gets the "ok" ring. */
   correct?: ArticleGender;
+  /** After checking: the chosen tile clicks shut when right, and quietly settles when wrong (no shake). */
+  result?: 'right' | 'wrong';
 }) {
   return (
     <div className="flex gap-3">
@@ -31,9 +35,10 @@ export function ArticleTiles({
             aria-label={a}
             aria-pressed={on}
             data-correct={isCorrect ? 'true' : undefined}
+            data-result={on && result ? result : undefined}
             disabled={disabled}
-            onClick={() => onChange(a)}
-            className="flex-1 h-[150px] sm:h-[170px] rounded-[26px] border-[1.5px] flex flex-col items-center justify-center gap-4 font-display cursor-pointer transition-[transform,border-color,background] duration-200 disabled:cursor-default"
+            onClick={() => { haptics.select(); onChange(a); }}
+            className={(on && result === 'right' ? 'click-shut ' : '') + (on && result === 'wrong' ? 'opacity-60 ' : '') + "flex-1 h-[150px] sm:h-[170px] rounded-[26px] border-[1.5px] flex flex-col items-center justify-center gap-4 font-display cursor-pointer transition-[transform,border-color,background,opacity] duration-200 disabled:cursor-default"}
             style={{
               borderColor: isCorrect ? 'var(--ok)' : on ? meta.fill : 'var(--line2)',
               background: on ? `color-mix(in srgb, ${meta.fill} 16%, var(--s1))` : 'var(--s1)',

@@ -1,7 +1,29 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 import { ExerciseView } from './ExerciseView';
+
+afterEach(() => {
+  // @ts-expect-error cleanup of the stub
+  delete navigator.vibrate;
+});
+
+describe('ExerciseView — haptics', () => {
+  it('a correct answer gives the success pattern, a wrong one does not', async () => {
+    const v = vi.fn();
+    Object.defineProperty(navigator, 'vibrate', { value: v, configurable: true, writable: true });
+    const ex = { type: 'multipleChoice' as const, id: 'h1', prompt: 'p', options: ['a', 'b'], answer: 1 };
+    render(<ExerciseView onResult={() => {}} exercise={ex} />);
+    await userEvent.click(screen.getByText('a'));
+    v.mockClear();
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(v).not.toHaveBeenCalledWith([10, 40, 10]);
+    await userEvent.click(screen.getByRole('button', { name: /try again/i }));
+    await userEvent.click(screen.getByText('b'));
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(v).toHaveBeenCalledWith([10, 40, 10]);
+  });
+});
 
 describe('ExerciseView — feedback sheet', () => {
   const mc = { type: 'multipleChoice' as const, id: 'f1', prompt: 'Formal greeting?', options: ['Hallo', 'Guten Tag'], answer: 1, explain: 'formal' };

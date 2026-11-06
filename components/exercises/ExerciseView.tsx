@@ -11,6 +11,7 @@ import { AudioButton } from '@/components/ui/AudioButton';
 import { FeedbackSheet } from './FeedbackSheet';
 import { ArticleTiles } from './ArticleTiles';
 import { OptionTile } from './OptionTile';
+import { haptics } from '@/lib/haptics';
 
 // Initial (empty) response shape for a given exercise type — used both on
 // mount and to reset the exercise when the learner hits "Try again".
@@ -48,7 +49,7 @@ export function ExerciseView({
     const r = checkAnswer(exercise, response, locale);
     setResult(r);
     onResult(r.correct);
-    if (r.correct) onPass?.();
+    if (r.correct) { haptics.success(); onPass?.(); }
     else setWrongCount((n) => n + 1);
   };
   const tryAgain = () => { setResponse(initialResponse(exercise)); setResult(null); setAttempt((n) => n + 1); };
@@ -97,6 +98,7 @@ export function ExerciseView({
             onChange={setResponse}
             disabled={showSheet}
             correct={revealed ? articleExercise.answer : undefined}
+            result={result ? (result.correct ? 'right' : 'wrong') : undefined}
           />
         </div>
       )}

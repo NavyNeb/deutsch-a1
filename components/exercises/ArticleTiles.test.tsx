@@ -1,9 +1,31 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 import { ArticleTiles } from './ArticleTiles';
 
+afterEach(() => {
+  // @ts-expect-error cleanup of the stub
+  delete navigator.vibrate;
+});
+
 describe('ArticleTiles', () => {
+  it('taps with a light haptic', async () => {
+    const v = vi.fn();
+    Object.defineProperty(navigator, 'vibrate', { value: v, configurable: true, writable: true });
+    render(<ArticleTiles value={undefined} onChange={() => {}} />);
+    await userEvent.click(screen.getByRole('button', { name: 'der' }));
+    expect(v).toHaveBeenCalledWith(8);
+  });
+
+  it('the chosen tile clicks shut when the answer was right and settles when wrong', () => {
+    const { rerender } = render(<ArticleTiles value="der" onChange={() => {}} result="right" />);
+    expect(screen.getByRole('button', { name: 'der' })).toHaveAttribute('data-result', 'right');
+    expect(screen.getByRole('button', { name: 'der' }).className).toMatch(/click-shut/);
+    rerender(<ArticleTiles value="der" onChange={() => {}} result="wrong" />);
+    expect(screen.getByRole('button', { name: 'der' })).toHaveAttribute('data-result', 'wrong');
+    expect(screen.getByRole('button', { name: 'der' }).className).not.toMatch(/click-shut|shake/);
+  });
+
   it('clicking a tile calls onChange with der, die or das', async () => {
     const onChange = vi.fn();
     render(<ArticleTiles value={undefined} onChange={onChange} />);
