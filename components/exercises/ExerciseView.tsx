@@ -179,7 +179,7 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
   return (
     <div>
       <div className="min-h-[56px] border border-dashed border-border-strong rounded-[14px] p-2 mb-2 flex gap-1.5 flex-wrap items-center">
-        {chosen.length === 0 && <span className="text-faint text-sm px-1">…</span>}
+        {chosen.length === 0 && <span className="text-muted text-sm px-1">…</span>}
         {chosen.map((tok, i) => (
           <button
             key={i}
@@ -239,12 +239,12 @@ function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; f
               key={p.de}
               onClick={() => (meaning ? clear(p.de) : setActiveDe(active ? null : p.de))}
               className={
-                'flex items-center gap-2.5 text-left rounded-[12px] px-3 py-2.5 border font-rounded transition-[border-color,background] duration-150 cursor-pointer ' +
-                (active ? 'border-text bg-surface-2' : meaning ? 'border-ok bg-[var(--good-wash)]' : 'border-border bg-card hover:border-border-strong')
+                'flex items-center gap-2.5 text-left rounded-[12px] px-3 py-2.5 border font-display transition-[border-color,background] duration-150 cursor-pointer ' +
+                (active ? 'border-text bg-surface-2' : meaning ? 'border-ok bg-[var(--ok-wash)]' : 'border-border bg-card hover:border-border-strong')
               }
             >
               <span className="font-bold min-w-[90px]">{p.de}</span>
-              <span className={'text-sm ' + (meaning ? 'text-text' : 'text-faint')}>
+              <span className={'text-sm ' + (meaning ? 'text-text' : 'text-muted')}>
                 {meaning ?? t('chooseEllipsis', locale)}
               </span>
             </button>
@@ -257,7 +257,7 @@ function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; f
             key={m}
             onClick={() => assign(m)}
             disabled={!activeDe}
-            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-rounded font-semibold text-sm
+            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-display font-semibold text-sm
               transition-[border-color,transform] duration-150 hover:border-border-strong active:scale-[.97]
               disabled:opacity-45 disabled:cursor-not-allowed cursor-pointer"
           >

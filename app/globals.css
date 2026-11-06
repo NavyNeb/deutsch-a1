@@ -34,24 +34,18 @@
   --color-der-text: var(--der-t);
   --color-die-text: var(--die-t);
   --color-das-text: var(--das-t);
-  --color-good: var(--ok);
-  --color-bad: var(--ember);
   --color-ok: var(--ok);
   --color-ember: var(--ember);
-  /* legacy names — removed in the cleanup task */
+  /* Compatibility: the in-progress textbook reader (not yet landed) still uses text-primary / bg-primary. */
   --color-primary: var(--cta);
-  --color-primary-2: var(--cta);
-  --color-primary-ink: var(--cta-i);
-  --color-amber: var(--ember);
 
   --shadow-sm: var(--shadow-sm-v);
   --shadow-card: var(--shadow-v);
   --shadow-pop: var(--shadow-lg-v);
-  --shadow-primary: var(--shadow-primary-v);
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-display: "Jost", "Futura", "Century Gothic", -apple-system, sans-serif;
-  --font-rounded: "Jost", "Futura", "Century Gothic", -apple-system, sans-serif;
+  --font-rounded: "Jost", "Futura", "Century Gothic", -apple-system, sans-serif; /* compat, see above */
   --font-mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
 
   --radius-xs: 8px;
@@ -87,7 +81,6 @@
   --shadow-sm-v: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-v: none;
   --shadow-lg-v: 0 30px 70px -24px rgba(0, 0, 0, 0.7);
-  --shadow-primary-v: none;
 
   color-scheme: dark;
 }
@@ -118,13 +111,12 @@
   --shadow-sm-v: 0 1px 2px rgba(20, 18, 12, 0.06);
   --shadow-v: none;
   --shadow-lg-v: 0 24px 50px -26px rgba(20, 18, 12, 0.3);
-  --shadow-primary-v: none;
 
   color-scheme: light;
 }
 
-/* ---- Legacy names, derived from the tokens above. Declared on every theme
-   scope so a scoped wrapper (data-theme="light" on a div) re-resolves them. ---- */
+/* ---- Short names derived from the tokens above. Declared on every theme scope so a
+   scoped wrapper (data-theme="light" on a div, e.g. the exam area) re-resolves them. ---- */
 :root, [data-theme="light"], [data-theme="dark"] {
   --bg: var(--ink);
   --bg-soft: var(--s1);
@@ -137,21 +129,9 @@
   --text-2: var(--t2);
   --muted: var(--t3);
   --faint: var(--t3);
-  --primary: var(--cta);
-  --primary-2: var(--cta);
-  --primary-ink: var(--cta-i);
-  --amber: var(--ember);
-  --good: var(--ok);
-  --bad: var(--ember);
-  --soft: var(--s3);
-  --soft-ink: var(--t1);
-  --primary-wash: var(--s2);
-  --amber-wash: color-mix(in srgb, var(--ember) 14%, transparent);
-  --good-wash: color-mix(in srgb, var(--ok) 14%, transparent);
-  --bad-wash: color-mix(in srgb, var(--ember) 14%, transparent);
-  --accent: var(--cta);
-  --accent-wash: var(--s2);
-  --font-serif: var(--font-display);
+  --ok-wash: color-mix(in srgb, var(--ok) 14%, transparent);
+  --ember-wash: color-mix(in srgb, var(--ember) 14%, transparent);
+  --primary: var(--cta); /* compat for the in-progress textbook reader */
 }
 
 /* ---- base --------------------------------------------------------------- */

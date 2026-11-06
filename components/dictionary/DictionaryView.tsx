@@ -88,14 +88,14 @@ export function DictionaryView() {
   return (
     <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
       <header className="mb-7 max-w-[60ch]">
-        <h1 className="font-rounded font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
+        <h1 className="font-display font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
           {t('navDictionary', locale)}
         </h1>
         <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('dictSubtitle', locale)}</p>
       </header>
 
       <div className="relative max-w-[720px] mb-3">
-        <Search size={19} strokeWidth={2.3} className="absolute left-4 top-1/2 -translate-y-1/2 text-faint pointer-events-none" />
+        <Search size={19} strokeWidth={2.3} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value.slice(0, 60))}
@@ -106,10 +106,10 @@ export function DictionaryView() {
           autoComplete="off"
           autoCapitalize="none"
           spellCheck={false}
-          className="w-full h-[56px] rounded-full bg-card border border-border shadow-card pl-12 pr-24 text-[16px] font-rounded font-semibold text-text placeholder:text-faint placeholder:font-medium outline-none transition focus:border-primary focus:shadow-pop [&::-webkit-search-cancel-button]:hidden"
+          className="w-full h-[56px] rounded-full bg-card border border-border shadow-card pl-12 pr-24 text-[16px] font-display font-semibold text-text placeholder:text-muted placeholder:font-medium outline-none transition focus:border-text focus:shadow-pop [&::-webkit-search-cancel-button]:hidden"
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-          {loading && <Loader2 size={18} className="animate-spin text-primary" aria-label={t('dictSearching', locale)} />}
+          {loading && <Loader2 size={18} className="animate-spin text-text" aria-label={t('dictSearching', locale)} />}
           {query && (
             <button onClick={() => setQuery('')} aria-label="Clear" className="grid place-items-center w-10 h-10 rounded-full text-muted hover:text-text hover:bg-surface-2 transition">
               <X size={18} strokeWidth={2.4} />
@@ -126,7 +126,7 @@ export function DictionaryView() {
       {error ? (
         <Notice tone="bad">
           <span>{t('dictLoadError', locale)}</span>
-          <button onClick={() => { const q = query; setQuery(''); setTimeout(() => setQuery(q), 0); }} className="font-rounded font-bold text-primary underline underline-offset-4 ml-2 py-2">
+          <button onClick={() => { const q = query; setQuery(''); setTimeout(() => setQuery(q), 0); }} className="font-display font-bold text-text underline underline-offset-4 ml-2 py-2">
             {t('tryAgain', locale)}
           </button>
         </Notice>
@@ -135,7 +135,7 @@ export function DictionaryView() {
           <Notice>{t('dictTypeMin', locale)}</Notice>
           <div className="flex flex-wrap gap-2 mt-5">
             {SUGGESTIONS.map((s) => (
-              <button key={s} onClick={() => setQuery(s)} className="rounded-full border border-border bg-card px-4 py-2.5 font-rounded font-bold text-[14px] text-text-2 hover:border-primary hover:text-primary transition">
+              <button key={s} onClick={() => setQuery(s)} className="rounded-full border border-border bg-card px-4 py-2.5 font-display font-bold text-[14px] text-text-2 hover:border-text hover:text-text transition">
                 {s}
               </button>
             ))}
@@ -152,13 +152,13 @@ export function DictionaryView() {
         <Notice>{needsMore ? t('dictTypeMore', locale) : t('dictNoResults', locale)}</Notice>
       ) : null}
 
-      <p className="mt-12 text-[12.5px] text-faint leading-relaxed max-w-[70ch]">
+      <p className="mt-12 text-[12.5px] text-muted leading-relaxed max-w-[70ch]">
         {t('dictAttribution', locale)}{' '}
-        <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-primary">Wiktionary</a>
+        <a href="https://en.wiktionary.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-text">Wiktionary</a>
         {' · '}
-        <a href="https://kaikki.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-primary">kaikki.org</a>
+        <a href="https://kaikki.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-text">kaikki.org</a>
         {' · '}
-        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-primary">CC BY-SA 4.0</a>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-text">CC BY-SA 4.0</a>
       </p>
     </div>
   );
@@ -166,7 +166,7 @@ export function DictionaryView() {
 
 function Notice({ children, tone }: { children: React.ReactNode; tone?: 'bad' }) {
   return (
-    <div className={'rounded-[18px] border px-5 py-4 text-[15px] flex flex-wrap items-center ' + (tone === 'bad' ? 'border-[var(--bad)] bg-[var(--bad-wash)] text-[var(--bad)]' : 'border-border bg-card text-text-2')}>
+    <div className={'rounded-[18px] border px-5 py-4 text-[15px] flex flex-wrap items-center ' + (tone === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]' : 'border-border bg-card text-text-2')}>
       {children}
     </div>
   );
@@ -178,7 +178,7 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
   const { state, toggleHardWord } = useProgress();
   const arts = articlesOf(entry.g);
   const saved = lesson ? state.hardWords.includes(lesson.id) : false;
-  const bandBg = arts[0] ? `color-mix(in srgb, var(--${arts[0]}) 13%, var(--card))` : 'var(--primary-wash)';
+  const bandBg = arts[0] ? `color-mix(in srgb, var(--${arts[0]}) 13%, var(--card))` : 'var(--s2)';
   const posKey = POS_KEY[entry.p];
   const meanings = lesson ? [pick(lesson.english, lesson.french, locale), ...entry.s.filter((g) => g !== lesson.english)] : entry.s;
   const listen = () => (lesson ? playAudio(ttsSrc(lesson.german)) : speakText(entry.w));
@@ -190,7 +190,7 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
     : null;
 
   return (
-    <article className="relative bg-card border border-border rounded-[20px] shadow-card overflow-hidden flex flex-col transition hover:border-primary hover:shadow-pop">
+    <article className="relative bg-card border border-border rounded-[20px] shadow-card overflow-hidden flex flex-col transition hover:border-text hover:shadow-pop">
       <DictCardLink headword={entry.w} q={query} />
       <div className="p-4 pb-3.5 relative pointer-events-none" style={{ background: bandBg }}>
         {lesson && (
@@ -198,7 +198,7 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
             onClick={() => toggleHardWord(lesson.id)}
             aria-label={saved ? t('savedToReview', locale) : t('addToLearned', locale)}
             title={t('dictStarHint', locale)}
-            className={'absolute top-2 right-2 z-10 pointer-events-auto grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-amber' : 'text-faint hover:text-amber')}
+            className={'absolute top-2 right-2 z-10 pointer-events-auto grid place-items-center w-10 h-10 rounded-full transition-colors ' + (saved ? 'text-ember' : 'text-muted hover:text-ember')}
           >
             <Star size={17} strokeWidth={2.2} fill={saved ? 'currentColor' : 'none'} />
           </button>
@@ -208,17 +208,17 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
           {arts.map((a) => <GenderTag key={a} gender={a} />)}
           {posKey && <span className="label text-muted">{t(posKey, locale)}</span>}
           {lesson && (
-            <span className="label inline-flex items-center gap-1 rounded-full bg-[var(--primary-wash)] text-primary px-2 py-0.5">
+            <span className="label inline-flex items-center gap-1 rounded-full bg-surface-2 text-text px-2 py-0.5">
               <BookOpen size={11} strokeWidth={2.6} /> {t('dictInLessons', locale)}
             </span>
           )}
         </div>
         <div className="flex items-end justify-between gap-2 pr-10">
-          <h2 className="font-rounded font-extrabold text-[24px] leading-tight text-text m-0 break-words min-w-0">{entry.w}</h2>
+          <h2 className="font-display font-extrabold text-[24px] leading-tight text-text m-0 break-words min-w-0">{entry.w}</h2>
           <button
             onClick={listen}
             aria-label={`${t('dictListen', locale)}: ${entry.w}`}
-            className="relative z-10 pointer-events-auto grid place-items-center shrink-0 w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
+            className="relative z-10 pointer-events-auto grid place-items-center shrink-0 w-10 h-10 rounded-full bg-card text-text shadow-sm hover:brightness-105 active:scale-90 transition"
           >
             <Volume2 size={17} strokeWidth={2.2} />
           </button>
@@ -226,9 +226,9 @@ function ResultCard({ card, query }: { card: Card; query: string }) {
       </div>
 
       <div className="p-4 flex-1 flex flex-col gap-2.5">
-        {entry.ipa && <span className="font-mono text-[13px] text-primary">/{entry.ipa}/</span>}
+        {entry.ipa && <span className="font-mono text-[13px] text-text">/{entry.ipa}/</span>}
 
-        <ol className="m-0 pl-5 list-decimal marker:text-faint grid gap-1 text-text-2 text-[15px] font-rounded font-semibold">
+        <ol className="m-0 pl-5 list-decimal marker:text-muted grid gap-1 text-text-2 text-[15px] font-display font-semibold">
           {meanings.map((m, i) => <li key={i}>{m}</li>)}
         </ol>
 

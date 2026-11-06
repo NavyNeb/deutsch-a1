@@ -27,9 +27,9 @@ const KIND_LABEL: Record<IssueKind, UIKey> = {
   style: 'writeKindStyle',
 };
 const KIND_COLOR: Record<IssueKind, string> = {
-  spelling: 'var(--bad)',
-  grammar: 'var(--amber)',
-  style: 'var(--primary)',
+  spelling: 'var(--ember)',
+  grammar: 'var(--ember)',
+  style: 'var(--t1)',
 };
 
 const countWords = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
@@ -203,15 +203,15 @@ export function WriteEditor() {
     : words === 0 ? ''
     : visible.length === 0 ? t('writeAllGood', locale)
     : `${visible.length} ${t('writeIssuesUnit', locale)}`;
-  const statusTone = status === 'paused' || status === 'error' ? 'text-[var(--amber)]' : status === 'done' && visible.length === 0 && words > 0 ? 'text-[var(--good)]' : 'text-muted';
+  const statusTone = status === 'paused' || status === 'error' ? 'text-[var(--ember)]' : status === 'done' && visible.length === 0 && words > 0 ? 'text-[var(--ok)]' : 'text-muted';
 
   return (
     <div className="mx-auto max-w-[820px] px-5 py-8 md:py-12">
-      <h1 className="font-rounded font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('writeTitle', locale)}</h1>
+      <h1 className="font-display font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('writeTitle', locale)}</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-2 mb-6 max-w-[56ch]">{t('writeSubtitle', locale)}</p>
 
       <div className="mb-3">
-        <p className="text-[12px] font-rounded font-bold tracking-wider text-muted uppercase mb-2">{t('writeChooseTask', locale)}</p>
+        <p className="text-[12px] font-display font-bold tracking-wider text-muted uppercase mb-2">{t('writeChooseTask', locale)}</p>
         <div className="flex flex-wrap items-center gap-2">
           <Segmented label={t('level', locale)} value={level} onChange={pickLevel} options={LEVELS.map((l) => ({ value: l, label: l }))} />
         </div>
@@ -223,8 +223,8 @@ export function WriteEditor() {
               onClick={() => setPromptId(p.id)}
               aria-pressed={p.id === promptId}
               className={
-                'rounded-full border px-3.5 py-2 text-[14px] font-rounded font-bold transition ' +
-                (p.id === promptId ? 'border-primary bg-[var(--primary-wash)] text-primary' : 'border-border bg-card text-text-2 hover:bg-surface-2')
+                'rounded-full border px-3.5 py-2 text-[14px] font-display font-bold transition ' +
+                (p.id === promptId ? 'border-text bg-surface-2 text-text' : 'border-border bg-card text-text-2 hover:bg-surface-2')
               }
             >
               {pick(p.title, p.titleFr, locale)}
@@ -235,8 +235,8 @@ export function WriteEditor() {
             onClick={() => setPromptId(FREE_WRITE_ID)}
             aria-pressed={isFree}
             className={
-              'rounded-full border px-3.5 py-2 text-[14px] font-rounded font-bold transition ' +
-              (isFree ? 'border-primary bg-[var(--primary-wash)] text-primary' : 'border-dashed border-border bg-card text-text-2 hover:bg-surface-2')
+              'rounded-full border px-3.5 py-2 text-[14px] font-display font-bold transition ' +
+              (isFree ? 'border-text bg-surface-2 text-text' : 'border-dashed border-border bg-card text-text-2 hover:bg-surface-2')
             }
           >
             {t('writeFree', locale)}
@@ -248,7 +248,7 @@ export function WriteEditor() {
         <p className="m-0 text-[16.5px] leading-relaxed">{prompt ? pick(prompt.task, prompt.taskFr, locale) : t('writeFreeTask', locale)}</p>
         {prompt && (
           <div className="mt-3">
-            <p className="flex items-center gap-1.5 text-[12px] font-rounded font-bold tracking-wider text-muted uppercase m-0 mb-2">
+            <p className="flex items-center gap-1.5 text-[12px] font-display font-bold tracking-wider text-muted uppercase m-0 mb-2">
               <Lightbulb size={14} />{t('writeUsefulPhrases', locale)}
             </p>
             <div className="flex flex-wrap gap-2">
@@ -261,9 +261,9 @@ export function WriteEditor() {
       </Card>
 
       {finish && (
-        <div role="status" className="rounded-[16px] border border-border bg-[var(--good-wash)] px-5 py-4 mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div role="status" className="rounded-[16px] border border-border bg-[var(--ok-wash)] px-5 py-4 mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="font-rounded font-extrabold text-[20px] m-0 text-[var(--good)]">{t('writeDone', locale)}</p>
+            <p className="font-display font-extrabold text-[20px] m-0 text-[var(--ok)]">{t('writeDone', locale)}</p>
             <p className="m-0 mt-1 text-[14.5px] text-text-2">
               {finish.words} {t('wordsUnit', locale)}
               {' · '}
@@ -274,7 +274,7 @@ export function WriteEditor() {
         </div>
       )}
 
-      <div className="rounded-[20px] border border-border bg-card p-4 md:p-5 focus-within:border-primary transition-colors">
+      <div className="rounded-[20px] border border-border bg-card p-4 md:p-5 focus-within:border-text transition-colors">
         <div className="relative text-[17px] leading-[1.75]">
           <div
             aria-hidden
@@ -287,7 +287,7 @@ export function WriteEditor() {
                   key={idx}
                   className="text-transparent rounded-[3px]"
                   style={{
-                    background: seg.issue.id === activeId ? 'var(--primary-wash)' : 'transparent',
+                    background: seg.issue.id === activeId ? 'var(--s2)' : 'transparent',
                     textDecoration: 'underline wavy',
                     textDecorationColor: KIND_COLOR[seg.issue.kind],
                     textDecorationThickness: '2px',
@@ -314,7 +314,7 @@ export function WriteEditor() {
             spellCheck={false}
             autoCapitalize="sentences"
             aria-label={t('writeTitle', locale)}
-            className="relative block w-full min-h-[220px] resize-none overflow-hidden border-0 bg-transparent p-0 m-0 outline-none text-text placeholder:text-faint"
+            className="relative block w-full min-h-[220px] resize-none overflow-hidden border-0 bg-transparent p-0 m-0 outline-none text-text placeholder:text-muted"
             style={{ font: 'inherit', outline: 'none', whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}
           />
         </div>
@@ -323,7 +323,7 @@ export function WriteEditor() {
       <div className="sticky bottom-0 z-10 -mx-5 mt-3 border-t border-border bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] px-5 py-3 backdrop-blur [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom,0px))] md:static md:mx-0 md:border-0 md:bg-transparent md:px-0 md:py-0 md:backdrop-blur-none">
         <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13.5px]">
-            <span className="font-rounded font-bold text-text-2">
+            <span className="font-display font-bold text-text-2">
               {words} {t('wordsUnit', locale)}
               <span className="text-muted font-normal"> · {t('writeGoal', locale)} {minWords}</span>
             </span>
@@ -342,14 +342,14 @@ export function WriteEditor() {
             </Button>
           </div>
         </div>
-        <p className="m-0 mt-2 text-[12px] text-faint min-h-[16px]">
+        <p className="m-0 mt-2 text-[12px] text-muted min-h-[16px]">
           {text.length > MAX_CHARS ? t('writeTooLong', locale) : saved ? t('writeDraftSaved', locale) : ''}
         </p>
       </div>
 
       {visible.length > 0 && (
         <section className="mt-6" aria-label={t('writeSuggestions', locale)}>
-          <h2 className="font-rounded font-extrabold text-[20px] m-0 mb-3">{t('writeSuggestions', locale)}</h2>
+          <h2 className="font-display font-extrabold text-[20px] m-0 mb-3">{t('writeSuggestions', locale)}</h2>
           <ul className="list-none m-0 p-0 flex flex-col gap-3">
             {visible.map((issue) => {
               const snippet = text.slice(issue.offset, issue.offset + issue.length);
@@ -359,14 +359,14 @@ export function WriteEditor() {
                 <li key={issue.id}>
                   <div
                     onClick={() => setActiveId(issue.id)}
-                    className={'rounded-[16px] border bg-card p-4 transition-colors ' + (active ? 'border-primary' : 'border-border')}
+                    className={'rounded-[16px] border bg-card p-4 transition-colors ' + (active ? 'border-text' : 'border-border')}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: KIND_COLOR[issue.kind] }} />
-                      <span className="text-[12px] font-rounded font-bold tracking-wider text-muted uppercase">{t(KIND_LABEL[issue.kind], locale)}</span>
+                      <span className="text-[12px] font-display font-bold tracking-wider text-muted uppercase">{t(KIND_LABEL[issue.kind], locale)}</span>
                     </div>
                     <p lang="de" className="m-0 text-[16px]">
-                      <span className="rounded-[6px] bg-[var(--bad-wash)] px-1.5 text-[var(--bad)] line-through decoration-1">{snippet}</span>
+                      <span className="rounded-[6px] bg-[var(--ember-wash)] px-1.5 text-[var(--ember)] line-through decoration-1">{snippet}</span>
                     </p>
                     {issue.replacements.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-2">
@@ -376,7 +376,7 @@ export function WriteEditor() {
                             type="button"
                             lang="de"
                             onClick={(e) => { e.stopPropagation(); replaceWith(issue, r); }}
-                            className="rounded-full border border-[var(--good)] bg-[var(--good-wash)] px-3.5 py-1.5 font-rounded font-bold text-[15px] text-[var(--good)] hover:brightness-95 active:scale-[0.98] transition"
+                            className="rounded-full border border-[var(--ok)] bg-[var(--ok-wash)] px-3.5 py-1.5 font-display font-bold text-[15px] text-[var(--ok)] hover:brightness-95 active:scale-[0.98] transition"
                           >
                             {r}
                           </button>
@@ -385,9 +385,9 @@ export function WriteEditor() {
                     )}
                     {issue.message && <p className="m-0 mt-3 text-[14px] text-muted leading-relaxed">{issue.message}</p>}
                     {w?.state === 'done' && (
-                      <p className="m-0 mt-3 rounded-[12px] bg-[var(--primary-wash)] px-3.5 py-3 text-[14.5px] leading-relaxed whitespace-pre-wrap">{w.text}</p>
+                      <p className="m-0 mt-3 rounded-[12px] bg-surface-2 px-3.5 py-3 text-[14.5px] leading-relaxed whitespace-pre-wrap">{w.text}</p>
                     )}
-                    {w?.state === 'error' && <p className="m-0 mt-3 text-[13.5px] text-[var(--amber)]">{t('writeWhyError', locale)}</p>}
+                    {w?.state === 'error' && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember)]">{t('writeWhyError', locale)}</p>}
                     <div className="mt-3 flex items-center gap-2">
                       {ASSIST_ON && (
                         <Button variant="secondary" size="sm" onClick={(e) => { e.stopPropagation(); explain(issue); }} disabled={w?.state === 'loading'}>
@@ -407,7 +407,7 @@ export function WriteEditor() {
         </section>
       )}
 
-      <p className="mt-10 text-[12.5px] text-faint leading-relaxed max-w-[70ch]">{t('writePrivacy', locale)}</p>
+      <p className="mt-10 text-[12.5px] text-muted leading-relaxed max-w-[70ch]">{t('writePrivacy', locale)}</p>
     </div>
   );
 }

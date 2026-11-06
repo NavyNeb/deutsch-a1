@@ -11,7 +11,7 @@ export function DictCardLink({ headword, q }: { headword: string; q?: string }) 
     <Link
       href={wordHref(headword, q)}
       aria-label={`${t('dictOpenWord', locale)}: ${headword}`}
-      className="absolute inset-0 z-0 rounded-[20px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      className="absolute inset-0 z-0 rounded-[20px] outline-none focus-visible:ring-2 focus-visible:ring-text"
     />
   );
 }

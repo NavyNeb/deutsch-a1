@@ -13,8 +13,8 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
           aria-checked={o.value === value}
           onClick={() => onChange(o.value)}
           className={
-            'shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-rounded font-bold text-[14px] transition ' +
-            (o.value === value ? 'bg-primary text-primary-ink shadow-primary' : 'text-text-2 hover:bg-surface-2')
+            'shrink-0 whitespace-nowrap rounded-full px-4 py-2 font-display font-bold text-[14px] transition ' +
+            (o.value === value ? 'bg-cta text-cta-ink ' : 'text-text-2 hover:bg-surface-2')
           }
         >
           {o.label}

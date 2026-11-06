@@ -53,11 +53,11 @@ export function AccountView() {
       <div className="grid gap-4">
         <Card>
           <div className="flex items-center gap-3">
-            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-[var(--good-wash)] text-[var(--good)] shrink-0">
+            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-[var(--ok-wash)] text-[var(--ok)] shrink-0">
               <Cloud size={20} strokeWidth={2.2} />
             </span>
             <div className="min-w-0">
-              <b className="font-rounded font-bold block truncate">{user.email}</b>
+              <b className="font-display font-bold block truncate">{user.email}</b>
               <p className="m-0 text-[13px] text-muted">{t('syncOn', locale)}</p>
             </div>
           </div>
@@ -71,7 +71,7 @@ export function AccountView() {
             await supabase.from('user_state').delete().eq('user_id', user.id);
             await supabase.auth.signOut();
           }}
-          className="inline-flex items-center justify-center gap-1.5 text-[var(--bad)] text-sm font-rounded font-semibold py-2 hover:underline"
+          className="inline-flex items-center justify-center gap-1.5 text-[var(--ember)] text-sm font-display font-semibold py-2 hover:underline"
         >
           <Trash2 size={15} strokeWidth={2.2} /> {t('deleteData', locale)}
         </button>
@@ -93,7 +93,7 @@ export function AccountView() {
     else if (mode === 'up') setMsg(t('checkEmailConfirm', locale));
   };
 
-  const field = 'w-full rounded-[12px] border border-border bg-card px-4 py-3 text-[15px] outline-none focus:border-primary transition-colors';
+  const field = 'w-full rounded-[12px] border border-border bg-card px-4 py-3 text-[15px] outline-none focus:border-text transition-colors';
 
   return shell(
     <Card>
@@ -111,7 +111,7 @@ export function AccountView() {
       {msg && <p className="text-[13px] text-text-2 mt-3 mb-0">{msg}</p>}
       <button
         onClick={() => { setMode(mode === 'in' ? 'up' : 'in'); setMsg(null); }}
-        className="w-full text-center text-[13px] text-primary font-rounded font-semibold mt-4 hover:underline"
+        className="w-full text-center text-[13px] text-text font-display font-semibold mt-4 hover:underline"
       >
         {mode === 'in' ? t('toggleToSignUp', locale) : t('toggleToSignIn', locale)}
       </button>

@@ -29,11 +29,11 @@ export function ExamsHub({ counts }: { counts: Record<string, number> }) {
                       <span className="font-display font-bold text-[34px] leading-none text-text">{level}</span>
                       <ArrowRight size={18} className="mt-1 text-muted" />
                     </div>
-                    <p className="m-0 mt-3 font-rounded font-bold text-[16px]">{fmt.name}</p>
+                    <p className="m-0 mt-3 font-display font-bold text-[16px]">{fmt.name}</p>
                     <p className="m-0 mt-2 text-[14px] text-muted">
                       {t('examLesen', locale)} {fmt.lesen.minutes} · {t('examSchreiben', locale)} {fmt.schreiben.minutes} · {t('examSprechen', locale)} {fmt.sprechen.minutes} {t('examMinutes', locale)}
                     </p>
-                    <p className="m-0 mt-3 text-[13.5px] font-rounded font-bold text-text-2">
+                    <p className="m-0 mt-3 text-[13.5px] font-display font-bold text-text-2">
                       {count > 0 ? `${count} ${t('examSets', locale)}` : t('examComingSoon', locale)}
                     </p>
                   </Card>
@@ -44,7 +44,7 @@ export function ExamsHub({ counts }: { counts: Record<string, number> }) {
         </section>
       ))}
 
-      <p className="m-0 max-w-[70ch] text-[13px] leading-relaxed text-faint">{t('examsDisclaimer', locale)}</p>
+      <p className="m-0 max-w-[70ch] text-[13px] leading-relaxed text-muted">{t('examsDisclaimer', locale)}</p>
     </div>
   );
 }

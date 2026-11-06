@@ -40,17 +40,17 @@ export function SpecialCard({ special, progress }: { special: Special; progress:
         )}
       </div>
       <div className="flex-1 flex flex-col p-4">
-        <h3 className="font-rounded font-extrabold text-[17px] leading-tight text-text m-0">{special.title.de}</h3>
+        <h3 className="font-display font-extrabold text-[17px] leading-tight text-text m-0">{special.title.de}</h3>
         <p className="text-muted text-[13.5px] m-0 mt-1 line-clamp-2">{pick(special.title.en, special.title.fr, locale)}</p>
         <div className="mt-auto pt-3 grid gap-2">
           <div className="h-1.5 bg-surface-3 rounded-full overflow-hidden" aria-hidden="true">
-            <div className="h-full rounded-full bg-primary transition-[width] duration-300" style={{ width: `${Math.round(pct * 100)}%` }} />
+            <div className="h-full rounded-full bg-cta transition-[width] duration-300" style={{ width: `${Math.round(pct * 100)}%` }} />
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <span
               className={
-                'font-rounded font-bold text-[12px] rounded-full px-2.5 py-1 ' +
-                (passed ? 'bg-[var(--good-wash)] text-[var(--good)]' : started ? 'bg-[var(--amber-wash)] text-amber' : 'bg-[var(--primary-wash)] text-primary')
+                'font-display font-bold text-[12px] rounded-full px-2.5 py-1 ' +
+                (passed ? 'bg-[var(--ok-wash)] text-[var(--ok)]' : started ? 'bg-[var(--ember-wash)] text-ember' : 'bg-surface-2 text-text')
               }
             >
               {status}

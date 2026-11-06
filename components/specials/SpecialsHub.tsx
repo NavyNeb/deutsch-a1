@@ -41,7 +41,7 @@ export function SpecialsHub({ items = registry }: { items?: Special[] }) {
   return (
     <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
       <header className="mb-6 max-w-[62ch]">
-        <h1 className="font-rounded font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
+        <h1 className="font-display font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
           {t('specialsTitle', locale)}
         </h1>
         <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('specialsSubtitle', locale)}</p>
@@ -58,7 +58,7 @@ export function SpecialsHub({ items = registry }: { items?: Special[] }) {
       <div className="grid gap-10">
         {visible.map(({ level, items: list }) => (
           <section key={level} aria-labelledby={`lvl-${level}`}>
-            <h2 id={`lvl-${level}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-rounded font-extrabold text-[22px] text-text m-0 mb-4">
+            <h2 id={`lvl-${level}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-display font-extrabold text-[22px] text-text m-0 mb-4">
               <span>{level}</span>
               <span className="text-[15px] font-bold text-muted">{t(`specialsLevel${level}`, locale)}</span>
               <span className="label tabular-nums text-muted">{list.length}</span>

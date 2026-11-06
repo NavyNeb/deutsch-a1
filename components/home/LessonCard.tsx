@@ -62,17 +62,17 @@ export function LessonCard({ lesson, completion }: { lesson: Lesson; completion:
 
       {/* Body */}
       <div className="flex-1 flex flex-col p-4">
-        <h3 className="font-rounded font-extrabold text-[17px] leading-tight text-text m-0">{lesson.title.de}</h3>
+        <h3 className="font-display font-extrabold text-[17px] leading-tight text-text m-0">{lesson.title.de}</h3>
         <p className="text-muted text-[13.5px] m-0 mt-1 line-clamp-2">{pick(lesson.title.en, lesson.title.fr, locale)}</p>
         <div className="mt-auto pt-3 flex items-center gap-2">
           <span
             className={
-              'font-rounded font-bold text-[12px] rounded-full px-2.5 py-1 ' +
+              'font-display font-bold text-[12px] rounded-full px-2.5 py-1 ' +
               (complete
-                ? 'bg-[var(--good-wash)] text-[var(--good)]'
+                ? 'bg-[var(--ok-wash)] text-[var(--ok)]'
                 : started
-                  ? 'bg-[var(--amber-wash)] text-amber'
-                  : 'bg-[var(--primary-wash)] text-primary')
+                  ? 'bg-[var(--ember-wash)] text-ember'
+                  : 'bg-surface-2 text-text')
             }
           >
             {complete ? t('review', locale) : started ? t('continue', locale) : t('start', locale)}

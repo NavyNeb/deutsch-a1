@@ -12,7 +12,7 @@ export function InstallMenuItem({ onDone }: { onDone?: () => void }) {
   if (state === 'ios') {
     return (
       <p className="m-0 flex items-start gap-2 rounded-[12px] px-3 py-2.5 text-[13px] text-text-2 bg-surface-2">
-        <Share size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+        <Share size={16} className="mt-0.5 shrink-0 text-text" aria-hidden="true" />
         {t('installIos', locale)}
       </p>
     );
@@ -24,7 +24,7 @@ export function InstallMenuItem({ onDone }: { onDone?: () => void }) {
         void promptInstall();
         onDone?.();
       }}
-      className="flex items-center gap-2 rounded-[12px] px-3 py-2.5 text-left font-rounded font-semibold text-primary hover:bg-surface-2"
+      className="flex items-center gap-2 rounded-[12px] px-3 py-2.5 text-left font-display font-semibold text-text hover:bg-surface-2"
     >
       <Download size={18} aria-hidden="true" />
       {t('installMenu', locale)}

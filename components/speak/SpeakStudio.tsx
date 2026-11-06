@@ -28,9 +28,9 @@ const ERROR_KEY: Record<SpeechError, UIKey> = {
 };
 
 const STATUS_CLS: Record<WordStatus, string> = {
-  ok: 'bg-[var(--good-wash)] text-[var(--good)]',
-  near: 'bg-[var(--amber-wash)] text-[var(--amber)]',
-  missed: 'bg-[var(--bad-wash)] text-[var(--bad)]',
+  ok: 'bg-[var(--ok-wash)] text-[var(--ok)]',
+  near: 'bg-[var(--ember-wash)] text-[var(--ember)]',
+  missed: 'bg-[var(--ember-wash)] text-[var(--ember)]',
 };
 
 export function SpeakStudio() {
@@ -89,7 +89,7 @@ export function SpeakStudio() {
 
   return (
     <div className="mx-auto max-w-[760px] px-5 py-8 md:py-12">
-      <h1 className="font-rounded font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('speakTitle', locale)}</h1>
+      <h1 className="font-display font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('speakTitle', locale)}</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-2 mb-6 max-w-[56ch]">{t('speakSubtitle', locale)}</p>
 
       <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -111,16 +111,16 @@ export function SpeakStudio() {
       </div>
 
       {sr.ready && !sr.supported && (
-        <div className="rounded-[14px] border border-border bg-[var(--amber-wash)] px-4 py-3 text-[14.5px] text-text-2 mb-6">
+        <div className="rounded-[14px] border border-border bg-[var(--ember-wash)] px-4 py-3 text-[14.5px] text-text-2 mb-6">
           {t('speakUnsupported', locale)}
         </div>
       )}
 
       {finished ? (
         <Card className="text-center">
-          <p className="font-rounded font-extrabold text-[28px] m-0">{t('speakSetDone', locale)}</p>
+          <p className="font-display font-extrabold text-[28px] m-0">{t('speakSetDone', locale)}</p>
           <p className="text-muted mt-3 mb-1">{t('speakAverage', locale)}</p>
-          <p className="font-rounded font-extrabold text-[56px] leading-none m-0 text-primary">{average}%</p>
+          <p className="font-display font-extrabold text-[56px] leading-none m-0 text-text">{average}%</p>
           <p className="text-muted mt-3">{xpEarned > 0 ? `+${xpEarned} ${t('xpEarned', locale)}` : ' '}</p>
           <Button onClick={() => newSet(level)} className="mt-4"><RotateCcw size={18} />{t('speakNewSet', locale)}</Button>
         </Card>
@@ -132,7 +132,7 @@ export function SpeakStudio() {
                 key={s.id}
                 className={
                   'h-2 flex-1 rounded-full ' +
-                  (i === idx ? 'bg-primary' : (scores[s.id] ?? -1) >= PASS_PERCENT ? 'bg-[var(--good)]' : s.id in scores ? 'bg-[var(--amber)]' : 'bg-border')
+                  (i === idx ? 'bg-cta' : (scores[s.id] ?? -1) >= PASS_PERCENT ? 'bg-[var(--ok)]' : s.id in scores ? 'bg-[var(--ember)]' : 'bg-border')
                 }
               />
             ))}
@@ -140,7 +140,7 @@ export function SpeakStudio() {
 
           <Card className="!p-6 md:!p-8">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[12px] font-rounded font-bold tracking-wider text-muted">{item.level} · {idx + 1} / {set.length}</span>
+              <span className="text-[12px] font-display font-bold tracking-wider text-muted">{item.level} · {idx + 1} / {set.length}</span>
               {canHear && (
                 <Button variant="secondary" size="sm" onClick={() => playAudio(ttsSrc(item.de))}>
                   <Volume2 size={16} />{t(mode === 'repeat' ? 'speakListen' : 'speakListenAfter', locale)}
@@ -149,7 +149,7 @@ export function SpeakStudio() {
             </div>
 
             {best ? (
-              <p className="font-rounded font-bold text-[26px] md:text-[32px] leading-[1.6] m-0 flex flex-wrap gap-x-2 gap-y-1">
+              <p className="font-display font-bold text-[26px] md:text-[32px] leading-[1.6] m-0 flex flex-wrap gap-x-2 gap-y-1">
                 {best.score.words.map((w, i) => (
                   <span key={i} title={w.heard ? `${t('speakYouSaid', locale)}: ${w.heard}` : undefined} className={'rounded-[8px] px-1.5 ' + STATUS_CLS[w.status]}>
                     {w.word}
@@ -157,14 +157,14 @@ export function SpeakStudio() {
                 ))}
               </p>
             ) : (
-              <p lang="de" className="font-rounded font-bold text-[26px] md:text-[32px] leading-[1.35] m-0">{item.de}</p>
+              <p lang="de" className="font-display font-bold text-[26px] md:text-[32px] leading-[1.35] m-0">{item.de}</p>
             )}
 
             <div className="mt-3 min-h-[28px]">
               {showMeaning ? (
                 <p className="text-text-2 text-[16px] m-0">{meaning}</p>
               ) : (
-                <button onClick={() => setShowMeaning(true)} className="inline-flex items-center gap-1.5 text-primary font-rounded font-bold text-[14px] py-1">
+                <button onClick={() => setShowMeaning(true)} className="inline-flex items-center gap-1.5 text-text font-display font-bold text-[14px] py-1">
                   <Eye size={16} />{t('speakShowMeaning', locale)}
                 </button>
               )}
@@ -177,8 +177,8 @@ export function SpeakStudio() {
                   onClick={sr.listening ? sr.stop : sr.listen}
                   aria-label={t(sr.listening ? 'speakStop' : 'speakTap', locale)}
                   className={
-                    'grid place-items-center w-[76px] h-[76px] rounded-full text-white shadow-primary transition active:scale-95 ' +
-                    (sr.listening ? 'bg-[var(--bad)] animate-pulse' : 'bg-primary')
+                    'grid place-items-center w-[76px] h-[76px] rounded-full text-white  transition active:scale-95 ' +
+                    (sr.listening ? 'bg-[var(--ember)] animate-pulse' : 'bg-cta')
                   }
                 >
                   {sr.listening ? <Square size={28} fill="currentColor" /> : <Mic size={32} />}
@@ -190,14 +190,14 @@ export function SpeakStudio() {
             )}
 
             {sr.error && !sr.listening && (
-              <p role="alert" className="mt-4 text-center text-[14.5px] text-[var(--bad)]">{t(ERROR_KEY[sr.error], locale)}</p>
+              <p role="alert" className="mt-4 text-center text-[14.5px] text-[var(--ember)]">{t(ERROR_KEY[sr.error], locale)}</p>
             )}
 
             {best && (
               <div className="mt-6 border-t border-border pt-5">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-rounded font-extrabold text-[36px] leading-none text-primary">{best.score.percent}%</span>
-                  <span className="font-rounded font-bold text-[17px]">
+                  <span className="font-display font-extrabold text-[36px] leading-none text-text">{best.score.percent}%</span>
+                  <span className="font-display font-bold text-[17px]">
                     {t(best.score.percent >= PASS_PERCENT ? 'speakGreat' : best.score.percent >= 50 ? 'speakAlmost' : 'speakRetry', locale)}
                   </span>
                 </div>
@@ -207,13 +207,13 @@ export function SpeakStudio() {
                 {best.score.extra.length > 0 && (
                   <p className="text-muted text-[14px] mt-1 mb-0">{t('speakExtra', locale)}: {best.score.extra.join(', ')}</p>
                 )}
-                <p className="text-faint text-[12.5px] mt-3 mb-0">{t('speakLegend', locale)}</p>
+                <p className="text-muted text-[12.5px] mt-3 mb-0">{t('speakLegend', locale)}</p>
               </div>
             )}
           </Card>
 
           <div className="flex items-center justify-between mt-5">
-            <button onClick={() => go(idx + 1)} className="text-muted font-rounded font-bold text-[14px] px-2 py-3">{t('speakSkip', locale)}</button>
+            <button onClick={() => go(idx + 1)} className="text-muted font-display font-bold text-[14px] px-2 py-3">{t('speakSkip', locale)}</button>
             <Button onClick={() => go(idx + 1)} disabled={!attempted[item.id] && sr.supported}>
               {t(idx + 1 >= set.length ? 'done' : 'next', locale)}<ChevronRight size={18} />
             </Button>
@@ -221,7 +221,7 @@ export function SpeakStudio() {
         </>
       ) : null}
 
-      <p className="mt-10 text-[12.5px] text-faint leading-relaxed max-w-[70ch]">{t('speakPrivacy', locale)}</p>
+      <p className="mt-10 text-[12.5px] text-muted leading-relaxed max-w-[70ch]">{t('speakPrivacy', locale)}</p>
     </div>
   );
 }

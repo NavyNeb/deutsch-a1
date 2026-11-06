@@ -36,8 +36,8 @@ export function TranslationToggle() {
       onClick={toggle}
       aria-pressed={show}
       className={
-        'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13.5px] font-rounded font-bold transition ' +
-        (show ? 'border-primary bg-[var(--primary-wash)] text-primary' : 'border-border bg-card text-text-2 hover:bg-surface-2')
+        'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13.5px] font-display font-bold transition ' +
+        (show ? 'border-text bg-surface-2 text-text' : 'border-border bg-card text-text-2 hover:bg-surface-2')
       }
     >
       <Languages size={15} />
@@ -69,8 +69,8 @@ export function TimerPill({ left, locale }: { left: number; locale: 'en' | 'fr' 
     <span
       role="timer"
       className={
-        'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13.5px] font-rounded font-bold tabular-nums ' +
-        (over ? 'border-[var(--bad)] bg-[var(--bad-wash)] text-[var(--bad)]' : 'border-border bg-card text-text-2')
+        'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[13.5px] font-display font-bold tabular-nums ' +
+        (over ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]' : 'border-border bg-card text-text-2')
       }
     >
       <Clock size={15} />
@@ -87,7 +87,7 @@ export function ExamTopBar({ backHref, backLabel, title, children }: {
       <Link href={backHref} className="inline-flex items-center gap-1.5 py-2 text-[14px] text-muted hover:text-text no-underline">
         <ArrowLeft size={15} />{backLabel}
       </Link>
-      <h1 className="font-rounded font-extrabold text-[clamp(26px,4.5vw,38px)] leading-[1.1] tracking-tight m-0 mt-1">{title}</h1>
+      <h1 className="font-display font-extrabold text-[clamp(26px,4.5vw,38px)] leading-[1.1] tracking-tight m-0 mt-1">{title}</h1>
       {children && <div className="mt-4 flex flex-wrap items-center gap-2">{children}</div>}
     </div>
   );
@@ -97,9 +97,9 @@ export function TextCard({ text }: { text: ExamText }) {
   return (
     <div className="rounded-[16px] border border-border bg-card p-4 md:p-5">
       {(text.label || text.title) && (
-        <p className="m-0 mb-2 flex items-center gap-2 font-rounded font-bold text-[14px]">
+        <p className="m-0 mb-2 flex items-center gap-2 font-display font-bold text-[14px]">
           {text.label && (
-            <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--primary-wash)] px-1.5 text-[13px] text-primary uppercase">
+            <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-surface-2 px-1.5 text-[13px] text-text uppercase">
               {text.label}
             </span>
           )}
@@ -117,8 +117,8 @@ export function PartHeading({ teil, title, instruction, instructionTr }: {
 }) {
   return (
     <header className="mb-4">
-      {title.trim() !== `Teil ${teil}` && <p className="m-0 text-[12px] font-rounded font-bold tracking-wider text-muted uppercase">Teil {teil}</p>}
-      <h2 lang="de" className="font-rounded font-extrabold text-[22px] m-0 mt-0.5">{title}</h2>
+      {title.trim() !== `Teil ${teil}` && <p className="m-0 text-[12px] font-display font-bold tracking-wider text-muted uppercase">Teil {teil}</p>}
+      <h2 lang="de" className="font-display font-extrabold text-[22px] m-0 mt-0.5">{title}</h2>
       <p lang="de" className="m-0 mt-2 text-[15.5px] leading-relaxed text-text-2">{instruction}</p>
       <TrLine tr={instructionTr} />
     </header>

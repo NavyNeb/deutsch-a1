@@ -77,7 +77,7 @@ export function ReviewSession() {
         <Mascot size={72} expression="celebrate" className="mx-auto" />
         <h1 className="text-[30px] font-extrabold mt-4 mb-1">{t('reviewComplete', locale)}</h1>
         <div className="inline-flex items-baseline gap-2 mb-6">
-          <span className="font-rounded font-extrabold text-[28px] tabular-nums text-primary">{reviewed}</span>
+          <span className="font-display font-extrabold text-[28px] tabular-nums text-text">{reviewed}</span>
           <span className="label text-muted">{t('wordsReviewed', locale)}</span>
         </div>
         <div className="flex flex-col gap-2.5 w-full max-w-[320px] mx-auto">
@@ -108,7 +108,7 @@ export function ReviewSession() {
         <div className="flex flex-col items-center text-center gap-2">
           {item && <GenderTag gender={item.gender} />}
           <div className="flex items-center gap-2.5">
-            <span className="font-rounded font-extrabold text-[40px] leading-none">{item?.german}</span>
+            <span className="font-display font-extrabold text-[40px] leading-none">{item?.german}</span>
             {item && <AudioButton src={ttsSrc(item.german)} label={`Anhören: ${item.german}`} size={38} />}
           </div>
           <p className="text-muted mt-1 mb-2">{t('whatDoesItMean', locale)}</p>
@@ -125,16 +125,16 @@ export function ReviewSession() {
                 onClick={() => choose(o)}
                 disabled={answered}
                 className={
-                  'flex items-center gap-2 text-left rounded-[12px] px-4 py-3 border font-rounded font-semibold transition-[border-color,background] duration-150 ' +
-                  (variant === 'idle' ? 'border-border bg-card hover:border-primary cursor-pointer ' : '') +
-                  (variant === 'correct' ? 'border-[var(--good)] bg-[var(--good-wash)] ' : '') +
-                  (variant === 'wrong' ? 'border-[var(--bad)] bg-[var(--bad-wash)] ' : '') +
+                  'flex items-center gap-2 text-left rounded-[12px] px-4 py-3 border font-display font-semibold transition-[border-color,background] duration-150 ' +
+                  (variant === 'idle' ? 'border-border bg-card hover:border-text cursor-pointer ' : '') +
+                  (variant === 'correct' ? 'border-[var(--ok)] bg-[var(--ok-wash)] ' : '') +
+                  (variant === 'wrong' ? 'border-[var(--ember)] bg-[var(--ember-wash)] ' : '') +
                   (variant === 'muted' ? 'border-border opacity-55 ' : '')
                 }
               >
                 <span className="flex-1">{o}</span>
-                {variant === 'correct' && <Check size={17} strokeWidth={2.6} className="text-[var(--good)]" aria-hidden="true" />}
-                {variant === 'wrong' && <X size={17} strokeWidth={2.6} className="text-[var(--bad)]" aria-hidden="true" />}
+                {variant === 'correct' && <Check size={17} strokeWidth={2.6} className="text-[var(--ok)]" aria-hidden="true" />}
+                {variant === 'wrong' && <X size={17} strokeWidth={2.6} className="text-[var(--ember)]" aria-hidden="true" />}
               </button>
             );
           })}

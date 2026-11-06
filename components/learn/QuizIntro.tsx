@@ -14,7 +14,7 @@ export function QuizIntro({ step, questions }: { step: QuizData; questions: numb
   return (
     <Card className="text-center">
       <Mascot size={56} expression="think" className="mx-auto mb-3" />
-      <p className="label text-primary m-0 mb-2">{t('quizLabel', locale)}</p>
+      <p className="label text-text m-0 mb-2">{t('quizLabel', locale)}</p>
       <h2 className="text-[28px] font-extrabold m-0 mb-2">{pick(step.title, step.titleFr, locale)}</h2>
       <p className="text-muted m-0">
         {questions} {t('quizQuestions', locale)} · {t('quizPassMark', locale)} {pct}%

@@ -20,8 +20,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border mt-20">
       <div className="mx-auto max-w-[1200px] px-5 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))] flex flex-wrap items-center gap-x-6 gap-y-2">
-        <Link href="/" className="font-rounded font-extrabold text-[17px] text-text no-underline shrink-0">
-          Deutsch<span className="text-primary">.</span>
+        <Link href="/" className="font-display font-extrabold text-[17px] text-text no-underline shrink-0">
+          Deutsch<span className="text-text">.</span>
         </Link>
         <nav className="flex flex-wrap gap-x-5">
           {LINKS.map((l) => (
@@ -31,11 +31,11 @@ export function SiteFooter() {
           ))}
         </nav>
         <div className="flex-1" />
-        <div className="text-[13px] text-faint">
+        <div className="text-[13px] text-muted">
           <p className="m-0">© Deutsch — a CEFR A1–B2 German course</p>
           <p className="m-0 mt-1">
             {t('footerCredits', locale)}{' '}
-            <a href="https://languagetool.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-primary">LanguageTool</a>
+            <a href="https://languagetool.org" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-text">LanguageTool</a>
           </p>
         </div>
       </div>

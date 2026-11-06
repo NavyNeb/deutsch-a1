@@ -15,11 +15,11 @@ import { ExamTopBar, PartHeading, partScope, TextCard, TimerPill, TranslationTog
 const XP_DAILY_CAP = 60;
 
 const chip = (active: boolean, state?: 'good' | 'bad' | 'missed') =>
-  'min-h-[44px] min-w-[44px] rounded-full border px-4 py-2 font-rounded font-bold text-[15px] transition disabled:cursor-default ' +
-  (state === 'good' ? 'border-[var(--good)] bg-[var(--good-wash)] text-[var(--good)]'
-    : state === 'bad' ? 'border-[var(--bad)] bg-[var(--bad-wash)] text-[var(--bad)]'
-    : state === 'missed' ? 'border-[var(--good)] border-dashed text-[var(--good)]'
-    : active ? 'border-primary bg-[var(--primary-wash)] text-primary'
+  'min-h-[44px] min-w-[44px] rounded-full border px-4 py-2 font-display font-bold text-[15px] transition disabled:cursor-default ' +
+  (state === 'good' ? 'border-[var(--ok)] bg-[var(--ok-wash)] text-[var(--ok)]'
+    : state === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)] text-[var(--ember)]'
+    : state === 'missed' ? 'border-[var(--ok)] border-dashed text-[var(--ok)]'
+    : active ? 'border-text bg-surface-2 text-text'
     : 'border-border bg-card text-text-2 hover:bg-surface-2');
 
 function PartView({ part, answers, setAnswer, checked, perItem }: {
@@ -43,7 +43,7 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
         <ul lang="de" className="m-0 mb-5 flex list-none flex-wrap gap-2 rounded-[18px] border border-border bg-card p-4">
           {topTexts.map((tx) => (
             <li key={tx.id} className="rounded-[14px] bg-surface-2 px-3 py-1.5 text-[15px]">
-              <span><b className="mr-2 font-rounded uppercase text-primary">{tx.label}</b>{tx.de}</span>
+              <span><b className="mr-2 font-display uppercase text-text">{tx.label}</b>{tx.de}</span>
               <TrLine tr={tx.tr} className="!mt-0 text-[12.5px]" />
             </li>
           ))}
@@ -63,7 +63,7 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
             <li key={item.id} className="rounded-[18px] border border-border bg-card p-4 md:p-5">
               {own && <div className="mb-3"><TextCard text={own} /></div>}
               <p lang="de" className="m-0 text-[16px] leading-relaxed">
-                <span className="mr-2 font-rounded font-extrabold text-primary">{idx + 1}</span>{item.q}
+                <span className="mr-2 font-display font-extrabold text-text">{idx + 1}</span>{item.q}
               </p>
               <TrLine tr={item.qTr} className="ml-5" />
 
@@ -105,11 +105,11 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
                       <button key={k} type="button" disabled={checked} aria-pressed={picked}
                         onClick={() => setAnswer(item.id, k)}
                         className={'w-full rounded-[14px] border px-4 py-3 text-left transition disabled:cursor-default ' +
-                          (state === 'good' ? 'border-[var(--good)] bg-[var(--good-wash)]'
-                            : state === 'bad' ? 'border-[var(--bad)] bg-[var(--bad-wash)]'
-                            : state === 'missed' ? 'border-dashed border-[var(--good)]'
-                            : picked ? 'border-primary bg-[var(--primary-wash)]' : 'border-border hover:bg-surface-2')}>
-                        <span lang="de" className="text-[15.5px]"><b className="mr-2 font-rounded">{String.fromCharCode(97 + k)}</b>{opt}</span>
+                          (state === 'good' ? 'border-[var(--ok)] bg-[var(--ok-wash)]'
+                            : state === 'bad' ? 'border-[var(--ember)] bg-[var(--ember-wash)]'
+                            : state === 'missed' ? 'border-dashed border-[var(--ok)]'
+                            : picked ? 'border-text bg-surface-2' : 'border-border hover:bg-surface-2')}>
+                        <span lang="de" className="text-[15.5px]"><b className="mr-2 font-display">{String.fromCharCode(97 + k)}</b>{opt}</span>
                         <TrLine tr={mc.optionsTr?.[k]} className="ml-5" />
                       </button>
                     );
@@ -119,7 +119,7 @@ function PartView({ part, answers, setAnswer, checked, perItem }: {
 
               {checked && (
                 <div className="mt-3 flex items-start gap-2 text-[14px] leading-relaxed">
-                  {ok ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--good)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-[var(--bad)]" />}
+                  {ok ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[var(--ok)]" /> : <XCircle size={18} className="mt-0.5 shrink-0 text-[var(--ember)]" />}
                   <span className="text-text-2">
                     {!answered && <b className="mr-1">{t('examNoAnswer', locale)}.</b>}
                     {item.explain?.[locale]}
@@ -176,17 +176,17 @@ export function LesenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
       >
         <TranslationToggle />
         <button type="button" onClick={() => setTimed((v) => !v)} aria-pressed={timed} disabled={checked}
-          className={'rounded-full border px-3.5 py-2 text-[13.5px] font-rounded font-bold transition disabled:opacity-40 ' +
-            (timed ? 'border-primary bg-[var(--primary-wash)] text-primary' : 'border-border bg-card text-text-2 hover:bg-surface-2')}>
+          className={'rounded-full border px-3.5 py-2 text-[13.5px] font-display font-bold transition disabled:opacity-40 ' +
+            (timed ? 'border-text bg-surface-2 text-text' : 'border-border bg-card text-text-2 hover:bg-surface-2')}>
           {t('examTimed', locale)} · {minutes} {t('examMinutes', locale)}
         </button>
         {timed && !checked && <TimerPill left={countdown.left} locale={locale} />}
       </ExamTopBar>
 
       {checked && (
-        <div role="status" className={'mb-8 rounded-[18px] border p-5 ' + (isPassed ? 'border-[var(--good)] bg-[var(--good-wash)]' : 'border-border bg-card')}>
-          <p className="m-0 font-rounded font-extrabold text-[28px]">{result.correct} / {result.total} <span className="text-muted text-[18px]">({result.percent}%)</span></p>
-          <p className={'m-0 mt-1 font-rounded font-bold ' + (isPassed ? 'text-[var(--good)]' : 'text-text-2')}>
+        <div role="status" className={'mb-8 rounded-[18px] border p-5 ' + (isPassed ? 'border-[var(--ok)] bg-[var(--ok-wash)]' : 'border-border bg-card')}>
+          <p className="m-0 font-display font-extrabold text-[28px]">{result.correct} / {result.total} <span className="text-muted text-[18px]">({result.percent}%)</span></p>
+          <p className={'m-0 mt-1 font-display font-bold ' + (isPassed ? 'text-[var(--ok)]' : 'text-text-2')}>
             {isPassed ? t('examPassed', locale) : t('examNotPassed', locale)} · {t('examPassMark', locale)} {fmt.passPercent}%
             {xp > 0 && ` · +${xp} ${t('examXpEarned', locale)}`}
           </p>
@@ -205,7 +205,7 @@ export function LesenRunner({ set, teil }: { set: ExamSet; teil?: number }) {
 
       <div className="sticky bottom-0 z-10 -mx-5 border-t border-border bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] px-5 py-3 backdrop-blur [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom,0px))]">
         <div className="mx-auto flex max-w-[820px] items-center justify-between gap-3">
-          <span className="text-[14px] font-rounded font-bold text-text-2">{answeredCount} / {result.total} {t('examAnswered', locale)}</span>
+          <span className="text-[14px] font-display font-bold text-text-2">{answeredCount} / {result.total} {t('examAnswered', locale)}</span>
           {checked ? (
             <Button onClick={retry}><RotateCcw size={16} />{t('examRetry', locale)}</Button>
           ) : (

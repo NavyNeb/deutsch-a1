@@ -19,7 +19,7 @@ const GOAL_LABEL: Record<number, UIKey> = { 20: 'goalRelaxed', 30: 'goalRegular'
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-4 py-3 border-b border-border last:border-b-0">
-      <span className="font-rounded font-semibold text-[15px]">{label}</span>
+      <span className="font-display font-semibold text-[15px]">{label}</span>
       {children}
     </div>
   );
@@ -41,8 +41,8 @@ function ThemeChoice() {
       onClick={() => choose(val)}
       aria-pressed={theme === val}
       className={
-        'inline-flex items-center gap-1.5 px-3.5 py-2.5 sm:px-3 sm:py-1.5 rounded-full text-[13px] font-rounded font-bold transition-colors ' +
-        (theme === val ? 'bg-primary text-primary-ink' : 'text-text-2 hover:bg-surface-2')
+        'inline-flex items-center gap-1.5 px-3.5 py-2.5 sm:px-3 sm:py-1.5 rounded-full text-[13px] font-display font-bold transition-colors ' +
+        (theme === val ? 'bg-cta text-cta-ink' : 'text-text-2 hover:bg-surface-2')
       }
     >
       {icon} {label}
@@ -79,14 +79,14 @@ export function SettingsView() {
             className="flex items-center gap-3 bg-card border border-border rounded-[18px] shadow-card p-4 no-underline text-inherit
               transition-[transform,box-shadow,border-color] duration-150 hover:-translate-y-0.5 hover:shadow-pop hover:border-border-strong"
           >
-            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-[var(--primary-wash)] text-primary shrink-0">
+            <span className="grid place-items-center w-11 h-11 rounded-[13px] bg-surface-2 text-text shrink-0">
               <Cloud size={20} strokeWidth={2.2} />
             </span>
             <div className="min-w-0 flex-1">
-              <b className="font-rounded font-bold block">{t('account', locale)}</b>
+              <b className="font-display font-bold block">{t('account', locale)}</b>
               <p className="m-0 text-[13px] text-muted">{t('signInToSync', locale)}</p>
             </div>
-            <ChevronRight size={18} className="text-faint shrink-0" />
+            <ChevronRight size={18} className="text-muted shrink-0" />
           </Link>
         )}
 
@@ -99,7 +99,7 @@ export function SettingsView() {
         <Card>
           <div className="flex items-center justify-between gap-4">
             <div className="min-w-0">
-              <b className="font-rounded font-semibold text-[15px] block">{t('examTranslations', locale)}</b>
+              <b className="font-display font-semibold text-[15px] block">{t('examTranslations', locale)}</b>
               <p className="m-0 mt-0.5 text-[13px] text-muted">{t('examTranslationsHint', locale)}</p>
             </div>
             <Segmented
@@ -124,10 +124,10 @@ export function SettingsView() {
                 aria-pressed={settings.dailyGoal === g}
                 className={
                   'rounded-[12px] border px-3 py-3 text-center transition-[border-color,background] duration-150 ' +
-                  (settings.dailyGoal === g ? 'border-primary bg-[var(--primary-wash)]' : 'border-border bg-card hover:border-border-strong')
+                  (settings.dailyGoal === g ? 'border-text bg-surface-2' : 'border-border bg-card hover:border-border-strong')
                 }
               >
-                <div className="font-rounded font-extrabold text-[18px] tabular-nums">{g}</div>
+                <div className="font-display font-extrabold text-[18px] tabular-nums">{g}</div>
                 <div className="label text-muted mt-0.5">{t(GOAL_LABEL[g], locale)}</div>
               </button>
             ))}
@@ -138,19 +138,19 @@ export function SettingsView() {
         <Card>
           <div className="flex justify-between text-center mb-5">
             <div className="flex-1">
-              <div className="font-rounded font-extrabold text-[24px] tabular-nums text-primary">{state.xp}</div>
+              <div className="font-display font-extrabold text-[24px] tabular-nums text-text">{state.xp}</div>
               <div className="label text-muted">{t('totalXp', locale)}</div>
             </div>
             <div className="flex-1">
-              <div className="font-rounded font-extrabold text-[24px] tabular-nums">{levelForXp(state.xp)}</div>
+              <div className="font-display font-extrabold text-[24px] tabular-nums">{levelForXp(state.xp)}</div>
               <div className="label text-muted">{t('level', locale)}</div>
             </div>
             <div className="flex-1">
-              <div className="font-rounded font-extrabold text-[24px] tabular-nums text-[var(--amber)]">{streak}</div>
+              <div className="font-display font-extrabold text-[24px] tabular-nums text-[var(--ember)]">{streak}</div>
               <div className="label text-muted">{t('dayStreak', locale)}</div>
             </div>
             <div className="flex-1">
-              <div className="font-rounded font-extrabold text-[24px] tabular-nums">{wordsSaved}</div>
+              <div className="font-display font-extrabold text-[24px] tabular-nums">{wordsSaved}</div>
               <div className="label text-muted">{t('wordsSaved', locale)}</div>
             </div>
           </div>

@@ -17,7 +17,7 @@ export function IntroStep({ step }: { step: IntroStepData }) {
       <p className="label mb-2">{t('inThisLessonYouWill', locale)}</p>
       <ul className="m-0 pl-5 grid gap-1">
         {goals.map((g, i) => (
-          <li key={i} className="marker:text-primary">{g}</li>
+          <li key={i} className="marker:text-text">{g}</li>
         ))}
       </ul>
     </Card>

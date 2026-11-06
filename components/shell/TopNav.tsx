@@ -32,15 +32,15 @@ export function TopNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const linkCls = (active: boolean) =>
-    'text-[15px] font-rounded font-semibold transition-colors ' +
+    'text-[15px] font-display font-semibold transition-colors ' +
     (active ? 'text-text' : 'text-muted hover:text-text');
 
   return (
     <header className="sticky top-0 z-40 bg-bg/85 backdrop-blur border-b border-border">
       <div className="mx-auto max-w-[1200px] px-5 h-[68px] flex items-center gap-6">
         {/* Brand */}
-        <Link href="/" className="font-rounded font-extrabold text-[20px] tracking-tight text-text no-underline shrink-0">
-          Deutsch<span className="text-primary">.</span>
+        <Link href="/" className="font-display font-extrabold text-[20px] tracking-tight text-text no-underline shrink-0">
+          Deutsch<span className="text-text">.</span>
         </Link>
         <span className="hidden md:block w-px h-6 bg-border" />
 
@@ -84,12 +84,12 @@ export function TopNav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className={'rounded-[12px] px-3 py-2.5 font-rounded font-semibold no-underline ' + (isActive(l.href) ? 'bg-[var(--primary-wash)] text-primary' : 'text-text-2 hover:bg-surface-2')}
+                className={'rounded-[12px] px-3 py-2.5 font-display font-semibold no-underline ' + (isActive(l.href) ? 'bg-surface-2 text-text' : 'text-text-2 hover:bg-surface-2')}
               >
                 {t(l.key, locale)}
               </Link>
             ))}
-            <Link href="/statistics" onClick={() => setMobileOpen(false)} className="rounded-[12px] px-3 py-2.5 font-rounded font-semibold no-underline text-text-2 hover:bg-surface-2">
+            <Link href="/statistics" onClick={() => setMobileOpen(false)} className="rounded-[12px] px-3 py-2.5 font-display font-semibold no-underline text-text-2 hover:bg-surface-2">
               {t('navStatistics', locale)}
             </Link>
             <InstallMenuItem onDone={() => setMobileOpen(false)} />
@@ -113,21 +113,21 @@ function AccountArea({ user, configured, locale }: { user: MinimalUserOrNull; co
     const initial = (user.email?.[0] ?? 'U').toUpperCase();
     return (
       <Link href="/account" className="inline-flex items-center gap-2 no-underline text-text">
-        <span className="grid place-items-center w-8 h-8 rounded-full bg-[var(--primary-wash)] text-primary font-rounded font-bold text-[13px]">
+        <span className="grid place-items-center w-8 h-8 rounded-full bg-surface-2 text-text font-display font-bold text-[13px]">
           {initial}
         </span>
-        <span className="font-rounded font-semibold text-[14px] max-w-[110px] truncate">{name}</span>
+        <span className="font-display font-semibold text-[14px] max-w-[110px] truncate">{name}</span>
       </Link>
     );
   }
   return (
     <div className="flex items-center gap-3">
-      <Link href="/account" className="font-rounded font-semibold text-[14px] text-text no-underline hover:text-primary py-2.5 px-1">
+      <Link href="/account" className="font-display font-semibold text-[14px] text-text no-underline hover:text-text py-2.5 px-1">
         {t('login', locale)}
       </Link>
       <Link
         href="/account"
-        className="font-rounded font-bold text-[14px] text-primary-ink bg-primary rounded-full px-4 py-2 no-underline shadow-primary hover:brightness-105 transition"
+        className="font-display font-bold text-[14px] text-cta-ink bg-cta rounded-full px-4 py-2 no-underline  hover:brightness-105 transition"
       >
         {t('signUpNav', locale)}
       </Link>
