@@ -38,6 +38,8 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
   const [finished, setFinished] = useState(false);
   const [retaking, setRetaking] = useState(false);
   const step = lesson.steps[i];
+  const lessonVocab = lesson.steps.flatMap((s) => (s.kind === 'vocab' ? [s.item] : []));
+  const vocabIndex = step.kind === 'vocab' ? lessonVocab.findIndex((v) => v.id === step.item.id) : -1;
   const isExercise = step.kind === 'exercise';
   const last = i === lesson.steps.length - 1;
 
@@ -128,7 +130,7 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
         <AnimatePresence mode="wait">
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }} className="flex-1 flex flex-col justify-center">
             {step.kind === 'intro' && <><IntroStep step={step} /><BookRefLinks lessonId={lesson.id} refs={specialRefs} />{!isSpecial && <RelatedSpecials lessonId={lesson.id} />}</>}
-            {step.kind === 'vocab' && <VocabStep item={step.item} />}
+            {step.kind === 'vocab' && <VocabStep item={step.item} lessonVocab={lessonVocab} position={{ n: vocabIndex + 1, total: lessonVocab.length }} />}
             {step.kind === 'grammar' && <GrammarStep note={step.note} />}
             {step.kind === 'pronunciation' && <PronunciationStep focus={step.focus} focusFr={step.focusFr} items={step.items} />}
             {step.kind === 'wrapup' && <><WrapupStep summary={step.summary} summaryFr={step.summaryFr} /><BookRefLinks lessonId={lesson.id} refs={specialRefs} />{!isSpecial && <RelatedSpecials lessonId={lesson.id} />}</>}

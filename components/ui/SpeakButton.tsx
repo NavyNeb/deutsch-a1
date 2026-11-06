@@ -24,7 +24,7 @@ export function SpeakButton({ target, size = 34 }: { target: string; size?: numb
         aria-label={t('speak', locale)}
         className={
           'inline-flex items-center justify-center rounded-full shrink-0 transition-[transform,filter] duration-150 active:scale-90 ' +
-          (listening ? 'bg-[var(--bad)] text-white animate-pulse' : 'bg-[var(--primary-wash)] text-primary hover:brightness-105')
+          (listening ? 'bg-cta text-cta-ink animate-pulse' : 'border border-border-strong bg-transparent text-text hover:bg-surface-2')
         }
         style={{ width: size, height: size }}
       >
@@ -33,7 +33,7 @@ export function SpeakButton({ target, size = 34 }: { target: string; size?: numb
       {listening && <span className="text-muted text-sm">{t('listening', locale)}</span>}
       {alternatives != null && !listening && (
         ok ? (
-          <span className="text-[var(--good)] text-sm font-rounded font-bold">✓ {t('soundsGood', locale)}</span>
+          <span className="text-ok text-sm font-semibold">✓ {t('soundsGood', locale)}</span>
         ) : (
           <span className="text-muted text-sm">{t('notQuiteHeard', locale)}: „{best?.text ?? alternatives[0] ?? '…'}“</span>
         )

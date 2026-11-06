@@ -14,14 +14,14 @@ export function PronunciationStep({ focus, focusFr, items }: { focus: string; fo
   const { locale } = useLocale();
   return (
     <Card>
-      <h2 className="text-[24px] font-extrabold m-0 mb-2">{t('pronunciation', locale)}</h2>
+      <h2 className="font-display text-[28px] font-semibold m-0 mb-2">{t('pronunciation', locale)}</h2>
       <p className="text-muted mb-4">{pick(focus, focusFr, locale)}</p>
       <div className="grid gap-3.5">
         {items.map((item) => (
           <div key={item.id} className="border-t border-border pt-3 flex items-start gap-3">
             <div className="flex-1 min-w-0">
               <GermanText de={item.german} en={pick(item.english, item.french, locale)} deSize={20} />
-              <div className="mt-1"><SyllableStress syllables={item.syllables} /></div>
+              <div className="mt-1"><SyllableStress syllables={item.syllables} gender={item.gender} /></div>
               <div className="mt-2"><SpeakButton target={item.german} size={30} /></div>
             </div>
             <AudioButton src={ttsSrc(item.german)} label={`Anhören: ${item.german}`} size={32} />
