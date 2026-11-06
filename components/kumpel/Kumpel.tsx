@@ -6,8 +6,9 @@ import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { isVisible, useKumpel } from '@/lib/kumpel-store';
 import { pageGroupFor } from '@/lib/kumpel-pages';
-import { KUMPEL_EVENT, type KumpelOpenDetail } from '@/lib/kumpel-events';
+import { KUMPEL_EVENT, openKumpel, type KumpelOpenDetail } from '@/lib/kumpel-events';
 import { KumpelFace } from './KumpelFace';
+import { HelpPanel } from './HelpPanel';
 
 type Panel = 'closed' | 'here' | 'ask';
 
@@ -23,6 +24,7 @@ export function Kumpel() {
   const [mounted, setMounted] = useState(false);
   const [panel, setPanel] = useState<Panel>('closed');
   const group = pageGroupFor(pathname);
+  const btnRef = useRef<HTMLButtonElement>(null);
   const groupRef = useRef(group);
   groupRef.current = group;
 
@@ -35,6 +37,7 @@ export function Kumpel() {
   const onOpen = useCallback((e: Event) => {
     if (!groupRef.current) return;
     const detail = (e as CustomEvent<KumpelOpenDetail | null>).detail;
+    if (detail?.tour) return; // the tour is started elsewhere (Task 6)
     setPanel(detail?.tab === 'ask' ? 'ask' : 'here');
   }, []);
   useEffect(() => {
@@ -42,11 +45,18 @@ export function Kumpel() {
     return () => window.removeEventListener(KUMPEL_EVENT, onOpen);
   }, [onOpen]);
 
+  const closePanel = useCallback(() => {
+    setPanel('closed');
+    btnRef.current?.focus();
+  }, []);
+
   if (!mounted || !group || !isVisible(state)) return null;
 
   const side = state.side === 'left' ? 'md:left-6' : 'md:right-6';
   return (
+    <>
     <button
+      ref={btnRef}
       type="button"
       data-kumpel="kumpel"
       aria-label={t('kumpelOpen', locale)}
@@ -62,5 +72,15 @@ export function Kumpel() {
       {!calm && <span data-testid="kumpel-ring" aria-hidden="true" className="kumpel-ring absolute inset-0 rounded-full border-2 border-text pointer-events-none" />}
       <KumpelFace mood="rest" size={64} className="relative w-full h-full" />
     </button>
+    {panel !== 'closed' && (
+      <HelpPanel
+        group={group}
+        tab={panel}
+        onTab={setPanel}
+        onClose={closePanel}
+        onStartTour={() => { setPanel('closed'); openKumpel({ tour: true }); }}
+      />
+    )}
+    </>
   );
 }

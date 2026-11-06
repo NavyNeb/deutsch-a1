@@ -572,6 +572,12 @@ export const UI = {
   examNotFound: { en: 'This practice set was not found.', fr: 'Cette série est introuvable.' },
   kumpelOpen: { en: 'Open Kumpel help', fr: 'Ouvrir l’aide de Kumpel' },
   kumpelTapMe: { en: 'Tap me for help', fr: 'Touche-moi pour de l’aide' },
+  kumpelHelpLabel: { en: 'Kumpel help', fr: 'Aide de Kumpel' },
+  kumpelThisPage: { en: 'This page', fr: 'Cette page' },
+  kumpelQuestions: { en: 'Questions', fr: 'Questions' },
+  kumpelClose: { en: 'Close', fr: 'Fermer' },
+  kumpelAsk: { en: 'Ask for help', fr: 'Demander de l’aide' },
+  kumpelYourBuddyOn: { en: 'Your buddy · on', fr: 'Ton compagnon · sur' },
 } as const;
 
 export type UIKey = keyof typeof UI;

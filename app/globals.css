@@ -224,6 +224,18 @@ h1, h2, h3, h4 {
 }
 .kumpel-ring { animation: kumpel-ring 2.4s ease-out infinite; }
 
+/* Kumpel's help: a sheet that slides up on phones, a popover that only fades in on desktop. */
+@keyframes kumpel-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (max-width: 767px) {
+  .kumpel-panel { animation: sheet-up 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); }
+}
+@media (min-width: 768px) {
+  .kumpel-panel { animation: kumpel-fade 0.15s ease-out; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

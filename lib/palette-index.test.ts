@@ -20,6 +20,17 @@ describe('buildPaletteIndex', () => {
   });
 });
 
+describe('Kumpel command', () => {
+  it('is in the index as a page command that carries no route', () => {
+    const item = index.find((i) => i.id === 'page:kumpel');
+    expect(item).toMatchObject({ group: 'page', title: 'Kumpel', href: '#kumpel' });
+  });
+
+  it('is found by typing its name', () => {
+    expect(searchPalette('kum', index).map((i) => i.id)).toContain('page:kumpel');
+  });
+});
+
 describe('searchPalette', () => {
   it('finds a lesson by German title prefix, first', () => {
     const r = searchPalette('gegen', index);

@@ -90,4 +90,34 @@ describe('Kumpel (resting buddy)', () => {
     fireEvent.click(b);
     expect(b).toHaveAttribute('aria-expanded', 'false');
   });
+
+  it('opens the help panel for the current page and closes it with Esc, giving focus back', async () => {
+    render(<Kumpel />);
+    const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
+    fireEvent.click(b);
+    const dialog = screen.getByRole('dialog', { name: 'Kumpel help' });
+    expect(dialog).toHaveTextContent('Heute');
+    fireEvent.keyDown(dialog, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(b).toHaveAttribute('aria-expanded', 'false');
+    expect(document.activeElement).toBe(b);
+  });
+
+  it('opens straight on Questions for openKumpel({ tab: "ask" })', async () => {
+    render(<Kumpel />);
+    await screen.findByRole('button', { name: 'Open Kumpel help' });
+    act(() => { window.dispatchEvent(new CustomEvent('open-kumpel', { detail: { tab: 'ask' } })); });
+    expect(screen.getByRole('tab', { name: 'Questions' })).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('starting the tour from the panel closes the panel and announces the tour request', async () => {
+    const spy = vi.fn();
+    window.addEventListener('open-kumpel', spy);
+    render(<Kumpel />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Open Kumpel help' }));
+    fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
+    expect(screen.queryByRole('dialog', { name: 'Kumpel help' })).toBeNull();
+    expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === true)).toBe(true);
+    window.removeEventListener('open-kumpel', spy);
+  });
 });

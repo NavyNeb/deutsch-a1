@@ -1,11 +1,14 @@
 'use client';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 import type { Gender, Lesson } from '@/content/types';
 import { MIN_QUERY_LETTERS, searchDictionary, type DictHit } from '@/lib/dictionary';
 import { letters } from '@/lib/dict-shared.mjs';
-import { buildPaletteIndex, searchPalette, type PaletteItem } from '@/lib/palette-index';
+import { KUMPEL_HREF, buildPaletteIndex, searchPalette, type PaletteItem } from '@/lib/palette-index';
+import { isVisible, useKumpel } from '@/lib/kumpel-store';
+import { pageGroupFor } from '@/lib/kumpel-pages';
+import { openKumpel } from '@/lib/kumpel-events';
 import { addRecent, useRecents } from '@/lib/recent-searches';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
@@ -24,6 +27,8 @@ const domId = (s: string) => s.replace(/[^\w-]/g, '_');
 
 export function CommandPalette() {
   const router = useRouter();
+  const pathname = usePathname();
+  const { state: kumpel } = useKumpel();
   const { locale } = useLocale();
   const listId = useId();
   const [open, setOpen] = useState(false);
@@ -86,7 +91,12 @@ export function CommandPalette() {
     return () => clearTimeout(timer);
   }, [open, query]);
 
-  const index = useMemo(() => buildPaletteIndex(lessons, locale), [lessons, locale]);
+  // The Kumpel command only makes sense where Kumpel can actually appear.
+  const kumpelOn = isVisible(kumpel) && pageGroupFor(pathname) !== null;
+  const index = useMemo(
+    () => buildPaletteIndex(lessons, locale).filter((i) => i.href !== KUMPEL_HREF || kumpelOn),
+    [lessons, locale, kumpelOn],
+  );
 
   const rows: Row[] = useMemo(() => {
     const dict: Row[] = hits.map((h, i) => {
@@ -111,6 +121,7 @@ export function CommandPalette() {
   const selected = rows[Math.min(sel, Math.max(rows.length - 1, 0))];
   const go = (row?: Row) => {
     if (!row) return;
+    if (row.href === KUMPEL_HREF) { close(); openKumpel(); return; }
     if (row.group !== 'all') addRecent({ title: row.title, subtitle: row.subtitle, href: row.href });
     router.push(row.href);
     close();
