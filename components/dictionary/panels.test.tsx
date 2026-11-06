@@ -16,6 +16,15 @@ describe('VerbPanel', () => {
     expect(screen.getByText('bin gegangen')).toBeTruthy();
   });
 
+  it('the selected tense tab is readable: dark ink on the paper pill, never white on white', () => {
+    render(<VerbPanel entry={{ w: 'gehen', p: 'verb', v: 'geht, ging, ist gegangen', s: [] }} />);
+    const active = screen.getByRole('tab', { selected: true });
+    expect(active.className).toContain('bg-cta');
+    expect(active.className).toContain('text-cta-ink');
+    expect(active.className).not.toContain('text-white');
+    expect(screen.getByRole('tab', { name: 'Perfekt' }).className).not.toContain('bg-cta');
+  });
+
   it('shows the check banner when principal parts are missing, without crashing', () => {
     render(<VerbPanel entry={{ w: 'machen', p: 'verb', s: [] }} />);
     expect(screen.getByRole('status').textContent).toMatch(/rules/i);

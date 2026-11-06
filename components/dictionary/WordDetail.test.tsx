@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { WordDetail } from './WordDetail';
+import { clearRecents, getRecents } from '@/lib/recent-searches';
 import type { DictEntry } from '@/lib/dictionary';
 
 const DATA: Record<string, DictEntry[]> = {
@@ -21,7 +22,7 @@ vi.mock('@/lib/dictionary', async () => {
   };
 });
 
-beforeEach(() => { search = ''; });
+beforeEach(() => { search = ''; localStorage.clear(); clearRecents(); });
 
 describe('WordDetail', () => {
   it('renders a verb with its badge, gloss and tense tabs', async () => {
@@ -71,5 +72,41 @@ describe('WordDetail', () => {
     const back = screen.getAllByRole('link').find((a) => /back to search/i.test(a.textContent ?? ''));
     expect(back?.getAttribute('href')).toBe('/dictionary?q=ge');
     await waitFor(() => expect(screen.getByText(/CC BY-SA 4.0/)).toBeTruthy());
+  });
+
+  it('has a search bar that opens the search modal, carrying the query you came from', async () => {
+    search = 'q=stud';
+    render(<WordDetail word="Student" />);
+    await screen.findByRole('heading', { level: 1, name: 'Student' });
+    const opened: unknown[] = [];
+    const h = (e: Event) => opened.push((e as CustomEvent).detail);
+    window.addEventListener('open-palette', h);
+    fireEvent.click(screen.getByRole('button', { name: /search german or english/i }));
+    window.removeEventListener('open-palette', h);
+    expect(opened).toEqual([{ query: 'stud' }]);
+  });
+
+  it('puts the article above a noun in its gender colour, and none above a verb', async () => {
+    const { container, unmount } = render(<WordDetail word="Student" />);
+    await screen.findByRole('heading', { level: 1, name: 'Student' });
+    const art = container.querySelector('[data-article]') as HTMLElement;
+    expect(art.textContent).toBe('der');
+    expect(art.getAttribute('data-article')).toBe('der');
+    unmount();
+    const verb = render(<WordDetail word="gehen" />);
+    await screen.findByRole('heading', { level: 1, name: 'gehen' });
+    expect(verb.container.querySelector('[data-article]')).toBeNull();
+  });
+
+  it('remembers the word in recent searches once it has loaded', async () => {
+    render(<WordDetail word="Student" />);
+    await screen.findByRole('heading', { level: 1, name: 'Student' });
+    expect(getRecents()[0]).toMatchObject({ title: 'der Student', href: '/dictionary/Student' });
+  });
+
+  it('does not remember a word that was not found', async () => {
+    render(<WordDetail word="Qwxyz" />);
+    await screen.findByText(/not found|introuvable|couldn/i).catch(() => {});
+    expect(getRecents()).toEqual([]);
   });
 });

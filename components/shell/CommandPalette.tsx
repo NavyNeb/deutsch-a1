@@ -6,18 +6,21 @@ import type { Gender, Lesson } from '@/content/types';
 import { MIN_QUERY_LETTERS, searchDictionary, type DictHit } from '@/lib/dictionary';
 import { letters } from '@/lib/dict-shared.mjs';
 import { buildPaletteIndex, searchPalette, type PaletteItem } from '@/lib/palette-index';
+import { addRecent, useRecents } from '@/lib/recent-searches';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { GenderShape } from '@/components/ui/GenderShape';
 import { NounPanel } from '@/components/dictionary/NounPanel';
 import { articlesOf } from '@/components/dictionary/entry-utils';
 
-type Row = { key: string; group: 'dict' | PaletteItem['group']; title: string; subtitle?: string; href: string; gender?: Gender; hit?: DictHit };
+type Row = { key: string; group: 'recent' | 'all' | 'dict' | PaletteItem['group']; title: string; subtitle?: string; href: string; gender?: Gender; hit?: DictHit };
 
 const isTyping = (el: EventTarget | null) =>
   el instanceof HTMLElement && (['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName) || el.closest('[contenteditable="true"]') !== null);
 
-const GROUP_LABEL: Record<Row['group'], string> = { dict: 'Wörterbuch', lesson: 'Lektionen', practice: 'Üben', page: 'Seiten' };
+const GROUP_LABEL: Record<Row['group'], string> = { recent: 'Zuletzt', all: 'Mehr', dict: 'Wörterbuch', lesson: 'Lektionen', practice: 'Üben', page: 'Seiten' };
+// DOM ids must not contain whitespace (dictionary headwords can).
+const domId = (s: string) => s.replace(/[^\w-]/g, '_');
 
 export function CommandPalette() {
   const router = useRouter();
@@ -28,6 +31,7 @@ export function CommandPalette() {
   const [sel, setSel] = useState(0);
   const [hits, setHits] = useState<DictHit[]>([]);
   const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [recents, clearRecents] = useRecents();
   const lastFocus = useRef<HTMLElement | null>(null);
   const reqId = useRef(0);
 
@@ -45,17 +49,22 @@ export function CommandPalette() {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        setOpen((o) => { if (!o) lastFocus.current = document.activeElement as HTMLElement | null; return !o; });
+        if (open) close(); else openPalette();
       } else if (e.key === '/' && !isTyping(e.target) && !open) {
         e.preventDefault();
         openPalette();
       }
     };
-    const onOpen = () => openPalette();
+    // The opener may pass a query to start from (e.g. the dictionary search bar).
+    const onOpen = (e: Event) => {
+      const q = (e as CustomEvent<{ query?: string } | undefined>).detail?.query;
+      if (typeof q === 'string') { setQuery(q); setSel(0); }
+      openPalette();
+    };
     document.addEventListener('keydown', onKey);
     window.addEventListener('open-palette', onOpen);
     return () => { document.removeEventListener('keydown', onKey); window.removeEventListener('open-palette', onOpen); };
-  }, [open, openPalette]);
+  }, [open, openPalette, close]);
 
   // The lesson list is large; load it only once the palette is first opened.
   useEffect(() => {
@@ -90,12 +99,22 @@ export function CommandPalette() {
         gender: art.length === 1 ? art[0] : null,
       };
     });
-    const base = query.trim() ? searchPalette(query, index) : index.filter((i) => i.group !== 'lesson');
-    return [...dict, ...base.map((i): Row => ({ key: i.id, group: i.group, title: i.title, subtitle: i.subtitle, href: i.href }))];
-  }, [hits, index, query]);
+    const q = query.trim();
+    const base = q ? searchPalette(query, index) : index.filter((i) => i.group !== 'lesson');
+    const recentRows: Row[] = q ? [] : recents.map((r) => ({ key: `recent:${r.href}`, group: 'recent', title: r.title, subtitle: r.subtitle, href: r.href }));
+    const all: Row[] = letters(q).length >= MIN_QUERY_LETTERS
+      ? [{ key: 'all-results', group: 'all', title: `${t('allResultsFor', locale)} “${q}”`, href: `/dictionary?q=${encodeURIComponent(q)}` }]
+      : [];
+    return [...recentRows, ...dict, ...base.map((i): Row => ({ key: i.id, group: i.group, title: i.title, subtitle: i.subtitle, href: i.href })), ...all];
+  }, [hits, index, query, recents, locale]);
 
   const selected = rows[Math.min(sel, Math.max(rows.length - 1, 0))];
-  const go = (row?: Row) => { if (!row) return; router.push(row.href); close(); };
+  const go = (row?: Row) => {
+    if (!row) return;
+    if (row.group !== 'all') addRecent({ title: row.title, subtitle: row.subtitle, href: row.href });
+    router.push(row.href);
+    close();
+  };
 
   if (!open) return null;
 
@@ -110,7 +129,7 @@ export function CommandPalette() {
 
   return (
     <div className="fixed inset-0 z-50">
-      <button type="button" aria-label="Close search" tabIndex={-1} onClick={close} className="absolute inset-0 w-full border-0 cursor-default bg-bg/60 backdrop-blur-[7px]" />
+      <button type="button" aria-label={t('closeSearch', locale)} tabIndex={-1} onClick={close} className="absolute inset-0 w-full border-0 cursor-default bg-bg/60 backdrop-blur-[7px]" />
       <div
         role="dialog"
         aria-modal="true"
@@ -125,7 +144,7 @@ export function CommandPalette() {
             role="combobox"
             aria-expanded="true"
             aria-controls={listId}
-            aria-activedescendant={selected ? `${listId}-${selected.key}` : undefined}
+            aria-activedescendant={selected ? `${listId}-${domId(selected.key)}` : undefined}
             aria-label={t('searchAnything', locale)}
             value={query}
             onChange={(e) => { setQuery(e.target.value); setSel(0); }}
@@ -145,9 +164,16 @@ export function CommandPalette() {
               const on = selected?.key === row.key;
               return (
                 <div key={row.key}>
-                  {head && <div className="eyebrow px-3.5 pt-3.5 pb-2">{head}</div>}
+                  {head && (
+                    <div className="flex items-center justify-between px-3.5 pt-3.5 pb-2">
+                      <span className="eyebrow">{head}</span>
+                      {row.group === 'recent' && (
+                        <button type="button" onClick={clearRecents} className="text-[12px] text-muted bg-transparent border-0 cursor-pointer hover:text-text min-h-[28px]">{t('clearRecent', locale)}</button>
+                      )}
+                    </div>
+                  )}
                   <div
-                    id={`${listId}-${row.key}`}
+                    id={`${listId}-${domId(row.key)}`}
                     role="option"
                     aria-selected={on}
                     onMouseEnter={() => setSel(i)}

@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Search, Volume2, Star, X, BookOpen, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Volume2, Star, BookOpen } from 'lucide-react';
 import { allVocab } from '@/content';
 import type { VocabItem } from '@/content/types';
 import { searchDictionary, MIN_QUERY_LETTERS, type DictEntry, type DictHit, type DictHitKind } from '@/lib/dictionary';
@@ -11,7 +13,9 @@ import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
 import { GenderTag } from '@/components/ui/GenderTag';
+import { useRecents } from '@/lib/recent-searches';
 import { DictCardLink } from './DictCardLink';
+import { SearchTrigger } from './SearchTrigger';
 import { POS_KEY, articlesOf, lessonToEntry } from './entry-utils';
 
 const SUGGESTIONS = ['Haus', 'gehen', 'schön', 'house', 'Mädchen', 'Straße'];
@@ -20,7 +24,9 @@ type Card = { entry: DictEntry; kind: DictHitKind; via?: string; lesson?: VocabI
 
 export function DictionaryView() {
   const { locale } = useLocale();
-  const [query, setQuery] = useState('');
+  const urlQ = (useSearchParams().get('q') ?? '').slice(0, 60);
+  const [query, setQuery] = useState(urlQ);
+  const [recents] = useRecents();
   const [hits, setHits] = useState<DictHit[]>([]);
   const [needsMore, setNeedsMore] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -35,11 +41,8 @@ export function DictionaryView() {
     return m;
   }, [vocab]);
 
-  // Deep link: /dictionary?q=haus
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get('q');
-    if (q) setQuery(q.slice(0, 60));
-  }, []);
+  // The URL is the source of truth: /dictionary?q=haus, or a new ?q= pushed by the search modal's "all results".
+  useEffect(() => { setQuery(urlQ); }, [urlQ]);
 
   useEffect(() => {
     const q = query.trim();
@@ -85,37 +88,16 @@ export function DictionaryView() {
   const trimmed = query.trim();
   const tooShort = letters(trimmed).length < MIN_QUERY_LETTERS;
 
-  return (
-    <div className="mx-auto max-w-[1200px] px-5 py-8 md:py-12">
-      <header className="mb-7 max-w-[60ch]">
-        <h1 className="font-display font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
-          {t('navDictionary', locale)}
-        </h1>
-        <p className="text-text-2 text-[17px] leading-relaxed mt-3 mb-0">{t('dictSubtitle', locale)}</p>
-      </header>
+  const dictRecents = recents.filter((r) => r.href.startsWith('/dictionary/')).slice(0, 6);
 
-      <div className="relative max-w-[720px] mb-3">
-        <Search size={19} strokeWidth={2.3} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value.slice(0, 60))}
-          placeholder={t('dictPlaceholder', locale)}
-          aria-label={t('dictPlaceholder', locale)}
-          type="search"
-          inputMode="search"
-          autoComplete="off"
-          autoCapitalize="none"
-          spellCheck={false}
-          className="w-full h-[56px] rounded-full bg-card border border-border shadow-card pl-12 pr-24 text-[16px] font-display font-semibold text-text placeholder:text-muted placeholder:font-medium outline-none transition focus:border-text focus:shadow-pop [&::-webkit-search-cancel-button]:hidden"
-        />
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-          {loading && <Loader2 size={18} className="animate-spin text-text" aria-label={t('dictSearching', locale)} />}
-          {query && (
-            <button onClick={() => setQuery('')} aria-label="Clear" className="grid place-items-center w-10 h-10 rounded-full text-muted hover:text-text hover:bg-surface-2 transition">
-              <X size={18} strokeWidth={2.4} />
-            </button>
-          )}
-        </div>
+  return (
+    <div className="mx-auto max-w-[1100px] px-5 py-8 md:px-14 md:py-12">
+      <div className="eyebrow mb-4">Wörterbuch · {t('navDictionary', locale)}</div>
+      <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] text-text m-0">Wörterbuch.</h1>
+      <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-8 max-w-[60ch]">{t('dictSubtitle', locale)}</p>
+
+      <div className="max-w-[760px] mb-3">
+        <SearchTrigger query={query} loading={loading} onClear={() => setQuery('')} />
       </div>
 
       <div className="min-h-[24px] mb-6 text-[13px] text-muted" aria-live="polite">
@@ -132,10 +114,22 @@ export function DictionaryView() {
         </Notice>
       ) : tooShort ? (
         <div>
+          {dictRecents.length > 0 && (
+            <section className="mb-8" aria-labelledby="recent-lookups">
+              <h2 id="recent-lookups" className="eyebrow m-0 mb-3">{t('recentSearches', locale)}</h2>
+              <div className="flex flex-wrap gap-2">
+                {dictRecents.map((r) => (
+                  <Link key={r.href} href={r.href} className="rounded-full border border-border-strong bg-card px-4 py-2.5 font-display font-medium text-[16px] text-text no-underline hover:bg-surface-2 transition">
+                    {r.title}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
           <Notice>{t('dictTypeMin', locale)}</Notice>
           <div className="flex flex-wrap gap-2 mt-5">
             {SUGGESTIONS.map((s) => (
-              <button key={s} onClick={() => setQuery(s)} className="rounded-full border border-border bg-card px-4 py-2.5 font-display font-bold text-[14px] text-text-2 hover:border-text hover:text-text transition">
+              <button key={s} onClick={() => setQuery(s)} className="rounded-full border border-border bg-card px-4 py-2.5 font-display font-semibold text-[15px] text-text-2 hover:border-text hover:text-text transition cursor-pointer">
                 {s}
               </button>
             ))}
