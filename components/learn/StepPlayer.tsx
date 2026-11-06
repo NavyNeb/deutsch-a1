@@ -23,6 +23,7 @@ import { WrapupStep } from './WrapupStep';
 import { ChapterDivider } from './ChapterDivider';
 import { QuizIntro } from './QuizIntro';
 import { ExerciseView } from '@/components/exercises/ExerciseView';
+import { LessonHelp } from '@/components/kumpel/LessonHelp';
 
 const isTextField = (el: EventTarget | null) =>
   el instanceof HTMLElement && (['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName) || el.closest('[contenteditable="true"]') !== null);
@@ -36,6 +37,7 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
   const [i, setI] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
   const returnFocus = useRef<HTMLElement | null>(null);
   const [finished, setFinished] = useState(false);
@@ -93,13 +95,16 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
     else if (!e.shiftKey && active === lastItem) { e.preventDefault(); first.focus(); }
   };
 
-  // Keyboard: Space / → advance, ← goes back. Never while typing in a field (answers contain spaces),
+  // Keyboard: ? opens help, Space / → advance, ← goes back. Never while typing in a field (answers contain spaces),
   // never while the contents drawer is open, and Space is left to buttons/links (it activates them).
   useEffect(() => {
     if (finished) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || drawerOpen || isTextField(e.target)) return;
-      if (e.key === ' ' || e.key === 'ArrowRight') {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || drawerOpen || helpOpen || isTextField(e.target)) return;
+      if (e.key === '?') {
+        e.preventDefault();
+        setHelpOpen(true);
+      } else if (e.key === ' ' || e.key === 'ArrowRight') {
         if (e.key === ' ' && isInteractive(e.target)) return;
         if (!canAdvance) return;
         e.preventDefault();
@@ -132,7 +137,9 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
 
   return (
     <div className="min-h-[100dvh] bg-bg flex flex-col">
-      <LessonTopBar lesson={lesson} segments={segmentsFor(lesson, i)} onClose={() => router.push(exitHref)} onOpenContents={openDrawer} />
+      <LessonTopBar lesson={lesson} segments={segmentsFor(lesson, i)} onClose={() => router.push(exitHref)} onOpenContents={openDrawer} onOpenHelp={() => setHelpOpen(true)} />
+
+      {helpOpen && <LessonHelp kind={step.kind} onClose={() => setHelpOpen(false)} />}
 
       {drawerOpen && (
         <div className="fixed inset-0 z-50">

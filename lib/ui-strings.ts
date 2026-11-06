@@ -591,6 +591,10 @@ export const UI = {
   kumpelHintPractice: { en: 'Not sure which game to pick? Tap me.', fr: 'Pas sûr du jeu à choisir ? Touche-moi.' },
   kumpelHintLibrary: { en: 'Looking for something? Tap me and I will show you how.', fr: 'Tu cherches quelque chose ? Touche-moi, je t’explique.' },
   kumpelHintMe: { en: 'Your settings live here. Tap me if you get lost.', fr: 'Tes réglages sont ici. Touche-moi si tu te perds.' },
+  lessonHelpOpen: { en: 'Help for this card', fr: 'Aide pour cette carte' },
+  lessonHelpGrammarLead: { en: 'Colour is grammar.', fr: 'La couleur, c’est la grammaire.' },
+  lessonHelpGrammarNote: { en: 'Square = der, circle = die, triangle = das.', fr: 'Carré = der, cercle = die, triangle = das.' },
+  lessonHelpFooter: { en: 'Kumpel stays out of the way while you study — the ? is always here.', fr: 'Kumpel reste discret pendant que tu étudies — le ? est toujours là.' },
   kumpelTourEnd: { en: 'Tour finished. Kumpel stays in the bottom corner.', fr: 'Visite terminée. Kumpel reste dans le coin en bas.' },
 } as const;
 
