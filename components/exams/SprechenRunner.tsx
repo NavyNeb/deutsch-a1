@@ -23,8 +23,8 @@ function PromptCard({ prompt, index, total, locale }: { prompt: SprechenPart['pr
 
   return (
     <li className="rounded-[18px] border border-border bg-card p-4 md:p-5">
-      <p className="m-0 text-[12px] font-rounded font-bold uppercase tracking-wider text-muted">{t('examPromptOf', locale)} {index + 1} / {total}</p>
-      <p lang="de" className="m-0 mt-1 whitespace-pre-line font-rounded text-[19px] font-bold leading-snug">{prompt.cue}</p>
+      <p className="m-0 text-[12px] font-display font-bold uppercase tracking-wider text-muted">{t('examPromptOf', locale)} {index + 1} / {total}</p>
+      <p lang="de" className="m-0 mt-1 whitespace-pre-line font-display text-[19px] font-bold leading-snug">{prompt.cue}</p>
       <TrLine tr={prompt.cueTr} />
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -42,8 +42,8 @@ function PromptCard({ prompt, index, total, locale }: { prompt: SprechenPart['pr
         </Button>
       </div>
 
-      {sr.ready && !sr.supported && <p className="m-0 mt-3 text-[13.5px] text-[var(--amber)]">{t('examSpeakUnsupported', locale)}</p>}
-      {sr.error && !sr.listening && <p className="m-0 mt-3 text-[13.5px] text-[var(--amber)]">{t(sr.error === 'denied' ? 'speakDenied' : 'speakNoSpeech', locale)}</p>}
+      {sr.ready && !sr.supported && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember-t)]">{t('examSpeakUnsupported', locale)}</p>}
+      {sr.error && !sr.listening && <p className="m-0 mt-3 text-[13.5px] text-[var(--ember-t)]">{t(sr.error === 'denied' ? 'speakDenied' : 'speakNoSpeech', locale)}</p>}
 
       {best && (
         <p className="m-0 mt-3 text-[14.5px]">
@@ -53,8 +53,8 @@ function PromptCard({ prompt, index, total, locale }: { prompt: SprechenPart['pr
       )}
 
       {showSample && (
-        <div className="mt-3 rounded-[14px] bg-[var(--primary-wash)] p-4">
-          <p className="m-0 mb-1 text-[12px] font-rounded font-bold uppercase tracking-wider text-muted">{t('examSample', locale)}</p>
+        <div className="mt-3 rounded-[14px] bg-surface-2 p-4">
+          <p className="m-0 mb-1 text-[12px] font-display font-bold uppercase tracking-wider text-muted">{t('examSample', locale)}</p>
           <p lang="de" className="m-0 whitespace-pre-line text-[16px] leading-[1.6]">{prompt.sample}</p>
           <TrLine tr={prompt.sampleTr} />
           {prompt.tip && <p className="m-0 mt-2 text-[13.5px] text-text-2"><b>{t('examTip', locale)}:</b> {prompt.tip[locale]}</p>}

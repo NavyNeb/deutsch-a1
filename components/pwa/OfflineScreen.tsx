@@ -16,7 +16,7 @@ export function OfflineScreen() {
         <Button onClick={() => window.location.reload()}>{t('offlineRetry', locale)}</Button>
         <Link
           href="/"
-          className="inline-flex items-center justify-center rounded-full px-5 py-3 text-[15px] font-rounded font-bold no-underline bg-[var(--soft)] text-[var(--soft-ink)] hover:brightness-[1.03]"
+          className="inline-flex items-center justify-center rounded-full px-5 py-3 text-[15px] font-display font-bold no-underline bg-[var(--s3)] text-[var(--t1)] hover:brightness-[1.03]"
         >
           {t('offlineHome', locale)}
         </Link>

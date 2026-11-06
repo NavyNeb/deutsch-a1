@@ -12,6 +12,9 @@ const valid = {
 
 describe('parseLesson', () => {
   it('accepts a valid lesson', () => { expect(parseLesson(valid).id).toBe('l1'); });
+  it('accepts an optional canDo line', () => {
+    expect(parseLesson({ ...valid, canDo: { de: 'Ich kann grüßen.', en: 'I can greet.' } }).canDo?.en).toBe('I can greet.');
+  });
   it('rejects an unknown exercise type', () => {
     const bad = structuredClone(valid);
     (bad.steps[2] as any).exercise.type = 'nope';

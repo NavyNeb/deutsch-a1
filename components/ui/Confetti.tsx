@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 type Piece = { dx: number; dy: number; color: string; delay: number };
-const COLORS = ['#5B57E8', '#F59E0B', '#E85C97', '#1F9E68', '#2F6BF0'];
+const COLORS = ['var(--t1)', 'var(--t2)', 'var(--t3)']; // neutral paper tones — colour is reserved for grammar
 
 // A one-shot celebratory burst. Absolutely positioned — drop it inside a
 // `relative` container. Renders nothing when the user prefers reduced motion.

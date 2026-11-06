@@ -22,7 +22,7 @@ export function GermanText({
         className="inline-flex items-center gap-2"
         style={{ justifyContent: align === 'center' ? 'center' : 'flex-start' }}
       >
-        <span className="font-rounded font-semibold" style={{ fontSize: deSize }}>{de}</span>
+        <span className="font-display font-semibold" style={{ fontSize: deSize }}>{de}</span>
         <AudioButton src={ttsSrc(de)} label={`Anhören: ${de}`} size={26} />
       </div>
       <div className="text-muted mt-0.5" style={{ fontSize: Math.max(13, deSize - 4) }}>{en}</div>

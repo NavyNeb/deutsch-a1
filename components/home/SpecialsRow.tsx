@@ -21,8 +21,8 @@ export function SpecialsRow() {
   return (
     <section className="mt-8 mb-2" aria-labelledby="home-specials">
       <div className="flex items-baseline justify-between gap-4 mb-4">
-        <h2 id="home-specials" className="font-rounded font-extrabold text-[22px] text-text m-0">{t('specialsRowTitle', locale)}</h2>
-        <Link href="/specials" className="inline-flex items-center gap-1 font-rounded font-bold text-[14px] text-primary no-underline hover:underline">
+        <h2 id="home-specials" className="font-display font-extrabold text-[22px] text-text m-0">{t('specialsRowTitle', locale)}</h2>
+        <Link href="/specials" className="inline-flex items-center gap-1 font-display font-bold text-[14px] text-text no-underline hover:underline">
           {t('specialsSeeAll', locale)} <ArrowRight size={15} strokeWidth={2.5} />
         </Link>
       </div>

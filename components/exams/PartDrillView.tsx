@@ -40,7 +40,7 @@ export function PartDrillView({ board, level, skill, teil, sets }: {
                 href={`${base}/part/${skill}/${teil}/${n}`}
                 className="flex min-h-[72px] flex-col justify-center rounded-[14px] border border-border bg-card px-4 py-3 no-underline text-text transition hover:border-border-strong hover:bg-surface-2"
               >
-                <b className="font-rounded text-[16px]">{t('examSet', locale)} {n}</b>
+                <b className="font-display text-[16px]">{t('examSet', locale)} {n}</b>
                 <span className="text-[12.5px] text-muted">
                   {!r ? t('examNotTried', locale)
                     : skill === 'lesen' ? `${t('examBest', locale)} ${r.best}%`

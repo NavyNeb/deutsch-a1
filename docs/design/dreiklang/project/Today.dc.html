@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Heute — Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.dz{--ink:#09090B;--s1:#111114;--s2:#17171B;--s3:#222228;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--t1:#F5F3EE;--t2:#B7B4AD;--t3:#8F8C85;--der:#5B8CFF;--die:#FF6F96;--das:#FFCB45;--der-t:#8DAEFF;--die-t:#FF8FAE;--das-t:#FFCB45;--ok:#46E0A0;--ember:#FF9150;--cta:#F5F3EE;--cta-i:#09090B;--fd:'Jost',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;font-family:var(--fb);background:var(--ink);color:var(--t1);-webkit-font-smoothing:antialiased}
+.dz *{box-sizing:border-box}
+.dz[data-theme="light"]{--ink:#F1EDE4;--s1:#FAF7F0;--s2:#FFFFFF;--s3:#E8E3D8;--line:rgba(20,18,12,.10);--line2:rgba(20,18,12,.18);--t1:#111114;--t2:#47443E;--t3:#6B675F;--der:#2F5FF0;--die:#E83E73;--das:#F4B400;--der-t:#2447C9;--die-t:#C2285D;--das-t:#7A5600;--ok:#0E9F6E;--ember:#D9601A;--cta:#111114;--cta-i:#F5F3EE}
+.de{font-family:var(--fd)}
+.eyebrow{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;border-radius:999px;border:0;background:var(--cta);color:var(--cta-i);font:600 16px var(--fb);cursor:pointer;text-decoration:none}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--t1);font:600 16px var(--fb);cursor:pointer;text-decoration:none}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--line2);font:500 13px var(--fb);color:var(--t2)}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sq{background:var(--der)}
+.ci{background:var(--die);border-radius:50%}
+.tr{background:var(--das);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.nv{display:flex;align-items:center;gap:12px;height:46px;padding:0 14px;border-radius:12px;color:var(--t2);font:500 15px var(--fb);text-decoration:none}
+.nv:hover{background:var(--s2);color:var(--t1)}
+.nv.on{background:var(--s2);color:var(--t1)}
+.nv small{margin-left:auto;color:var(--t3);font-size:12px}
+.tk{flex:1;height:8px;border-radius:2px;background:var(--s3)}
+.tk.on{background:var(--t1)}
+.tk.now{background:var(--t1);opacity:.5}
+.hm{aspect-ratio:1;border-radius:4px;background:var(--s3)}
+.hm.a1{background:color-mix(in srgb,var(--t1) 28%,var(--s3))}
+.hm.a2{background:color-mix(in srgb,var(--t1) 58%,var(--s3))}
+.hm.a3{background:var(--t1)}
+.day{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font:600 12px var(--fb);color:var(--t3);background:var(--s2)}
+.day.on{background:var(--t1);color:var(--cta-i)}
+.day.today{border:1.5px dashed var(--t2);background:transparent;color:var(--t1)}
+.tile{display:flex;align-items:center;gap:16px;padding:20px;border-radius:20px;background:var(--s1);border:1px solid var(--line);color:var(--t1);text-decoration:none}
+.tile:hover{background:var(--s2);border-color:var(--line2)}
+</style>
+</helmet>
+<div class="dz" data-theme="{{theme}}" style="min-height:1080px;display:flex;flex-wrap:wrap;align-items:stretch">
+
+<!-- ============ RAIL ============ -->
+<aside style="flex:0 0 264px;padding:28px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;background:var(--ink)">
+  <div style="display:flex;align-items:center;gap:12px;padding:4px 14px 22px">
+    <div style="display:flex;gap:4px;align-items:flex-end"><div class="sq" style="width:12px;height:12px"></div><div class="ci" style="width:12px;height:12px"></div><div class="tr" style="width:14px;height:12px"></div></div>
+    <div class="de" style="font-weight:600;font-size:22px;letter-spacing:-.01em">Deutsch</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line2);color:var(--t3);font:400 14px var(--fb);margin-bottom:14px">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
+    <span style="flex:1">Search anything</span><span style="font-size:12px;border:1px solid var(--line2);border-radius:6px;padding:2px 6px">⌘K</span>
+  </div>
+  <a class="nv on" href="Today.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Heute<small>Today</small></a>
+  <a class="nv" href="Path.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h5v-5h5v-5h5V5h3"/></svg>Weg<small>Path</small></a>
+  <a class="nv" href="Today.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6"/></svg>Üben<small>Practice</small></a>
+  <a class="nv" href="Library.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a1 1 0 011-1h6v16H5a1 1 0 01-1-1z"/><path d="M20 5a1 1 0 00-1-1h-6v16h6a1 1 0 001-1z"/></svg>Bibliothek<small>Library</small></a>
+  <a class="nv" href="Today.dc.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>Du<small>You</small></a>
+  <div style="flex:1"></div>
+  <div class="card" style="padding:18px;border-radius:18px">
+    <div style="display:flex;align-items:center;gap:10px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--das-t)"><path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><span class="de" style="font-size:22px;font-weight:600">6 Tage</span></div>
+    <div style="font-size:13px;color:var(--t3);margin-top:6px">in a row · don’t break it</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;padding:14px 8px 0">
+    <div class="de" style="width:36px;height:36px;border-radius:50%;background:var(--s3);display:grid;place-items:center;font-weight:600;font-size:16px">S</div>
+    <div><div style="font-size:14px;font-weight:600">Sasha</div><div style="font-size:12px;color:var(--t3)">A1 · Beginner</div></div>
+  </div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main style="flex:999 1 640px;min-width:0;padding:48px 56px 56px">
+  <div style="max-width:1100px">
+    <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px">
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px">Donnerstag · 5. November</div>
+        <h1 class="de" style="margin:0;font-size:64px;font-weight:600;letter-spacing:-.03em;line-height:1">Guten Abend, Sasha.</h1>
+      </div>
+      <div style="display:flex;gap:8px" aria-label="This week">
+        <div class="day on">M</div><div class="day on">D</div><div class="day on">M</div><div class="day on">D</div><div class="day today">F</div><div class="day">S</div><div class="day">S</div>
+      </div>
+    </header>
+
+    <!-- Row 1: hero + goal -->
+    <div style="display:flex;flex-wrap:wrap;gap:20px;margin-bottom:20px">
+      <section class="card" style="flex:2 1 560px;min-height:400px;position:relative;overflow:hidden;padding:40px;border-radius:32px">
+        <div style="position:relative;z-index:2;max-width:430px">
+          <div class="eyebrow" style="margin-bottom:22px">Weiter · Lektion 5 · A1</div>
+          <h2 class="de" style="margin:0;font-size:60px;font-weight:600;letter-spacing:-.03em;line-height:1">Gegenstände<br>und Plural</h2>
+          <div style="font-size:17px;color:var(--t2);margin-top:14px">Things and plurals</div>
+          <div style="display:flex;gap:3px;margin-top:34px;width:100%" aria-label="Step 15 of 38">
+            <sc-for list="{{ticks}}" as="t" hint-placeholder-count="38"><i class="tk {{t.cls}}"></i></sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--t3);margin-top:10px"><span>Schritt 15 von 38</span><span>~12 min left</span></div>
+          <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+            <a class="btn" href="Lesson-Word.dc.html">Weiter lernen <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+            <a class="btn2" href="Path.dc.html">Inhalt</a>
+          </div>
+        </div>
+        <!-- lesson artwork: generated from the lesson’s nouns -->
+        <div style="position:absolute;right:-30px;top:30px;width:330px;height:380px;z-index:1">
+          <div class="sq" style="position:absolute;left:30px;top:150px;width:200px;height:200px"></div>
+          <div class="ci" style="position:absolute;left:120px;top:10px;width:190px;height:190px"></div>
+          <div class="tr" style="position:absolute;left:140px;top:190px;width:180px;height:160px"></div>
+          <div class="de" style="position:absolute;left:58px;top:304px;font-size:26px;font-weight:600;color:#fff">der Tisch</div>
+          <div class="de" style="position:absolute;left:158px;top:78px;font-size:26px;font-weight:600;color:#fff">die Lampe</div>
+          <div class="de" style="position:absolute;left:205px;top:292px;font-size:26px;font-weight:600;color:#17171B">das Buch</div>
+        </div>
+      </section>
+
+      <section class="card" style="flex:1 1 280px;padding:32px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+        <div class="eyebrow" style="align-self:flex-start">Tagesziel</div>
+        <div style="position:relative;width:176px;height:176px;margin:26px 0 22px;border-radius:50%;background:conic-gradient(var(--t1) 0 60%,var(--s3) 0)">
+          <div style="position:absolute;inset:12px;border-radius:50%;background:var(--s1);display:grid;place-items:center">
+            <div><div class="de" style="font-size:52px;font-weight:600;line-height:1;letter-spacing:-.02em">18</div><div style="font-size:13px;color:var(--t3);margin-top:4px">of 30 XP</div></div>
+          </div>
+        </div>
+        <div style="font-size:15px;color:var(--t2);max-width:200px;line-height:1.5">12 XP to go — finishing the lesson gets you there.</div>
+      </section>
+    </div>
+
+    <!-- Row 2 -->
+    <div style="display:flex;flex-wrap:wrap;gap:20px;margin-bottom:20px">
+      <section class="card" style="flex:1 1 300px;min-height:300px;padding:32px;position:relative;overflow:hidden">
+        <div class="eyebrow">Wiederholen</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:20px"><span class="de" style="font-size:72px;font-weight:600;line-height:1;letter-spacing:-.03em">14</span><span style="font-size:15px;color:var(--t2)">words due</span></div>
+        <div style="position:absolute;right:-14px;bottom:78px;width:150px;height:96px;border-radius:16px;transform:rotate(9deg);background:color-mix(in srgb,var(--das) 20%,var(--s2));border:1px solid color-mix(in srgb,var(--das) 40%,transparent);padding:14px"><div class="de" style="font-size:13px;color:var(--das-t)">das</div><div class="de" style="font-size:26px;font-weight:600">Buch</div></div>
+        <div style="position:absolute;right:30px;bottom:72px;width:150px;height:96px;border-radius:16px;transform:rotate(-4deg);background:color-mix(in srgb,var(--die) 20%,var(--s2));border:1px solid color-mix(in srgb,var(--die) 40%,transparent);padding:14px"><div class="de" style="font-size:13px;color:var(--die-t)">die</div><div class="de" style="font-size:26px;font-weight:600">Lampe</div></div>
+        <a class="btn2" href="Exercise-Mobile.dc.html" style="position:absolute;left:32px;bottom:32px;height:44px">Starten · 3 min</a>
+      </section>
+
+      <section class="card" style="flex:1 1 300px;min-height:300px;padding:32px;position:relative;background:color-mix(in srgb,var(--der) 11%,var(--s1));border-color:color-mix(in srgb,var(--der) 28%,transparent)">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div class="eyebrow">Wort des Tages</div><div class="sq" style="width:18px;height:18px"></div></div>
+        <div class="de" style="font-size:22px;font-weight:300;color:var(--der-t);margin-top:34px;line-height:1">der</div>
+        <div class="de" style="font-size:54px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-top:4px">Feierabend</div>
+        <div style="font-size:16px;color:var(--t2);margin-top:12px">end of the working day</div>
+        <div class="de" style="font-size:19px;margin-top:22px;font-weight:500">„Schönen <span style="color:var(--der-t)">Feierabend</span>!“</div>
+        <button type="button" aria-label="Play Feierabend" style="position:absolute;right:28px;bottom:28px;width:52px;height:52px;border-radius:50%;border:0;background:var(--cta);color:var(--cta-i);display:grid;place-items:center;cursor:pointer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+      </section>
+
+      <section class="card" style="flex:1 1 300px;min-height:300px;padding:32px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div class="eyebrow">Aktivität</div><div style="font-size:13px;color:var(--t3)">last 10 weeks</div></div>
+        <div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;margin-top:26px">
+          <sc-for list="{{cells}}" as="c" hint-placeholder-count="70"><div class="hm {{c.cls}}"></div></sc-for>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:18px;font-size:12px;color:var(--t3)">less <div class="hm" style="width:12px"></div><div class="hm a1" style="width:12px"></div><div class="hm a2" style="width:12px"></div><div class="hm a3" style="width:12px"></div> more</div>
+      </section>
+    </div>
+
+    <!-- Row 3: quick practice -->
+    <div class="eyebrow" style="margin:34px 0 16px">Schnell üben</div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px">
+      <a class="tile" href="Today.dc.html" style="flex:1 1 220px"><div class="sq" style="width:30px;height:30px;border-radius:8px"></div><div><div class="de" style="font-size:20px;font-weight:600">Word Sprint</div><div style="font-size:13px;color:var(--t3)">60 s · match pairs</div></div></a>
+      <a class="tile" href="Today.dc.html" style="flex:1 1 220px"><div class="ci" style="width:30px;height:30px"></div><div><div class="de" style="font-size:20px;font-weight:600">Audio-Call</div><div style="font-size:13px;color:var(--t3)">listen, then tap</div></div></a>
+      <a class="tile" href="Today.dc.html" style="flex:1 1 220px"><div class="tr" style="width:32px;height:28px"></div><div><div class="de" style="font-size:20px;font-weight:600">Sprechen</div><div style="font-size:13px;color:var(--t3)">say it, get scored</div></div></a>
+      <a class="tile" href="Today.dc.html" style="flex:1 1 220px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:30px;height:30px;color:var(--t2)"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg><div><div class="de" style="font-size:20px;font-weight:600">Schreiben</div><div style="font-size:13px;color:var(--t3)">live grammar check</div></div></a>
+    </div>
+  </div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ticks = [];
+    for (let i = 0; i < 38; i++) ticks.push({ cls: i < 14 ? 'on' : i === 14 ? 'now' : '' });
+    const cells = [];
+    for (let i = 0; i < 70; i++) {
+      const v = (i * 37 + (i % 7) * 11 + 5) % 9;
+      cells.push({ cls: i > 66 ? '' : v > 6 ? 'a3' : v > 4 ? 'a2' : v > 2 ? 'a1' : '' });
+    }
+    return { theme: this.props.theme ?? 'dark', ticks, cells };
+  }
+}
+</script>
+</body>
+</html>

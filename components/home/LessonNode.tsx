@@ -28,13 +28,13 @@ export function LessonNode({ lesson, completion }: { lesson: Lesson; completion:
           <svg width={48} height={48} viewBox="0 0 48 48" aria-hidden="true">
             <circle cx={24} cy={24} r={RADIUS} fill="none" stroke="var(--surface-3)" strokeWidth={4} />
             <circle
-              cx={24} cy={24} r={RADIUS} fill="none" stroke="var(--primary)" strokeWidth={4}
+              cx={24} cy={24} r={RADIUS} fill="none" stroke="var(--t1)" strokeWidth={4}
               strokeDasharray={CIRCUMFERENCE} strokeDashoffset={dashOffset}
               strokeLinecap="round" transform="rotate(-90 24 24)"
               style={{ transition: 'stroke-dashoffset .6s cubic-bezier(.2,.7,.2,1)' }}
             />
           </svg>
-          {complete && <Check className="absolute text-primary" size={20} strokeWidth={3} />}
+          {complete && <Check className="absolute text-text" size={20} strokeWidth={3} />}
         </span>
         <div className="min-w-0">
           <p className="label mb-0.5">Lektion {lesson.number}</p>
@@ -47,13 +47,13 @@ export function LessonNode({ lesson, completion }: { lesson: Lesson; completion:
       {complete ? (
         <Link
           href={`/lesson/${lesson.id}/review`}
-          className="label shrink-0 text-primary bg-[var(--primary-wash)] rounded-full px-3 py-1.5 no-underline
+          className="label shrink-0 text-text bg-surface-2 rounded-full px-3 py-1.5 no-underline
             transition hover:brightness-105"
         >
           {t('review', locale)}
         </Link>
       ) : (
-        <span className="shrink-0 text-faint text-[11px] leading-tight max-w-[88px] text-right">
+        <span className="shrink-0 text-muted text-[12px] leading-tight max-w-[88px] text-right">
           {t('completeLessonUnlockReview', locale)}
         </span>
       )}

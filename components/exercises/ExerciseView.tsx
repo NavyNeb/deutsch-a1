@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { Check, Lightbulb, X } from 'lucide-react';
 import type { Exercise } from '@/content/types';
 import { checkAnswer } from '@/lib/exercises';
 import { audioSrc } from '@/lib/audio';
@@ -9,16 +8,15 @@ import { t } from '@/lib/ui-strings';
 import { pick as pickLocale } from '@/lib/i18n';
 import { Button } from '@/components/ui/Button';
 import { AudioButton } from '@/components/ui/AudioButton';
+import { FeedbackSheet } from './FeedbackSheet';
+import { ArticleTiles } from './ArticleTiles';
+import { OptionTile } from './OptionTile';
+import { haptics } from '@/lib/haptics';
 
 // Initial (empty) response shape for a given exercise type — used both on
 // mount and to reset the exercise when the learner hits "Try again".
 const initialResponse = (exercise: Exercise): unknown =>
   exercise.type === 'match' ? {} : exercise.type === 'wordOrder' ? [] : undefined;
-
-const optClass = (active: boolean) =>
-  'w-full text-left rounded-[12px] px-4 py-3 my-1.5 border font-rounded font-semibold ' +
-  'transition-[border-color,background,transform] duration-150 active:scale-[.99] cursor-pointer ' +
-  (active ? 'border-primary bg-[var(--primary-wash)]' : 'border-border bg-card hover:border-border-strong');
 
 // Reveal-after-this-many failed attempts. The learner is never stuck: once they
 // have tried and missed twice, they can uncover the answer and move on.
@@ -28,11 +26,14 @@ export function ExerciseView({
   exercise,
   onResult,
   onPass,
+  onContinue,
 }: {
   exercise: Exercise;
   onResult: (correct: boolean) => void;
   // Called when the learner may advance — a correct answer, or a revealed one.
   onPass?: () => void;
+  // The feedback sheet's "Weiter" — advance to the next step. The sheet omits the button when absent.
+  onContinue?: () => void;
 }) {
   const [response, setResponse] = useState<unknown>(initialResponse(exercise));
   const [result, setResult] = useState<{ correct: boolean; explanation?: string } | null>(null);
@@ -48,7 +49,7 @@ export function ExerciseView({
     const r = checkAnswer(exercise, response, locale);
     setResult(r);
     onResult(r.correct);
-    if (r.correct) onPass?.();
+    if (r.correct) { haptics.success(); onPass?.(); }
     else setWrongCount((n) => n + 1);
   };
   const tryAgain = () => { setResponse(initialResponse(exercise)); setResult(null); setAttempt((n) => n + 1); };
@@ -70,12 +71,15 @@ export function ExerciseView({
   const prompt = 'prompt' in exercise ? pickLocale(exercise.prompt, exercise.promptFr, locale) : undefined;
   const options = 'options' in exercise ? (locale === 'fr' && exercise.optionsFr ? exercise.optionsFr : exercise.options) : undefined;
 
+  const showSheet = revealed || result !== null;
+  const articleExercise = exercise.type === 'articlePicker' ? exercise : null;
+
   return (
-    <div>
-      {prompt && <p className="mb-3 text-[17px] font-rounded font-semibold">{prompt}</p>}
+    <div className={showSheet ? 'pb-72' : undefined}>
+      {prompt && <p className="mb-4 text-[22px] font-display font-medium leading-snug">{prompt}</p>}
 
       {exercise.type === 'multipleChoice' && options!.map((o, i) => (
-        <button key={i} className={optClass(response === i)} onClick={() => setResponse(i)}>{o}</button>
+        <OptionTile key={i} active={response === i} onClick={() => setResponse(i)}>{o}</OptionTile>
       ))}
 
       {exercise.type === 'listenChoose' && (<>
@@ -83,34 +87,26 @@ export function ExerciseView({
           <AudioButton src={audioSrc(exercise.audio)} label={t('playClip', locale)} />
           <span className="label">{t('listenThenChoose', locale)}</span>
         </div>
-        {options!.map((o, i) => (<button key={i} className={optClass(response === i)} onClick={() => setResponse(i)}>{o}</button>))}
+        {options!.map((o, i) => (<OptionTile key={i} active={response === i} onClick={() => setResponse(i)}>{o}</OptionTile>))}
       </>)}
 
-      {exercise.type === 'articlePicker' && (
-        <div className="flex gap-2 items-center flex-wrap">
-          {(['der', 'die', 'das'] as const).map((g) => (
-            <button
-              key={g}
-              aria-label={g}
-              onClick={() => setResponse(g)}
-              className={
-                'rounded-[12px] px-5 py-3 border font-rounded font-bold text-[17px] transition-[border-color,background,transform] duration-150 active:scale-[.98] cursor-pointer ' +
-                (response === g ? 'border-primary bg-[var(--primary-wash)]' : 'border-border bg-card hover:border-border-strong')
-              }
-              style={{ color: `var(--${g})` }}
-            >
-              {g}
-            </button>
-          ))}
-          <span className="self-center font-rounded font-bold text-[22px] ml-1">{exercise.word}</span>
+      {articleExercise && (
+        <div>
+          <div className="font-display font-bold text-[clamp(48px,10vw,76px)] leading-none tracking-[-0.04em] mb-8">{articleExercise.word}</div>
+          <ArticleTiles
+            value={response as 'der' | 'die' | 'das' | undefined}
+            onChange={setResponse}
+            disabled={showSheet}
+            correct={revealed ? articleExercise.answer : undefined}
+            result={result ? (result.correct ? 'right' : 'wrong') : undefined}
+          />
         </div>
       )}
 
       {exercise.type === 'fillBlank' && (
         <input
           key={attempt}
-          className="mock-input w-full rounded-[12px] border border-border bg-card px-4 py-3 text-[16px] outline-none
-            focus:border-primary transition-colors"
+          className="mock-input w-full h-14 rounded-[18px] border-[1.5px] border-border-strong bg-card px-5 text-[18px] outline-none focus:border-text transition-colors"
           onChange={(e) => setResponse(e.target.value)}
           placeholder={t('typeYourAnswer', locale)}
         />
@@ -119,69 +115,36 @@ export function ExerciseView({
       {exercise.type === 'wordOrder' && <WordOrder key={attempt} tokens={exercise.tokens} onChange={setResponse} locale={locale} />}
       {exercise.type === 'match' && <Match key={attempt} pairs={exercise.pairs} onChange={setResponse} locale={locale} />}
 
-      <div className="mt-4">
-        <Button onClick={check} disabled={unattempted}>{t('check', locale)}</Button>
-      </div>
-
-      {revealed && (
-        <div className="mt-3 rounded-[12px] px-3.5 py-3 bg-[var(--primary-wash)] flex items-start gap-2">
-          <Lightbulb size={16} strokeWidth={2.2} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-          <span className="font-rounded">
-            <strong>{t('answerLabel', locale)}:</strong> <span className="text-text font-bold">{answerText(exercise, locale)}</span>
-          </span>
+      {!showSheet && (
+        <div className="mt-6">
+          <Button size="lg" onClick={check} disabled={unattempted}>{t('check', locale)}</Button>
         </div>
       )}
 
+      {revealed && (
+        <FeedbackSheet
+          kind="fast"
+          answerLabel={t('answerLabel', locale)}
+          answer={answerText(exercise, locale)}
+          primaryLabel="Weiter"
+          onPrimary={onContinue}
+        />
+      )}
+
       {result && !revealed && (
-        <div className="mt-3">
-          {result.correct ? (
-            <div className="flex items-start gap-2 rounded-[12px] px-3.5 py-3 bg-[var(--good-wash)] text-text">
-              <Check size={18} strokeWidth={2.6} className="mt-0.5 shrink-0 text-[var(--good)]" aria-hidden="true" />
-              <span className="font-rounded font-bold">
-                Richtig!{' '}
-                {result.explanation && <span className="font-normal text-text-2">— {result.explanation}</span>}
-              </span>
-            </div>
-          ) : (
-            <div>
-              <div className="flex items-center gap-1.5 text-[var(--bad)] font-rounded font-bold">
-                <X size={16} strokeWidth={2.6} aria-hidden="true" />
-                {t('notQuite', locale)}
-              </div>
-              <div
-                role="note"
-                aria-label={t('tip', locale)}
-                className="mt-2 rounded-[12px] px-3.5 py-3 bg-[var(--amber-wash)]"
-              >
-                {wrongAnswerHint && (
-                  <p className="m-0 flex items-start gap-2">
-                    <Lightbulb size={16} strokeWidth={2.2} className="mt-0.5 shrink-0 text-[var(--amber)]" aria-hidden="true" />
-                    <span>
-                      <strong>{t('tip', locale)}:</strong> <span className="text-text">{wrongAnswerHint}</span>
-                    </span>
-                  </p>
-                )}
-                <div className={'flex items-center gap-2 ' + (wrongAnswerHint ? 'mt-2.5' : '')}>
-                  <button
-                    onClick={tryAgain}
-                    className="border border-[var(--amber)] text-[var(--amber)] bg-transparent rounded-[10px] px-3.5 py-2
-                      font-rounded font-bold transition-colors hover:bg-[var(--amber-wash)]"
-                  >
-                    {t('tryAgain', locale)}
-                  </button>
-                  {wrongCount >= REVEAL_AFTER && (
-                    <button
-                      onClick={reveal}
-                      className="text-muted underline underline-offset-2 font-rounded text-sm transition-colors hover:text-text"
-                    >
-                      {t('showAnswer', locale)}
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        result.correct ? (
+          <FeedbackSheet kind="richtig" hint={result.explanation} primaryLabel="Weiter" onPrimary={onContinue} />
+        ) : (
+          <FeedbackSheet
+            kind="fast"
+            hintLabel={t('tip', locale)}
+            hint={wrongAnswerHint}
+            primaryLabel={t('tryAgain', locale)}
+            onPrimary={tryAgain}
+            secondaryLabel={wrongCount >= REVEAL_AFTER ? t('showAnswer', locale) : undefined}
+            onSecondary={wrongCount >= REVEAL_AFTER ? reveal : undefined}
+          />
+        )
       )}
     </div>
   );
@@ -215,14 +178,14 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
 
   return (
     <div>
-      <div className="min-h-[46px] border border-dashed border-border rounded-[12px] p-2 mb-2 flex gap-1.5 flex-wrap items-center">
-        {chosen.length === 0 && <span className="text-faint text-sm px-1">…</span>}
+      <div className="min-h-[56px] border border-dashed border-border-strong rounded-[14px] p-2 mb-2 flex gap-1.5 flex-wrap items-center">
+        {chosen.length === 0 && <span className="text-muted text-sm px-1">…</span>}
         {chosen.map((tok, i) => (
           <button
             key={i}
             onClick={() => removeAt(i)}
             aria-label={`${tok} entfernen`}
-            className="border border-primary bg-[var(--primary-wash)] text-primary rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 font-rounded font-semibold
+            className="border border-text bg-surface-2 text-text rounded-[12px] px-4 py-2.5 font-display font-medium text-[17px]
               transition-transform duration-150 active:scale-[.97] cursor-pointer"
           >
             {tok}
@@ -234,7 +197,7 @@ function WordOrder({ tokens, onChange, locale }: { tokens: string[]; onChange: (
           <button
             key={i}
             onClick={() => add(tok)}
-            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-rounded font-semibold
+            className="border border-border-strong rounded-[12px] px-4 py-2.5 bg-card font-display font-medium text-[17px]
               transition-[border-color,transform] duration-150 hover:border-border-strong active:scale-[.97] cursor-pointer"
           >
             {tok}
@@ -276,12 +239,12 @@ function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; f
               key={p.de}
               onClick={() => (meaning ? clear(p.de) : setActiveDe(active ? null : p.de))}
               className={
-                'flex items-center gap-2.5 text-left rounded-[12px] px-3 py-2.5 border font-rounded transition-[border-color,background] duration-150 cursor-pointer ' +
-                (active ? 'border-primary bg-[var(--primary-wash)]' : meaning ? 'border-[var(--good)] bg-[var(--good-wash)]' : 'border-border bg-card hover:border-border-strong')
+                'flex items-center gap-2.5 text-left rounded-[12px] px-3 py-2.5 border font-display transition-[border-color,background] duration-150 cursor-pointer ' +
+                (active ? 'border-text bg-surface-2' : meaning ? 'border-ok bg-[var(--ok-wash)]' : 'border-border bg-card hover:border-border-strong')
               }
             >
               <span className="font-bold min-w-[90px]">{p.de}</span>
-              <span className={'text-sm ' + (meaning ? 'text-text' : 'text-faint')}>
+              <span className={'text-sm ' + (meaning ? 'text-text' : 'text-muted')}>
                 {meaning ?? t('chooseEllipsis', locale)}
               </span>
             </button>
@@ -294,7 +257,7 @@ function Match({ pairs, onChange, locale }: { pairs: { de: string; en: string; f
             key={m}
             onClick={() => assign(m)}
             disabled={!activeDe}
-            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-rounded font-semibold text-sm
+            className="border border-border rounded-[10px] px-3.5 py-2.5 sm:px-3 sm:py-1.5 bg-card font-display font-semibold text-sm
               transition-[border-color,transform] duration-150 hover:border-border-strong active:scale-[.97]
               disabled:opacity-45 disabled:cursor-not-allowed cursor-pointer"
           >

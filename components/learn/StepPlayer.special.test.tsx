@@ -7,6 +7,7 @@ const push = vi.fn();
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push }) }));
 vi.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
+  useReducedMotion: () => true,
   motion: new Proxy({}, { get: () => (props: any) => { const { children, ...rest } = props; return React.createElement('div', rest, children); } }),
 }));
 

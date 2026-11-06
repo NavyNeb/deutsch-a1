@@ -34,7 +34,7 @@ export function MiniMarkdown({ md }: { md: string }) {
           <Fragment key={bi}>
             {runs.map((run, ri) =>
               run.list ? (
-                <ul key={ri} className="my-2 pl-5 grid gap-1 marker:text-primary">
+                <ul key={ri} className="my-2 pl-5 grid gap-1 marker:text-text">
                   {run.lines.map((l, li) => (
                     <li key={li}>{renderInline(l.replace(/^[-•]\s*/, ''), `${bi}-${ri}-${li}`)}</li>
                   ))}

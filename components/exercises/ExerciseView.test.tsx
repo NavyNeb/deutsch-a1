@@ -1,7 +1,74 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 import { ExerciseView } from './ExerciseView';
+
+afterEach(() => {
+  // @ts-expect-error cleanup of the stub
+  delete navigator.vibrate;
+});
+
+describe('ExerciseView — haptics', () => {
+  it('a correct answer gives the success pattern, a wrong one does not', async () => {
+    const v = vi.fn();
+    Object.defineProperty(navigator, 'vibrate', { value: v, configurable: true, writable: true });
+    const ex = { type: 'multipleChoice' as const, id: 'h1', prompt: 'p', options: ['a', 'b'], answer: 1 };
+    render(<ExerciseView onResult={() => {}} exercise={ex} />);
+    await userEvent.click(screen.getByText('a'));
+    v.mockClear();
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(v).not.toHaveBeenCalledWith([10, 40, 10]);
+    await userEvent.click(screen.getByRole('button', { name: /try again/i }));
+    await userEvent.click(screen.getByText('b'));
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(v).toHaveBeenCalledWith([10, 40, 10]);
+  });
+});
+
+describe('ExerciseView — feedback sheet', () => {
+  const mc = { type: 'multipleChoice' as const, id: 'f1', prompt: 'Formal greeting?', options: ['Hallo', 'Guten Tag'], answer: 1, explain: 'formal' };
+
+  it('a correct answer shows Richtig! and Weiter calls onContinue', async () => {
+    const onContinue = vi.fn();
+    render(<ExerciseView onResult={() => {}} onContinue={onContinue} exercise={mc} />);
+    await userEvent.click(screen.getByText('Guten Tag'));
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(screen.getByText('Richtig!')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Weiter' }));
+    expect(onContinue).toHaveBeenCalledTimes(1);
+  });
+
+  it('a wrong answer shows Fast! and Try again resets the response', async () => {
+    render(<ExerciseView onResult={() => {}} exercise={mc} />);
+    await userEvent.click(screen.getByText('Hallo'));
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(screen.getByText('Fast!')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /try again/i }));
+    expect(screen.queryByText('Fast!')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /check/i })).toBeDisabled();
+  });
+
+  it('after two wrong answers Show answer reveals it and Weiter appears', async () => {
+    const onContinue = vi.fn();
+    render(<ExerciseView onResult={() => {}} onContinue={onContinue} exercise={mc} />);
+    for (let n = 0; n < 2; n++) {
+      await userEvent.click(screen.getByText('Hallo'));
+      await userEvent.click(screen.getByRole('button', { name: /check/i }));
+      if (n === 0) await userEvent.click(screen.getByRole('button', { name: /try again/i }));
+    }
+    await userEvent.click(screen.getByRole('button', { name: /show answer/i }));
+    expect(screen.getByText(/^answer:/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Weiter' }));
+    expect(onContinue).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not show the correct article tile before the answer is revealed', async () => {
+    render(<ExerciseView onResult={() => {}} exercise={{ type: 'articlePicker', id: 'f2', word: 'Fenster', answer: 'das' }} />);
+    await userEvent.click(screen.getByRole('button', { name: 'der' }));
+    await userEvent.click(screen.getByRole('button', { name: /check/i }));
+    expect(screen.getByRole('button', { name: 'das' })).not.toHaveAttribute('data-correct');
+  });
+});
 
 describe('ExerciseView — wrong-answer hint box and Try again', () => {
   it('shows a tip box with the hint (not the answer) on a wrong multipleChoice answer, and hides it on correct', async () => {
@@ -16,7 +83,7 @@ describe('ExerciseView — wrong-answer hint box and Try again', () => {
     await userEvent.click(screen.getByRole('button', { name: /check/i }));
 
     expect(onResult).toHaveBeenCalledWith(false);
-    expect(screen.getByText(/not quite/i)).toBeInTheDocument();
+    expect(screen.getByText('Fast!')).toBeInTheDocument();
     expect(screen.getByText(/look for the one used with strangers/i)).toBeInTheDocument();
     expect(screen.queryByText('formal')).not.toBeInTheDocument(); // no correct-only explanation shown
     const tryAgain = screen.getByRole('button', { name: /try again/i });
@@ -25,7 +92,7 @@ describe('ExerciseView — wrong-answer hint box and Try again', () => {
     // Try again resets the local state: no result shown, and the wrong option
     // is no longer selected — so the learner can pick again.
     await userEvent.click(tryAgain);
-    expect(screen.queryByText(/not quite/i)).not.toBeInTheDocument();
+    expect(screen.queryByText('Fast!')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /try again/i })).not.toBeInTheDocument();
 
     // Re-attempt with the correct option — no hint box, correct feedback shown instead.

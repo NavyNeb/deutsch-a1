@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  async redirects() {
+    // The games hub became the Practice hub (/practice); the review queue moved to /practice/review.
+    return [{ source: '/games', destination: '/practice', permanent: false }];
+  },
   async headers() {
     return [
       {

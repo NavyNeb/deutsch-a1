@@ -8,7 +8,7 @@
  * Never touched: /api/*, /account, non-GET, cross-origin (Supabase, LanguageTool), RSC fetches.
  * Bump VERSION to drop every cache on the next activate.
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const C = {
   static: `deutsch-static-${VERSION}`,
   assets: `deutsch-assets-${VERSION}`,
@@ -17,7 +17,7 @@ const C = {
 };
 const LIMITS = { [C.static]: 400, [C.assets]: 300, [C.media]: 1500, [C.pages]: 80 };
 const OFFLINE_URL = '/offline';
-const PRECACHE_PAGES = [OFFLINE_URL, '/', '/textbook', '/specials', '/games', '/dictionary', '/speak', '/write', '/statistics'];
+const PRECACHE_PAGES = [OFFLINE_URL, '/', '/path', '/practice', '/library', '/me', '/dictionary', '/textbook'];
 const PRECACHE_ASSETS = ['/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png'];
 const NEVER_CACHE = [/^\/api\//, /^\/account/, /^\/auth/];
 

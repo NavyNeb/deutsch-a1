@@ -76,7 +76,7 @@ export function WordDetail({ word }: { word: string }) {
   }, [word]);
 
   const back = (
-    <Link href={backHref} className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-primary hover:underline">
+    <Link href={backHref} className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-text hover:underline">
       <ArrowLeft size={16} strokeWidth={2.4} /> {t('dictBackToSearch', locale)}
     </Link>
   );
@@ -90,9 +90,9 @@ export function WordDetail({ word }: { word: string }) {
       {state.status === 'error' && <p role="alert" className="text-text-2 m-0">{t('dictLoadError', locale)}</p>}
       {state.status === 'done' && state.data.entries.length === 0 && (
         <section className="grid gap-3 rounded-[20px] border border-border bg-card p-6">
-          <h1 className="font-rounded font-extrabold text-[24px] text-text m-0 break-words">{word}</h1>
+          <h1 className="font-display font-extrabold text-[24px] text-text m-0 break-words">{word}</h1>
           <p className="m-0 text-text-2">{t('dictWordNotFound', locale)}</p>
-          <div><Link href="/dictionary" className="font-semibold text-primary hover:underline">{t('dictSearchAnother', locale)}</Link></div>
+          <div><Link href="/dictionary" className="font-semibold text-text hover:underline">{t('dictSearchAnother', locale)}</Link></div>
         </section>
       )}
       {state.status === 'done' && state.data.entries.map((entry, i) => (
@@ -109,7 +109,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
   const posKey = POS_KEY[entry.p];
   const lessonVocab = useMemo(() => allVocab().find((v) => v.german === entry.w), [entry.w]);
   const sentences = useMemo(() => lessonSentences(formsOf(entry)), [entry]);
-  const bandBg = arts[0] ? `color-mix(in srgb, var(--${arts[0]}) 13%, var(--card))` : 'var(--primary-wash)';
+  const bandBg = arts[0] ? `color-mix(in srgb, var(--${arts[0]}) 13%, var(--card))` : 'var(--s2)';
   const listen = () => (lessonVocab ? playAudio(ttsSrc(lessonVocab.german)) : speakText(entry.w));
   const Heading = first ? 'h1' : 'h2';
 
@@ -121,17 +121,17 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
           {posKey && <span className="label text-muted">{t(posKey, locale)}</span>}
         </div>
         <div className="flex items-center justify-between gap-3">
-          <Heading className="font-rounded font-extrabold text-[32px] leading-tight text-text m-0 break-words min-w-0">{entry.w}</Heading>
+          <Heading className="font-display font-extrabold text-[32px] leading-tight text-text m-0 break-words min-w-0">{entry.w}</Heading>
           <button
             type="button"
             onClick={listen}
             aria-label={`${t('dictListen', locale)}: ${entry.w}`}
-            className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-card text-primary shadow-sm hover:brightness-105 active:scale-90 transition"
+            className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-card text-text shadow-sm hover:brightness-105 active:scale-90 transition"
           >
             <Volume2 size={19} strokeWidth={2.2} />
           </button>
         </div>
-        {entry.ipa && <div className="font-mono text-[14px] text-primary mt-1">/{entry.ipa}/</div>}
+        {entry.ipa && <div className="font-mono text-[14px] text-text mt-1">/{entry.ipa}/</div>}
         {(entry.pl || entry.gen) && (
           <dl className="m-0 mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[14px]">
             {entry.pl && <><dt className="text-muted">{t('dictPlural', locale)}</dt><dd className="m-0 text-text font-semibold">{entry.pl}</dd></>}
@@ -144,7 +144,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
 
       <section aria-labelledby={`meanings-${entry.p}-${entry.w}`} className="grid gap-2">
         <h2 id={`meanings-${entry.p}-${entry.w}`} className="label text-muted m-0">{t('dictMeanings', locale)}</h2>
-        <ol className="m-0 pl-5 list-decimal marker:text-faint grid gap-1.5 text-text-2 text-[15.5px]">
+        <ol className="m-0 pl-5 list-decimal marker:text-muted grid gap-1.5 text-text-2 text-[15.5px]">
           {(lessonVocab ? [pick(lessonVocab.english, lessonVocab.french, locale), ...entry.s.filter((g) => g !== lessonVocab.english)] : entry.s).map((m, i) => <li key={i}>{m}</li>)}
         </ol>
         {entry.x && (
@@ -163,7 +163,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
               <li key={s.de} className="rounded-[14px] border border-border bg-card px-4 py-3 text-[14.5px]">
                 <div className="text-text font-semibold">{s.de}</div>
                 <div className="text-muted">{pick(s.en, s.fr, locale)}</div>
-                <Link href={`/lesson/${s.lessonId}/learn`} className="text-[13px] font-semibold text-primary hover:underline inline-flex items-center min-h-[32px]">
+                <Link href={`/lesson/${s.lessonId}/learn`} className="text-[13px] font-semibold text-text hover:underline inline-flex items-center min-h-[32px]">
                   {t('dictOpenLessonLink', locale)}: {pick(s.lessonTitle.en, s.lessonTitle.fr, locale)}
                 </Link>
               </li>

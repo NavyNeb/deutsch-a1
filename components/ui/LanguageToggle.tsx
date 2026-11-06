@@ -10,11 +10,11 @@ export function LanguageToggle({ style }: { style?: CSSProperties }) {
 
   const optionStyle = (active: boolean): CSSProperties => ({
     border: 'none',
-    background: active ? 'var(--accent)' : 'transparent',
-    color: active ? '#FFFFFF' : 'var(--muted)',
+    background: active ? 'var(--cta)' : 'transparent',
+    color: active ? 'var(--cta-i)' : 'var(--muted)',
     borderRadius: 999,
     padding: '10px 14px',
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 600,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',

@@ -11,7 +11,7 @@ export function PlayButton({ text, label }: { text: string; label?: string }) {
       type="button"
       onClick={() => speakText(text)}
       aria-label={`${t('dictPlay', locale)}: ${label ?? text}`}
-      className="grid place-items-center shrink-0 w-10 h-10 rounded-full text-primary hover:bg-[var(--primary-wash)] active:scale-90 transition"
+      className="grid place-items-center shrink-0 w-10 h-10 rounded-full text-text hover:bg-surface-2 active:scale-90 transition"
     >
       <Volume2 size={16} strokeWidth={2.2} />
     </button>
@@ -25,7 +25,7 @@ export function Notice({ children, tone = 'info' }: { children: React.ReactNode;
       className={
         'm-0 rounded-[14px] border px-4 py-3 text-[13.5px] leading-relaxed ' +
         (tone === 'warn'
-          ? 'border-[var(--amber)] bg-[color-mix(in_srgb,var(--amber)_12%,var(--card))] text-text'
+          ? 'border-[var(--ember)] bg-[color-mix(in_srgb,var(--ember)_12%,var(--card))] text-text'
           : 'border-border bg-surface-2 text-text-2')
       }
     >

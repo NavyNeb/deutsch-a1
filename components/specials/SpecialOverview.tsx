@@ -8,8 +8,7 @@ import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
-import { lessonGlyph } from '@/lib/lesson-visuals';
-import { GROUP_BAND } from '@/lib/special-visuals';
+import { LessonArt } from '@/components/ui/LessonArt';
 import { GROUP_LABEL } from '@/content/specials/meta';
 import { BookRefLinks } from '@/components/learn/BookRefLinks';
 import { stepId } from '@/components/learn/stepId';
@@ -19,7 +18,6 @@ export function SpecialOverview({ special }: { special: Special }) {
   const { locale } = useLocale();
   const { state } = useProgress();
   const p = specialProgress(state, special);
-  const band = GROUP_BAND[special.special.group];
   const rec = state.lessons[special.id];
   const done = new Set(rec?.steps ?? []);
   const started = p.stepsDone > 0 || p.quizAnswered > 0;
@@ -34,39 +32,39 @@ export function SpecialOverview({ special }: { special: Special }) {
 
   return (
     <main className="mx-auto w-full max-w-[880px] px-4 py-5 pb-24 grid gap-6">
-      <Link href="/specials" className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-primary hover:underline">
+      <Link href="/specials" className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-text hover:underline">
         <ArrowLeft size={16} strokeWidth={2.4} /> {t('specialsBackToHub', locale)}
       </Link>
 
-      <header className="rounded-[24px] p-6 md:p-8 text-white" style={{ background: band.grad }}>
+      <header className="rounded-[24px] p-6 md:p-8 bg-card border border-border text-text">
         <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className="font-rounded font-extrabold text-[11px] tracking-wide rounded-full px-2.5 py-1 bg-white/25">{levelRange(special)}</span>
-          <span className="font-rounded font-bold text-[12px] opacity-90">{pick(group.en, group.fr, locale)}</span>
+          <span className="font-display font-semibold text-[12px] tracking-wide rounded-full px-2.5 py-1 bg-surface-3 text-text-2">{levelRange(special)}</span>
+          <span className="font-display font-bold text-[12px] opacity-90">{pick(group.en, group.fr, locale)}</span>
         </div>
         <div className="flex items-start gap-4">
-          <span aria-hidden="true" className="text-[52px] leading-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.2)]">{lessonGlyph(special)}</span>
+          <span className="relative block shrink-0 w-[64px] h-[64px]"><LessonArt lesson={special} /></span>
           <div className="min-w-0">
-            <h1 className="font-rounded font-extrabold text-[clamp(28px,5vw,40px)] leading-tight m-0 break-words">{special.title.de}</h1>
+            <h1 className="font-display font-extrabold text-[clamp(28px,5vw,40px)] leading-tight m-0 break-words">{special.title.de}</h1>
             <p className="m-0 mt-1 text-[16px] opacity-90">{pick(special.title.en, special.title.fr, locale)}</p>
           </div>
         </div>
-        <ul className="m-0 mt-5 pl-5 grid gap-1 text-[15px] marker:text-white/70">
+        <ul className="m-0 mt-5 pl-5 grid gap-1 text-[15px] marker:text-muted">
           {goals.map((g, i) => <li key={i}>{g}</li>)}
         </ul>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <Link
             href={`/specials/${special.special.slug}/learn`}
-            className="inline-flex items-center gap-2 rounded-full bg-white text-[#1c3d46] font-rounded font-extrabold text-[15px] px-6 py-3 no-underline shadow-md hover:brightness-95 active:scale-[.98] transition"
+            className="inline-flex items-center gap-2 rounded-full bg-cta text-cta-ink font-semibold text-[15px] px-6 py-3 no-underline hover:opacity-90 active:scale-[.98] transition"
           >
             <Play size={16} strokeWidth={2.6} fill="currentColor" /> {started ? t('specialsContinue', locale) : t('specialsStart', locale)}
           </Link>
           <Link
             href={`/specials/${special.special.slug}/review`}
-            className="inline-flex items-center rounded-full border border-white/50 text-white font-rounded font-bold text-[14px] px-5 py-3 no-underline hover:bg-white/15 transition"
+            className="inline-flex items-center rounded-full border border-border-strong text-text font-semibold text-[14px] px-5 py-3 no-underline hover:bg-surface-2 transition"
           >
             {t('specialsReviewCta', locale)}
           </Link>
-          {p.quizPassed && <span role="status" className="font-rounded font-extrabold text-[13px] rounded-full bg-white/25 px-3 py-1.5">{t('quizPassed', locale)}</span>}
+          {p.quizPassed && <span role="status" className="font-semibold text-[13px] rounded-full bg-surface-3 text-text px-3 py-1.5">{t('quizPassed', locale)}</span>}
         </div>
       </header>
 
@@ -78,9 +76,9 @@ export function SpecialOverview({ special }: { special: Special }) {
         <ol className="m-0 p-0 list-none grid gap-2.5">
           {chapters.map(({ step, id }, i) => (
             <li key={id} className="flex gap-3 rounded-[16px] border border-border bg-card px-4 py-3.5">
-              <span className={'grid place-items-center shrink-0 w-8 h-8 rounded-full font-rounded font-extrabold text-[14px] ' + (done.has(id) ? 'bg-[var(--good-wash)] text-[var(--good)]' : 'bg-[var(--primary-wash)] text-primary')}>{i + 1}</span>
+              <span className={'grid place-items-center shrink-0 w-8 h-8 rounded-full font-display font-extrabold text-[14px] ' + (done.has(id) ? 'bg-[var(--ok-wash)] text-[var(--ok-t)]' : 'bg-surface-2 text-text')}>{i + 1}</span>
               <div className="min-w-0">
-                <h3 className="font-rounded font-bold text-[16px] text-text m-0">{pick(step.title, step.titleFr ?? step.title, locale)}</h3>
+                <h3 className="font-display font-bold text-[16px] text-text m-0">{pick(step.title, step.titleFr ?? step.title, locale)}</h3>
                 {(step.blurb || step.blurbFr) && <p className="m-0 mt-0.5 text-[14px] text-muted leading-relaxed">{pick(step.blurb ?? '', step.blurbFr ?? step.blurb ?? '', locale)}</p>}
               </div>
             </li>
@@ -96,7 +94,7 @@ export function SpecialOverview({ special }: { special: Special }) {
               <Link
                 key={l.id}
                 href={`/lesson/${l.id}/learn`}
-                className="tap-area inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1.5 text-[13px] font-rounded font-bold text-text-2 no-underline hover:border-primary hover:text-primary"
+                className="tap-area inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1.5 text-[13px] font-display font-bold text-text-2 no-underline hover:border-text hover:text-text"
               >
                 {l.level} · L{l.number} · {l.title.de}
               </Link>

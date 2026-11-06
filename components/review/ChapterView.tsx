@@ -32,7 +32,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
           <h1 className="text-[40px] font-extrabold m-0 mb-2">
             {`${lesson.title.de} (${titleTranslation})`}
           </h1>
-          <ul className="m-0 pl-5 grid gap-1 marker:text-primary">
+          <ul className="m-0 pl-5 grid gap-1 marker:text-text">
             {goals.map((g, i) => <li key={i}>{g}</li>)}
           </ul>
         </div>
@@ -56,7 +56,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-rounded font-bold text-[20px]">{item.german}</span>
+                        <span className="font-display font-bold text-[20px]">{item.german}</span>
                         <GenderTag gender={item.gender} />
                       </div>
                       {item.pronunciation && <p className="text-muted m-0 mt-0.5 text-[13px]">{item.pronunciation}</p>}
@@ -94,7 +94,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
           <Card>
             <div className="grid gap-2.5">
               {examples.map((ex, i) => (
-                <div key={i} className="border-l-[3px] border-primary pl-3 flex gap-2.5 items-center">
+                <div key={i} className="border-l-[3px] border-text pl-3 flex gap-2.5 items-center">
                   <div className="flex-1">
                     <em className="not-italic font-medium">{ex.de}</em>
                     <br />

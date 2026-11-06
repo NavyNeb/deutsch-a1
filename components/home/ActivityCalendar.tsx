@@ -7,10 +7,10 @@ import { t } from '@/lib/ui-strings';
 const WEEKS = 12;
 const COLORS = [
   'var(--surface-3)',
-  'color-mix(in srgb, var(--primary) 28%, var(--surface-3))',
-  'color-mix(in srgb, var(--primary) 55%, transparent)',
-  'color-mix(in srgb, var(--primary) 78%, transparent)',
-  'var(--primary)',
+  'color-mix(in srgb, var(--t1) 28%, var(--surface-3))',
+  'color-mix(in srgb, var(--t1) 55%, transparent)',
+  'color-mix(in srgb, var(--t1) 78%, transparent)',
+  'var(--t1)',
 ];
 const bucket = (xp: number) => (xp <= 0 ? 0 : xp < 15 ? 1 : xp < 30 ? 2 : xp < 60 ? 3 : 4);
 

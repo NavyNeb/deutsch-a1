@@ -24,32 +24,32 @@ export function Mascot({
       focusable="false"
     >
       {/* head */}
-      <rect x="6" y="8" width="36" height="32" rx="12" fill="var(--primary)" />
+      <rect x="6" y="8" width="36" height="32" rx="12" fill="var(--t1)" />
       {/* little antenna / tuft */}
-      <rect x="21" y="2.5" width="6" height="7" rx="3" fill="var(--amber)" />
+      <rect x="21" y="2.5" width="6" height="7" rx="3" fill="var(--ember)" />
       {/* eyes */}
-      <circle cx="18" cy="23" r="3.4" fill="#fff" />
-      <circle cx="30" cy="23" r="3.4" fill="#fff" />
+      <circle cx="18" cy="23" r="3.4" fill="var(--cta-i)" />
+      <circle cx="30" cy="23" r="3.4" fill="var(--cta-i)" />
       {expression === 'think' ? (
         <>
-          <circle cx="18" cy="24" r="1.5" fill="var(--primary-ink)" />
-          <circle cx="30" cy="24" r="1.5" fill="var(--primary-ink)" />
+          <circle cx="18" cy="24" r="1.5" fill="var(--cta)" />
+          <circle cx="30" cy="24" r="1.5" fill="var(--cta)" />
         </>
       ) : (
         <>
-          <circle cx="18.8" cy="23.8" r="1.5" fill="var(--primary-ink)" />
-          <circle cx="30.8" cy="23.8" r="1.5" fill="var(--primary-ink)" />
+          <circle cx="18.8" cy="23.8" r="1.5" fill="var(--cta)" />
+          <circle cx="30.8" cy="23.8" r="1.5" fill="var(--cta)" />
         </>
       )}
       {/* mouth */}
       {expression === 'celebrate' ? (
-        <path d="M18 29c1.6 3 10.4 3 12 0v0a6 6 0 0 1-12 0Z" fill="#fff" />
+        <path d="M18 29c1.6 3 10.4 3 12 0v0a6 6 0 0 1-12 0Z" fill="var(--cta-i)" />
       ) : expression === 'think' ? (
-        <path d="M20 31h6" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+        <path d="M20 31h6" stroke="var(--cta-i)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
       ) : (
         <path
           d="M19 30c1.6 1.6 8.4 1.6 10 0"
-          stroke="#fff"
+          stroke="var(--cta-i)"
           strokeWidth="2.4"
           strokeLinecap="round"
           fill="none"

@@ -107,18 +107,18 @@ export function QuizGame({
       <Shell gradient={gradient}>
         <div className="grid md:grid-cols-[1fr_0.8fr] gap-8 items-center">
           <div>
-            <h1 className="font-rounded font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
+            <h1 className="font-display font-extrabold text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.02em] text-text m-0">
               {t(titleKey, locale)}
             </h1>
             <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-2 max-w-[46ch]">{t(taglineKey, locale)}</p>
             <p className="text-muted text-[14px] leading-relaxed mb-7 max-w-[48ch]">{t(howToKey, locale)}</p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-              <button onClick={() => start()} className="inline-flex items-center justify-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+              <button onClick={() => start()} className="inline-flex items-center justify-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
                 {t('startGame', locale)} <ArrowRight size={17} strokeWidth={2.5} />
               </button>
               {best > 0 && (
                 <span className="inline-flex items-center gap-1.5 label text-muted">
-                  <Trophy size={15} className="text-amber" /> {t('best', locale)} {best}
+                  <Trophy size={15} className="text-ember-text" /> {t('best', locale)} {best}
                 </span>
               )}
             </div>
@@ -137,26 +137,26 @@ export function QuizGame({
       <Shell gradient={gradient}>
         <div className="max-w-[620px] mx-auto text-center">
           <GameArt src={illustration} small />
-          {practice && <p className="font-rounded font-extrabold text-primary text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
-          {isBest && <p className="font-rounded font-extrabold text-amber text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
+          {practice && <p className="font-display font-extrabold text-text text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
+          {isBest && <p className="font-display font-extrabold text-ember-text text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
           <p className="label text-muted mt-2">{t('yourScore', locale)}</p>
-          <div className="font-rounded font-extrabold text-[64px] leading-none text-text tabular-nums my-1">{score}</div>
+          <div className="font-display font-extrabold text-[64px] leading-none text-text tabular-nums my-1">{score}</div>
           <div className="flex items-center justify-center gap-6 mt-3 mb-8 text-[14px] text-muted">
-            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-amber" /> {t('best', locale)} {Math.max(best, score)}</span>
+            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-ember-text" /> {t('best', locale)} {Math.max(best, score)}</span>
             <span className="inline-flex items-center gap-1.5">+{score} {t('xpEarned', locale)}</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {summary.missed.length > 0 && (
-              <button onClick={() => start(summary.missed.map((m) => m.item))} className="inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition">
+              <button onClick={() => start(summary.missed.map((m) => m.item))} className="inline-flex items-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
                 <Target size={16} strokeWidth={2.5} /> {t('practiceMissed', locale)} ({summary.missed.length})
               </button>
             )}
             <button onClick={() => start()} className={summary.missed.length > 0
-              ? 'inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary bg-[var(--primary-wash)] rounded-full px-6 py-3.5 hover:brightness-105 active:scale-[.98] transition'
-              : 'inline-flex items-center gap-2 font-rounded font-bold text-[15px] text-primary-ink bg-primary rounded-full px-6 py-3.5 shadow-primary hover:brightness-105 active:scale-[.98] transition'}>
+              ? 'inline-flex items-center gap-2 font-display font-bold text-[15px] text-text bg-surface-2 rounded-full px-6 py-3.5 hover:brightness-105 active:scale-[.98] transition'
+              : 'inline-flex items-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition'}>
               <RotateCcw size={16} strokeWidth={2.5} /> {t('playAgain', locale)}
             </button>
-            <Link href="/games" className="font-rounded font-bold text-[15px] text-text no-underline hover:text-primary transition px-2 py-3">
+            <Link href="/games" className="font-display font-bold text-[15px] text-text no-underline hover:text-text transition px-2 py-3">
               {t('backToGames', locale)}
             </Link>
           </div>
@@ -172,16 +172,16 @@ export function QuizGame({
     <Shell gradient={gradient}>
       {/* HUD */}
       <div className="flex items-center gap-4 mb-6">
-        <div className="inline-flex items-center gap-2 font-rounded font-extrabold text-[18px] tabular-nums text-text">
-          <Timer size={18} className={time <= 10 ? 'text-bad' : 'text-primary'} strokeWidth={2.4} />
-          <span className={time <= 10 ? 'text-bad' : ''}>{time}s</span>
+        <div className="inline-flex items-center gap-2 font-display font-extrabold text-[18px] tabular-nums text-text">
+          <Timer size={18} className={time <= 10 ? 'text-ember-text' : 'text-text'} strokeWidth={2.4} />
+          <span className={time <= 10 ? 'text-ember-text' : ''}>{time}s</span>
         </div>
         <div className="flex-1 h-2.5 rounded-full bg-surface-3 overflow-hidden">
           <div className="h-full rounded-full transition-[width] duration-1000 ease-linear"
-            style={{ width: `${timePct * 100}%`, background: time <= 10 ? 'var(--bad)' : 'linear-gradient(90deg,var(--primary),var(--primary-2))' }} />
+            style={{ width: `${timePct * 100}%`, background: time <= 10 ? 'var(--ember)' : 'linear-gradient(90deg,var(--t1),var(--t1))' }} />
         </div>
-        <div className="inline-flex items-center gap-1.5 font-rounded font-extrabold text-[18px] tabular-nums text-text">
-          <span className="text-amber">★</span> {score}
+        <div className="inline-flex items-center gap-1.5 font-display font-extrabold text-[18px] tabular-nums text-text">
+          <span className="text-ember-text">★</span> {score}
         </div>
       </div>
 
@@ -189,14 +189,14 @@ export function QuizGame({
       <div className="bg-card border border-border rounded-[24px] shadow-card p-8 md:p-10 text-center mb-5">
         {mode === 'audio' ? (
           <button onClick={() => q && speak(q.prompt)} aria-label={t('replayAudio', locale)}
-            className="grid place-items-center w-20 h-20 mx-auto rounded-full bg-primary text-primary-ink shadow-primary hover:brightness-105 active:scale-95 transition">
+            className="grid place-items-center w-20 h-20 mx-auto rounded-full bg-cta text-cta-ink  hover:brightness-105 active:scale-95 transition">
             <Volume2 size={34} strokeWidth={2.2} />
           </button>
         ) : (
           <div className="flex items-center justify-center gap-3">
-            <span className="font-rounded font-extrabold text-[clamp(30px,6vw,52px)] leading-tight text-text">{q?.prompt.german}</span>
+            <span className="font-display font-extrabold text-[clamp(30px,6vw,52px)] leading-tight text-text">{q?.prompt.german}</span>
             <button onClick={() => q && speak(q.prompt)} aria-label={t('replayAudio', locale)}
-              className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-[var(--primary-wash)] text-primary hover:brightness-105 active:scale-90 transition">
+              className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-surface-2 text-text hover:brightness-105 active:scale-90 transition">
               <Volume2 size={19} strokeWidth={2.3} />
             </button>
           </div>
@@ -210,15 +210,15 @@ export function QuizGame({
           const label = mode === 'audio' ? choice.german : pick(choice.english, choice.french, locale);
           const isAnswer = i === q.answer;
           const isPicked = picked === i;
-          let cls = 'bg-card border-border hover:border-primary hover:-translate-y-0.5';
+          let cls = 'bg-card border-border hover:border-text hover:-translate-y-0.5';
           if (picked !== null) {
-            if (isAnswer) cls = 'bg-[var(--good-wash)] border-[var(--good)] text-[var(--good)]';
-            else if (isPicked) cls = 'bg-[var(--bad-wash)] border-[var(--bad)] text-[var(--bad)]';
+            if (isAnswer) cls = 'bg-[var(--ok-wash)] border-[var(--ok)] text-[var(--ok-t)]';
+            else if (isPicked) cls = 'bg-[var(--ember-wash)] border-[var(--ember)] text-[var(--ember-t)]';
             else cls = 'bg-card border-border opacity-55';
           }
           return (
             <button key={choice.id + i} onClick={() => choose(i)} disabled={picked !== null}
-              className={'relative flex items-center gap-3 rounded-[16px] border-2 shadow-card px-5 py-4 text-left font-rounded font-bold text-[17px] text-text transition-[transform,border-color,background-color] ' + cls}>
+              className={'relative flex items-center gap-3 rounded-[16px] border-2 shadow-card px-5 py-4 text-left font-display font-bold text-[17px] text-text transition-[transform,border-color,background-color] ' + cls}>
               <span className="flex-1">{label}</span>
               {picked !== null && isAnswer && <Check size={19} strokeWidth={3} />}
               {picked !== null && isPicked && !isAnswer && <X size={19} strokeWidth={3} />}
@@ -245,7 +245,7 @@ function Shell({ gradient, children }: { gradient: string; children: React.React
 function GameArt({ src, small }: { src: string; small?: boolean }) {
   return (
     <div className={'relative mx-auto ' + (small ? 'w-[150px]' : 'w-full max-w-[200px] sm:max-w-[280px]')}>
-      <div className="absolute inset-[8%] rounded-[46%_54%_58%_42%/48%_44%_56%_52%] bg-[radial-gradient(120%_120%_at_60%_30%,var(--soft),var(--primary-wash)_60%,transparent_80%)]" />
+      <div className="absolute inset-[8%] rounded-[46%_54%_58%_42%/48%_44%_56%_52%] bg-[radial-gradient(120%_120%_at_60%_30%,var(--s3),var(--s2)_60%,transparent_80%)]" />
       <img src={src} alt="" className="relative w-full block select-none pointer-events-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.14)]" draggable={false} />
     </div>
   );

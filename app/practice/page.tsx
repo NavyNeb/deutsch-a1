@@ -1,5 +1,7 @@
-import { ReviewSession } from '@/components/review/ReviewSession';
+import { GamesHub } from '@/components/games/GamesHub';
+
+export const metadata = { title: 'Üben — Deutsch' };
 
 export default function PracticePage() {
-  return <ReviewSession />;
+  return <GamesHub />;
 }

@@ -26,11 +26,11 @@ export function NounPanel({ entry }: { entry: DictEntry }) {
           {rows.map((r) => (
             <tr key={r.case} className="border-t border-border">
               <th scope="row" className="text-left font-semibold text-muted px-4 py-1.5 whitespace-nowrap">{t(CASE_KEY[r.case], locale)}</th>
-              <td className="py-1.5 pr-2 font-rounded font-bold text-text whitespace-nowrap">
+              <td className="py-1.5 pr-2 font-display font-bold text-text whitespace-nowrap">
                 <span className="inline-flex items-center">{r.sing}<PlayButton text={r.sing} /></span>
               </td>
-              <td className="py-1.5 pr-2 font-rounded font-bold text-text whitespace-nowrap">
-                {r.plur === '—' ? <span className="text-faint">—</span> : <span className="inline-flex items-center">{r.plur}<PlayButton text={r.plur} /></span>}
+              <td className="py-1.5 pr-2 font-display font-bold text-text whitespace-nowrap">
+                {r.plur === '—' ? <span className="text-muted">—</span> : <span className="inline-flex items-center">{r.plur}<PlayButton text={r.plur} /></span>}
               </td>
             </tr>
           ))}
