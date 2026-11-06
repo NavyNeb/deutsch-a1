@@ -5,31 +5,35 @@ import { BOOKS, type Book } from '@/lib/books';
 import { useLocale } from '@/lib/locale-store';
 import { pick } from '@/lib/i18n';
 
-const COVER: Record<string, string> = {
-  A1: 'from-[#34c38f] to-[#1f9d72]',
-  A2: 'from-[#4f8cff] to-[#2f63d6]',
-  B1: 'from-[#a06bff] to-[#6a3fd1]',
-  'A1–B2': 'from-[#ff9f4a] to-[#e0702a]',
-};
-
 function BookCard({ book }: { book: Book }) {
   const { locale } = useLocale();
+  const coverLabel = book.badge || book.title.replace('Menschen ', '');
+
   return (
     <Link
       href={`/textbook/read/${book.id}`}
-      className="group flex gap-4 p-4 bg-card border border-border rounded-[20px] shadow-card no-underline hover:border-primary transition-colors"
+      className="group flex gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-card border border-border rounded-[24px] no-underline transition-[border-color,background] duration-150 hover:border-border-strong hover:bg-surface-2"
     >
-      <div className={`relative shrink-0 w-[84px] h-[116px] rounded-[10px] bg-gradient-to-br ${COVER[book.level]} text-white p-2.5 flex flex-col justify-between shadow-md`}>
-        <span className="font-rounded font-extrabold text-[11px] opacity-90 leading-tight">{book.publisher || 'DaF'}</span>
-        <span className="font-rounded font-extrabold text-[15px] leading-tight">{book.title.replace('Menschen ', '')}</span>
-        <BookOpen size={14} className="opacity-80" />
+      {/* Neutral cover: colour is reserved for grammar, so levels are told apart by the badge, not a hue. */}
+      <div className="relative shrink-0 w-[84px] h-[116px] rounded-[12px] bg-surface-3 border border-border-strong text-text p-2.5 flex flex-col justify-between overflow-hidden">
+        <span className="font-sans font-semibold text-[12px] text-text-2 leading-tight truncate">
+          {book.publisher || 'DaF'}
+        </span>
+        <span className="font-display font-bold text-[18px] leading-snug line-clamp-2 break-words">
+          {coverLabel}
+        </span>
+        <BookOpen size={14} className="text-text-2 shrink-0" />
       </div>
-      <div className="min-w-0 flex flex-col justify-center">
-        <span className="label mb-1">{book.level}</span>
-        <h3 className="m-0 font-rounded font-extrabold text-[17px] text-text leading-snug">{book.title}</h3>
-        <p className="m-0 mt-1 text-muted text-[13px]">{pick(book.subtitle.en, book.subtitle.fr, locale)}</p>
-        <span className="mt-3 inline-flex items-center gap-1.5 font-rounded font-bold text-[13px] text-primary group-hover:underline">
-          <Eye size={14} strokeWidth={2.4} /> {pick('Read', 'Lire', locale)}
+      <div className="min-w-0 flex-1 flex flex-col justify-center">
+        <span className="eyebrow mb-1">{book.level}</span>
+        <h3 className="m-0 font-display font-semibold text-[18px] sm:text-[20px] text-text leading-snug line-clamp-2 break-words">
+          {book.title}
+        </h3>
+        <p className="m-0 mt-1 text-muted text-[13px] line-clamp-2 leading-relaxed">
+          {pick(book.subtitle.en, book.subtitle.fr, locale)}
+        </p>
+        <span className="mt-2.5 inline-flex items-center gap-1.5 font-semibold text-[13px] text-text group-hover:underline">
+          <Eye size={14} strokeWidth={2} /> {pick('Read', 'Lire', locale)}
         </span>
       </div>
     </Link>
@@ -55,7 +59,7 @@ export function BookLibrary() {
       </p>
       {groups.map((g) => (
         <section key={g.key}>
-          <h2 className="font-rounded font-extrabold text-[18px] text-text m-0 mb-4">{g.label}</h2>
+          <h2 className="font-display font-semibold text-[22px] text-text m-0 mb-4">{g.label}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {g.books.map((b) => <BookCard key={b.id} book={b} />)}
           </div>
