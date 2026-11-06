@@ -143,6 +143,7 @@ export function StepPlayer({ lesson, exitHref = '/', reviewHref }: { lesson: Les
                 exercise={step.exercise}
                 onResult={(c) => answerExercise(lesson.id, step.exercise.id, c)}
                 onPass={() => setAnswered(true)}
+                onContinue={advance}
               />
             )}
           </motion.div>
