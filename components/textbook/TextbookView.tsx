@@ -69,7 +69,7 @@ export function TextbookView() {
         <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-1 mb-7">
           {LEVELS.map(({ lv, diff }) => (
             <button key={lv} onClick={() => setLevel(lv)} className="inline-flex items-center gap-2 group py-2.5">
-              <span className={'font-display font-extrabold text-[20px] transition-colors ' + (level === lv ? 'text-text underline decoration-2 underline-offset-8 decoration-primary' : 'text-muted group-hover:text-text')}>
+              <span className={'font-display font-extrabold text-[20px] transition-colors ' + (level === lv ? 'text-text underline decoration-2 underline-offset-8 decoration-text' : 'text-muted group-hover:text-text')}>
                 {lv}
               </span>
               <span className={'label hidden sm:inline-block rounded-full px-2 py-0.5 ' + DIFF_CLS[diff]}>{t(DIFF_LABEL[diff], locale)}</span>

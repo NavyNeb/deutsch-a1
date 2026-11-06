@@ -107,19 +107,19 @@ function ThumbnailItem({
       onClick={onClick}
       className={`group relative flex flex-col items-center p-2 rounded-[14px] text-left transition-all ${
         isActive
-          ? 'bg-primary/10 ring-2 ring-primary'
+          ? 'bg-text/10 ring-2 ring-text'
           : 'hover:bg-surface-2 text-text-2'
       }`}
     >
       <div className="w-[108px] min-h-[140px] bg-white rounded-[6px] shadow-sm flex items-center justify-center overflow-hidden border border-border/60">
         <canvas ref={canvasRef} className="block pointer-events-none" />
         {!rendered && (
-          <span className="text-xs text-muted font-rounded font-bold">{pageNum}</span>
+          <span className="text-xs text-muted font-display font-bold">{pageNum}</span>
         )}
       </div>
       <span
-        className={`mt-1.5 font-rounded text-[12px] font-bold ${
-          isActive ? 'text-primary' : 'text-muted group-hover:text-text'
+        className={`mt-1.5 font-display text-[12px] font-bold ${
+          isActive ? 'text-text' : 'text-muted group-hover:text-text'
         }`}
       >
         {pageNum}
@@ -229,7 +229,7 @@ function ContinuousPage({
           <Loader2 className="animate-spin text-muted" />
         </div>
       )}
-      <span className="mt-2 text-xs font-rounded font-medium text-muted">
+      <span className="mt-2 text-xs font-display font-medium text-muted">
         {pageNum}
       </span>
     </div>
@@ -458,7 +458,7 @@ export function BookReader({
       <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2.5 bg-card border-b border-border select-none">
         <Link
           href="/textbook"
-          className="tap-area inline-flex items-center gap-1.5 text-muted hover:text-text no-underline font-rounded font-bold text-[14px]"
+          className="tap-area inline-flex items-center gap-1.5 text-muted hover:text-text no-underline font-display font-bold text-[14px]"
         >
           <ArrowLeft size={17} strokeWidth={2.4} />{' '}
           <span className="hidden sm:inline">{pick('Library', 'Bibliothèque', locale)}</span>
@@ -472,7 +472,7 @@ export function BookReader({
           onClick={() => setSidebarOpen((v) => !v)}
           className={`grid place-items-center w-9 h-9 rounded-[10px] border border-border transition-colors ${
             sidebarOpen
-              ? 'bg-primary/10 text-primary border-primary/40'
+              ? 'bg-text/10 text-text border-text/40'
               : 'text-text-2 hover:bg-surface-2'
           }`}
         >
@@ -484,7 +484,7 @@ export function BookReader({
           <button
             type="button"
             onClick={() => changeNavMode('single')}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] text-[12px] font-rounded font-bold transition-colors ${
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] text-[12px] font-display font-bold transition-colors ${
               navMode === 'single'
                 ? 'bg-card text-text shadow-sm'
                 : 'text-muted hover:text-text'
@@ -495,7 +495,7 @@ export function BookReader({
           <button
             type="button"
             onClick={() => changeNavMode('continuous')}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] text-[12px] font-rounded font-bold transition-colors ${
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] text-[12px] font-display font-bold transition-colors ${
               navMode === 'continuous'
                 ? 'bg-card text-text shadow-sm'
                 : 'text-muted hover:text-text'
@@ -505,7 +505,7 @@ export function BookReader({
           </button>
         </div>
 
-        <h1 className="m-0 flex-1 min-w-0 truncate text-center font-rounded font-extrabold text-[15px] sm:text-[17px] text-text">
+        <h1 className="m-0 flex-1 min-w-0 truncate text-center font-display font-extrabold text-[15px] sm:text-[17px] text-text">
           {title}
         </h1>
 
@@ -539,7 +539,7 @@ export function BookReader({
         {sidebarOpen && status === 'ready' && (
           <aside className="w-[148px] sm:w-[160px] shrink-0 border-r border-border bg-card/60 backdrop-blur-sm flex flex-col h-full overflow-hidden select-none">
             <div className="px-3 py-2 border-b border-border/80 flex items-center justify-between">
-              <span className="label text-[11px] font-bold text-muted">
+              <span className="label text-[12px] font-bold text-muted">
                 {total} {pick('pages', 'pages', locale)}
               </span>
               {/* Mobile mode switch icon button */}
@@ -580,7 +580,7 @@ export function BookReader({
 
           {status === 'error' && (
             <div className="max-w-[420px] mx-auto mt-16 text-center bg-card border border-border rounded-[20px] shadow-card p-8">
-              <p className="font-rounded font-bold text-text m-0 mb-2">
+              <p className="font-display font-bold text-text m-0 mb-2">
                 {pick(
                   'This book isn’t available right now.',
                   'Ce livre n’est pas disponible pour le moment.',
@@ -637,7 +637,7 @@ export function BookReader({
             aria-label="Previous page"
             onClick={() => go(page - 1)}
             disabled={page <= 1}
-            className="grid place-items-center w-11 h-11 rounded-full border border-border text-text-2 hover:border-primary hover:text-primary disabled:opacity-35"
+            className="grid place-items-center w-11 h-11 rounded-full border border-border text-text-2 hover:border-text hover:text-text disabled:opacity-35"
           >
             <ChevronLeft size={18} />
           </button>
@@ -646,7 +646,7 @@ export function BookReader({
               e.preventDefault();
               go(Number(draft) || page);
             }}
-            className="flex items-center gap-2 font-rounded font-bold text-[15px] text-text"
+            className="flex items-center gap-2 font-display font-bold text-[15px] text-text"
           >
             <input
               inputMode="numeric"
@@ -662,7 +662,7 @@ export function BookReader({
             aria-label="Next page"
             onClick={() => go(page + 1)}
             disabled={page >= total}
-            className="grid place-items-center w-11 h-11 rounded-full border border-border text-text-2 hover:border-primary hover:text-primary disabled:opacity-35"
+            className="grid place-items-center w-11 h-11 rounded-full border border-border text-text-2 hover:border-text hover:text-text disabled:opacity-35"
           >
             <ChevronRight size={18} />
           </button>
