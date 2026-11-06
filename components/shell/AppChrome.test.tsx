@@ -36,4 +36,16 @@ describe('AppChrome', () => {
     expect(within(rail).getByRole('link', { name: /Weg/ })).toHaveAttribute('aria-current', 'page');
     expect(within(rail).getByRole('link', { name: /Heute/ })).not.toHaveAttribute('aria-current');
   });
+
+  it('mounts Kumpel in the app shell but not in the lesson player', async () => {
+    render(<AppChrome><p>x</p></AppChrome>);
+    expect(await screen.findByRole('button', { name: 'Open Kumpel help' })).toBeInTheDocument();
+  });
+
+  it('has no Kumpel in the lesson player', async () => {
+    pathname = '/lesson/l1/learn';
+    render(<AppChrome><p>player</p></AppChrome>);
+    await Promise.resolve();
+    expect(screen.queryByRole('button', { name: 'Open Kumpel help' })).toBeNull();
+  });
 });

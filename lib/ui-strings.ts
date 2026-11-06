@@ -570,6 +570,8 @@ export const UI = {
     fr: 'À l’examen, l’oral est évalué par des personnes. Utilise l’enregistrement comme repère et compare avec l’exemple.',
   },
   examNotFound: { en: 'This practice set was not found.', fr: 'Cette série est introuvable.' },
+  kumpelOpen: { en: 'Open Kumpel help', fr: 'Ouvrir l’aide de Kumpel' },
+  kumpelTapMe: { en: 'Tap me for help', fr: 'Touche-moi pour de l’aide' },
 } as const;
 
 export type UIKey = keyof typeof UI;
