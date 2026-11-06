@@ -578,6 +578,8 @@ export const UI = {
   kumpelClose: { en: 'Close', fr: 'Fermer' },
   kumpelAsk: { en: 'Ask for help', fr: 'Demander de l’aide' },
   kumpelYourBuddyOn: { en: 'Your buddy · on', fr: 'Ton compagnon · sur' },
+  kumpelTourLabel: { en: 'Tour', fr: 'Visite guidée' },
+  kumpelTourEnd: { en: 'Tour finished. Kumpel stays in the bottom corner.', fr: 'Visite terminée. Kumpel reste dans le coin en bas.' },
 } as const;
 
 export type UIKey = keyof typeof UI;

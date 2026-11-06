@@ -9,6 +9,7 @@ import { pageGroupFor } from '@/lib/kumpel-pages';
 import { KUMPEL_EVENT, openKumpel, type KumpelOpenDetail } from '@/lib/kumpel-events';
 import { KumpelFace } from './KumpelFace';
 import { HelpPanel } from './HelpPanel';
+import { Tour } from './Tour';
 
 type Panel = 'closed' | 'here' | 'ask';
 
@@ -19,10 +20,12 @@ const BOTTOM_PATH = 'bottom-[calc(168px+env(safe-area-inset-bottom))] md:bottom-
 export function Kumpel() {
   const pathname = usePathname();
   const { locale } = useLocale();
-  const { state } = useKumpel();
+  const { state, update } = useKumpel();
   const calm = useReducedMotion() || state.motion === 'calm';
   const [mounted, setMounted] = useState(false);
   const [panel, setPanel] = useState<Panel>('closed');
+  const [tour, setTour] = useState(false);
+  const [announce, setAnnounce] = useState('');
   const group = pageGroupFor(pathname);
   const btnRef = useRef<HTMLButtonElement>(null);
   const groupRef = useRef(group);
@@ -37,7 +40,7 @@ export function Kumpel() {
   const onOpen = useCallback((e: Event) => {
     if (!groupRef.current) return;
     const detail = (e as CustomEvent<KumpelOpenDetail | null>).detail;
-    if (detail?.tour) return; // the tour is started elsewhere (Task 6)
+    if (detail?.tour) { setPanel('closed'); setAnnounce(''); setTour(true); return; }
     setPanel(detail?.tab === 'ask' ? 'ask' : 'here');
   }, []);
   useEffect(() => {
@@ -49,6 +52,14 @@ export function Kumpel() {
     setPanel('closed');
     btnRef.current?.focus();
   }, []);
+
+  const closeTour = useCallback((reason: 'done' | 'skip') => {
+    setTour(false);
+    // Meeting Kumpel at all counts as the hello; only finishing the tour counts as a completed tour.
+    update(reason === 'done' ? { tourDone: true, welcomed: true } : { welcomed: true });
+    if (reason === 'done') setAnnounce(t('kumpelTourEnd', locale));
+    btnRef.current?.focus();
+  }, [update, locale]);
 
   if (!mounted || !group || !isVisible(state)) return null;
 
@@ -72,7 +83,9 @@ export function Kumpel() {
       {!calm && <span data-testid="kumpel-ring" aria-hidden="true" className="kumpel-ring absolute inset-0 rounded-full border-2 border-text pointer-events-none" />}
       <KumpelFace mood="rest" size={64} className="relative w-full h-full" />
     </button>
-    {panel !== 'closed' && (
+    <div role="status" aria-live="polite" className="sr-only">{announce}</div>
+    {tour && <Tour onClose={closeTour} />}
+    {panel !== 'closed' && !tour && (
       <HelpPanel
         group={group}
         tab={panel}

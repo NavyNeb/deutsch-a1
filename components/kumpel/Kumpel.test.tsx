@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { replaceSettings } from '@/lib/settings-store';
 
 let pathname = '/';
@@ -119,5 +119,49 @@ describe('Kumpel (resting buddy)', () => {
     expect(screen.queryByRole('dialog', { name: 'Kumpel help' })).toBeNull();
     expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === true)).toBe(true);
     window.removeEventListener('open-kumpel', spy);
+  });
+
+  describe('tour wiring', () => {
+    const stub = (el: Element) => {
+      (el as HTMLElement).getBoundingClientRect = () => ({ top: 10, left: 10, width: 100, height: 50, right: 110, bottom: 60, x: 10, y: 10, toJSON() { return {}; } }) as DOMRect;
+    };
+    const addTargets = () => {
+      for (const id of ['continue', 'goal', 'nav', 'search']) {
+        const d = document.createElement('div');
+        d.setAttribute('data-kumpel', id);
+        stub(d);
+        document.body.appendChild(d);
+      }
+    };
+    const saved = () => JSON.parse(localStorage.getItem('deutsch-a1-settings')!).kumpel;
+    afterEach(() => { document.querySelectorAll('div[data-kumpel]').forEach((e) => e.remove()); });
+
+    it('finishing the tour records tourDone and welcomed and announces it', async () => {
+      addTargets();
+      render(<Kumpel />);
+      const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
+      stub(b);
+      fireEvent.click(b);
+      fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
+      expect(await screen.findByRole('dialog', { name: 'Tour' })).toBeInTheDocument();
+      for (let k = 0; k < 5; k++) fireEvent.click(screen.getByRole('button', { name: /^(Weiter|Fertig)$/ }));
+      expect(screen.queryByRole('dialog', { name: 'Tour' })).toBeNull();
+      expect(screen.getByRole('status')).toHaveTextContent('Tour finished');
+      expect(saved().tourDone).toBe(true);
+      expect(saved().welcomed).toBe(true);
+      expect(document.activeElement).toBe(b);
+    });
+
+    it('skipping the tour counts as met but not as completed', async () => {
+      addTargets();
+      render(<Kumpel />);
+      const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
+      stub(b);
+      act(() => { window.dispatchEvent(new CustomEvent('open-kumpel', { detail: { tour: true } })); });
+      fireEvent.click(await screen.findByRole('button', { name: 'Überspringen' }));
+      expect(screen.queryByRole('dialog', { name: 'Tour' })).toBeNull();
+      expect(saved().welcomed).toBe(true);
+      expect(saved().tourDone).not.toBe(true);
+    });
   });
 });
