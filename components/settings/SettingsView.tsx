@@ -13,6 +13,7 @@ import { SpeedToggle } from '@/components/ui/SpeedToggle';
 import { Segmented } from '@/components/ui/Segmented';
 import { Card } from '@/components/ui/Card';
 import { ActivityCalendar } from '@/components/home/ActivityCalendar';
+import { KumpelSettings } from '@/components/kumpel/KumpelSettings';
 
 const GOAL_LABEL: Record<number, UIKey> = { 20: 'goalRelaxed', 30: 'goalRegular', 50: 'goalSerious', 100: 'goalIntense' };
 
@@ -113,6 +114,8 @@ export function SettingsView() {
             />
           </div>
         </Card>
+
+        <KumpelSettings />
 
         <Card>
           <p className="label mb-3">{t('dailyGoal', locale)}</p>

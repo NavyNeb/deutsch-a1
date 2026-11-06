@@ -13,6 +13,7 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label={t('navTabs', locale)}
+      data-kumpel="nav"
       className="md:hidden fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-bg/90 backdrop-blur px-2 pt-1.5 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
     >
       {NAV_ITEMS.map((item) => {

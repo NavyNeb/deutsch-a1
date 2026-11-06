@@ -56,8 +56,8 @@ export function TodayView() {
       </header>
 
       <div className="flex flex-wrap gap-5 mb-5">
-        <div className="flex-[2_1_560px] min-w-0"><NextUpCard /></div>
-        <div className="flex-[1_1_280px] min-w-0"><GoalCard /></div>
+        <div data-kumpel="continue" className="flex-[2_1_560px] min-w-0"><NextUpCard /></div>
+        <div data-kumpel="goal" className="flex-[1_1_280px] min-w-0"><GoalCard /></div>
       </div>
 
       <div className="flex flex-wrap gap-5 mb-5">

@@ -10,7 +10,7 @@ import type { LessonSegment } from './segments';
 
 const circle = 'grid place-items-center w-11 h-11 rounded-full border border-border-strong bg-transparent text-text cursor-pointer transition hover:bg-surface-2';
 
-export function LessonTopBar({ lesson, segments, onClose, onOpenContents }: { lesson: Lesson; segments: LessonSegment[]; onClose: () => void; onOpenContents: () => void }) {
+export function LessonTopBar({ lesson, segments, onClose, onOpenContents, onOpenHelp }: { lesson: Lesson; segments: LessonSegment[]; onClose: () => void; onOpenContents: () => void; onOpenHelp: () => void }) {
   const { locale } = useLocale();
   const [show, setShow] = useShowTranslation();
   const partial = segments.findIndex((s) => s.fraction > 0 && s.fraction < 1);
@@ -50,6 +50,15 @@ export function LessonTopBar({ lesson, segments, onClose, onOpenContents }: { le
         </button>
         <SpeedToggle />
         <button type="button" onClick={onOpenContents} aria-label={t('openLessonNav', locale)} className={circle}><ListTree size={20} strokeWidth={1.8} aria-hidden="true" /></button>
+        <button
+          type="button"
+          onClick={onOpenHelp}
+          aria-label={t('lessonHelpOpen', locale)}
+          aria-haspopup="dialog"
+          className="grid place-items-center w-11 h-11 rounded-full border border-cta bg-cta text-cta-ink font-display font-semibold text-[18px] cursor-pointer transition hover:opacity-90"
+        >
+          ?
+        </button>
       </div>
     </header>
   );

@@ -34,4 +34,10 @@ describe('SettingsView', () => {
     expect(document.documentElement.getAttribute('data-theme')).toBe('light');
     expect(localStorage.getItem('deutsch-a1-theme')).toBe('light');
   });
+
+  it('has a Kumpel card with its own controls', () => {
+    render(<SettingsView />);
+    expect(screen.getByRole('heading', { name: 'Kumpel' })).toBeInTheDocument();
+    expect(screen.getByRole('switch', { name: 'Show Kumpel' })).toBeInTheDocument();
+  });
 });

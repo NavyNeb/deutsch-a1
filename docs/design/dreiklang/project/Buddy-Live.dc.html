@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kumpel — live prototype</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.dz{--ink:#09090B;--s1:#111114;--s2:#17171B;--s3:#222228;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--t1:#F5F3EE;--t2:#B7B4AD;--t3:#8F8C85;--der:#5B8CFF;--die:#FF6F96;--das:#FFCB45;--der-t:#8DAEFF;--die-t:#FF8FAE;--das-t:#FFCB45;--ok:#46E0A0;--ember:#FF9150;--cta:#F5F3EE;--cta-i:#09090B;--fd:'Jost',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;font-family:var(--fb);background:var(--ink);color:var(--t1);-webkit-font-smoothing:antialiased}
+.dz *{box-sizing:border-box}
+.dz[data-theme="light"]{--ink:#F1EDE4;--s1:#FAF7F0;--s2:#FFFFFF;--s3:#E8E3D8;--line:rgba(20,18,12,.10);--line2:rgba(20,18,12,.18);--t1:#111114;--t2:#47443E;--t3:#6B675F;--der:#2F5FF0;--die:#E83E73;--das:#F4B400;--der-t:#2447C9;--die-t:#C2285D;--das-t:#7A5600;--ok:#0E9F6E;--ember:#D9601A;--cta:#111114;--cta-i:#F5F3EE}
+.de{font-family:var(--fd)}
+.eyebrow{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:24px}
+.sq{background:var(--der)}
+.ci{background:var(--die);border-radius:50%}
+.tr{background:var(--das);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nv{position:absolute;left:18px;width:228px;height:46px;border-radius:12px;display:flex;align-items:center;gap:12px;padding:0 14px;color:var(--t2);font:500 15px var(--fb)}
+.nv.on{background:var(--s2);color:var(--t1)}
+.nv small{margin-left:auto;color:var(--t3);font-size:12px}
+.tk{flex:1;height:8px;border-radius:2px;background:var(--s3)}
+.tk.on{background:var(--t1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;border:0;background:var(--cta);color:var(--cta-i);font:600 16px var(--fb);cursor:pointer}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--t1);font:600 14px var(--fb);cursor:pointer}
+.tab{flex:1;height:38px;border-radius:999px;border:0;background:transparent;color:var(--t2);font:600 14px var(--fb);cursor:pointer}
+.tab.on{background:var(--s3);color:var(--t1)}
+.num{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;font:600 13px var(--fd);flex:none;color:var(--t2)}
+.qrow{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:15px 4px;color:var(--t1);font:500 15px var(--fb);cursor:pointer;display:flex;align-items:center;gap:12px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--s3)}
+.dot.on{background:var(--t1)}
+@keyframes ringp{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.55);opacity:0}}
+.ringp{animation:ringp 2.4s ease-out infinite}
+@keyframes rise{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.rise{animation:rise .22s cubic-bezier(.2,.9,.3,1)}
+@media (prefers-reduced-motion:reduce){.ringp,.rise{animation:none}}
+</style>
+</helmet>
+<div class="dz" data-theme="{{theme}}" style="width:1440px;height:900px;position:relative;overflow:hidden">
+
+<!-- ================= the page behind: Heute ================= -->
+<aside style="position:absolute;left:0;top:0;width:264px;height:900px;border-right:1px solid var(--line)">
+  <div style="position:absolute;left:32px;top:30px;display:flex;align-items:center;gap:12px"><div style="display:flex;gap:4px;align-items:flex-end"><div class="sq" style="width:12px;height:12px"></div><div class="ci" style="width:12px;height:12px"></div><div class="tr" style="width:14px;height:12px"></div></div><div class="de" style="font-weight:600;font-size:22px">Deutsch</div></div>
+  <div style="position:absolute;left:18px;top:96px;width:228px;height:44px;border-radius:12px;border:1px solid var(--line2);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--t3);font:400 14px var(--fb)"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><span style="flex:1">Search anything</span><span style="font-size:12px;border:1px solid var(--line2);border-radius:6px;padding:2px 6px">⌘K</span></div>
+  <div class="nv on" style="top:160px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Heute<small>Today</small></div>
+  <div class="nv" style="top:212px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h5v-5h5v-5h5V5h3"/></svg>Weg<small>Path</small></div>
+  <div class="nv" style="top:264px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg>Üben<small>Practice</small></div>
+  <div class="nv" style="top:316px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a1 1 0 011-1h6v16H5a1 1 0 01-1-1z"/><path d="M20 5a1 1 0 00-1-1h-6v16h6a1 1 0 001-1z"/></svg>Bibliothek<small>Library</small></div>
+  <div class="nv" style="top:368px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>Du<small>You</small></div>
+  <div class="card" style="position:absolute;left:18px;top:752px;width:228px;height:84px;border-radius:18px;padding:18px"><div class="de" style="font-size:22px;font-weight:600">6 Tage</div><div style="font-size:13px;color:var(--t3);margin-top:6px">in a row</div></div>
+</aside>
+<div class="eyebrow" style="position:absolute;left:320px;top:62px">Donnerstag · 5. November</div>
+<h1 class="de" style="position:absolute;left:320px;top:92px;margin:0;font-size:56px;font-weight:600;letter-spacing:-.03em;line-height:1">Guten Abend, Sasha.</h1>
+
+<section class="card" style="position:absolute;left:320px;top:200px;width:700px;height:420px;border-radius:32px;overflow:hidden">
+  <div style="position:absolute;left:40px;top:40px;width:420px">
+    <div class="eyebrow" style="margin-bottom:22px">Weiter · Lektion 5 · A1</div>
+    <div class="de" style="font-size:58px;font-weight:600;letter-spacing:-.03em;line-height:1">Gegenstände<br>und Plural</div>
+    <div style="font-size:17px;color:var(--t2);margin-top:14px">Things and plurals</div>
+    <div style="display:flex;gap:3px;margin-top:34px;width:330px"><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk on"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i><i class="tk"></i></div>
+    <div style="display:flex;gap:12px;margin-top:34px"><span class="btn">Continue →</span><span class="btn2" style="height:52px">Contents</span></div>
+  </div>
+  <div style="position:absolute;right:-40px;top:50px;width:300px;height:340px"><div class="sq" style="position:absolute;left:30px;top:140px;width:180px;height:180px"></div><div class="ci" style="position:absolute;left:110px;top:10px;width:170px;height:170px"></div><div class="tr" style="position:absolute;left:130px;top:170px;width:160px;height:140px"></div></div>
+</section>
+
+<section class="card" style="position:absolute;left:1040px;top:200px;width:330px;height:420px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+  <div class="eyebrow" style="position:absolute;left:30px;top:30px">Tagesziel</div>
+  <div style="position:relative;width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--t1) 0 60%,var(--s3) 0)"><div style="position:absolute;inset:12px;border-radius:50%;background:var(--s1);display:grid;place-items:center"><div><div class="de" style="font-size:52px;font-weight:600;line-height:1">18</div><div style="font-size:13px;color:var(--t3);margin-top:4px">of 30 XP</div></div></div></div>
+  <div style="font-size:15px;color:var(--t2);margin-top:24px;max-width:210px;line-height:1.5">12 XP to go today.</div>
+</section>
+
+<section class="card" style="position:absolute;left:320px;top:644px;width:220px;height:196px;padding:28px"><div class="eyebrow">Wiederholen</div><div class="de" style="font-size:64px;font-weight:600;line-height:1;margin-top:20px">14</div><div style="font-size:14px;color:var(--t2);margin-top:8px">words due</div></section>
+<section class="card" style="position:absolute;left:560px;top:644px;width:220px;height:196px;padding:28px"><div class="eyebrow">Wort des Tages</div><div class="de" style="font-size:20px;font-weight:300;color:var(--der-t);margin-top:26px;line-height:1">der</div><div class="de" style="font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1.05">Feierabend</div></section>
+<section class="card" style="position:absolute;left:800px;top:644px;width:220px;height:196px;padding:28px"><div class="eyebrow">Aktivität</div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:22px"><i class="tk on" style="height:22px"></i><i class="tk" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk on" style="height:22px"></i><i class="tk" style="height:22px"></i><i class="tk on" style="height:22px"></i></div></section>
+<section class="card" style="position:absolute;left:1040px;top:644px;width:330px;height:196px;padding:28px"><div class="eyebrow">Schnell üben</div><div class="de" style="font-size:22px;font-weight:600;margin-top:22px">Word Sprint · Audio-Call</div><div style="font-size:14px;color:var(--t2);margin-top:6px">Sprechen · Schreiben</div></section>
+
+<!-- ================= help panel ================= -->
+<sc-if value="{{panelOpen}}" hint-placeholder-val="{{false}}">
+  <div class="rise" role="dialog" aria-label="Kumpel help" style="position:absolute;left:1008px;top:236px;width:400px;height:552px;border-radius:28px;background:var(--s1);border:1px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.55);display:flex;flex-direction:column;overflow:hidden;z-index:10">
+    <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 14px">
+      <svg viewBox="0 0 64 64" width="38" height="38" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="var(--cta)"/><circle cx="23" cy="28" r="5.4" fill="var(--cta-i)"/><circle cx="41" cy="28" r="5.4" fill="var(--cta-i)"/><circle cx="24.5" cy="26.5" r="1.6" fill="var(--cta)"/><circle cx="42.5" cy="26.5" r="1.6" fill="var(--cta)"/><circle cx="32" cy="42" r="3" fill="var(--cta-i)"/></svg>
+      <div style="flex:1"><div class="de" style="font-size:21px;font-weight:600;line-height:1">Kumpel</div><div style="font-size:12px;color:var(--t3);margin-top:4px">Your buddy · on Heute</div></div>
+      <button type="button" onClick="{{toggleOpen}}" aria-label="Close help" style="width:40px;height:40px;border-radius:50%;border:1px solid var(--line2);background:transparent;color:var(--t1);display:grid;place-items:center;cursor:pointer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div style="display:flex;gap:4px;margin:0 20px 6px;padding:4px;border-radius:999px;background:var(--s2)">
+      <button type="button" class="tab {{hereCls}}" onClick="{{showHere}}">This page</button>
+      <button type="button" class="tab {{askCls}}" onClick="{{showAsk}}">Questions</button>
+    </div>
+
+    <sc-if value="{{tabHere}}" hint-placeholder-val="{{true}}">
+      <div style="flex:1;overflow:auto;padding:14px 22px 0">
+        <div class="eyebrow" style="margin-bottom:12px">Diese Seite · Heute</div>
+        <p style="margin:0 0 20px;font-size:15px;line-height:1.55;color:var(--t2)">Your daily starting point. One card shows what to do next; everything else is optional.</p>
+        <div style="display:flex;gap:14px;margin-bottom:16px"><div class="num">1</div><div><div class="de" style="font-size:18px;font-weight:600">Weiter</div><div style="font-size:14px;line-height:1.5;color:var(--t2);margin-top:2px">Continues your lesson exactly where you stopped.</div></div></div>
+        <div style="display:flex;gap:14px;margin-bottom:16px"><div class="num">2</div><div><div class="de" style="font-size:18px;font-weight:600">Tagesziel</div><div style="font-size:14px;line-height:1.5;color:var(--t2);margin-top:2px">The ring fills as you earn XP. Pick your pace in Settings.</div></div></div>
+        <div style="display:flex;gap:14px"><div class="num">3</div><div><div class="de" style="font-size:18px;font-weight:600">Wiederholen</div><div style="font-size:14px;line-height:1.5;color:var(--t2);margin-top:2px">Words you saved or missed come back here when they are due.</div></div></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{tabAsk}}" hint-placeholder-val="{{false}}">
+      <div style="flex:1;overflow:auto;padding:8px 22px 0">
+        <sc-for list="{{questions}}" as="q" hint-placeholder-count="5">
+          <div>
+            <button type="button" class="qrow" onClick="{{q.toggle}}" aria-expanded="{{q.open}}"><span style="flex:1">{{q.q}}</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;color:var(--t3)"><path d="M6 9l6 6 6-6"/></svg></button>
+            <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><div style="padding:12px 4px 16px;font-size:14px;line-height:1.55;color:var(--t2);border-bottom:1px solid var(--line)">{{q.a}}</div></sc-if>
+          </div>
+        </sc-for>
+        <label style="display:block;margin-top:16px"><span class="eyebrow" style="display:block;margin-bottom:8px">Search the help</span><input type="text" placeholder="e.g. streak, review, audio…" style="width:100%;height:44px;border-radius:999px;border:1px solid var(--line2);background:var(--s2);color:var(--t1);padding:0 18px;font:400 14px var(--fb);outline:none"></label>
+      </div>
+    </sc-if>
+
+    <div style="padding:16px 20px 20px;border-top:1px solid var(--line);margin-top:12px">
+      <button type="button" class="btn" onClick="{{startTour}}" style="width:100%;height:52px"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>Tour starten · 1 min</button>
+      <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--t3)"><span><kbd style="border:1px solid var(--line2);border-radius:5px;padding:1px 6px;font:500 11px var(--fb)">?</kbd> opens me anywhere</span><span>Ruhe, bitte</span></div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- ================= tour ================= -->
+<sc-if value="{{touring}}" hint-placeholder-val="{{false}}">
+  <div style="position:absolute;inset:0;z-index:20">
+    <div style="{{spotStyle}};position:absolute;box-shadow:0 0 0 2000px rgba(0,0,0,.66),0 0 0 2px var(--t1);transition:all .35s cubic-bezier(.2,.9,.3,1)"></div>
+    <div class="rise" role="dialog" aria-label="Tour step" style="{{cardStyle}};position:absolute;width:380px;border-radius:26px;background:var(--s1);border:1px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.6);padding:22px 24px 20px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <svg viewBox="0 0 88 64" width="48" height="35" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="var(--cta)"/><circle cx="27" cy="28" r="4.2" fill="var(--cta-i)"/><circle cx="45" cy="28" r="4.2" fill="var(--cta-i)"/><path d="M26 41c3 3.5 15 3.5 18 0" stroke="var(--cta-i)" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M66 32l14-6v12z" fill="var(--t1)"/></svg>
+        <div class="eyebrow" style="flex:1">Station {{step}} von 5</div>
+        <button type="button" onClick="{{skip}}" style="background:transparent;border:0;color:var(--t3);font:500 13px var(--fb);cursor:pointer;padding:6px 4px">Überspringen</button>
+      </div>
+      <div class="de" style="font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1">{{stepTitle}}</div>
+      <p style="margin:10px 0 20px;font-size:15px;line-height:1.55;color:var(--t2)">{{stepText}}</p>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;gap:6px;flex:1"><sc-for list="{{dots}}" as="d" hint-placeholder-count="5"><i class="dot {{d.cls}}"></i></sc-for></div>
+        <button type="button" class="btn2" onClick="{{prev}}" style="{{prevStyle}}">Zurück</button>
+        <button type="button" class="btn" onClick="{{next}}" style="height:44px;padding:0 22px;font-size:15px">{{nextLabel}}</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- ================= the buddy ================= -->
+<button type="button" onClick="{{toggleOpen}}" aria-label="Kumpel — help for this page" aria-expanded="{{panelOpen}}" style="position:absolute;left:1344px;top:804px;width:64px;height:64px;border-radius:50%;border:0;padding:0;background:transparent;cursor:pointer;z-index:{{buddyZ}};opacity:{{buddyOpacity}};transition:opacity .25s">
+  <sc-if value="{{showHint}}" hint-placeholder-val="{{true}}"><span class="ringp" style="position:absolute;inset:0;border-radius:50%;border:2px solid var(--t1)"></span></sc-if>
+  <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" style="position:relative;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))"><circle cx="32" cy="32" r="30" fill="var(--cta)"/><circle cx="23" cy="28" r="4.2" fill="var(--cta-i)"/><circle cx="41" cy="28" r="4.2" fill="var(--cta-i)"/><path d="M23 41c3 3.5 15 3.5 18 0" stroke="var(--cta-i)" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+</button>
+<sc-if value="{{showHint}}" hint-placeholder-val="{{true}}">
+  <div class="rise" style="position:absolute;left:1124px;top:818px;padding:11px 18px;border-radius:18px 18px 6px 18px;background:var(--s2);border:1px solid var(--line2);font:500 14px var(--fb);color:var(--t1);z-index:5">Confused? Tap me.</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const open = !!st.open;
+    const tab = st.tab || 'here';
+    const tour = st.tour || 0;
+    const q = typeof st.q === 'number' ? st.q : -1;
+    const hint = st.hint === undefined ? true : st.hint;
+
+    const STEPS = [
+      { t: 'Weiter', x: 'This card always holds your next lesson. One tap and you are back exactly where you stopped.', r: { x: 312, y: 192, w: 716, h: 436, r: 36 }, c: { x: 330, y: 658 } },
+      { t: 'Tagesziel', x: 'The ring fills as you earn XP from lessons, exercises and reviews. Choose your pace in Settings.', r: { x: 1032, y: 192, w: 346, h: 436, r: 36 }, c: { x: 640, y: 658 } },
+      { t: 'Fünf Orte', x: 'Weg is the map, Üben is practice, Bibliothek is for looking things up, Du is you. Heute is this page.', r: { x: 10, y: 152, w: 244, h: 270, r: 18 }, c: { x: 288, y: 190 } },
+      { t: 'Suchen, überall', x: 'Press ⌘K anywhere to find a word, a lesson or a practice tool. Your recent searches come first.', r: { x: 10, y: 88, w: 244, h: 60, r: 22 }, c: { x: 288, y: 88 } },
+      { t: 'Das war’s!', x: 'I will stay down here. Tap me when a page confuses you, or press ?. Viel Spaß!', r: { x: 1332, y: 792, w: 88, h: 88, r: 44 }, c: { x: 936, y: 540 } },
+    ];
+    const cur = STEPS[Math.max(0, tour - 1)];
+    const QA = [
+      ['What is XP?', 'Points you earn for correct answers, reviews and finished lessons. They fill your daily ring and raise your level.'],
+      ['How do I save a word for later?', 'Tap Merken on a word card. It joins your review queue and comes back when it is due.'],
+      ['How does the review queue work?', 'Spaced repetition: words you miss return sooner, words you know return later.'],
+      ['Can I switch to French?', 'Yes — Du → Einstellungen → Language. German stays German; the explanations change.'],
+      ['Where are my textbooks?', 'Bibliothek → Lehrbuch. They open inside the app.'],
+    ];
+    const set = (o) => this.setState(o);
+    return {
+      theme: this.props.theme ?? 'dark',
+      panelOpen: open && tour === 0,
+      tabHere: tab === 'here',
+      tabAsk: tab === 'ask',
+      hereCls: tab === 'here' ? 'on' : '',
+      askCls: tab === 'ask' ? 'on' : '',
+      showHint: hint && !open && tour === 0,
+      buddyZ: tour === 5 ? 30 : tour > 0 ? 1 : 12,
+      buddyOpacity: tour > 0 && tour < 5 ? 0.25 : 1,
+      touring: tour > 0,
+      step: tour,
+      stepTitle: cur.t,
+      stepText: cur.x,
+      spotStyle: 'left:' + cur.r.x + 'px;top:' + cur.r.y + 'px;width:' + cur.r.w + 'px;height:' + cur.r.h + 'px;border-radius:' + cur.r.r + 'px',
+      cardStyle: 'left:' + cur.c.x + 'px;top:' + cur.c.y + 'px',
+      dots: [1, 2, 3, 4, 5].map((n) => ({ cls: n <= tour ? 'on' : '' })),
+      nextLabel: tour === 5 ? 'Fertig' : 'Weiter',
+      prevStyle: tour === 1 ? 'opacity:.35;pointer-events:none' : '',
+      questions: QA.map((p, i) => ({ q: p[0], a: p[1], open: q === i, toggle: () => set({ q: q === i ? -1 : i }) })),
+      toggleOpen: () => set({ open: !open, hint: false, tour: 0 }),
+      showHere: () => set({ tab: 'here' }),
+      showAsk: () => set({ tab: 'ask' }),
+      startTour: () => set({ tour: 1, open: false, hint: false }),
+      next: () => set({ tour: tour >= 5 ? 0 : tour + 1 }),
+      prev: () => set({ tour: Math.max(1, tour - 1) }),
+      skip: () => set({ tour: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

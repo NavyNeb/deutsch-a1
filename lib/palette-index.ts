@@ -5,6 +5,9 @@ import { pick } from './i18n';
 import { NAV_ITEMS } from './nav';
 import { t, type UIKey } from './ui-strings';
 
+/** The palette row that opens Kumpel rather than a page. */
+export const KUMPEL_HREF = '#kumpel';
+
 export type PaletteItem = {
   id: string;
   group: 'lesson' | 'practice' | 'page';
@@ -25,6 +28,8 @@ export function buildPaletteIndex(lessons: Lesson[], locale: Locale): PaletteIte
   const pages: PaletteItem[] = NAV_ITEMS.map((n) => ({
     id: `page:${n.id}`, group: 'page', title: n.de, subtitle: t(n.labelKey, locale), href: n.href,
   }));
+  // A command, not a route: the palette opens Kumpel instead of navigating when it sees this href.
+  pages.push({ id: 'page:kumpel', group: 'page', title: 'Kumpel', subtitle: t('kumpelAsk', locale), href: KUMPEL_HREF });
   const tools: PaletteItem[] = TOOLS.map((x) => ({
     id: `practice:${x.id}`, group: 'practice', title: x.title, subtitle: t(x.key, locale), href: x.href,
   }));

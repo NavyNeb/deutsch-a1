@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kumpel — first hello</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.dz{--ink:#09090B;--s1:#111114;--s2:#17171B;--s3:#222228;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--t1:#F5F3EE;--t2:#B7B4AD;--t3:#8F8C85;--der:#5B8CFF;--die:#FF6F96;--das:#FFCB45;--der-t:#8DAEFF;--die-t:#FF8FAE;--das-t:#FFCB45;--ok:#46E0A0;--ember:#FF9150;--cta:#F5F3EE;--cta-i:#09090B;--fd:'Jost',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;font-family:var(--fb);background:var(--ink);color:var(--t1);-webkit-font-smoothing:antialiased}
+.dz *{box-sizing:border-box}
+.dz[data-theme="light"]{--ink:#F1EDE4;--s1:#FAF7F0;--s2:#FFFFFF;--s3:#E8E3D8;--line:rgba(20,18,12,.10);--line2:rgba(20,18,12,.18);--t1:#111114;--t2:#47443E;--t3:#6B675F;--der:#2F5FF0;--die:#E83E73;--das:#F4B400;--der-t:#2447C9;--die-t:#C2285D;--das-t:#7A5600;--ok:#0E9F6E;--ember:#D9601A;--cta:#111114;--cta-i:#F5F3EE}
+.de{font-family:var(--fd)}
+.eyebrow{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:24px}
+.sq{background:var(--der)}
+.ci{background:var(--die);border-radius:50%}
+.tr{background:var(--das);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;border:0;background:var(--cta);color:var(--cta-i);font:600 16px var(--fb);cursor:pointer}
+.btn2{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 22px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--t1);font:600 16px var(--fb);cursor:pointer}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@keyframes bobk{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bobk{animation:bobk 4.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.bobk{animation:none}}
+</style>
+</helmet>
+<div class="dz" data-theme="{{theme}}" style="width:1440px;height:900px;position:relative;overflow:hidden">
+
+<!-- the page, dimmed: Heute right after onboarding -->
+<div style="position:absolute;inset:0;opacity:.42">
+  <aside style="position:absolute;left:0;top:0;width:264px;height:900px;border-right:1px solid var(--line)"><div style="position:absolute;left:32px;top:30px;display:flex;align-items:center;gap:12px"><div style="display:flex;gap:4px;align-items:flex-end"><div class="sq" style="width:12px;height:12px"></div><div class="ci" style="width:12px;height:12px"></div><div class="tr" style="width:14px;height:12px"></div></div><div class="de" style="font-weight:600;font-size:22px">Deutsch</div></div></aside>
+  <h1 class="de" style="position:absolute;left:320px;top:92px;margin:0;font-size:56px;font-weight:600;letter-spacing:-.03em;line-height:1">Guten Abend, Sasha.</h1>
+  <section class="card" style="position:absolute;left:320px;top:200px;width:700px;height:420px;border-radius:32px"><div style="position:absolute;left:40px;top:40px"><div class="eyebrow" style="margin-bottom:22px">Weiter · Lektion 1 · A1</div><div class="de" style="font-size:58px;font-weight:600;letter-spacing:-.03em;line-height:1">Hallo! Ich<br>bin Nicole</div></div></section>
+  <section class="card" style="position:absolute;left:1040px;top:200px;width:330px;height:420px;border-radius:32px"></section>
+</div>
+<div style="position:absolute;inset:0;background:linear-gradient(to bottom right,transparent 40%,rgba(0,0,0,.55))"></div>
+
+<!-- the hello -->
+<div style="position:absolute;left:836px;top:468px;width:480px;padding:28px 30px 26px;border-radius:30px 30px 8px 30px;background:var(--s1);border:1px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.55)">
+  <div class="eyebrow" style="margin-bottom:14px">Zum ersten Mal hier?</div>
+  <div class="de" style="font-size:44px;font-weight:600;letter-spacing:-.03em;line-height:1">Hallo! Ich bin Kumpel.</div>
+  <p style="margin:14px 0 24px;font-size:16px;line-height:1.55;color:var(--t2)">I will be right here whenever you want to know how something works. Want a one-minute tour of the app?</p>
+  <div style="display:flex;gap:12px;align-items:center"><span class="btn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>Tour starten</span><span class="btn2">Später</span></div>
+  <div style="margin-top:18px;font-size:13px;color:var(--t3)">Not for you? <span style="color:var(--t2);text-decoration:underline;text-underline-offset:3px">Ruhe, bitte</span> — I won’t ask again.</div>
+</div>
+<div class="bobk" style="position:absolute;left:1292px;top:760px;width:96px;height:96px">
+  <svg viewBox="0 0 64 64" width="96" height="96" role="img" aria-label="Kumpel smiling" style="filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))"><circle cx="32" cy="32" r="30" fill="var(--cta)"/><path d="M18.5 30a4.5 4.5 0 019 0" stroke="var(--cta-i)" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M36.5 30a4.5 4.5 0 019 0" stroke="var(--cta-i)" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M21 39h22c0 6-5 10-11 10s-11-4-11-10z" fill="var(--cta-i)"/></svg>
+</div>
+
+<!-- annotation -->
+<div style="position:absolute;left:80px;top:700px;width:560px">
+  <div class="eyebrow" style="margin-bottom:14px">Behaviour</div>
+  <div style="font-size:15px;line-height:1.7;color:var(--t2)">Shows once, after the daily-pace question and the first lesson step (never over the welcome page).<br>“Später” hides it until the next day. “Ruhe, bitte” mutes Kumpel everywhere.<br>This is the only time Kumpel opens by itself.</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'dark' };
+  }
+}
+</script>
+</body>
+</html>

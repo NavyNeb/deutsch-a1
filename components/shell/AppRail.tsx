@@ -38,6 +38,7 @@ export function AppRail() {
 
       <button
         type="button"
+        data-kumpel="search"
         onClick={() => window.dispatchEvent(new Event('open-palette'))}
         className="flex items-center gap-2.5 h-11 px-3.5 mb-3 rounded-xl border border-border-strong bg-transparent text-muted text-[14px] cursor-pointer hover:text-text"
       >
@@ -46,7 +47,7 @@ export function AppRail() {
         <kbd className="font-sans text-[12px] border border-border-strong rounded-md px-1.5 py-0.5">⌘K</kbd>
       </button>
 
-      <nav aria-label={t('navMain', locale)} className="flex flex-col gap-1.5">
+      <nav aria-label={t('navMain', locale)} data-kumpel="nav" className="flex flex-col gap-1.5">
         {NAV_ITEMS.map((item) => {
           const on = active === item.id;
           const Icon = item.icon;

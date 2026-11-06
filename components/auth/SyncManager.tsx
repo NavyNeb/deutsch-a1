@@ -6,6 +6,7 @@ import { getProgressState, replaceProgress, subscribeProgress } from '@/lib/prog
 import { getSettingsState, replaceSettings, subscribeSettings } from '@/lib/settings-store';
 import { mergeProgress, type ProgressState } from '@/lib/progress';
 import type { Settings } from '@/lib/settings-store';
+import { mergeCloudSettings } from '@/lib/settings-sync';
 
 // Mounted once in the layout. When a user is signed in, it pulls their cloud
 // state, merges it with whatever is local (so nothing is lost), writes the merged
@@ -48,7 +49,7 @@ export function SyncManager() {
       }
       const cloudSettings = data?.settings as Partial<Settings> | undefined;
       if (cloudSettings && Object.keys(cloudSettings).length) {
-        replaceSettings(cloudSettings);
+        replaceSettings(mergeCloudSettings(getSettingsState(), cloudSettings));
       }
 
       await push(uid); // seed/merge cloud with the reconciled state

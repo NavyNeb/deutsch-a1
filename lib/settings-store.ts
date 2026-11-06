@@ -5,6 +5,8 @@ export type Settings = {
   dailyGoal: number; // target XP per day
   onboarded: boolean; // has the learner completed first-run setup
   examTranslations: boolean; // show EN/FR translations inside exam-preparation tasks
+  /** Kumpel (the in-app buddy) preferences; validated by `resolveKumpel` in lib/kumpel-store.ts. */
+  kumpel?: Record<string, unknown>;
 };
 
 export const DAILY_GOAL_OPTIONS = [20, 30, 50, 100] as const;
@@ -44,6 +46,16 @@ export function getSettingsState(): Settings {
 }
 export function replaceSettings(next: Partial<Settings>) { set({ ...state, ...next }); }
 export function subscribeSettings(l: () => void) { return subscribe(l); }
+
+// Another tab saved new settings: take them, so this tab never writes a stale copy back over them.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== null && e.key !== KEY) return;
+    state = load();
+    hydrated = true;
+    listeners.forEach((l) => l());
+  });
+}
 
 export function useSettings() {
   const s = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);

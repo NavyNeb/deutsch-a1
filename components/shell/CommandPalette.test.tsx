@@ -3,6 +3,9 @@ import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { lessons } from '@/content';
 import { buildPaletteIndex, searchPalette } from '@/lib/palette-index';
 import { addRecent, clearRecents, getRecents } from '@/lib/recent-searches';
+import { replaceSettings } from '@/lib/settings-store';
+import { emptyProgress } from '@/lib/progress';
+import { replaceProgress } from '@/lib/progress-store';
 
 const push = vi.fn();
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push }), usePathname: () => '/' }));
@@ -13,7 +16,14 @@ vi.mock('@/lib/dictionary', () => ({
 
 import { CommandPalette } from './CommandPalette';
 
-beforeEach(() => { push.mockClear(); localStorage.clear(); clearRecents(); });
+beforeEach(() => {
+  push.mockClear();
+  localStorage.clear();
+  clearRecents();
+  const p = emptyProgress();
+  p.xp = 10; // a learner who has started: Heute is the real Heute
+  replaceProgress(p);
+});
 
 const open = () => fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
 
@@ -143,5 +153,39 @@ describe('CommandPalette', () => {
     addRecent({ title: 'künstliche Intelligenz', href: '/dictionary/k%C3%BCnstliche%20Intelligenz' });
     act(() => { window.dispatchEvent(new CustomEvent('open-palette')); });
     for (const o of screen.getAllByRole('option')) expect(o.id).not.toMatch(/\s/);
+  });
+
+  it('the Kumpel command opens Kumpel instead of navigating, and is not remembered', async () => {
+    const spy = vi.fn();
+    window.addEventListener('open-kumpel', spy);
+    render(<CommandPalette />);
+    open();
+    const input = screen.getByRole('combobox');
+    fireEvent.change(input, { target: { value: 'kum' } });
+    await waitFor(() => expect(screen.getAllByRole('option')[0]).toHaveTextContent('Kumpel'));
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(push).not.toHaveBeenCalled();
+    expect(getRecents()).toHaveLength(0);
+    window.removeEventListener('open-kumpel', spy);
+  });
+
+  it('hides the Kumpel command when Kumpel is switched off', async () => {
+    replaceSettings({ kumpel: { enabled: false } });
+    render(<CommandPalette />);
+    open();
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'kum' } });
+    await act(async () => {});
+    expect(screen.queryByRole('option', { name: /Kumpel/ })).toBeNull();
+    replaceSettings({ kumpel: undefined });
+  });
+
+  it('hides the Kumpel command on the welcome page a brand-new visitor sees', async () => {
+    replaceProgress(emptyProgress());
+    render(<CommandPalette />);
+    open();
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'kum' } });
+    await act(async () => {});
+    expect(screen.queryByRole('option', { name: /Kumpel/ })).toBeNull();
   });
 });
