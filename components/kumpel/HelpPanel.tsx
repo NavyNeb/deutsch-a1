@@ -121,11 +121,11 @@ export function HelpPanel({ group, tab, onTab, onClose, onStartTour }: Props) {
               <div className="eyebrow mb-2.5">Diese Seite · {help.de}</div>
               <p className="m-0 mb-[18px] text-[15px] leading-[1.55] text-text-2">{pickL(help.purpose, locale)}</p>
               <ol className="m-0 p-0 list-none grid gap-3.5">
-                {help.parts.map((p, i) => (
-                  <li key={p.de} className="flex gap-3.5">
+                {help.steps.map((p, i) => (
+                  <li key={p.title.en} className="flex gap-3.5">
                     <span className="grid place-items-center w-7 h-7 shrink-0 rounded-full border-[1.5px] border-border-strong font-display font-semibold text-[13px] text-text-2" aria-hidden="true">{i + 1}</span>
                     <div>
-                      <div className="font-display font-semibold text-[18px] leading-tight">{p.de}</div>
+                      <div className="font-display font-semibold text-[18px] leading-tight">{pickL(p.title, locale)}</div>
                       <div className="text-[14px] leading-[1.5] text-text-2 mt-0.5">{pickL(p.text, locale)}</div>
                     </div>
                   </li>
@@ -176,7 +176,7 @@ export function HelpPanel({ group, tab, onTab, onClose, onStartTour }: Props) {
             className="w-full h-14 inline-flex items-center justify-center gap-2.5 rounded-full border-0 bg-cta text-cta-ink font-semibold text-[16px] cursor-pointer"
           >
             <Play size={18} strokeWidth={1.8} aria-hidden="true" fill="currentColor" />
-            Tour starten · 1 min
+            Tour starten · {help.de}
           </button>
         </div>
       </div>

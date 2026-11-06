@@ -71,7 +71,7 @@ describe('first hello', () => {
     await screen.findByRole('dialog', HELLO);
     fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
     expect(saved().welcomed).toBe(true);
-    expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === true)).toBe(true);
+    expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === 'app')).toBe(true);
     expect(screen.queryByRole('dialog', HELLO)).toBeNull();
     window.removeEventListener('open-kumpel', spy);
   });

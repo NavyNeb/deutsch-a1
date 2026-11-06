@@ -26,7 +26,7 @@ export function LevelView({ board, level, sets }: { board: Board; level: ExamLev
         <TranslationToggle />
       </ExamTopBar>
 
-      <Card className="mb-8">
+      <div data-kumpel="exam-format"><Card className="mb-8">
         <h2 className="font-display font-extrabold text-[18px] m-0 mb-1">{t('examFormat', locale)}</h2>
         <p className="m-0 mb-4 text-[14px] text-muted">{fmt.name} · {t('examPassMark', locale)} {fmt.passPercent}%</p>
         <div className="grid gap-5 md:grid-cols-3">
@@ -52,10 +52,10 @@ export function LevelView({ board, level, sets }: { board: Board; level: ExamLev
         <p className="m-0 mt-4 text-[12.5px] leading-relaxed text-muted">
           {t(fmt.verified ? 'examsDisclaimer' : 'examsDisclaimerSoft', locale)}
         </p>
-      </Card>
+      </Card></div>
 
       {sets.length > 0 && (
-        <section className="mb-10">
+        <section data-kumpel="exam-drill" className="mb-10">
           <h2 className="font-display font-extrabold text-[20px] m-0 mb-1">{t('examDrillTitle', locale)}</h2>
           <p className="m-0 mb-4 text-[14px] text-muted">{t('examDrillHint', locale)}</p>
           <div className="grid gap-4 md:grid-cols-3">
@@ -85,7 +85,7 @@ export function LevelView({ board, level, sets }: { board: Board; level: ExamLev
         </section>
       )}
 
-      <h2 className="font-display font-extrabold text-[20px] m-0 mb-4">{t('examFullSets', locale)}</h2>
+      <h2 data-kumpel="exam-sets" className="font-display font-extrabold text-[20px] m-0 mb-4">{t('examFullSets', locale)}</h2>
       {sets.length === 0 ? (
         <p className="text-text-2">{t('examComingSoon', locale)}</p>
       ) : (

@@ -135,7 +135,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
 
   return (
     <article className="grid gap-5">
-      <header className="relative overflow-hidden rounded-[32px] border p-7 md:p-10" style={{ background: bandBg, borderColor: bandBorder }}>
+      <header data-kumpel="word-header" className="relative overflow-hidden rounded-[32px] border p-7 md:p-10" style={{ background: bandBg, borderColor: bandBorder }}>
         {meta && (
           <span
             aria-hidden="true"
@@ -186,7 +186,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
 
       {fromLesson && <p className="m-0 text-[13.5px] text-muted">{t('dictFromLessonsOnly', locale)}</p>}
 
-      <section aria-labelledby={`meanings-${entry.p}-${entry.w}`} className="grid gap-2">
+      <section data-kumpel="word-meanings" aria-labelledby={`meanings-${entry.p}-${entry.w}`} className="grid gap-2">
         <h2 id={`meanings-${entry.p}-${entry.w}`} className="eyebrow m-0 mb-1">{t('dictMeanings', locale)}</h2>
         <ol className="m-0 pl-6 list-decimal marker:text-muted grid gap-2 text-text-2 text-[17px]">
           {(lessonVocab ? [pick(lessonVocab.english, lessonVocab.french, locale), ...entry.s.filter((g) => g !== lessonVocab.english)] : entry.s).map((m, i) => (
@@ -202,7 +202,7 @@ function EntrySection({ entry, fromLesson, first }: { entry: DictEntry; fromLess
       </section>
 
       {sentences.length > 0 && (
-        <section aria-labelledby={`lessons-${entry.p}-${entry.w}`} className="grid gap-2">
+        <section data-kumpel="word-lessons" aria-labelledby={`lessons-${entry.p}-${entry.w}`} className="grid gap-2">
           <h2 id={`lessons-${entry.p}-${entry.w}`} className="eyebrow m-0 inline-flex items-center gap-1.5"><BookOpen size={13} strokeWidth={2.6} /> {t('dictInOurLessons', locale)}</h2>
           <ul className="m-0 p-0 list-none grid gap-2">
             {sentences.map((s) => (

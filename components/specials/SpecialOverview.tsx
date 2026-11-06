@@ -36,7 +36,7 @@ export function SpecialOverview({ special }: { special: Special }) {
         <ArrowLeft size={16} strokeWidth={2.4} /> {t('specialsBackToHub', locale)}
       </Link>
 
-      <header className="rounded-[24px] p-6 md:p-8 bg-card border border-border text-text">
+      <header data-kumpel="special-header" className="rounded-[24px] p-6 md:p-8 bg-card border border-border text-text">
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <span className="font-display font-semibold text-[12px] tracking-wide rounded-full px-2.5 py-1 bg-surface-3 text-text-2">{levelRange(special)}</span>
           <span className="font-display font-bold text-[12px] opacity-90">{pick(group.en, group.fr, locale)}</span>
@@ -68,7 +68,7 @@ export function SpecialOverview({ special }: { special: Special }) {
         </div>
       </header>
 
-      <section aria-labelledby="inside" className="grid gap-3">
+      <section data-kumpel="special-inside" aria-labelledby="inside" className="grid gap-3">
         <h2 id="inside" className="label text-muted m-0">{t('specialsInside', locale)}</h2>
         <p className="m-0 text-[14px] text-muted">
           {p.chaptersTotal} {t('specialsChapters', locale)} · {words} {t('specialsWords', locale)} · {exercises} {t('specialsExercises', locale)} · {t('quizLabel', locale)}: {p.quizTotal} {t('quizQuestions', locale)}
@@ -87,7 +87,7 @@ export function SpecialOverview({ special }: { special: Special }) {
       </section>
 
       {related.length > 0 && (
-        <section aria-labelledby="builds-on" className="grid gap-2">
+        <section data-kumpel="special-builds" aria-labelledby="builds-on" className="grid gap-2">
           <h2 id="builds-on" className="label text-muted m-0">{t('specialsBuildsOn', locale)}</h2>
           <div className="flex flex-wrap gap-2">
             {related.map((l) => (

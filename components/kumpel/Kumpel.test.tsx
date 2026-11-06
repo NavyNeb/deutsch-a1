@@ -36,7 +36,7 @@ describe('Kumpel (resting buddy)', () => {
     expect(await screen.findByRole('button', { name: 'Open Kumpel help' })).toBeInTheDocument();
   });
 
-  it.each(['/lesson/l1/learn', '/textbook/read/x', '/welcome', '/practice/review'])('is not shown on %s', async (p) => {
+  it.each(['/lesson/l1/learn', '/specials/x/learn', '/textbook/read/x', '/welcome', '/offline'])('is not shown on %s', async (p) => {
     pathname = p;
     render(<Kumpel />);
     await act(async () => {});
@@ -146,13 +146,12 @@ describe('Kumpel (resting buddy)', () => {
     const saved = () => JSON.parse(localStorage.getItem('deutsch-a1-settings')!).kumpel;
     afterEach(() => { document.querySelectorAll('div[data-kumpel]').forEach((e) => e.remove()); });
 
-    it('finishing the tour records tourDone and welcomed and announces it', async () => {
+    it('finishing the app tour records tourDone and welcomed and announces it', async () => {
       addTargets();
       render(<Kumpel />);
       const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
       stub(b);
-      fireEvent.click(b);
-      fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
+      act(() => { window.dispatchEvent(new CustomEvent('open-kumpel', { detail: { tour: 'app' } })); });
       expect(await screen.findByRole('dialog', { name: 'Tour' })).toBeInTheDocument();
       for (let k = 0; k < 5; k++) fireEvent.click(screen.getByRole('button', { name: /^(Weiter|Fertig)$/ }));
       expect(screen.queryByRole('dialog', { name: 'Tour' })).toBeNull();
@@ -185,6 +184,46 @@ describe('Kumpel (resting buddy)', () => {
   it('a brand-new visitor still gets Kumpel on other pages', async () => {
     replaceProgress(emptyProgress());
     pathname = '/library';
+    render(<Kumpel />);
+    expect(await screen.findByRole('button', { name: 'Open Kumpel help' })).toBeInTheDocument();
+  });
+
+  describe('page tours from the panel', () => {
+    const saved = () => JSON.parse(localStorage.getItem('deutsch-a1-settings')!).kumpel;
+
+    it('Tour starten tours the page you are on, in place, and finishing it is not the app tour', async () => {
+      pathname = '/library';
+      render(<Kumpel />);
+      fireEvent.click(await screen.findByRole('button', { name: 'Open Kumpel help' }));
+      fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
+      expect(await screen.findByText('Station 1 von 3')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Wörterbuch' })).toBeInTheDocument();
+      for (let k = 0; k < 3; k++) fireEvent.click(screen.getByRole('button', { name: /^(Weiter|Fertig)$/ }));
+      expect(screen.queryByRole('dialog', { name: 'Tour' })).toBeNull();
+      expect(saved().welcomed).toBe(true);
+      expect(saved().tourDone).not.toBe(true);
+    });
+
+    it('works on a page that is not in the five main sections', async () => {
+      pathname = '/exams';
+      render(<Kumpel />);
+      fireEvent.click(await screen.findByRole('button', { name: 'Open Kumpel help' }));
+      expect(screen.getByRole('dialog', { name: 'Kumpel help' })).toHaveTextContent('Prüfungen');
+      fireEvent.click(screen.getByRole('button', { name: /Tour starten/ }));
+      expect(await screen.findByText('Station 1 von 2')).toBeInTheDocument();
+    });
+  });
+
+  it.each(['/write', '/exams/goethe/a1/set1/lesen'])('sits above the sticky action bar on %s', async (p) => {
+    pathname = p;
+    render(<Kumpel />);
+    const b = await screen.findByRole('button', { name: 'Open Kumpel help' });
+    expect(b.className).toContain('bottom-[calc(168px+env(safe-area-inset-bottom))]');
+    expect(b.className).toContain('md:bottom-24');
+  });
+
+  it.each(['/speak', '/exams', '/specials', '/dictionary', '/settings', '/practice/review', '/games/audio'])('shows on %s', async (p) => {
+    pathname = p;
     render(<Kumpel />);
     expect(await screen.findByRole('button', { name: 'Open Kumpel help' })).toBeInTheDocument();
   });

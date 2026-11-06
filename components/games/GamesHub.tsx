@@ -40,7 +40,7 @@ export function GamesHub() {
       <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] m-0">Üben.</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-10 max-w-[56ch]">{t('gamesHubSubtitle', locale)}</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div data-kumpel="practice-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {TOOLS.map((tool) => {
           const score = tool.mode ? best[tool.mode] ?? 0 : 0;
           const Icon = tool.icon;
@@ -48,6 +48,7 @@ export function GamesHub() {
             <Link
               key={tool.href}
               href={tool.href}
+              data-kumpel={tool.review ? 'practice-review' : tool.href === '/specials' ? 'practice-specials' : undefined}
               className="group relative flex flex-col min-h-[240px] rounded-[24px] border border-border bg-card p-7 no-underline text-text transition hover:bg-surface-2 hover:border-border-strong"
             >
               <div className="flex items-start justify-between">

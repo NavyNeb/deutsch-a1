@@ -29,7 +29,7 @@ export function KumpelSettings() {
   const { state, update, resetHints } = useKumpel();
 
   return (
-    <Card padded={false} className="px-6 py-2">
+    <div data-kumpel="settings-kumpel"><Card padded={false} className="px-6 py-2">
       <div className="flex items-center gap-3.5 pt-4 pb-1">
         <KumpelFace mood="rest" size={40} />
         <h2 className="m-0 font-display font-semibold text-[22px]">{t('kumpelSettingsTitle', locale)}</h2>
@@ -78,7 +78,7 @@ export function KumpelSettings() {
           onClick={() => {
             // Asking for the tour is asking for Kumpel: bring it back if it was hidden or muted.
             update({ enabled: true, muted: false });
-            openKumpel({ tour: true });
+            openKumpel({ tour: 'app' });
           }}
         >
           {t('kumpelRestartTour', locale)}
@@ -90,6 +90,6 @@ export function KumpelSettings() {
       </Row>
 
       <p className="m-0 pt-3 pb-4 text-[12px] leading-[1.5] text-muted">{t('kumpelStoredNote', locale)}</p>
-    </Card>
+    </Card></div>
   );
 }

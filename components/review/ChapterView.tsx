@@ -43,7 +43,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
       </header>
 
       {vocabSteps.length > 0 && (
-        <section className="mb-8">
+        <section data-kumpel="chapter-vocab" className="mb-8">
           <h2 className="text-[26px] font-extrabold m-0 mb-4">Wortschatz</h2>
           <Card>
             <div className="grid gap-4">
@@ -72,7 +72,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
       )}
 
       {grammarSteps.length > 0 && (
-        <section className="mb-8">
+        <section data-kumpel="chapter-grammar" className="mb-8">
           <h2 className="text-[26px] font-extrabold m-0 mb-4">Grammatik</h2>
           <div className="grid gap-4">
             {grammarSteps.map((step) => {
@@ -89,7 +89,7 @@ export function ChapterView({ lesson }: { lesson: Lesson }) {
       )}
 
       {examples.length > 0 && (
-        <section>
+        <section data-kumpel="chapter-examples">
           <h2 className="text-[26px] font-extrabold m-0 mb-4">Beispielsätze</h2>
           <Card>
             <div className="grid gap-2.5">

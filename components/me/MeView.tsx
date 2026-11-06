@@ -28,7 +28,7 @@ export function MeView() {
       <div className="eyebrow mb-4">Du · {t('navMe', locale)}</div>
       <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] m-0 mb-9">Du.</h1>
 
-      <div className="flex flex-wrap gap-5 mb-10">
+      <div data-kumpel="me-stats" className="flex flex-wrap gap-5 mb-10">
         {stats.map((s) => (
           <div key={s.label} className="flex-1 basis-[200px] rounded-[24px] border border-border bg-card px-7 py-6">
             <div className="font-display font-semibold text-[48px] leading-none tabular-nums" aria-label={s.aria}>{s.v}</div>
@@ -37,7 +37,7 @@ export function MeView() {
         ))}
       </div>
 
-      <div className="grid gap-4">
+      <div data-kumpel="me-links" className="grid gap-4">
         {CARDS.map(({ href, de, descKey, icon: Icon }) => (
           <Link key={href} href={href} className="group flex items-center gap-5 rounded-3xl border border-border bg-card px-7 py-6 no-underline text-text transition hover:bg-surface-2 hover:border-border-strong">
             <span className="grid place-items-center w-12 h-12 rounded-full border border-border-strong text-text-2 shrink-0"><Icon size={22} strokeWidth={1.8} aria-hidden="true" /></span>

@@ -28,8 +28,8 @@ describe('HelpPanel', () => {
     setup();
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByText(PAGE_HELP.today.purpose.en)).toBeInTheDocument();
-    PAGE_HELP.today.parts.forEach((p, i) => {
-      expect(within(dialog).getByText(p.de)).toBeInTheDocument();
+    PAGE_HELP.today.steps.forEach((p, i) => {
+      expect(within(dialog).getByText(p.title.en)).toBeInTheDocument();
       expect(within(dialog).getByText(p.text.en)).toBeInTheDocument();
       expect(within(dialog).getByText(String(i + 1))).toBeInTheDocument();
     });

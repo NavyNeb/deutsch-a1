@@ -101,7 +101,7 @@ export function AccountView() {
         <Mascot size={56} expression="happy" className="mx-auto" />
         <p className="text-muted mt-3 mb-0 text-[15px]">{t('signInToSync', locale)}</p>
       </div>
-      <form onSubmit={submit} className="grid gap-3">
+      <form data-kumpel="account-form" onSubmit={submit} className="grid gap-3">
         <input className={field} type="email" required autoComplete="email" placeholder={t('emailLabel', locale)} value={email} onChange={(e) => setEmail(e.target.value)} />
         <input className={field} type="password" required autoComplete={mode === 'in' ? 'current-password' : 'new-password'} minLength={6} placeholder={t('passwordLabel', locale)} value={password} onChange={(e) => setPassword(e.target.value)} />
         <Button type="submit" disabled={busy} className="w-full justify-center">

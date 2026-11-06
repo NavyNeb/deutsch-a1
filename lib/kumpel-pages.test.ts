@@ -7,42 +7,46 @@ describe('pageGroupFor', () => {
     ['/path', 'path'],
     ['/path/', 'path'],
     ['/practice', 'practice'],
-    ['/specials', 'practice'],
+    ['/practice/review', 'review'],
+    ['/games/sprint', 'games'],
+    ['/games/audio', 'games'],
+    ['/speak', 'speak'],
+    ['/write', 'write'],
+    ['/specials', 'specials'],
+    ['/specials/modalverben', 'special'],
+    ['/specials/modalverben/review', 'special'],
     ['/library', 'library'],
-    ['/dictionary', 'library'],
-    ['/dictionary/Haus', 'library'],
-    ['/textbook', 'library'],
-    ['/exams', 'library'],
-    ['/exams/goethe/a1', 'library'],
+    ['/dictionary', 'dictionary'],
+    ['/dictionary/Haus', 'word'],
+    ['/textbook', 'textbook'],
+    ['/exams', 'exams'],
+    ['/exams/goethe/a1', 'examLevel'],
+    ['/exams/goethe/a1/part/lesen/1', 'examLevel'],
+    ['/exams/goethe/a1/set1/lesen', 'examTask'],
+    ['/exams/goethe/a1/part/lesen/1/set1', 'examTask'],
     ['/me', 'me'],
-    ['/statistics', 'me'],
-    ['/account', 'me'],
-    ['/settings', 'me'],
+    ['/statistics', 'statistics'],
+    ['/account', 'account'],
+    ['/settings', 'settings'],
+    ['/lesson/l1/review', 'chapter'],
   ])('%s is in the %s group', (path, group) => {
     expect(pageGroupFor(path)).toBe(group);
   });
 
   it.each([
     '/lesson/l1/learn',
-    '/lesson/l1/review',
-    '/specials/x/learn',
-    '/specials/x',
-    '/practice/review',
-    '/games/sprint',
-    '/games/audio',
-    '/speak',
-    '/write',
+    '/specials/modalverben/learn',
     '/textbook/read/abc',
-    '/exams/goethe/a1/set1/lesen',
-    '/exams/goethe/a1/part/lesen/1',
     '/welcome',
     '/offline',
     '/nope',
+    '/exams/goethe',
   ])('%s gets no Kumpel', (path) => {
     expect(pageGroupFor(path)).toBeNull();
   });
 
-  it('lists the five groups in order', () => {
-    expect(PAGE_GROUPS).toEqual(['today', 'path', 'practice', 'library', 'me']);
+  it('lists every group exactly once', () => {
+    expect(new Set(PAGE_GROUPS).size).toBe(PAGE_GROUPS.length);
+    expect(PAGE_GROUPS.length).toBe(21);
   });
 });

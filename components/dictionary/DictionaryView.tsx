@@ -96,7 +96,7 @@ export function DictionaryView() {
       <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] text-text m-0">Wörterbuch.</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-8 max-w-[60ch]">{t('dictSubtitle', locale)}</p>
 
-      <div className="max-w-[760px] mb-3">
+      <div data-kumpel="dict-search" className="max-w-[760px] mb-3">
         <SearchTrigger query={query} loading={loading} onClear={() => setQuery('')} />
       </div>
 
@@ -115,7 +115,7 @@ export function DictionaryView() {
       ) : tooShort ? (
         <div>
           {dictRecents.length > 0 && (
-            <section className="mb-8" aria-labelledby="recent-lookups">
+            <section data-kumpel="dict-recent" className="mb-8" aria-labelledby="recent-lookups">
               <h2 id="recent-lookups" className="eyebrow m-0 mb-3">{t('recentSearches', locale)}</h2>
               <div className="flex flex-wrap gap-2">
                 {dictRecents.map((r) => (

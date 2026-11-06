@@ -92,7 +92,7 @@ export function SpeakStudio() {
       <h1 className="font-display font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('speakTitle', locale)}</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-2 mb-6 max-w-[56ch]">{t('speakSubtitle', locale)}</p>
 
-      <div className="flex flex-wrap items-center gap-3 mb-6">
+      <div data-kumpel="speak-modes" className="flex flex-wrap items-center gap-3 mb-6">
         <Segmented
           label={t('level', locale)}
           value={level}

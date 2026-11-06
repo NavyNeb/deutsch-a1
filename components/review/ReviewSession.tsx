@@ -97,7 +97,7 @@ export function ReviewSession() {
   const next = () => { setPicked(null); setIdx((i) => i + 1); };
 
   return (
-    <div className="min-h-[100dvh] max-w-[640px] mx-auto px-6 py-8 flex flex-col">
+    <div data-kumpel="review" className="min-h-[100dvh] max-w-[640px] mx-auto px-6 py-8 flex flex-col">
       <div className="flex items-center gap-3 mb-6">
         <span className="label shrink-0">{t('reviewHeading', locale)}</span>
         <div className="flex-1"><ProgressBar value={(idx) / queue.length} /></div>

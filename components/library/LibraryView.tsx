@@ -12,7 +12,7 @@ export function LibraryView() {
       <div className="eyebrow mb-4">Bibliothek · {t('navLibrary', locale)}</div>
       <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] m-0 mb-10">Nachschlagen.</h1>
 
-      <section className="mb-11">
+      <section className="mb-11" data-kumpel="library-dict">
         <h2 className="eyebrow m-0 mb-4">Wörterbuch</h2>
         <button
           type="button"
@@ -26,7 +26,7 @@ export function LibraryView() {
         </button>
       </section>
 
-      <section className="mb-11">
+      <section className="mb-11" data-kumpel="library-textbook">
         <h2 className="eyebrow m-0 mb-4">Lehrbuch</h2>
         <Link href="/textbook" className="flex items-center gap-[18px] rounded-3xl border border-border bg-card px-8 py-7 no-underline text-text transition hover:bg-surface-2 hover:border-border-strong">
           <span className="flex-1">
@@ -37,7 +37,7 @@ export function LibraryView() {
         </Link>
       </section>
 
-      <section>
+      <section data-kumpel="library-exams">
         <h2 className="eyebrow m-0 mb-2">Prüfungen</h2>
         <p className="text-[14px] text-muted m-0 mb-5">{t('libExamDesc', locale)}</p>
         {BOARDS.map((board) => (
