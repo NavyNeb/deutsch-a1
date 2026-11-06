@@ -5,6 +5,8 @@ export type Settings = {
   dailyGoal: number; // target XP per day
   onboarded: boolean; // has the learner completed first-run setup
   examTranslations: boolean; // show EN/FR translations inside exam-preparation tasks
+  /** Kumpel (the in-app buddy) preferences; validated by `resolveKumpel` in lib/kumpel-store.ts. */
+  kumpel?: Record<string, unknown>;
 };
 
 export const DAILY_GOAL_OPTIONS = [20, 30, 50, 100] as const;
