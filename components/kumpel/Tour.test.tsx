@@ -50,7 +50,7 @@ describe('Tour', () => {
   it('walks through five stops and finishes with Fertig', async () => {
     addAll();
     const onClose = vi.fn();
-    render(<Tour onClose={onClose} />);
+    render(<Tour group="today" scope="app" onClose={onClose} />);
     expect(await screen.findByText('Station 1 von 5')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Weiter' })).toBeInTheDocument();
     next();
@@ -67,7 +67,7 @@ describe('Tour', () => {
 
   it('marks the current stop with aria-current', async () => {
     addAll();
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     await screen.findByText('Station 1 von 5');
     const dots = screen.getAllByRole('listitem');
     expect(dots).toHaveLength(5);
@@ -77,14 +77,14 @@ describe('Tour', () => {
 
   it('has no Zurück on the first stop', async () => {
     addAll();
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     await screen.findByText('Station 1 von 5');
     expect(screen.queryByRole('button', { name: 'Zurück' })).toBeNull();
   });
 
   it('skips a stop whose target is missing and counts only what remains', async () => {
     addAll(['search']);
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     expect(await screen.findByText('Station 1 von 4')).toBeInTheDocument();
     next(); next(); next();
     expect(screen.getByText('Station 4 von 4')).toBeInTheDocument();
@@ -94,13 +94,13 @@ describe('Tour', () => {
   it('skips a stop whose target is hidden (zero size)', async () => {
     addAll(['nav']);
     addTarget('nav', { top: 0, left: 0, width: 0, height: 0 });
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     expect(await screen.findByText('Station 1 von 4')).toBeInTheDocument();
   });
 
   it('closes at once, rendering nothing, when no target exists on the home page', async () => {
     const onClose = vi.fn();
-    const { container } = render(<Tour onClose={onClose} />);
+    const { container } = render(<Tour group="today" scope="app" onClose={onClose} />);
     await act(async () => {});
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledWith('skip');
@@ -110,7 +110,7 @@ describe('Tour', () => {
   it('Esc, Überspringen and the keyboard drive the tour', async () => {
     addAll();
     const onClose = vi.fn();
-    render(<Tour onClose={onClose} />);
+    render(<Tour group="today" scope="app" onClose={onClose} />);
     await screen.findByText('Station 1 von 5');
     fireEvent.keyDown(document.body, { key: 'ArrowRight' });
     expect(screen.getByText('Station 2 von 5')).toBeInTheDocument();
@@ -127,7 +127,7 @@ describe('Tour', () => {
   it('Enter on a focused button does not also advance the tour', async () => {
     addAll();
     const onClose = vi.fn();
-    render(<Tour onClose={onClose} />);
+    render(<Tour group="today" scope="app" onClose={onClose} />);
     await screen.findByText('Station 1 von 5');
     const skip = screen.getByRole('button', { name: 'Überspringen' });
     skip.focus();
@@ -139,7 +139,7 @@ describe('Tour', () => {
     vi.useFakeTimers();
     pathname = '/library';
     const onClose = vi.fn();
-    render(<Tour onClose={onClose} />);
+    render(<Tour group="today" scope="app" onClose={onClose} />);
     expect(push).toHaveBeenCalledTimes(1);
     expect(push).toHaveBeenCalledWith('/');
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -154,7 +154,7 @@ describe('Tour', () => {
     vi.useFakeTimers();
     pathname = '/library';
     addTarget('nav', ALL.nav);
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     expect(screen.queryByRole('dialog')).toBeNull();
     await act(async () => { vi.advanceTimersByTime(1600); });
     expect(screen.getByText('Station 1 von 1')).toBeInTheDocument();
@@ -164,7 +164,7 @@ describe('Tour', () => {
     vi.useFakeTimers();
     pathname = '/library';
     const onClose = vi.fn();
-    render(<Tour onClose={onClose} />);
+    render(<Tour group="today" scope="app" onClose={onClose} />);
     await act(async () => { vi.advanceTimersByTime(1600); });
     expect(onClose).toHaveBeenCalledWith('skip');
   });
@@ -174,7 +174,7 @@ describe('Tour', () => {
     const opener = document.createElement('button');
     document.body.appendChild(opener);
     opener.focus();
-    const { unmount } = render(<Tour onClose={vi.fn()} />);
+    const { unmount } = render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     const card = await screen.findByRole('dialog', { name: 'Tour' });
     expect(card.contains(document.activeElement)).toBe(true);
     unmount();
@@ -183,7 +183,7 @@ describe('Tour', () => {
 
   it('measures the target again on resize', async () => {
     addAll();
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     const spot = await screen.findByTestId('kumpel-spotlight');
     expect(spot.style.top).toBe('192px');
     rects.set('continue', { ...ALL.continue, top: 400 });
@@ -194,9 +194,56 @@ describe('Tour', () => {
   it('has no spotlight transition in calm mode', async () => {
     replaceSettings({ kumpel: { motion: 'calm' } });
     addAll();
-    render(<Tour onClose={vi.fn()} />);
+    render(<Tour group="today" scope="app" onClose={vi.fn()} />);
     const spot = await screen.findByTestId('kumpel-spotlight');
     expect(spot.style.transition).toBe('');
+  });
+});
+
+describe('page tours', () => {
+  it('tours the page you are on and never navigates', async () => {
+    pathname = '/library';
+    render(<Tour group="library" scope="page" onClose={vi.fn()} />);
+    expect(await screen.findByText('Station 1 von 3')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Wörterbuch' })).toBeInTheDocument();
+    expect(push).not.toHaveBeenCalled();
+  });
+
+  it('shows every step even when no anchor is on screen, as a centred card with no spotlight', async () => {
+    pathname = '/library';
+    render(<Tour group="library" scope="page" onClose={vi.fn()} />);
+    await screen.findByText('Station 1 von 3');
+    expect(screen.queryByTestId('kumpel-spotlight')).toBeNull();
+    next(); next();
+    expect(screen.getByText('Station 3 von 3')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Prüfungen' })).toBeInTheDocument();
+  });
+
+  it('spotlights a step whose anchor is there, and goes back to a centred card for one that has none', async () => {
+    pathname = '/library';
+    addTarget('library-dict', { top: 100, left: 300, width: 600, height: 120 });
+    render(<Tour group="library" scope="page" onClose={vi.fn()} />);
+    expect(await screen.findByTestId('kumpel-spotlight')).toBeInTheDocument();
+    next();
+    expect(screen.queryByTestId('kumpel-spotlight')).toBeNull();
+  });
+
+  it('works on a page whose guide has no anchors at all', async () => {
+    pathname = '/games/sprint';
+    const onClose = vi.fn();
+    render(<Tour group="games" scope="page" onClose={onClose} />);
+    expect(await screen.findByText('Station 1 von 2')).toBeInTheDocument();
+    next(); next();
+    expect(onClose).toHaveBeenCalledWith('done');
+  });
+
+  it('Esc and Überspringen leave a centred step too', async () => {
+    pathname = '/exams';
+    const onClose = vi.fn();
+    render(<Tour group="exams" scope="page" onClose={onClose} />);
+    await screen.findByText('Station 1 von 2');
+    fireEvent.click(screen.getByRole('button', { name: 'Überspringen' }));
+    expect(onClose).toHaveBeenCalledWith('skip');
   });
 });
 

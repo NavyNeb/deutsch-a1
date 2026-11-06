@@ -48,7 +48,7 @@ export function TextbookView() {
   return (
     <div className="mx-auto max-w-[1200px] px-5 py-8">
       {/* Toolbar */}
-      <div className="bg-card border border-border rounded-[20px] shadow-card px-4 sm:px-6 py-3.5 flex flex-wrap items-center gap-4 mb-7">
+      <div data-kumpel="textbook-tabs" className="bg-card border border-border rounded-[20px] shadow-card px-4 sm:px-6 py-3.5 flex flex-wrap items-center gap-4 mb-7">
         <div className="flex items-center gap-1">
           <ToolTab active={tab === 'books'} onClick={() => setTab('books')} icon={<Library size={17} strokeWidth={2.3} />} label={pick('Books', 'Livres', locale)} />
           <ToolTab active={tab === 'textbook'} onClick={() => setTab('textbook')} icon={<BookOpen size={17} strokeWidth={2.3} />} label={t('navTextbook', locale)} />

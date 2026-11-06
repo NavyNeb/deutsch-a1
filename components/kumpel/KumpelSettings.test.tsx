@@ -16,7 +16,7 @@ describe('KumpelSettings', () => {
     render(<KumpelSettings />);
     expect(screen.getByRole('heading', { name: 'Kumpel' })).toBeInTheDocument();
     expect(screen.getByRole('switch', { name: 'Show Kumpel' })).toHaveAttribute('aria-checked', 'true');
-    expect(screen.getByRole('switch', { name: 'Little hints' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('switch', { name: 'Page tours' })).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByRole('radio', { name: 'Right' })).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByRole('radio', { name: 'Auto' })).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByRole('button', { name: 'Restart tour' })).toBeInTheDocument();
@@ -38,9 +38,9 @@ describe('KumpelSettings', () => {
     expect(screen.getByRole('radio', { name: 'Left' })).toHaveAttribute('aria-checked', 'true');
   });
 
-  it('Little hints writes hints', () => {
+  it('Page tours writes hints', () => {
     render(<KumpelSettings />);
-    fireEvent.click(screen.getByRole('switch', { name: 'Little hints' }));
+    fireEvent.click(screen.getByRole('switch', { name: 'Page tours' }));
     expect(saved().hints).toBe(false);
   });
 
@@ -65,7 +65,7 @@ describe('KumpelSettings', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Restart tour' }));
     expect(saved().enabled).toBe(true);
     expect(saved().muted).toBe(false);
-    expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === true)).toBe(true);
+    expect(spy.mock.calls.some((c) => (c[0] as CustomEvent).detail?.tour === 'app')).toBe(true);
     window.removeEventListener('open-kumpel', spy);
   });
 

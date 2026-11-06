@@ -232,7 +232,7 @@ export function QuizGame({
 
 function Shell({ gradient, children }: { gradient: string; children: React.ReactNode }) {
   return (
-    <div className="relative">
+    <div data-kumpel="game" className="relative">
       <div
         className="absolute inset-x-0 top-0 h-[260px] opacity-[0.10] pointer-events-none"
         style={{ background: gradient, maskImage: 'linear-gradient(to bottom, #000 40%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, #000 40%, transparent)' }}

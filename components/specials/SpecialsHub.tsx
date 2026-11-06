@@ -48,14 +48,14 @@ export function SpecialsHub({ items = registry }: { items?: Special[] }) {
       </header>
 
       {levels.length > 1 && (
-        <div className="mb-8 overflow-x-auto -mx-1 px-1 pb-1">
+        <div data-kumpel="specials-filter" className="mb-8 overflow-x-auto -mx-1 px-1 pb-1">
           <Segmented<Filter> value={filter} options={options} onChange={setFilter} label={t('specialsLevelFilter', locale)} />
         </div>
       )}
 
       {visible.length === 0 && <p className="text-muted">{t('specialsEmpty', locale)}</p>}
 
-      <div className="grid gap-10">
+      <div data-kumpel="specials-list" className="grid gap-10">
         {visible.map(({ level, items: list }) => (
           <section key={level} aria-labelledby={`lvl-${level}`}>
             <h2 id={`lvl-${level}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-display font-extrabold text-[22px] text-text m-0 mb-4">

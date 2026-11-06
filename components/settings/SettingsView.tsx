@@ -91,11 +91,11 @@ export function SettingsView() {
           </Link>
         )}
 
-        <Card>
+        <div data-kumpel="settings-basics"><Card>
           <Row label={t('theme', locale)}><ThemeChoice /></Row>
           <Row label={t('language', locale)}><LanguageToggle /></Row>
           <Row label={t('playbackSpeed', locale)}><SpeedToggle /></Row>
-        </Card>
+        </Card></div>
 
         <Card>
           <div className="flex items-center justify-between gap-4">
@@ -117,7 +117,7 @@ export function SettingsView() {
 
         <KumpelSettings />
 
-        <Card>
+        <div data-kumpel="settings-goal"><Card>
           <p className="label mb-3">{t('dailyGoal', locale)}</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {DAILY_GOAL_OPTIONS.map((g) => (
@@ -136,7 +136,7 @@ export function SettingsView() {
             ))}
           </div>
           <p className="text-muted text-[13px] mt-2 mb-0">{t('xpPerDay', locale)}</p>
-        </Card>
+        </Card></div>
 
         <Card>
           <div className="flex justify-between text-center mb-5">

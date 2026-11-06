@@ -61,8 +61,8 @@ export function TodayView() {
       </div>
 
       <div className="flex flex-wrap gap-5 mb-5">
-        <div className="flex-[1_1_300px] min-w-0"><DueCard /></div>
-        <div className="flex-[1_1_300px] min-w-0"><WordOfDayCard /></div>
+        <div data-kumpel="due" className="flex-[1_1_300px] min-w-0"><DueCard /></div>
+        <div data-kumpel="wotd" className="flex-[1_1_300px] min-w-0"><WordOfDayCard /></div>
         <div className="flex-[1_1_300px] min-w-0"><ActivityGrid /></div>
       </div>
 

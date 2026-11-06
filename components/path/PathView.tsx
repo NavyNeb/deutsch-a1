@@ -32,10 +32,10 @@ export function PathView() {
       <div className="eyebrow mb-4">Weg · {t('navPath', locale)}</div>
       <h1 className="font-display font-semibold text-[clamp(40px,6vw,64px)] leading-none tracking-[-0.03em] m-0 mb-9">Von A1 bis B2.</h1>
 
-      <Staircase levels={summaries} selected={level} onSelect={(lv) => { setLevel(lv); setPicked(null); }} />
+      <div data-kumpel="path-levels"><Staircase levels={summaries} selected={level} onSelect={(lv) => { setLevel(lv); setPicked(null); }} /></div>
 
       <div className="flex flex-wrap lg:flex-nowrap gap-7 items-start">
-        <section className="flex-[1.5_1_520px] min-w-0">
+        <section data-kumpel="path-chapters" className="flex-[1.5_1_520px] min-w-0">
           <div className="flex justify-between items-baseline mb-4 gap-4">
             <div className="eyebrow">{level} · {gloss} · {chapters.length} {t('chaptersWord', locale)}</div>
             <div className="text-[13px] text-muted text-right">{t('pathOpenNote', locale)}</div>
@@ -44,7 +44,7 @@ export function PathView() {
         </section>
 
         {selected && (
-          <aside className="hidden lg:block flex-[1_1_340px] min-w-0 lg:sticky lg:top-8">
+          <aside data-kumpel="path-detail" className="hidden lg:block flex-[1_1_340px] min-w-0 lg:sticky lg:top-8">
             <LessonDetail lesson={selected} state={state} />
           </aside>
         )}

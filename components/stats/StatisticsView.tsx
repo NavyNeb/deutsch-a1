@@ -79,7 +79,7 @@ export function StatisticsView() {
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 mb-8">
+      <div data-kumpel="stats-cards" className="grid grid-cols-2 md:grid-cols-3 gap-3.5 mb-8">
         {cards.map((c) => (
           <div key={c.label} className="bg-card border border-border rounded-[18px] shadow-card p-4">
             <div className="flex items-center gap-2">{c.icon}<span className="label text-muted">{c.label}</span></div>
@@ -101,7 +101,7 @@ export function StatisticsView() {
       </div>
 
       {/* Activity heatmap */}
-      <div className="bg-card border border-border rounded-[20px] shadow-card p-5 mb-8">
+      <div data-kumpel="stats-activity" className="bg-card border border-border rounded-[20px] shadow-card p-5 mb-8">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-display font-extrabold text-[17px] text-text m-0">{t('activityHeading', locale)}</h2>
           <span className="label text-muted">{t('last12Weeks', locale)}</span>
@@ -128,7 +128,7 @@ export function StatisticsView() {
       </div>
 
       {/* Progress by level */}
-      <div className="bg-card border border-border rounded-[20px] shadow-card p-5">
+      <div data-kumpel="stats-levels" className="bg-card border border-border rounded-[20px] shadow-card p-5">
         <h2 className="font-display font-extrabold text-[17px] text-text m-0 mb-4">{t('byLevelHeading', locale)}</h2>
         <div className="grid gap-4">
           {LEVELS.map((lv) => {

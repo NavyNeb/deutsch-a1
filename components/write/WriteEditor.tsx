@@ -210,7 +210,7 @@ export function WriteEditor() {
       <h1 className="font-display font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('writeTitle', locale)}</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-2 mb-6 max-w-[56ch]">{t('writeSubtitle', locale)}</p>
 
-      <div className="mb-3">
+      <div data-kumpel="write-tasks" className="mb-3">
         <p className="text-[12px] font-display font-bold tracking-wider text-muted uppercase mb-2">{t('writeChooseTask', locale)}</p>
         <div className="flex flex-wrap items-center gap-2">
           <Segmented label={t('level', locale)} value={level} onChange={pickLevel} options={LEVELS.map((l) => ({ value: l, label: l }))} />
@@ -274,7 +274,7 @@ export function WriteEditor() {
         </div>
       )}
 
-      <div className="rounded-[20px] border border-border bg-card p-4 md:p-5 focus-within:border-text transition-colors">
+      <div data-kumpel="write-editor" className="rounded-[20px] border border-border bg-card p-4 md:p-5 focus-within:border-text transition-colors">
         <div className="relative text-[17px] leading-[1.75]">
           <div
             aria-hidden
@@ -348,7 +348,7 @@ export function WriteEditor() {
       </div>
 
       {visible.length > 0 && (
-        <section className="mt-6" aria-label={t('writeSuggestions', locale)}>
+        <section data-kumpel="write-suggestions" className="mt-6" aria-label={t('writeSuggestions', locale)}>
           <h2 className="font-display font-extrabold text-[20px] m-0 mb-3">{t('writeSuggestions', locale)}</h2>
           <ul className="list-none m-0 p-0 flex flex-col gap-3">
             {visible.map((issue) => {

@@ -16,7 +16,7 @@ export function ExamsHub({ counts }: { counts: Record<string, number> }) {
       </header>
 
       {BOARDS.map((board) => (
-        <section key={board} className="mb-10">
+        <section key={board} data-kumpel="exams-boards" className="mb-10">
           <h2 className="font-display font-semibold text-[26px] m-0 mb-4">{BOARD_LABEL[board]}</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {EXAM_LEVELS.map((level) => {
