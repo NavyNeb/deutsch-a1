@@ -14,21 +14,33 @@ const COVER: Record<string, string> = {
 
 function BookCard({ book }: { book: Book }) {
   const { locale } = useLocale();
+  const coverLabel = book.badge || book.title.replace('Menschen ', '');
+
   return (
     <Link
       href={`/textbook/read/${book.id}`}
-      className="group flex gap-4 p-4 bg-card border border-border rounded-[20px] shadow-card no-underline hover:border-primary transition-colors"
+      className="group flex gap-3.5 sm:gap-4 p-3.5 sm:p-4 bg-card border border-border rounded-[20px] shadow-card no-underline hover:border-primary transition-all duration-150 hover:-translate-y-0.5"
     >
-      <div className={`relative shrink-0 w-[84px] h-[116px] rounded-[10px] bg-gradient-to-br ${COVER[book.level]} text-white p-2.5 flex flex-col justify-between shadow-md`}>
-        <span className="font-rounded font-extrabold text-[11px] opacity-90 leading-tight">{book.publisher || 'DaF'}</span>
-        <span className="font-rounded font-extrabold text-[15px] leading-tight">{book.title.replace('Menschen ', '')}</span>
-        <BookOpen size={14} className="opacity-80" />
+      <div
+        className={`relative shrink-0 w-[84px] h-[116px] rounded-[12px] bg-gradient-to-br ${COVER[book.level]} text-white p-2.5 flex flex-col justify-between shadow-md overflow-hidden`}
+      >
+        <span className="font-rounded font-extrabold text-[11px] opacity-90 leading-tight truncate">
+          {book.publisher || 'DaF'}
+        </span>
+        <span className="font-rounded font-extrabold text-[14px] leading-snug line-clamp-2 break-words">
+          {coverLabel}
+        </span>
+        <BookOpen size={14} className="opacity-80 shrink-0" />
       </div>
-      <div className="min-w-0 flex flex-col justify-center">
-        <span className="label mb-1">{book.level}</span>
-        <h3 className="m-0 font-rounded font-extrabold text-[17px] text-text leading-snug">{book.title}</h3>
-        <p className="m-0 mt-1 text-muted text-[13px]">{pick(book.subtitle.en, book.subtitle.fr, locale)}</p>
-        <span className="mt-3 inline-flex items-center gap-1.5 font-rounded font-bold text-[13px] text-primary group-hover:underline">
+      <div className="min-w-0 flex-1 flex flex-col justify-center">
+        <span className="label mb-1 text-[11px] text-muted">{book.level}</span>
+        <h3 className="m-0 font-rounded font-extrabold text-[15px] sm:text-[17px] text-text leading-snug line-clamp-2 break-words">
+          {book.title}
+        </h3>
+        <p className="m-0 mt-1 text-muted text-[12.5px] sm:text-[13px] line-clamp-2 leading-relaxed">
+          {pick(book.subtitle.en, book.subtitle.fr, locale)}
+        </p>
+        <span className="mt-2.5 inline-flex items-center gap-1.5 font-rounded font-bold text-[13px] text-primary group-hover:underline">
           <Eye size={14} strokeWidth={2.4} /> {pick('Read', 'Lire', locale)}
         </span>
       </div>
