@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const koerperGesundheit = defineSpecial({
   slug: 'koerper-gesundheit',
@@ -51,14 +51,27 @@ export const koerperGesundheit = defineSpecial({
       'Head and face', 'La tête et le visage',
       'The first body words you need — and their articles.', 'Les premiers mots du corps dont tu as besoin — et leurs articles.',
     ),
-    vocab('sp-koerper-gesundheit-kopf', 'der Kopf', 'the head', 'la tête', 'der', 'KOPF', 'dair KOPF', ['Mein Kopf tut weh.', 'My head hurts.', 'J’ai mal à la tête.']),
-    vocab('sp-koerper-gesundheit-gesicht', 'das Gesicht', 'the face', 'le visage', 'das', 'ge-SICHT', 'dahs geh-ZIKHT', ['Du hast ein freundliches Gesicht.', 'You have a friendly face.', 'Tu as un visage sympathique.']),
-    vocab('sp-koerper-gesundheit-auge', 'das Auge', 'the eye', 'l’œil', 'das', 'AU-ge', 'dahs OW-geh', ['Meine Augen sind braun.', 'My eyes are brown.', 'Mes yeux sont marron.']),
-    vocab('sp-koerper-gesundheit-ohr', 'das Ohr', 'the ear', 'l’oreille', 'das', 'OHR', 'dahs OHR', ['Das linke Ohr tut mir weh.', 'My left ear hurts.', 'J’ai mal à l’oreille gauche.']),
-    vocab('sp-koerper-gesundheit-nase', 'die Nase', 'the nose', 'le nez', 'die', 'NA-se', 'dee NAH-zeh', ['Meine Nase ist verstopft.', 'My nose is blocked.', 'J’ai le nez bouché.']),
-    vocab('sp-koerper-gesundheit-mund', 'der Mund', 'the mouth', 'la bouche', 'der', 'MUND', 'dair MOONT', ['Bitte öffnen Sie den Mund.', 'Please open your mouth.', 'Ouvrez la bouche, s’il vous plaît.']),
-    vocab('sp-koerper-gesundheit-zahn', 'der Zahn', 'the tooth', 'la dent', 'der', 'ZAHN', 'dair TSAHN', ['Ich putze meine Zähne zweimal am Tag.', 'I brush my teeth twice a day.', 'Je me brosse les dents deux fois par jour.']),
-    vocab('sp-koerper-gesundheit-hals', 'der Hals', 'the neck, the throat', 'le cou, la gorge', 'der', 'HALS', 'dair HAHLS', ['Mein Hals ist ganz rot.', 'My throat is all red.', 'Ma gorge est toute rouge.']),
+    situation(
+      ['Mein Gesicht', 'Mon visage'],
+      ['A child shows what they know.', 'Un enfant montre ce qu’il sait.'],
+      [
+        ['Kind', 'Ich habe zwei Augen, zwei Ohren und einen Mund.', 'I have two eyes, two ears and a mouth.', 'J’ai deux yeux, deux oreilles et une bouche.'],
+        ['Mutter', 'Und was hast du auf dem Kopf?', 'And what do you have on your head?', 'Et qu’as-tu sur la tête ?'],
+        ['Kind', 'Meine Haare und eine Mütze!', 'My hair and a cap!', 'Mes cheveux et un bonnet !'],
+      ],
+    ),
+    wordgroup(['Head and face (1/2)', 'La tête et le visage (1/2)'], [
+      vocab('sp-koerper-gesundheit-kopf', 'der Kopf', 'the head', 'la tête', 'der', 'KOPF', 'dair KOPF', ['Mein Kopf tut weh.', 'My head hurts.', 'J’ai mal à la tête.']),
+      vocab('sp-koerper-gesundheit-gesicht', 'das Gesicht', 'the face', 'le visage', 'das', 'ge-SICHT', 'dahs geh-ZIKHT', ['Du hast ein freundliches Gesicht.', 'You have a friendly face.', 'Tu as un visage sympathique.']),
+      vocab('sp-koerper-gesundheit-auge', 'das Auge', 'the eye', 'l’œil', 'das', 'AU-ge', 'dahs OW-geh', ['Meine Augen sind braun.', 'My eyes are brown.', 'Mes yeux sont marron.']),
+      vocab('sp-koerper-gesundheit-ohr', 'das Ohr', 'the ear', 'l’oreille', 'das', 'OHR', 'dahs OHR', ['Das linke Ohr tut mir weh.', 'My left ear hurts.', 'J’ai mal à l’oreille gauche.']),
+    ]),
+    wordgroup(['Head and face (2/2)', 'La tête et le visage (2/2)'], [
+      vocab('sp-koerper-gesundheit-nase', 'die Nase', 'the nose', 'le nez', 'die', 'NA-se', 'dee NAH-zeh', ['Meine Nase ist verstopft.', 'My nose is blocked.', 'J’ai le nez bouché.']),
+      vocab('sp-koerper-gesundheit-mund', 'der Mund', 'the mouth', 'la bouche', 'der', 'MUND', 'dair MOONT', ['Bitte öffnen Sie den Mund.', 'Please open your mouth.', 'Ouvrez la bouche, s’il vous plaît.']),
+      vocab('sp-koerper-gesundheit-zahn', 'der Zahn', 'the tooth', 'la dent', 'der', 'ZAHN', 'dair TSAHN', ['Ich putze meine Zähne zweimal am Tag.', 'I brush my teeth twice a day.', 'Je me brosse les dents deux fois par jour.']),
+      vocab('sp-koerper-gesundheit-hals', 'der Hals', 'the neck, the throat', 'le cou, la gorge', 'der', 'HALS', 'dair HAHLS', ['Mein Hals ist ganz rot.', 'My throat is all red.', 'Ma gorge est toute rouge.']),
+    ]),
     ap('sp-kg-e1', 'Kopf', 'der', ['Kopf is masculine: der Kopf.', 'Kopf est masculin : der Kopf.']),
     ap('sp-kg-e2', 'Auge', 'das', ['Auge is neuter, even though it ends in -e.', 'Auge est neutre, même s’il finit par -e.']),
     ap('sp-kg-e3', 'Nase', 'die', ['Nase ends in -e and is feminine.', 'Nase finit par -e et est féminin.']),
@@ -81,15 +94,28 @@ export const koerperGesundheit = defineSpecial({
       'Arms, legs and the rest', 'Bras, jambes et le reste',
       'The rest of the body — and the plurals you need to know.', 'Le reste du corps — et les pluriels à connaître.',
     ),
-    vocab('sp-koerper-gesundheit-arm', 'der Arm', 'the arm', 'le bras', 'der', 'ARM', 'dair ARM', ['Mein rechter Arm ist gebrochen.', 'My right arm is broken.', 'Mon bras droit est cassé.']),
-    vocab('sp-koerper-gesundheit-hand', 'die Hand', 'the hand', 'la main', 'die', 'HAND', 'dee HAHNT', ['Wasch dir die Hände!', 'Wash your hands!', 'Lave-toi les mains !']),
-    vocab('sp-koerper-gesundheit-finger', 'der Finger', 'the finger', 'le doigt', 'der', 'FIN-ger', 'dair FIN-ger', ['Ich habe mir den Finger geschnitten.', 'I cut my finger.', 'Je me suis coupé le doigt.']),
-    vocab('sp-koerper-gesundheit-ruecken', 'der Rücken', 'the back', 'le dos', 'der', 'RÜ-cken', 'dair RUE-ken', ['Mein Rücken tut vom Sitzen weh.', 'My back hurts from sitting.', 'J’ai mal au dos à force d’être assis.']),
-    vocab('sp-koerper-gesundheit-bauch', 'der Bauch', 'the belly, the stomach', 'le ventre', 'der', 'BAUCH', 'dair BOWKH', ['Nach dem Essen tut mir der Bauch weh.', 'My stomach hurts after eating.', 'J’ai mal au ventre après le repas.']),
-    vocab('sp-koerper-gesundheit-bein', 'das Bein', 'the leg', 'la jambe', 'das', 'BEIN', 'dahs BYN', ['Er hat sich das Bein gebrochen.', 'He broke his leg.', 'Il s’est cassé la jambe.']),
-    vocab('sp-koerper-gesundheit-knie', 'das Knie', 'the knee', 'le genou', 'das', 'KNIE', 'dahs k-NEE', ['Mein Knie ist geschwollen.', 'My knee is swollen.', 'Mon genou est enflé.']),
-    vocab('sp-koerper-gesundheit-fuss', 'der Fuß', 'the foot', 'le pied', 'der', 'FUSS', 'dair FOOSS', ['Meine Füße sind kalt.', 'My feet are cold.', 'Mes pieds sont froids.']),
-    vocab('sp-koerper-gesundheit-herz', 'das Herz', 'the heart', 'le cœur', 'das', 'HERZ', 'dahs HAIRTS', ['Sein Herz schlägt sehr schnell.', 'His heart is beating very fast.', 'Son cœur bat très vite.']),
+    situation(
+      ['Beim Sport', 'Au sport'],
+      ['A fitness class.', 'Un cours de gym.'],
+      [
+        ['Trainer', 'Hebt die Arme und streckt die Beine!', 'Raise your arms and stretch your legs!', 'Levez les bras et étirez les jambes !'],
+        ['Teilnehmerin', 'Meine Hände sind kalt, aber der Rücken ist okay.', 'My hands are cold but my back is okay.', 'Mes mains sont froides, mais mon dos va bien.'],
+        ['Trainer', 'Super, jetzt kreisen wir die Schultern.', 'Great, now we circle our shoulders.', 'Super, maintenant on fait des cercles avec les épaules.'],
+      ],
+    ),
+    wordgroup(['Arms, legs and the rest (1/2)', 'Bras, jambes et le reste (1/2)'], [
+      vocab('sp-koerper-gesundheit-arm', 'der Arm', 'the arm', 'le bras', 'der', 'ARM', 'dair ARM', ['Mein rechter Arm ist gebrochen.', 'My right arm is broken.', 'Mon bras droit est cassé.']),
+      vocab('sp-koerper-gesundheit-hand', 'die Hand', 'the hand', 'la main', 'die', 'HAND', 'dee HAHNT', ['Wasch dir die Hände!', 'Wash your hands!', 'Lave-toi les mains !']),
+      vocab('sp-koerper-gesundheit-finger', 'der Finger', 'the finger', 'le doigt', 'der', 'FIN-ger', 'dair FIN-ger', ['Ich habe mir den Finger geschnitten.', 'I cut my finger.', 'Je me suis coupé le doigt.']),
+      vocab('sp-koerper-gesundheit-ruecken', 'der Rücken', 'the back', 'le dos', 'der', 'RÜ-cken', 'dair RUE-ken', ['Mein Rücken tut vom Sitzen weh.', 'My back hurts from sitting.', 'J’ai mal au dos à force d’être assis.']),
+      vocab('sp-koerper-gesundheit-bauch', 'der Bauch', 'the belly, the stomach', 'le ventre', 'der', 'BAUCH', 'dair BOWKH', ['Nach dem Essen tut mir der Bauch weh.', 'My stomach hurts after eating.', 'J’ai mal au ventre après le repas.']),
+    ]),
+    wordgroup(['Arms, legs and the rest (2/2)', 'Bras, jambes et le reste (2/2)'], [
+      vocab('sp-koerper-gesundheit-bein', 'das Bein', 'the leg', 'la jambe', 'das', 'BEIN', 'dahs BYN', ['Er hat sich das Bein gebrochen.', 'He broke his leg.', 'Il s’est cassé la jambe.']),
+      vocab('sp-koerper-gesundheit-knie', 'das Knie', 'the knee', 'le genou', 'das', 'KNIE', 'dahs k-NEE', ['Mein Knie ist geschwollen.', 'My knee is swollen.', 'Mon genou est enflé.']),
+      vocab('sp-koerper-gesundheit-fuss', 'der Fuß', 'the foot', 'le pied', 'der', 'FUSS', 'dair FOOSS', ['Meine Füße sind kalt.', 'My feet are cold.', 'Mes pieds sont froids.']),
+      vocab('sp-koerper-gesundheit-herz', 'das Herz', 'the heart', 'le cœur', 'das', 'HERZ', 'dahs HAIRTS', ['Sein Herz schlägt sehr schnell.', 'His heart is beating very fast.', 'Son cœur bat très vite.']),
+    ]),
     grammar(
       'sp-kg-plural',
       ['Plurals of body parts', 'Pluriel des parties du corps'],
@@ -136,12 +162,23 @@ export const koerperGesundheit = defineSpecial({
       'Where does it hurt?', 'Où as-tu mal ?',
       'Two patterns say it all: weh tun and -schmerzen.', 'Deux tournures disent tout : weh tun et -schmerzen.',
     ),
-    vocab('sp-koerper-gesundheit-schmerzen', 'die Schmerzen', 'the pain', 'la douleur, les douleurs', 'die', 'SCHMER-zen', 'dee SHMAIR-tsen', ['Ich habe starke Schmerzen im Rücken.', 'I have strong pain in my back.', 'J’ai de fortes douleurs dans le dos.']),
-    vocab('sp-koerper-gesundheit-fieber', 'das Fieber', 'the fever', 'la fièvre', 'das', 'FIE-ber', 'dahs FEE-ber', ['Mein Sohn hat Fieber.', 'My son has a fever.', 'Mon fils a de la fièvre.']),
-    vocab('sp-koerper-gesundheit-husten', 'der Husten', 'the cough', 'la toux', 'der', 'HUS-ten', 'dair HOO-sten', ['Ich habe seit drei Tagen Husten.', 'I have had a cough for three days.', 'Je tousse depuis trois jours.']),
-    vocab('sp-koerper-gesundheit-erkaeltung', 'die Erkältung', 'the cold', 'le rhume', 'die', 'er-KÄL-tung', 'dee er-KEL-toong', ['Eine Erkältung dauert ungefähr eine Woche.', 'A cold lasts about a week.', 'Un rhume dure environ une semaine.']),
-    vocab('sp-koerper-gesundheit-krank', 'krank', 'ill, sick', 'malade', null, 'KRANK', 'KRAHNK', ['Ich bin heute krank.', 'I am ill today.', 'Je suis malade aujourd’hui.']),
-    vocab('sp-koerper-gesundheit-gesund', 'gesund', 'healthy', 'en bonne santé', null, 'ge-SUND', 'geh-ZOONT', ['Obst und Gemüse sind gesund.', 'Fruit and vegetables are healthy.', 'Les fruits et les légumes sont bons pour la santé.']),
+    situation(
+      ['Wo tut es weh?', 'Où as-tu mal ?'],
+      ['A child is not feeling well.', 'Un enfant ne se sent pas bien.'],
+      [
+        ['Mutter', 'Was ist los?', 'What is wrong?', 'Qu’y a-t-il ?'],
+        ['Kind', 'Mein Bauch tut weh, und ich habe Kopfschmerzen.', 'My stomach hurts and I have a headache.', 'J’ai mal au ventre et j’ai mal à la tête.'],
+        ['Mutter', 'Wir gehen zum Arzt.', 'We are going to the doctor.', 'Nous allons chez le médecin.'],
+      ],
+    ),
+    wordgroup(['Where does it hurt?', 'Où as-tu mal ?'], [
+      vocab('sp-koerper-gesundheit-schmerzen', 'die Schmerzen', 'the pain', 'la douleur, les douleurs', 'die', 'SCHMER-zen', 'dee SHMAIR-tsen', ['Ich habe starke Schmerzen im Rücken.', 'I have strong pain in my back.', 'J’ai de fortes douleurs dans le dos.']),
+      vocab('sp-koerper-gesundheit-fieber', 'das Fieber', 'the fever', 'la fièvre', 'das', 'FIE-ber', 'dahs FEE-ber', ['Mein Sohn hat Fieber.', 'My son has a fever.', 'Mon fils a de la fièvre.']),
+      vocab('sp-koerper-gesundheit-husten', 'der Husten', 'the cough', 'la toux', 'der', 'HUS-ten', 'dair HOO-sten', ['Ich habe seit drei Tagen Husten.', 'I have had a cough for three days.', 'Je tousse depuis trois jours.']),
+      vocab('sp-koerper-gesundheit-erkaeltung', 'die Erkältung', 'the cold', 'le rhume', 'die', 'er-KÄL-tung', 'dee er-KEL-toong', ['Eine Erkältung dauert ungefähr eine Woche.', 'A cold lasts about a week.', 'Un rhume dure environ une semaine.']),
+      vocab('sp-koerper-gesundheit-krank', 'krank', 'ill, sick', 'malade', null, 'KRANK', 'KRAHNK', ['Ich bin heute krank.', 'I am ill today.', 'Je suis malade aujourd’hui.']),
+      vocab('sp-koerper-gesundheit-gesund', 'gesund', 'healthy', 'en bonne santé', null, 'ge-SUND', 'geh-ZOONT', ['Obst und Gemüse sind gesund.', 'Fruit and vegetables are healthy.', 'Les fruits et les légumes sont bons pour la santé.']),
+    ]),
     grammar(
       'sp-kg-wehtun',
       ['weh tun — it hurts', 'weh tun — avoir mal'],
@@ -208,9 +245,20 @@ export const koerperGesundheit = defineSpecial({
       'At the doctor’s', 'Chez le médecin',
       'Make an appointment and answer the doctor’s questions.', 'Prends rendez-vous et réponds aux questions du médecin.',
     ),
-    vocab('sp-koerper-gesundheit-arzt', 'der Arzt', 'the doctor (male)', 'le médecin', 'der', 'ARZT', 'dair ARTST', ['Der Arzt untersucht den Patienten.', 'The doctor examines the patient.', 'Le médecin examine le patient.']),
-    vocab('sp-koerper-gesundheit-aerztin', 'die Ärztin', 'the doctor (female)', 'la femme médecin', 'die', 'ÄRZ-tin', 'dee ERTS-tin', ['Die Ärztin hat heute bis 18 Uhr Sprechstunde.', 'The doctor has office hours until 6 p.m. today.', 'La médecin consulte aujourd’hui jusqu’à 18 h.']),
-    vocab('sp-koerper-gesundheit-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich möchte einen Termin vereinbaren.', 'I would like to make an appointment.', 'Je voudrais prendre rendez-vous.']),
+    situation(
+      ['Beim Arzt', 'Chez le médecin'],
+      ['A consultation.', 'Une consultation.'],
+      [
+        ['Ärztin', 'Was fehlt Ihnen?', 'What is the matter with you?', 'Qu’avez-vous ?'],
+        ['Patient', 'Ich habe Fieber und Husten, seit zwei Tagen.', 'I have a fever and a cough for two days.', 'J’ai de la fièvre et de la toux depuis deux jours.'],
+        ['Ärztin', 'Sie sind erkältet. Bleiben Sie im Bett und trinken Sie viel.', 'You have a cold. Stay in bed and drink a lot.', 'Vous êtes enrhumé. Restez au lit et buvez beaucoup.'],
+      ],
+    ),
+    wordgroup(['At the doctor’s', 'Chez le médecin'], [
+      vocab('sp-koerper-gesundheit-arzt', 'der Arzt', 'the doctor (male)', 'le médecin', 'der', 'ARZT', 'dair ARTST', ['Der Arzt untersucht den Patienten.', 'The doctor examines the patient.', 'Le médecin examine le patient.']),
+      vocab('sp-koerper-gesundheit-aerztin', 'die Ärztin', 'the doctor (female)', 'la femme médecin', 'die', 'ÄRZ-tin', 'dee ERTS-tin', ['Die Ärztin hat heute bis 18 Uhr Sprechstunde.', 'The doctor has office hours until 6 p.m. today.', 'La médecin consulte aujourd’hui jusqu’à 18 h.']),
+      vocab('sp-koerper-gesundheit-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich möchte einen Termin vereinbaren.', 'I would like to make an appointment.', 'Je voudrais prendre rendez-vous.']),
+    ]),
     grammar(
       'sp-kg-seit',
       ['seit + dative: how long?', 'seit + datif : depuis combien de temps ?'],
@@ -273,9 +321,21 @@ export const koerperGesundheit = defineSpecial({
       'Pharmacy and advice', 'Pharmacie et conseils',
       'Collect your medicine and understand what to do next.', 'Retire tes médicaments et comprends ce qu’il faut faire ensuite.',
     ),
-    vocab('sp-koerper-gesundheit-apotheke', 'die Apotheke', 'the pharmacy', 'la pharmacie', 'die', 'a-po-THE-ke', 'dee ah-poh-TAY-keh', ['Die Apotheke ist neben der Bank.', 'The pharmacy is next to the bank.', 'La pharmacie est à côté de la banque.']),
-    vocab('sp-koerper-gesundheit-tablette', 'die Tablette', 'the tablet', 'le comprimé', 'die', 'ta-BLET-te', 'dee tah-BLET-teh', ['Nehmen Sie dreimal täglich eine Tablette.', 'Take one tablet three times a day.', 'Prenez un comprimé trois fois par jour.']),
-    vocab('sp-koerper-gesundheit-rezept', 'das Rezept', 'the prescription', 'l’ordonnance', 'das', 're-ZEPT', 'dahs reh-TSEPT', ['Ohne Rezept bekommen Sie das nicht.', 'You cannot get that without a prescription.', 'Vous ne l’obtenez pas sans ordonnance.']),
+    situation(
+      ['In der Apotheke', 'À la pharmacie'],
+      ['A customer asks for advice.', 'Un client demande conseil.'],
+      [
+        ['Kunde', 'Ich brauche etwas gegen Kopfschmerzen.', 'I need something for a headache.', 'J’ai besoin de quelque chose contre le mal de tête.'],
+        ['Apotheker', 'Nehmen Sie diese Tabletten, dreimal am Tag.', 'Take these tablets, three times a day.', 'Prenez ces comprimés, trois fois par jour.'],
+        ['Kunde', 'Brauche ich ein Rezept?', 'Do I need a prescription?', 'Ai-je besoin d’une ordonnance ?'],
+        ['Apotheker', 'Nein, die gibt es ohne Rezept.', 'No, they are available without a prescription.', 'Non, ils sont en vente libre.'],
+      ],
+    ),
+    wordgroup(['Pharmacy and advice', 'Pharmacie et conseils'], [
+      vocab('sp-koerper-gesundheit-apotheke', 'die Apotheke', 'the pharmacy', 'la pharmacie', 'die', 'a-po-THE-ke', 'dee ah-poh-TAY-keh', ['Die Apotheke ist neben der Bank.', 'The pharmacy is next to the bank.', 'La pharmacie est à côté de la banque.']),
+      vocab('sp-koerper-gesundheit-tablette', 'die Tablette', 'the tablet', 'le comprimé', 'die', 'ta-BLET-te', 'dee tah-BLET-teh', ['Nehmen Sie dreimal täglich eine Tablette.', 'Take one tablet three times a day.', 'Prenez un comprimé trois fois par jour.']),
+      vocab('sp-koerper-gesundheit-rezept', 'das Rezept', 'the prescription', 'l’ordonnance', 'das', 're-ZEPT', 'dahs reh-TSEPT', ['Ohne Rezept bekommen Sie das nicht.', 'You cannot get that without a prescription.', 'Vous ne l’obtenez pas sans ordonnance.']),
+    ]),
     grammar(
       'sp-kg-ratschlaege',
       ['Giving advice: Sie sollten …, Nehmen Sie …', 'Donner des conseils : Sie sollten …, Nehmen Sie …'],

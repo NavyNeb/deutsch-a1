@@ -20,6 +20,7 @@ export const CHAPTER_NAMES: Record<string, Tri> = {
   'A1-3': { de: 'Freizeit & Essen', en: 'Free time & food', fr: 'Loisirs et repas' },
   'A1-4': { de: 'Unterwegs', en: 'On the go', fr: 'En chemin' },
   'A1-5': { de: 'Jahreslauf', en: 'The year', fr: 'L’année' },
+  'A1-6': { de: 'Prüfungsreife', en: 'Putting it together', fr: 'Tout mettre en pratique' },
 };
 
 export type Chapter = { key: string; level: Level; module: number; name: Tri; lessons: Lesson[] };

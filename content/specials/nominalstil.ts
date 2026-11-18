@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const nominalstil = defineSpecial({
   slug: 'nominalstil',
@@ -47,9 +47,11 @@ export const nominalstil = defineSpecial({
       'From verb to noun', 'Du verbe au nom',
       'The endings that build nouns and tell you the gender.', 'Les terminaisons qui forment des noms et indiquent le genre.',
     ),
-    vocab('sp-nominalstil-entwicklung', 'die Entwicklung', 'the development', 'le développement', 'die', 'ent-WICK-lung', 'ent-VIK-loong', ['Die Entwicklung der Preise macht Sorgen.', 'The development of prices causes worry.', 'L’évolution des prix inquiète.']),
-    vocab('sp-nominalstil-moeglichkeit', 'die Möglichkeit', 'the possibility', 'la possibilité', 'die', 'MOEG-lich-keit', 'MOEG-likh-kite', ['Es gibt mehrere Möglichkeiten.', 'There are several possibilities.', 'Il y a plusieurs possibilités.']),
-    vocab('sp-nominalstil-ankunft', 'die Ankunft', 'the arrival', 'l’arrivée', 'die', 'AN-kunft', 'AHN-koonft', ['Nach der Ankunft rufe ich an.', 'After arrival I will call.', 'Après l’arrivée, j’appellerai.']),
+    wordgroup(['From verb to noun', 'Du verbe au nom'], [
+      vocab('sp-nominalstil-entwicklung', 'die Entwicklung', 'the development', 'le développement', 'die', 'ent-WICK-lung', 'ent-VIK-loong', ['Die Entwicklung der Preise macht Sorgen.', 'The development of prices causes worry.', 'L’évolution des prix inquiète.']),
+      vocab('sp-nominalstil-moeglichkeit', 'die Möglichkeit', 'the possibility', 'la possibilité', 'die', 'MOEG-lich-keit', 'MOEG-likh-kite', ['Es gibt mehrere Möglichkeiten.', 'There are several possibilities.', 'Il y a plusieurs possibilités.']),
+      vocab('sp-nominalstil-ankunft', 'die Ankunft', 'the arrival', 'l’arrivée', 'die', 'AN-kunft', 'AHN-koonft', ['Nach der Ankunft rufe ich an.', 'After arrival I will call.', 'Après l’arrivée, j’appellerai.']),
+    ]),
     grammar(
       'sp-ns-forms',
       ['Building nouns', 'Former des noms'],
@@ -81,9 +83,11 @@ export const nominalstil = defineSpecial({
       'Clauses become prepositions', 'Les propositions deviennent des prépositions',
       'weil → wegen, obwohl → trotz, nachdem → nach, wenn → bei.', 'weil → wegen, obwohl → trotz, nachdem → nach, wenn → bei.',
     ),
-    vocab('sp-nominalstil-wegen', 'wegen + Genitiv', 'because of', 'à cause de', null, 'WE-gen', 'VAY-gen', ['Wegen des Regens bleiben wir zu Hause.', 'Because of the rain we stay home.', 'À cause de la pluie, nous restons chez nous.']),
-    vocab('sp-nominalstil-trotz', 'trotz + Genitiv', 'despite', 'malgré', null, 'TROTZ', 'trots', ['Trotz der Kälte gehen wir schwimmen.', 'Despite the cold we go swimming.', 'Malgré le froid, nous allons nager.']),
-    vocab('sp-nominalstil-aufgrund', 'aufgrund + Genitiv', 'on the basis of / because of', 'en raison de', null, 'AUF-grund', 'OWF-groont', ['Aufgrund des Unwetters fällt der Zug aus.', 'Because of the storm the train is cancelled.', 'En raison de l’orage, le train est supprimé.']),
+    wordgroup(['Clauses become prepositions', 'Les propositions deviennent des prépositions'], [
+      vocab('sp-nominalstil-wegen', 'wegen + Genitiv', 'because of', 'à cause de', null, 'WE-gen', 'VAY-gen', ['Wegen des Regens bleiben wir zu Hause.', 'Because of the rain we stay home.', 'À cause de la pluie, nous restons chez nous.']),
+      vocab('sp-nominalstil-trotz', 'trotz + Genitiv', 'despite', 'malgré', null, 'TROTZ', 'trots', ['Trotz der Kälte gehen wir schwimmen.', 'Despite the cold we go swimming.', 'Malgré le froid, nous allons nager.']),
+      vocab('sp-nominalstil-aufgrund', 'aufgrund + Genitiv', 'on the basis of / because of', 'en raison de', null, 'AUF-grund', 'OWF-groont', ['Aufgrund des Unwetters fällt der Zug aus.', 'Because of the storm the train is cancelled.', 'En raison de l’orage, le train est supprimé.']),
+    ]),
     grammar(
       'sp-ns-prep',
       ['Clause → noun phrase', 'Proposition → groupe nominal'],
@@ -120,8 +124,10 @@ export const nominalstil = defineSpecial({
       'Reading dense sentences', 'Lire des phrases denses',
       'How to unpack a long noun phrase without getting lost.', 'Comment décomposer un long groupe nominal sans se perdre.',
     ),
-    vocab('sp-nominalstil-veraenderung', 'die Veränderung', 'the change', 'le changement', 'die', 've-ÄN-de-rung', 'fer-EN-de-roong', ['Die Veränderung kam schnell.', 'The change came quickly.', 'Le changement est venu vite.']),
-    vocab('sp-nominalstil-erhoehung', 'die Erhöhung', 'the increase', 'l’augmentation', 'die', 'er-HÖ-hung', 'er-HOE-oong', ['Die Erhöhung der Mieten ärgert viele.', 'The rent increase annoys many.', 'L’augmentation des loyers énerve beaucoup de gens.']),
+    wordgroup(['Reading dense sentences', 'Lire des phrases denses'], [
+      vocab('sp-nominalstil-veraenderung', 'die Veränderung', 'the change', 'le changement', 'die', 've-ÄN-de-rung', 'fer-EN-de-roong', ['Die Veränderung kam schnell.', 'The change came quickly.', 'Le changement est venu vite.']),
+      vocab('sp-nominalstil-erhoehung', 'die Erhöhung', 'the increase', 'l’augmentation', 'die', 'er-HÖ-hung', 'er-HOE-oong', ['Die Erhöhung der Mieten ärgert viele.', 'The rent increase annoys many.', 'L’augmentation des loyers énerve beaucoup de gens.']),
+    ]),
     grammar(
       'sp-ns-unpack',
       ['Unpacking a noun phrase', 'Décomposer un groupe nominal'],

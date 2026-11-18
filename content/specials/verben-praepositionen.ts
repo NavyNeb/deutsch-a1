@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const verbenPraepositionen = defineSpecial({
   slug: 'verben-praepositionen',
@@ -77,10 +77,12 @@ export const verbenPraepositionen = defineSpecial({
         ['Wir haben uns für das Hotel entschieden.', 'We decided on the hotel.', 'Nous avons opté pour cet hôtel.'],
       ],
     ),
-    vocab('sp-verben-praepositionen-warten-auf', 'warten auf', 'to wait for', 'attendre', null, 'WAR-ten auf', 'VAR-ten owf', ['Ich warte auf den Zug.', 'I am waiting for the train.', 'J’attends le train.']),
-    vocab('sp-verben-praepositionen-denken-an', 'denken an', 'to think of', 'penser à', null, 'DEN-ken an', 'DEN-ken ahn', ['Ich denke oft an dich.', 'I often think of you.', 'Je pense souvent à toi.']),
-    vocab('sp-verben-praepositionen-sich-kuemmern-um', 'sich kümmern um', 'to take care of', 's’occuper de', null, 'sich KÜM-mern um', 'zikh KUEM-ern oom', ['Er kümmert sich um die Kinder.', 'He looks after the children.', 'Il s’occupe des enfants.']),
-    vocab('sp-verben-praepositionen-sich-bewerben-um', 'sich bewerben um', 'to apply for', 'postuler à', null, 'sich be-WER-ben um', 'zikh beh-VER-ben oom', ['Sie bewirbt sich um eine Stelle.', 'She is applying for a job.', 'Elle postule à un emploi.']),
+    wordgroup(['Verb + preposition as a unit', 'Verbe + préposition comme un bloc'], [
+      vocab('sp-verben-praepositionen-warten-auf', 'warten auf', 'to wait for', 'attendre', null, 'WAR-ten auf', 'VAR-ten owf', ['Ich warte auf den Zug.', 'I am waiting for the train.', 'J’attends le train.']),
+      vocab('sp-verben-praepositionen-denken-an', 'denken an', 'to think of', 'penser à', null, 'DEN-ken an', 'DEN-ken ahn', ['Ich denke oft an dich.', 'I often think of you.', 'Je pense souvent à toi.']),
+      vocab('sp-verben-praepositionen-sich-kuemmern-um', 'sich kümmern um', 'to take care of', 's’occuper de', null, 'sich KÜM-mern um', 'zikh KUEM-ern oom', ['Er kümmert sich um die Kinder.', 'He looks after the children.', 'Il s’occupe des enfants.']),
+      vocab('sp-verben-praepositionen-sich-bewerben-um', 'sich bewerben um', 'to apply for', 'postuler à', null, 'sich be-WER-ben um', 'zikh beh-VER-ben oom', ['Sie bewirbt sich um eine Stelle.', 'She is applying for a job.', 'Elle postule à un emploi.']),
+    ]),
     mc(
       'sp-vp-e1',
       ['"Ich warte ___ den Bus."', '« Ich warte ___ den Bus. »'],
@@ -148,10 +150,12 @@ export const verbenPraepositionen = defineSpecial({
         ['Sie hat Angst vor der Prüfung.', 'She is afraid of the exam.', 'Elle a peur de l’examen.'],
       ],
     ),
-    vocab('sp-verben-praepositionen-traeumen-von', 'träumen von', 'to dream of', 'rêver de', null, 'TRÄU-men fon', 'TROY-men fon', ['Sie träumt von einer Weltreise.', 'She dreams of a trip around the world.', 'Elle rêve d’un tour du monde.']),
-    vocab('sp-verben-praepositionen-teilnehmen-an', 'teilnehmen an', 'to take part in', 'participer à', null, 'TEIL-neh-men an', 'TILE-nay-men ahn', ['Ich nehme am Kurs teil.', 'I am taking part in the course.', 'Je participe au cours.']),
-    vocab('sp-verben-praepositionen-angst-haben-vor', 'Angst haben vor', 'to be afraid of', 'avoir peur de', null, 'ANGST HA-ben for', 'ahngst HAH-ben for', ['Ich habe Angst vor Spinnen.', 'I am afraid of spiders.', 'J’ai peur des araignées.']),
-    vocab('sp-verben-praepositionen-fragen-nach', 'fragen nach', 'to ask about', 'demander (des nouvelles de)', null, 'FRA-gen nach', 'FRAH-gen nakh', ['Er fragt nach dem Weg.', 'He asks the way.', 'Il demande son chemin.']),
+    wordgroup(['Accusative or dative?', 'Accusatif ou datif ?'], [
+      vocab('sp-verben-praepositionen-traeumen-von', 'träumen von', 'to dream of', 'rêver de', null, 'TRÄU-men fon', 'TROY-men fon', ['Sie träumt von einer Weltreise.', 'She dreams of a trip around the world.', 'Elle rêve d’un tour du monde.']),
+      vocab('sp-verben-praepositionen-teilnehmen-an', 'teilnehmen an', 'to take part in', 'participer à', null, 'TEIL-neh-men an', 'TILE-nay-men ahn', ['Ich nehme am Kurs teil.', 'I am taking part in the course.', 'Je participe au cours.']),
+      vocab('sp-verben-praepositionen-angst-haben-vor', 'Angst haben vor', 'to be afraid of', 'avoir peur de', null, 'ANGST HA-ben for', 'ahngst HAH-ben for', ['Ich habe Angst vor Spinnen.', 'I am afraid of spiders.', 'J’ai peur des araignées.']),
+      vocab('sp-verben-praepositionen-fragen-nach', 'fragen nach', 'to ask about', 'demander (des nouvelles de)', null, 'FRA-gen nach', 'FRAH-gen nakh', ['Er fragt nach dem Weg.', 'He asks the way.', 'Il demande son chemin.']),
+    ]),
     mc(
       'sp-vp-e6',
       ['"Ich nehme ___ dem Kurs teil."', '« Ich nehme ___ dem Kurs teil. »'],
@@ -215,8 +219,10 @@ export const verbenPraepositionen = defineSpecial({
         ['Ich warte auf ihn.', 'I am waiting for him.', 'Je l’attends.'],
       ],
     ),
-    vocab('sp-verben-praepositionen-woruber', 'worüber', 'about what', 'à propos de quoi', null, 'wo-RÜ-ber', 'voh-RUE-ber', ['Worüber sprecht ihr?', 'What are you talking about?', 'De quoi parlez-vous ?']),
-    vocab('sp-verben-praepositionen-darauf', 'darauf', 'for it / to it', 'là-dessus, y', null, 'da-RAUF', 'dah-ROWF', ['Ich warte schon lange darauf.', 'I have been waiting for it for a long time.', 'J’attends cela depuis longtemps.']),
+    wordgroup(['Questions with wo(r)- and da(r)-', 'Questions en wo(r)- et da(r)-'], [
+      vocab('sp-verben-praepositionen-woruber', 'worüber', 'about what', 'à propos de quoi', null, 'wo-RÜ-ber', 'voh-RUE-ber', ['Worüber sprecht ihr?', 'What are you talking about?', 'De quoi parlez-vous ?']),
+      vocab('sp-verben-praepositionen-darauf', 'darauf', 'for it / to it', 'là-dessus, y', null, 'da-RAUF', 'dah-ROWF', ['Ich warte schon lange darauf.', 'I have been waiting for it for a long time.', 'J’attends cela depuis longtemps.']),
+    ]),
     mc(
       'sp-vp-e11',
       ['"___ wartest du? — Auf den Bus."', '« ___ wartest du ? — Auf den Bus. »'],
@@ -274,8 +280,10 @@ export const verbenPraepositionen = defineSpecial({
         ['Er besteht darauf, dass wir pünktlich sind.', 'He insists that we are on time.', 'Il insiste pour que nous soyons à l’heure.'],
       ],
     ),
-    vocab('sp-verben-praepositionen-sich-verlassen-auf', 'sich verlassen auf', 'to rely on', 'compter sur', null, 'sich fer-LAS-sen auf', 'zikh fer-LAS-en owf', ['Ich verlasse mich auf dich.', 'I rely on you.', 'Je compte sur toi.']),
-    vocab('sp-verben-praepositionen-sich-entscheiden-fuer', 'sich entscheiden für', 'to decide on', 'opter pour', null, 'sich ent-SCHEI-den fyr', 'zikh ent-SHY-den fuer', ['Wir haben uns für das Rote entschieden.', 'We decided on the red one.', 'Nous avons opté pour le rouge.']),
+    wordgroup(['da(r)- with dass and zu', 'da(r)- avec dass et zu'], [
+      vocab('sp-verben-praepositionen-sich-verlassen-auf', 'sich verlassen auf', 'to rely on', 'compter sur', null, 'sich fer-LAS-sen auf', 'zikh fer-LAS-en owf', ['Ich verlasse mich auf dich.', 'I rely on you.', 'Je compte sur toi.']),
+      vocab('sp-verben-praepositionen-sich-entscheiden-fuer', 'sich entscheiden für', 'to decide on', 'opter pour', null, 'sich ent-SCHEI-den fyr', 'zikh ent-SHY-den fuer', ['Wir haben uns für das Rote entschieden.', 'We decided on the red one.', 'Nous avons opté pour le rouge.']),
+    ]),
     mc(
       'sp-vp-e16',
       ['Which sentence is correct?', 'Quelle phrase est correcte ?'],

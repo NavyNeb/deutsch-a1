@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const wechselpraepositionen = defineSpecial({
   slug: 'wechselpraepositionen',
@@ -97,9 +97,11 @@ export const wechselpraepositionen = defineSpecial({
         ['Die Lampe hängt über dem Tisch.', 'The lamp hangs above the table.', 'La lampe est suspendue au-dessus de la table.'],
       ],
     ),
-    vocab('sp-wechselpraepositionen-wand', 'die Wand', 'the wall', 'le mur', 'die', 'WAND', 'dee VAHNT', ['Das Bild hängt an der Wand.', 'The picture hangs on the wall.', 'Le tableau est accroché au mur.']),
-    vocab('sp-wechselpraepositionen-schrank', 'der Schrank', 'the cupboard, wardrobe', 'l’armoire, le placard', 'der', 'SCHRANK', 'dair SHRAHNK', ['Die Jacke hängt im Schrank.', 'The jacket is hanging in the wardrobe.', 'La veste est pendue dans l’armoire.']),
-    vocab('sp-wechselpraepositionen-regal', 'das Regal', 'the shelf', 'l’étagère', 'das', 're-GAL', 'dahs ray-GAHL', ['Die Bücher stehen im Regal.', 'The books are on the shelf.', 'Les livres sont sur l’étagère.']),
+    wordgroup(['Nine prepositions, nine meanings', 'Neuf prépositions, neuf sens'], [
+      vocab('sp-wechselpraepositionen-wand', 'die Wand', 'the wall', 'le mur', 'die', 'WAND', 'dee VAHNT', ['Das Bild hängt an der Wand.', 'The picture hangs on the wall.', 'Le tableau est accroché au mur.']),
+      vocab('sp-wechselpraepositionen-schrank', 'der Schrank', 'the cupboard, wardrobe', 'l’armoire, le placard', 'der', 'SCHRANK', 'dair SHRAHNK', ['Die Jacke hängt im Schrank.', 'The jacket is hanging in the wardrobe.', 'La veste est pendue dans l’armoire.']),
+      vocab('sp-wechselpraepositionen-regal', 'das Regal', 'the shelf', 'l’étagère', 'das', 're-GAL', 'dahs ray-GAHL', ['Die Bücher stehen im Regal.', 'The books are on the shelf.', 'Les livres sont sur l’étagère.']),
+    ]),
     match(
       'sp-wp-e3',
       [
@@ -149,8 +151,10 @@ export const wechselpraepositionen = defineSpecial({
         ['Das Handy liegt auf dem Tisch.', 'The phone is lying on the table.', 'Le téléphone est sur la table.'],
       ],
     ),
-    vocab('sp-wechselpraepositionen-stellen', 'stellen', 'to put (upright)', 'poser, mettre debout', null, 'STEL-len', 'SHTEL-len', ['Stell die Flasche auf den Tisch!', 'Put the bottle on the table!', 'Pose la bouteille sur la table !']),
-    vocab('sp-wechselpraepositionen-legen', 'legen', 'to lay, put (flat)', 'poser à plat, coucher', null, 'LEH-gen', 'LAY-gen', ['Leg das Buch bitte auf den Stuhl.', 'Please put the book on the chair.', 'Pose le livre sur la chaise, s’il te plaît.']),
+    wordgroup(['Verb pairs: stellen/stehen and co.', 'Paires de verbes : stellen/stehen et cie'], [
+      vocab('sp-wechselpraepositionen-stellen', 'stellen', 'to put (upright)', 'poser, mettre debout', null, 'STEL-len', 'SHTEL-len', ['Stell die Flasche auf den Tisch!', 'Put the bottle on the table!', 'Pose la bouteille sur la table !']),
+      vocab('sp-wechselpraepositionen-legen', 'legen', 'to lay, put (flat)', 'poser à plat, coucher', null, 'LEH-gen', 'LAY-gen', ['Leg das Buch bitte auf den Stuhl.', 'Please put the book on the chair.', 'Pose le livre sur la chaise, s’il te plaît.']),
+    ]),
     fb(
       'sp-wp-e7',
       ['Ich ___ die Flasche auf den Tisch. (put upright)', 'Ich ___ die Flasche auf den Tisch. (poser debout)'],
@@ -204,8 +208,10 @@ export const wechselpraepositionen = defineSpecial({
         ['Ich fahre aufs Land.', 'I am going to the country.', 'Je vais à la campagne.'],
       ],
     ),
-    vocab('sp-wechselpraepositionen-kino', 'das Kino', 'the cinema', 'le cinéma', 'das', 'KI-no', 'dahs KEE-noh', ['Wir gehen heute Abend ins Kino.', 'We are going to the cinema tonight.', 'Nous allons au cinéma ce soir.']),
-    vocab('sp-wechselpraepositionen-strand', 'der Strand', 'the beach', 'la plage', 'der', 'STRAND', 'dair SHTRAHNT', ['Am Strand ist es heute voll.', 'The beach is crowded today.', 'La plage est bondée aujourd’hui.']),
+    wordgroup(['Contractions and places', 'Contractions et lieux'], [
+      vocab('sp-wechselpraepositionen-kino', 'das Kino', 'the cinema', 'le cinéma', 'das', 'KI-no', 'dahs KEE-noh', ['Wir gehen heute Abend ins Kino.', 'We are going to the cinema tonight.', 'Nous allons au cinéma ce soir.']),
+      vocab('sp-wechselpraepositionen-strand', 'der Strand', 'the beach', 'la plage', 'der', 'STRAND', 'dair SHTRAHNT', ['Am Strand ist es heute voll.', 'The beach is crowded today.', 'La plage est bondée aujourd’hui.']),
+    ]),
     fb(
       'sp-wp-e13',
       ['Wir gehen heute Abend ___ Kino. (in das, contracted)', 'Wir gehen heute Abend ___ Kino. (in das, contracté)'],

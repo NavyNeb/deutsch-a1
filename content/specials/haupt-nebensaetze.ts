@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const hauptNebensaetze = defineSpecial({
   slug: 'haupt-nebensaetze',
@@ -93,9 +93,11 @@ Une **virgule** sépare toujours le Nebensatz de la principale : Ich lerne Deuts
       ],
       'verb-second',
     ),
-    vocab('sp-haupt-nebensaetze-hauptsatz', 'der Hauptsatz', 'main clause', 'la proposition principale', 'der', 'HAUPT-satz', 'HOWPT-zats', ['Im Hauptsatz steht das Verb an Position 2.', 'In the main clause the verb is in position 2.', 'Dans la principale, le verbe est en position 2.']),
-    vocab('sp-haupt-nebensaetze-nebensatz', 'der Nebensatz', 'subordinate clause', 'la proposition subordonnée', 'der', 'NE-ben-satz', 'NAY-ben-zats', ['Im Nebensatz steht das Verb am Ende.', 'In the subordinate clause the verb is at the end.', 'Dans la subordonnée, le verbe est à la fin.']),
-    vocab('sp-haupt-nebensaetze-konjunktion', 'die Konjunktion', 'conjunction', 'la conjonction', 'die', 'Kon-junk-TION', 'kon-yoonk-TSYOHN', ['Weil ist eine Konjunktion.', 'Weil is a conjunction.', 'Weil est une conjonction.']),
+    wordgroup(['What is a clause?', 'Qu’est-ce qu’une proposition ?'], [
+      vocab('sp-haupt-nebensaetze-hauptsatz', 'der Hauptsatz', 'main clause', 'la proposition principale', 'der', 'HAUPT-satz', 'HOWPT-zats', ['Im Hauptsatz steht das Verb an Position 2.', 'In the main clause the verb is in position 2.', 'Dans la principale, le verbe est en position 2.']),
+      vocab('sp-haupt-nebensaetze-nebensatz', 'der Nebensatz', 'subordinate clause', 'la proposition subordonnée', 'der', 'NE-ben-satz', 'NAY-ben-zats', ['Im Nebensatz steht das Verb am Ende.', 'In the subordinate clause the verb is at the end.', 'Dans la subordonnée, le verbe est à la fin.']),
+      vocab('sp-haupt-nebensaetze-konjunktion', 'die Konjunktion', 'conjunction', 'la conjonction', 'die', 'Kon-junk-TION', 'kon-yoonk-TSYOHN', ['Weil ist eine Konjunktion.', 'Weil is a conjunction.', 'Weil est une conjonction.']),
+    ]),
     mc(
       'sp-hn-e1',
       ['Which of these is a Hauptsatz (it can stand alone)?', 'Lequel est un Hauptsatz (il peut exister seul) ?'],
@@ -200,8 +202,10 @@ D’autres adverbes fonctionnent pareil : **dann** (ensuite), **außerdem** (en 
       ],
       'verb-second',
     ),
-    vocab('sp-haupt-nebensaetze-deswegen', 'deswegen', 'therefore', 'c’est pourquoi, donc', null, 'DES-we-gen', 'DES-vay-gen', ['Ich bin krank, deswegen bleibe ich im Bett.', 'I am ill, therefore I stay in bed.', 'Je suis malade, donc je reste au lit.']),
-    vocab('sp-haupt-nebensaetze-sondern', 'sondern', 'but rather', 'mais plutôt', null, 'SON-dern', 'ZON-dern', ['Ich trinke keinen Kaffee, sondern Tee.', 'I do not drink coffee but tea.', 'Je ne bois pas de café mais du thé.']),
+    wordgroup(['Hauptsatz + Hauptsatz', 'Hauptsatz + Hauptsatz'], [
+      vocab('sp-haupt-nebensaetze-deswegen', 'deswegen', 'therefore', 'c’est pourquoi, donc', null, 'DES-we-gen', 'DES-vay-gen', ['Ich bin krank, deswegen bleibe ich im Bett.', 'I am ill, therefore I stay in bed.', 'Je suis malade, donc je reste au lit.']),
+      vocab('sp-haupt-nebensaetze-sondern', 'sondern', 'but rather', 'mais plutôt', null, 'SON-dern', 'ZON-dern', ['Ich trinke keinen Kaffee, sondern Tee.', 'I do not drink coffee but tea.', 'Je ne bois pas de café mais du thé.']),
+    ]),
     mc(
       'sp-hn-e4',
       ['"Ich bleibe hier, ___ ich bin krank." (the verb "bin" is in position 2)', '« Ich bleibe hier, ___ ich bin krank. » (le verbe « bin » est en position 2)'],
@@ -274,9 +278,11 @@ Le Nebensatz est **un bloc**, fermé à l’arrière par le verbe conjugué. Tou
       ],
       'satzklammer',
     ),
-    vocab('sp-haupt-nebensaetze-weil', 'weil', 'because (subordinate)', 'parce que', null, 'WEIL', 'VILE', ['Ich lerne, weil ich eine Prüfung habe.', 'I am studying because I have an exam.', 'J’étudie parce que j’ai un examen.']),
-    vocab('sp-haupt-nebensaetze-dass', 'dass', 'that', 'que', null, 'DASS', 'DAHSS', ['Ich weiß, dass du müde bist.', 'I know that you are tired.', 'Je sais que tu es fatigué.']),
-    vocab('sp-haupt-nebensaetze-ob', 'ob', 'whether, if', 'si (interrogatif)', null, 'OB', 'OP', ['Ich weiß nicht, ob er kommt.', 'I do not know whether he is coming.', 'Je ne sais pas s’il vient.']),
+    wordgroup(['The Nebensatz: verb at the end', 'Le Nebensatz : verbe à la fin'], [
+      vocab('sp-haupt-nebensaetze-weil', 'weil', 'because (subordinate)', 'parce que', null, 'WEIL', 'VILE', ['Ich lerne, weil ich eine Prüfung habe.', 'I am studying because I have an exam.', 'J’étudie parce que j’ai un examen.']),
+      vocab('sp-haupt-nebensaetze-dass', 'dass', 'that', 'que', null, 'DASS', 'DAHSS', ['Ich weiß, dass du müde bist.', 'I know that you are tired.', 'Je sais que tu es fatigué.']),
+      vocab('sp-haupt-nebensaetze-ob', 'ob', 'whether, if', 'si (interrogatif)', null, 'OB', 'OP', ['Ich weiß nicht, ob er kommt.', 'I do not know whether he is coming.', 'Je ne sais pas s’il vient.']),
+    ]),
     fb(
       'sp-hn-e7',
       ['Ich bleibe zu Hause, weil ich krank ___. (sein)', 'Ich bleibe zu Hause, weil ich krank ___. (sein)'],
@@ -500,10 +506,12 @@ Pourquoi choisir cet ordre ? On met le **contexte important en premier** : *« C
       ],
       'satzklammer',
     ),
-    vocab('sp-haupt-nebensaetze-obwohl', 'obwohl', 'although', 'bien que', null, 'ob-WOHL', 'op-VOHL', ['Er bleibt, obwohl es spät ist.', 'He stays although it is late.', 'Il reste bien qu’il soit tard.']),
-    vocab('sp-haupt-nebensaetze-damit', 'damit', 'so that', 'pour que', null, 'da-MIT', 'dah-MIT', ['Ich schreibe es auf, damit ich es nicht vergesse.', 'I write it down so that I do not forget it.', 'Je le note pour ne pas l’oublier.']),
-    vocab('sp-haupt-nebensaetze-waehrend', 'während', 'while', 'pendant que', null, 'WÄH-rend', 'VAY-rent', ['Ich höre Musik, während ich koche.', 'I listen to music while I cook.', 'J’écoute de la musique pendant que je cuisine.']),
-    vocab('sp-haupt-nebensaetze-nachdem', 'nachdem', 'after', 'après que', null, 'nach-DEM', 'nahkh-DAYM', ['Nachdem ich gegessen habe, gehe ich spazieren.', 'After I have eaten, I go for a walk.', 'Après avoir mangé, je vais me promener.']),
+    wordgroup(['More conjunctions for the Nebensatz', 'D’autres conjonctions pour le Nebensatz'], [
+      vocab('sp-haupt-nebensaetze-obwohl', 'obwohl', 'although', 'bien que', null, 'ob-WOHL', 'op-VOHL', ['Er bleibt, obwohl es spät ist.', 'He stays although it is late.', 'Il reste bien qu’il soit tard.']),
+      vocab('sp-haupt-nebensaetze-damit', 'damit', 'so that', 'pour que', null, 'da-MIT', 'dah-MIT', ['Ich schreibe es auf, damit ich es nicht vergesse.', 'I write it down so that I do not forget it.', 'Je le note pour ne pas l’oublier.']),
+      vocab('sp-haupt-nebensaetze-waehrend', 'während', 'while', 'pendant que', null, 'WÄH-rend', 'VAY-rent', ['Ich höre Musik, während ich koche.', 'I listen to music while I cook.', 'J’écoute de la musique pendant que je cuisine.']),
+      vocab('sp-haupt-nebensaetze-nachdem', 'nachdem', 'after', 'après que', null, 'nach-DEM', 'nahkh-DAYM', ['Nachdem ich gegessen habe, gehe ich spazieren.', 'After I have eaten, I go for a walk.', 'Après avoir mangé, je vais me promener.']),
+    ]),
     mc(
       'sp-hn-e16',
       ['"Er geht zur Arbeit, ___ er krank ist." (although)', '« Er geht zur Arbeit, ___ er krank ist. » (bien que)'],

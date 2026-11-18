@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const wortstellung = defineSpecial({
   slug: 'wortstellung',
@@ -80,9 +80,11 @@ export const wortstellung = defineSpecial({
         ['Er ist müde, aber er arbeitet weiter.', 'He is tired, but he keeps working.', 'Il est fatigué, mais il continue à travailler.'],
       ],
     ),
-    vocab('sp-wortstellung-satz', 'der Satz', 'the sentence', 'la phrase', 'der', 'SATZ', 'dair ZATS', ['Der Satz ist zu lang.', 'The sentence is too long.', 'La phrase est trop longue.']),
-    vocab('sp-wortstellung-reihenfolge', 'die Reihenfolge', 'the order, sequence', 'l’ordre, la séquence', 'die', 'REI-hen-fol-ge', 'dee RYE-en-fol-geh', ['Die Reihenfolge ist wichtig.', 'The order is important.', 'L’ordre est important.']),
-    vocab('sp-wortstellung-nebensatz', 'der Nebensatz', 'the subordinate clause', 'la subordonnée', 'der', 'NE-ben-satz', 'dair NAY-ben-zats', ['Im Nebensatz steht das Verb am Ende.', 'In a subordinate clause the verb is at the end.', 'Dans une subordonnée, le verbe est à la fin.']),
+    wordgroup(['The verb in second place', 'Le verbe en 2e position'], [
+      vocab('sp-wortstellung-satz', 'der Satz', 'the sentence', 'la phrase', 'der', 'SATZ', 'dair ZATS', ['Der Satz ist zu lang.', 'The sentence is too long.', 'La phrase est trop longue.']),
+      vocab('sp-wortstellung-reihenfolge', 'die Reihenfolge', 'the order, sequence', 'l’ordre, la séquence', 'die', 'REI-hen-fol-ge', 'dee RYE-en-fol-geh', ['Die Reihenfolge ist wichtig.', 'The order is important.', 'L’ordre est important.']),
+      vocab('sp-wortstellung-nebensatz', 'der Nebensatz', 'the subordinate clause', 'la subordonnée', 'der', 'NE-ben-satz', 'dair NAY-ben-zats', ['Im Nebensatz steht das Verb am Ende.', 'In a subordinate clause the verb is at the end.', 'Dans une subordonnée, le verbe est à la fin.']),
+    ]),
     mc(
       'sp-ws-e1',
       ['"Morgen ___ wir nach Berlin." Which verb form fits position 2?', '« Morgen ___ wir nach Berlin. » Quelle forme verbale va en position 2 ?'],

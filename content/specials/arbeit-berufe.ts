@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const arbeitBerufe = defineSpecial({
   slug: 'arbeit-berufe',
@@ -47,13 +47,24 @@ export const arbeitBerufe = defineSpecial({
       'Professions', 'Les métiers',
       'Lehrer or Lehrerin? Most professions have two forms.', 'Lehrer ou Lehrerin ? La plupart des métiers ont deux formes.',
     ),
-    vocab('sp-arbeit-berufe-beruf', 'der Beruf', 'the profession', 'le métier', 'der', 'be-RUF', 'dair beh-ROOF', ['Mein Beruf ist Krankenschwester.', 'My profession is nurse.', 'Mon métier est infirmière.']),
-    vocab('sp-arbeit-berufe-lehrer', 'der Lehrer', 'the teacher', 'l’enseignant / l’enseignante', 'der', 'LEH-rer', 'dair LAY-rer', ['Die Lehrerin heißt Frau Weber.', 'The teacher is called Mrs Weber.', 'L’enseignante s’appelle Madame Weber.']),
-    vocab('sp-arbeit-berufe-arzt', 'der Arzt', 'the doctor', 'le médecin', 'der', 'ARZT', 'dair ARTST', ['Meine Ärztin ist sehr nett.', 'My doctor is very kind.', 'Ma médecin est très gentille.']),
-    vocab('sp-arbeit-berufe-verkaeufer', 'der Verkäufer', 'the sales assistant', 'le vendeur / la vendeuse', 'der', 'fer-KOY-fer', 'dair fer-KOY-fer', ['Der Verkäufer hilft mir gern.', 'The sales assistant gladly helps me.', 'Le vendeur m’aide volontiers.']),
-    vocab('sp-arbeit-berufe-koch', 'der Koch', 'the cook, chef', 'le cuisinier / la cuisinière', 'der', 'KOCH', 'dair KOKH', ['Mein Bruder ist Koch in einem Restaurant.', 'My brother is a cook in a restaurant.', 'Mon frère est cuisinier dans un restaurant.']),
-    vocab('sp-arbeit-berufe-ingenieur', 'der Ingenieur', 'the engineer', 'l’ingénieur / l’ingénieure', 'der', 'in-zhen-YÖR', 'dair an-zheh-NYOER', ['Sie ist Ingenieurin bei Siemens.', 'She is an engineer at Siemens.', 'Elle est ingénieure chez Siemens.']),
-    vocab('sp-arbeit-berufe-student', 'der Student', 'the student (university)', 'l’étudiant / l’étudiante', 'der', 'shtu-DENT', 'dair shtoo-DENT', ['Ich bin Student und arbeite nebenbei.', 'I am a student and work on the side.', 'Je suis étudiant et je travaille à côté.']),
+    situation(
+      ['Was bist du von Beruf?', 'Quel est ton métier ?'],
+      ['Two people meet at a course.', 'Deux personnes se rencontrent lors d’un cours.'],
+      [
+        ['Anna', 'Was machst du beruflich?', 'What do you do for a living?', 'Que fais-tu comme métier ?'],
+        ['Tom', 'Ich bin Lehrer. Und du?', 'I am a teacher. And you?', 'Je suis professeur. Et toi ?'],
+        ['Anna', 'Ich bin Ärztin. Meine Schwester ist Verkäuferin.', 'I am a doctor. My sister is a sales assistant.', 'Je suis médecin. Ma sœur est vendeuse.'],
+      ],
+    ),
+    wordgroup(['Professions', 'Les métiers'], [
+      vocab('sp-arbeit-berufe-beruf', 'der Beruf', 'the profession', 'le métier', 'der', 'be-RUF', 'dair beh-ROOF', ['Mein Beruf ist Krankenschwester.', 'My profession is nurse.', 'Mon métier est infirmière.']),
+      vocab('sp-arbeit-berufe-lehrer', 'der Lehrer', 'the teacher', 'l’enseignant / l’enseignante', 'der', 'LEH-rer', 'dair LAY-rer', ['Die Lehrerin heißt Frau Weber.', 'The teacher is called Mrs Weber.', 'L’enseignante s’appelle Madame Weber.']),
+      vocab('sp-arbeit-berufe-arzt', 'der Arzt', 'the doctor', 'le médecin', 'der', 'ARZT', 'dair ARTST', ['Meine Ärztin ist sehr nett.', 'My doctor is very kind.', 'Ma médecin est très gentille.']),
+      vocab('sp-arbeit-berufe-verkaeufer', 'der Verkäufer', 'the sales assistant', 'le vendeur / la vendeuse', 'der', 'fer-KOY-fer', 'dair fer-KOY-fer', ['Der Verkäufer hilft mir gern.', 'The sales assistant gladly helps me.', 'Le vendeur m’aide volontiers.']),
+      vocab('sp-arbeit-berufe-koch', 'der Koch', 'the cook, chef', 'le cuisinier / la cuisinière', 'der', 'KOCH', 'dair KOKH', ['Mein Bruder ist Koch in einem Restaurant.', 'My brother is a cook in a restaurant.', 'Mon frère est cuisinier dans un restaurant.']),
+      vocab('sp-arbeit-berufe-ingenieur', 'der Ingenieur', 'the engineer', 'l’ingénieur / l’ingénieure', 'der', 'in-zhen-YÖR', 'dair an-zheh-NYOER', ['Sie ist Ingenieurin bei Siemens.', 'She is an engineer at Siemens.', 'Elle est ingénieure chez Siemens.']),
+      vocab('sp-arbeit-berufe-student', 'der Student', 'the student (university)', 'l’étudiant / l’étudiante', 'der', 'shtu-DENT', 'dair shtoo-DENT', ['Ich bin Student und arbeite nebenbei.', 'I am a student and work on the side.', 'Je suis étudiant et je travaille à côté.']),
+    ]),
     grammar(
       'sp-ab-professions',
       ['Professions: no article, feminine -in', 'Métiers : sans article, féminin en -in'],
@@ -104,12 +115,23 @@ export const arbeitBerufe = defineSpecial({
       'The workplace', 'Le lieu de travail',
       'Office, factory, shop — where you work and with whom.', 'Bureau, usine, magasin — où tu travailles et avec qui.',
     ),
-    vocab('sp-arbeit-berufe-arbeit', 'die Arbeit', 'the work, job', 'le travail', 'die', 'AR-beit', 'dee AR-bite', ['Meine Arbeit macht mir Spaß.', 'I enjoy my work.', 'J’aime mon travail.']),
-    vocab('sp-arbeit-berufe-buero', 'das Büro', 'the office', 'le bureau', 'das', 'bü-RO', 'dahs bue-ROH', ['Ich bin von neun bis fünf im Büro.', 'I am in the office from nine to five.', 'Je suis au bureau de neuf à cinq heures.']),
-    vocab('sp-arbeit-berufe-firma', 'die Firma', 'the company', 'l’entreprise', 'die', 'FIR-ma', 'dee FEER-mah', ['Die Firma hat hundert Mitarbeiter.', 'The company has a hundred employees.', 'L’entreprise a cent employés.']),
-    vocab('sp-arbeit-berufe-kollege', 'der Kollege', 'the colleague', 'le collègue / la collègue', 'der', 'ko-LEH-ge', 'dair ko-LAY-geh', ['Meine Kollegin ist sehr hilfsbereit.', 'My colleague is very helpful.', 'Ma collègue est très serviable.']),
-    vocab('sp-arbeit-berufe-chef', 'der Chef', 'the boss', 'le chef / la cheffe', 'der', 'SHEF', 'dair SHEF', ['Der Chef ist heute nicht da.', 'The boss is not here today.', 'Le chef n’est pas là aujourd’hui.']),
-    vocab('sp-arbeit-berufe-gehalt', 'das Gehalt', 'the salary', 'le salaire', 'das', 'ge-HALT', 'dahs geh-HALT', ['Das Gehalt kommt am Monatsende.', 'The salary arrives at the end of the month.', 'Le salaire arrive en fin de mois.']),
+    situation(
+      ['Im Büro', 'Au bureau'],
+      ['The first day at work.', 'Le premier jour de travail.'],
+      [
+        ['Chefin', 'Das ist Ihr Arbeitsplatz. Hier ist der Computer.', 'This is your workplace. Here is the computer.', 'Voici votre poste de travail. Ici se trouve l’ordinateur.'],
+        ['Neuer Kollege', 'Danke. Wann ist die Pause?', 'Thank you. When is the break?', 'Merci. Quand est la pause ?'],
+        ['Chefin', 'Um zwölf Uhr, in der Kantine.', 'At twelve o’clock, in the canteen.', 'À midi, à la cantine.'],
+      ],
+    ),
+    wordgroup(['The workplace', 'Le lieu de travail'], [
+      vocab('sp-arbeit-berufe-arbeit', 'die Arbeit', 'the work, job', 'le travail', 'die', 'AR-beit', 'dee AR-bite', ['Meine Arbeit macht mir Spaß.', 'I enjoy my work.', 'J’aime mon travail.']),
+      vocab('sp-arbeit-berufe-buero', 'das Büro', 'the office', 'le bureau', 'das', 'bü-RO', 'dahs bue-ROH', ['Ich bin von neun bis fünf im Büro.', 'I am in the office from nine to five.', 'Je suis au bureau de neuf à cinq heures.']),
+      vocab('sp-arbeit-berufe-firma', 'die Firma', 'the company', 'l’entreprise', 'die', 'FIR-ma', 'dee FEER-mah', ['Die Firma hat hundert Mitarbeiter.', 'The company has a hundred employees.', 'L’entreprise a cent employés.']),
+      vocab('sp-arbeit-berufe-kollege', 'der Kollege', 'the colleague', 'le collègue / la collègue', 'der', 'ko-LEH-ge', 'dair ko-LAY-geh', ['Meine Kollegin ist sehr hilfsbereit.', 'My colleague is very helpful.', 'Ma collègue est très serviable.']),
+      vocab('sp-arbeit-berufe-chef', 'der Chef', 'the boss', 'le chef / la cheffe', 'der', 'SHEF', 'dair SHEF', ['Der Chef ist heute nicht da.', 'The boss is not here today.', 'Le chef n’est pas là aujourd’hui.']),
+      vocab('sp-arbeit-berufe-gehalt', 'das Gehalt', 'the salary', 'le salaire', 'das', 'ge-HALT', 'dahs geh-HALT', ['Das Gehalt kommt am Monatsende.', 'The salary arrives at the end of the month.', 'Le salaire arrive en fin de mois.']),
+    ]),
     grammar(
       'sp-ab-bei',
       ['Where do you work? bei, in, als', 'Où travailles-tu ? bei, in, als'],
@@ -145,11 +167,22 @@ export const arbeitBerufe = defineSpecial({
       'Work verbs', 'Les verbes du travail',
       'arbeiten, verdienen, anrufen — and the verbs that split.', 'arbeiten, verdienen, anrufen — et les verbes qui se séparent.',
     ),
-    vocab('sp-arbeit-berufe-arbeiten', 'arbeiten', 'to work', 'travailler', null, 'AR-bei-ten', 'AR-bye-ten', ['Wir arbeiten heute bis achtzehn Uhr.', 'We work until six p.m. today.', 'Nous travaillons aujourd’hui jusqu’à dix-huit heures.']),
-    vocab('sp-arbeit-berufe-verdienen', 'verdienen', 'to earn', 'gagner (de l’argent)', null, 'fer-DI-nen', 'fer-DEE-nen', ['Sie verdient gut.', 'She earns a good salary.', 'Elle gagne bien sa vie.']),
-    vocab('sp-arbeit-berufe-anrufen', 'anrufen', 'to call (phone)', 'appeler (téléphone)', null, 'AN-ru-fen', 'AHN-roo-fen', ['Ich rufe dich morgen an.', 'I will call you tomorrow.', 'Je t’appelle demain.']),
-    vocab('sp-arbeit-berufe-bewerben', 'sich bewerben', 'to apply (for a job)', 'postuler', null, 'be-VER-ben', 'zikh beh-VER-ben', ['Ich bewerbe mich bei einer Firma.', 'I am applying to a company.', 'Je postule dans une entreprise.']),
-    vocab('sp-arbeit-berufe-kuendigen', 'kündigen', 'to hand in notice / to cancel', 'démissionner / résilier', null, 'KÜN-di-gen', 'KUEN-dee-gen', ['Er hat seine Arbeit gekündigt.', 'He has quit his job.', 'Il a démissionné de son travail.']),
+    situation(
+      ['Der Arbeitstag', 'La journée de travail'],
+      ['Two colleagues chat.', 'Deux collègues bavardent.'],
+      [
+        ['Mia', 'Ich arbeite von acht bis fünf. Ich schreibe E-Mails und telefoniere.', 'I work from eight to five. I write e-mails and make phone calls.', 'Je travaille de huit heures à dix-sept heures. J’écris des e-mails et je téléphone.'],
+        ['Ben', 'Und wann hast du Feierabend?', 'And when do you finish for the day?', 'Et quand finis-tu ta journée ?'],
+        ['Mia', 'Um fünf. Dann gehe ich nach Hause.', 'At five. Then I go home.', 'À dix-sept heures. Ensuite je rentre.'],
+      ],
+    ),
+    wordgroup(['Work verbs', 'Les verbes du travail'], [
+      vocab('sp-arbeit-berufe-arbeiten', 'arbeiten', 'to work', 'travailler', null, 'AR-bei-ten', 'AR-bye-ten', ['Wir arbeiten heute bis achtzehn Uhr.', 'We work until six p.m. today.', 'Nous travaillons aujourd’hui jusqu’à dix-huit heures.']),
+      vocab('sp-arbeit-berufe-verdienen', 'verdienen', 'to earn', 'gagner (de l’argent)', null, 'fer-DI-nen', 'fer-DEE-nen', ['Sie verdient gut.', 'She earns a good salary.', 'Elle gagne bien sa vie.']),
+      vocab('sp-arbeit-berufe-anrufen', 'anrufen', 'to call (phone)', 'appeler (téléphone)', null, 'AN-ru-fen', 'AHN-roo-fen', ['Ich rufe dich morgen an.', 'I will call you tomorrow.', 'Je t’appelle demain.']),
+      vocab('sp-arbeit-berufe-bewerben', 'sich bewerben', 'to apply (for a job)', 'postuler', null, 'be-VER-ben', 'zikh beh-VER-ben', ['Ich bewerbe mich bei einer Firma.', 'I am applying to a company.', 'Je postule dans une entreprise.']),
+      vocab('sp-arbeit-berufe-kuendigen', 'kündigen', 'to hand in notice / to cancel', 'démissionner / résilier', null, 'KÜN-di-gen', 'KUEN-dee-gen', ['Er hat seine Arbeit gekündigt.', 'He has quit his job.', 'Il a démissionné de son travail.']),
+    ]),
     grammar(
       'sp-ab-verbs',
       ['Work verbs: regular, separable, reflexive', 'Verbes du travail : réguliers, séparables, réfléchis'],
@@ -195,11 +228,23 @@ export const arbeitBerufe = defineSpecial({
       'Appointments', 'Les rendez-vous',
       'Make, move and cancel an appointment — politely.', 'Prendre, déplacer et annuler un rendez-vous — poliment.',
     ),
-    vocab('sp-arbeit-berufe-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich möchte einen Termin machen.', 'I would like to make an appointment.', 'Je voudrais prendre rendez-vous.']),
-    vocab('sp-arbeit-berufe-besprechung', 'die Besprechung', 'the meeting', 'la réunion', 'die', 'be-SPRE-chung', 'dee beh-SHPREH-khoong', ['Die Besprechung beginnt um zehn Uhr.', 'The meeting starts at ten.', 'La réunion commence à dix heures.']),
-    vocab('sp-arbeit-berufe-absagen', 'absagen', 'to cancel', 'annuler', null, 'AB-sa-gen', 'AHP-zaa-gen', ['Leider muss ich den Termin absagen.', 'Unfortunately I have to cancel the appointment.', 'Malheureusement, je dois annuler le rendez-vous.']),
-    vocab('sp-arbeit-berufe-verschieben', 'verschieben', 'to postpone', 'reporter, déplacer', null, 'fer-SHI-ben', 'fer-SHEE-ben', ['Können wir den Termin verschieben?', 'Can we postpone the appointment?', 'Pouvons-nous reporter le rendez-vous ?']),
-    vocab('sp-arbeit-berufe-zeit', 'die Zeit', 'the time', 'le temps', 'die', 'TSEIT', 'dee TSITE', ['Haben Sie am Dienstag Zeit?', 'Do you have time on Tuesday?', 'Avez-vous du temps mardi ?']),
+    situation(
+      ['Einen Termin machen', 'Prendre rendez-vous'],
+      ['A phone call to a practice.', 'Un appel téléphonique à un cabinet.'],
+      [
+        ['Empfang', 'Praxis Dr. Berger, guten Tag.', 'Dr Berger’s practice, good day.', 'Cabinet du Dr Berger, bonjour.'],
+        ['Kunde', 'Guten Tag, ich möchte einen Termin vereinbaren.', 'Good day, I would like to make an appointment.', 'Bonjour, je voudrais prendre rendez-vous.'],
+        ['Empfang', 'Geht es am Dienstag um zehn Uhr?', 'Does Tuesday at ten o’clock work?', 'Mardi à dix heures, cela vous convient ?'],
+        ['Kunde', 'Ja, das passt. Vielen Dank.', 'Yes, that suits me. Thank you very much.', 'Oui, cela me convient. Merci beaucoup.'],
+      ],
+    ),
+    wordgroup(['Appointments', 'Les rendez-vous'], [
+      vocab('sp-arbeit-berufe-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich möchte einen Termin machen.', 'I would like to make an appointment.', 'Je voudrais prendre rendez-vous.']),
+      vocab('sp-arbeit-berufe-besprechung', 'die Besprechung', 'the meeting', 'la réunion', 'die', 'be-SPRE-chung', 'dee beh-SHPREH-khoong', ['Die Besprechung beginnt um zehn Uhr.', 'The meeting starts at ten.', 'La réunion commence à dix heures.']),
+      vocab('sp-arbeit-berufe-absagen', 'absagen', 'to cancel', 'annuler', null, 'AB-sa-gen', 'AHP-zaa-gen', ['Leider muss ich den Termin absagen.', 'Unfortunately I have to cancel the appointment.', 'Malheureusement, je dois annuler le rendez-vous.']),
+      vocab('sp-arbeit-berufe-verschieben', 'verschieben', 'to postpone', 'reporter, déplacer', null, 'fer-SHI-ben', 'fer-SHEE-ben', ['Können wir den Termin verschieben?', 'Can we postpone the appointment?', 'Pouvons-nous reporter le rendez-vous ?']),
+      vocab('sp-arbeit-berufe-zeit', 'die Zeit', 'the time', 'le temps', 'die', 'TSEIT', 'dee TSITE', ['Haben Sie am Dienstag Zeit?', 'Do you have time on Tuesday?', 'Avez-vous du temps mardi ?']),
+    ]),
     grammar(
       'sp-ab-appointments',
       ['Making an appointment', 'Prendre rendez-vous'],
@@ -235,10 +280,21 @@ export const arbeitBerufe = defineSpecial({
       'The application', 'La candidature',
       'Your first CV, job ads and a short cover letter.', 'Ton premier CV, des offres d’emploi et une courte lettre de motivation.',
     ),
-    vocab('sp-arbeit-berufe-bewerbung', 'die Bewerbung', 'the application', 'la candidature', 'die', 'be-VER-bung', 'dee beh-VER-boong', ['Ich schreibe eine Bewerbung für den Job.', 'I am writing an application for the job.', 'J’écris une candidature pour le poste.']),
-    vocab('sp-arbeit-berufe-lebenslauf', 'der Lebenslauf', 'the CV', 'le CV', 'der', 'LE-bens-lauf', 'dair LAY-bens-lowf', ['Im Lebenslauf stehen meine Berufe.', 'My jobs are listed in the CV.', 'Mes emplois sont dans le CV.']),
-    vocab('sp-arbeit-berufe-stelle', 'die Stelle', 'the job, position', 'le poste', 'die', 'STEL-le', 'dee SHTEL-eh', ['Die Stelle ist ab Januar frei.', 'The job is vacant from January.', 'Le poste est libre à partir de janvier.']),
-    vocab('sp-arbeit-berufe-erfahrung', 'die Erfahrung', 'the experience', 'l’expérience', 'die', 'er-FAH-rung', 'dee er-FAA-roong', ['Ich habe zwei Jahre Erfahrung.', 'I have two years of experience.', 'J’ai deux ans d’expérience.']),
+    situation(
+      ['Die Bewerbung', 'La candidature'],
+      ['Lea prepares a job application.', 'Lea prépare une candidature.'],
+      [
+        ['Lea', 'Ich schreibe meine Bewerbung für die Stelle als Verkäuferin.', 'I am writing my application for the position of sales assistant.', 'J’écris ma candidature pour le poste de vendeuse.'],
+        ['Max', 'Hast du schon den Lebenslauf?', 'Do you already have your CV?', 'As-tu déjà ton CV ?'],
+        ['Lea', 'Ja, und morgen habe ich ein Vorstellungsgespräch.', 'Yes, and tomorrow I have a job interview.', 'Oui, et demain j’ai un entretien d’embauche.'],
+      ],
+    ),
+    wordgroup(['The application', 'La candidature'], [
+      vocab('sp-arbeit-berufe-bewerbung', 'die Bewerbung', 'the application', 'la candidature', 'die', 'be-VER-bung', 'dee beh-VER-boong', ['Ich schreibe eine Bewerbung für den Job.', 'I am writing an application for the job.', 'J’écris une candidature pour le poste.']),
+      vocab('sp-arbeit-berufe-lebenslauf', 'der Lebenslauf', 'the CV', 'le CV', 'der', 'LE-bens-lauf', 'dair LAY-bens-lowf', ['Im Lebenslauf stehen meine Berufe.', 'My jobs are listed in the CV.', 'Mes emplois sont dans le CV.']),
+      vocab('sp-arbeit-berufe-stelle', 'die Stelle', 'the job, position', 'le poste', 'die', 'STEL-le', 'dee SHTEL-eh', ['Die Stelle ist ab Januar frei.', 'The job is vacant from January.', 'Le poste est libre à partir de janvier.']),
+      vocab('sp-arbeit-berufe-erfahrung', 'die Erfahrung', 'the experience', 'l’expérience', 'die', 'er-FAH-rung', 'dee er-FAA-roong', ['Ich habe zwei Jahre Erfahrung.', 'I have two years of experience.', 'J’ai deux ans d’expérience.']),
+    ]),
     grammar(
       'sp-ab-application',
       ['A short application letter', 'Une courte lettre de candidature'],

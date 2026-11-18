@@ -53,3 +53,52 @@ describe('special-course schema', () => {
     expect(p.special.bookRefs[0].lektion).toBeUndefined();
   });
 });
+
+const vi1 = { id: 'w1', german: 'der Kaffee', english: 'coffee', gender: 'der', syllables: ['kaf', 'FEE'], example: { de: 'Ich trinke Kaffee.', en: 'I drink coffee.' } };
+
+describe('lesson redesign step types', () => {
+  it('parses a situation step with dialogue lines and key words', () => {
+    const s = LessonStepSchema.parse({
+      kind: 'situation', title: 'Im Café', setting: 'Two friends order drinks.',
+      lines: [{ who: 'Ana', de: 'Hallo!', en: 'Hi!' }, { who: 'Ben', de: 'Ein Kaffee, bitte.', en: 'A coffee, please.', fr: 'Un café, s’il vous plaît.' }],
+      words: [vi1],
+    });
+    expect(s.kind === 'situation' && s.lines).toHaveLength(2);
+    expect(s.kind === 'situation' && s.words[0].id).toBe('w1');
+  });
+  it('rejects a situation with fewer than two lines', () => {
+    expect(LessonStepSchema.safeParse({ kind: 'situation', title: 't', setting: 's', lines: [{ who: 'A', de: 'Hi', en: 'Hi' }], words: [] }).success).toBe(false);
+  });
+  it('parses a wordgroup step and rejects a single word', () => {
+    const ok = LessonStepSchema.safeParse({ kind: 'wordgroup', title: 'Drinks', items: [vi1, { ...vi1, id: 'w2' }] });
+    expect(ok.success).toBe(true);
+    expect(LessonStepSchema.safeParse({ kind: 'wordgroup', title: 'Drinks', items: [vi1] }).success).toBe(false);
+  });
+  it('parses a rich grammar note with table, anatomy, contrast and mistakes', () => {
+    const s = LessonStepSchema.parse({
+      kind: 'grammar',
+      note: {
+        id: 'n1', title: 'Verb second', explanationMd: 'x', examples: [{ de: 'Ich lerne.', en: 'I learn.' }],
+        lead: 'Use it for every statement.',
+        tables: [{ title: 'sein', headers: ['ich', 'du'], rows: [['bin', 'bist']], highlightCol: 0 }],
+        anatomy: [{ parts: [{ text: 'Ich', role: 'subject' }, { text: 'lerne', role: 'verb' }], en: 'I learn.' }],
+        contrast: { a: { label: 'obwohl', examples: [{ de: 'Obwohl es regnet, gehe ich.', en: 'Although it rains, I go.' }] }, b: { label: 'trotzdem', examples: [{ de: 'Es regnet. Trotzdem gehe ich.', en: 'It rains. Still I go.' }] } },
+        mistakes: [{ wrong: 'Ich lerne Deutsch gern.', right: 'Ich lerne gern Deutsch.', why: 'gern comes before the object.' }],
+      },
+    });
+    expect(s.kind === 'grammar' && s.note.tables?.[0].rows[0]).toEqual(['bin', 'bist']);
+    expect(s.kind === 'grammar' && s.note.anatomy?.[0].parts[1].role).toBe('verb');
+  });
+  it('accepts French headers and cells on a table', () => {
+    const s = LessonStepSchema.parse({ kind: 'grammar', note: { id: 'n', title: 't', explanationMd: 'x', examples: [], tables: [{ title: 't', headers: ['When'], headersFr: ['Quand'], rows: [['morning']], rowsFr: [['matin']] }] } });
+    expect(s.kind === 'grammar' && s.note.tables?.[0].rowsFr?.[0][0]).toBe('matin');
+  });
+  it('rejects an unknown anatomy role', () => {
+    const bad = { kind: 'grammar', note: { id: 'n', title: 't', explanationMd: 'x', examples: [], anatomy: [{ parts: [{ text: 'a', role: 'banana' }], en: 'a' }] } };
+    expect(LessonStepSchema.safeParse(bad).success).toBe(false);
+  });
+  it('parses a wrapup with a summary card', () => {
+    const s = LessonStepSchema.parse({ kind: 'wrapup', summary: 'Done', card: { title: 'Cheat sheet', sections: [{ heading: 'sein', rows: [{ de: 'ich bin', en: 'I am', fr: 'je suis' }] }] } });
+    expect(s.kind === 'wrapup' && s.card?.sections[0].rows[0].de).toBe('ich bin');
+  });
+});

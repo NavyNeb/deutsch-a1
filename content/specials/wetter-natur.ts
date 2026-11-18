@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const wetterNatur = defineSpecial({
   slug: 'wetter-natur',
@@ -47,14 +47,27 @@ export const wetterNatur = defineSpecial({
       'The weather', 'Le temps',
       'Sunny, cloudy, rainy — and the little word es.', 'Ensoleillé, nuageux, pluvieux — et le petit mot es.',
     ),
-    vocab('sp-wetter-natur-wetter', 'das Wetter', 'the weather', 'le temps (météo)', 'das', 'WE-ter', 'dahs VET-er', ['Das Wetter ist heute schön.', 'The weather is nice today.', 'Il fait beau aujourd’hui.']),
-    vocab('sp-wetter-natur-sonne', 'die Sonne', 'the sun', 'le soleil', 'die', 'SO-ne', 'dee ZON-eh', ['Die Sonne scheint den ganzen Tag.', 'The sun shines all day.', 'Le soleil brille toute la journée.']),
-    vocab('sp-wetter-natur-regen', 'der Regen', 'the rain', 'la pluie', 'der', 'RE-gen', 'dair RAY-gen', ['Bei Regen bleibe ich zu Hause.', 'When it rains I stay at home.', 'Quand il pleut, je reste à la maison.']),
-    vocab('sp-wetter-natur-schnee', 'der Schnee', 'the snow', 'la neige', 'der', 'SCHNEE', 'dair SHNAY', ['Im Winter liegt viel Schnee.', 'In winter there is a lot of snow.', 'En hiver, il y a beaucoup de neige.']),
-    vocab('sp-wetter-natur-wind', 'der Wind', 'the wind', 'le vent', 'der', 'WIND', 'dair VINT', ['Heute ist starker Wind.', 'Today there is a strong wind.', 'Aujourd’hui, il y a un vent fort.']),
-    vocab('sp-wetter-natur-wolke', 'die Wolke', 'the cloud', 'le nuage', 'die', 'WOL-ke', 'dee VOL-keh', ['Am Himmel sind viele Wolken.', 'There are many clouds in the sky.', 'Il y a beaucoup de nuages dans le ciel.']),
-    vocab('sp-wetter-natur-temperatur', 'die Temperatur', 'the temperature', 'la température', 'die', 'tem-pe-ra-TUR', 'dee tem-peh-rah-TOOR', ['Die Temperatur liegt bei zwanzig Grad.', 'The temperature is around twenty degrees.', 'La température est d’environ vingt degrés.']),
-    vocab('sp-wetter-natur-grad', 'der Grad', 'the degree', 'le degré', 'der', 'GRAHD', 'dair GRAAT', ['Heute haben wir fünfzehn Grad.', 'Today it is fifteen degrees.', 'Aujourd’hui, il fait quinze degrés.']),
+    situation(
+      ['Wie ist das Wetter?', 'Quel temps fait-il ?'],
+      ['Two friends look out of the window.', 'Deux amis regardent par la fenêtre.'],
+      [
+        ['Mia', 'Wie ist das Wetter heute?', 'What is the weather like today?', 'Quel temps fait-il aujourd’hui ?'],
+        ['Tom', 'Es regnet, und es ist kalt.', 'It is raining and it is cold.', 'Il pleut et il fait froid.'],
+        ['Mia', 'Morgen scheint die Sonne, und es wird warm.', 'Tomorrow the sun shines and it gets warm.', 'Demain, il y aura du soleil et il fera chaud.'],
+      ],
+    ),
+    wordgroup(['The weather (1/2)', 'Le temps (1/2)'], [
+      vocab('sp-wetter-natur-wetter', 'das Wetter', 'the weather', 'le temps (météo)', 'das', 'WE-ter', 'dahs VET-er', ['Das Wetter ist heute schön.', 'The weather is nice today.', 'Il fait beau aujourd’hui.']),
+      vocab('sp-wetter-natur-sonne', 'die Sonne', 'the sun', 'le soleil', 'die', 'SO-ne', 'dee ZON-eh', ['Die Sonne scheint den ganzen Tag.', 'The sun shines all day.', 'Le soleil brille toute la journée.']),
+      vocab('sp-wetter-natur-regen', 'der Regen', 'the rain', 'la pluie', 'der', 'RE-gen', 'dair RAY-gen', ['Bei Regen bleibe ich zu Hause.', 'When it rains I stay at home.', 'Quand il pleut, je reste à la maison.']),
+      vocab('sp-wetter-natur-schnee', 'der Schnee', 'the snow', 'la neige', 'der', 'SCHNEE', 'dair SHNAY', ['Im Winter liegt viel Schnee.', 'In winter there is a lot of snow.', 'En hiver, il y a beaucoup de neige.']),
+    ]),
+    wordgroup(['The weather (2/2)', 'Le temps (2/2)'], [
+      vocab('sp-wetter-natur-wind', 'der Wind', 'the wind', 'le vent', 'der', 'WIND', 'dair VINT', ['Heute ist starker Wind.', 'Today there is a strong wind.', 'Aujourd’hui, il y a un vent fort.']),
+      vocab('sp-wetter-natur-wolke', 'die Wolke', 'the cloud', 'le nuage', 'die', 'WOL-ke', 'dee VOL-keh', ['Am Himmel sind viele Wolken.', 'There are many clouds in the sky.', 'Il y a beaucoup de nuages dans le ciel.']),
+      vocab('sp-wetter-natur-temperatur', 'die Temperatur', 'the temperature', 'la température', 'die', 'tem-pe-ra-TUR', 'dee tem-peh-rah-TOOR', ['Die Temperatur liegt bei zwanzig Grad.', 'The temperature is around twenty degrees.', 'La température est d’environ vingt degrés.']),
+      vocab('sp-wetter-natur-grad', 'der Grad', 'the degree', 'le degré', 'der', 'GRAHD', 'dair GRAAT', ['Heute haben wir fünfzehn Grad.', 'Today it is fifteen degrees.', 'Aujourd’hui, il fait quinze degrés.']),
+    ]),
     grammar(
       'sp-wn-weather',
       ['Weather with the impersonal es', 'La météo avec le es impersonnel'],
@@ -101,12 +114,23 @@ export const wetterNatur = defineSpecial({
       'The seasons', 'Les saisons',
       'Frühling, Sommer, Herbst, Winter — and what we do in each.', 'Frühling, Sommer, Herbst, Winter — et ce qu’on y fait.',
     ),
-    vocab('sp-wetter-natur-fruehling', 'der Frühling', 'the spring', 'le printemps', 'der', 'FRÜH-ling', 'dair FRUE-ling', ['Im Frühling blühen die Blumen.', 'In spring the flowers bloom.', 'Au printemps, les fleurs éclosent.']),
-    vocab('sp-wetter-natur-sommer', 'der Sommer', 'the summer', 'l’été', 'der', 'SO-mmer', 'dair ZOM-er', ['Im Sommer schwimme ich gern.', 'In summer I like to swim.', 'En été, j’aime nager.']),
-    vocab('sp-wetter-natur-herbst', 'der Herbst', 'the autumn', 'l’automne', 'der', 'HERBST', 'dair HERPST', ['Im Herbst fallen die Blätter.', 'In autumn the leaves fall.', 'En automne, les feuilles tombent.']),
-    vocab('sp-wetter-natur-winter', 'der Winter', 'the winter', 'l’hiver', 'der', 'WIN-ter', 'dair VIN-ter', ['Im Winter ist es sehr kalt.', 'In winter it is very cold.', 'En hiver, il fait très froid.']),
-    vocab('sp-wetter-natur-kalt', 'kalt', 'cold', 'froid', null, 'KALT', 'KAHLT', ['Heute ist es kalt.', 'It is cold today.', 'Il fait froid aujourd’hui.']),
-    vocab('sp-wetter-natur-warm', 'warm', 'warm', 'chaud, doux', null, 'WARM', 'VARM', ['Im Mai ist es schon warm.', 'In May it is already warm.', 'En mai, il fait déjà doux.']),
+    situation(
+      ['Die Jahreszeiten', 'Les saisons'],
+      ['A class talks about seasons.', 'Une classe parle des saisons.'],
+      [
+        ['Lehrer', 'Welche Jahreszeit magst du?', 'Which season do you like?', 'Quelle saison aimes-tu ?'],
+        ['Kind', 'Ich mag den Sommer, weil es warm ist.', 'I like summer because it is warm.', 'J’aime l’été parce qu’il fait chaud.'],
+        ['Lehrer', 'Im Winter schneit es, und im Herbst ist es windig.', 'In winter it snows, and in autumn it is windy.', 'En hiver, il neige, et en automne, il y a du vent.'],
+      ],
+    ),
+    wordgroup(['The seasons', 'Les saisons'], [
+      vocab('sp-wetter-natur-fruehling', 'der Frühling', 'the spring', 'le printemps', 'der', 'FRÜH-ling', 'dair FRUE-ling', ['Im Frühling blühen die Blumen.', 'In spring the flowers bloom.', 'Au printemps, les fleurs éclosent.']),
+      vocab('sp-wetter-natur-sommer', 'der Sommer', 'the summer', 'l’été', 'der', 'SO-mmer', 'dair ZOM-er', ['Im Sommer schwimme ich gern.', 'In summer I like to swim.', 'En été, j’aime nager.']),
+      vocab('sp-wetter-natur-herbst', 'der Herbst', 'the autumn', 'l’automne', 'der', 'HERBST', 'dair HERPST', ['Im Herbst fallen die Blätter.', 'In autumn the leaves fall.', 'En automne, les feuilles tombent.']),
+      vocab('sp-wetter-natur-winter', 'der Winter', 'the winter', 'l’hiver', 'der', 'WIN-ter', 'dair VIN-ter', ['Im Winter ist es sehr kalt.', 'In winter it is very cold.', 'En hiver, il fait très froid.']),
+      vocab('sp-wetter-natur-kalt', 'kalt', 'cold', 'froid', null, 'KALT', 'KAHLT', ['Heute ist es kalt.', 'It is cold today.', 'Il fait froid aujourd’hui.']),
+      vocab('sp-wetter-natur-warm', 'warm', 'warm', 'chaud, doux', null, 'WARM', 'VARM', ['Im Mai ist es schon warm.', 'In May it is already warm.', 'En mai, il fait déjà doux.']),
+    ]),
     grammar(
       'sp-wn-seasons',
       ['Seasons and typical weather', 'Saisons et temps typique'],
@@ -140,12 +164,23 @@ export const wetterNatur = defineSpecial({
       'Animals', 'Les animaux',
       'Pets, farm animals and wild animals — with their plurals.', 'Animaux de compagnie, de la ferme et sauvages — avec leurs pluriels.',
     ),
-    vocab('sp-wetter-natur-hund', 'der Hund', 'the dog', 'le chien', 'der', 'HUNT', 'dair HOONT', ['Mein Hund heißt Max.', 'My dog is called Max.', 'Mon chien s’appelle Max.']),
-    vocab('sp-wetter-natur-katze', 'die Katze', 'the cat', 'le chat', 'die', 'KAT-ze', 'dee KAT-tseh', ['Die Katze schläft auf dem Sofa.', 'The cat is sleeping on the sofa.', 'Le chat dort sur le canapé.']),
-    vocab('sp-wetter-natur-vogel', 'der Vogel', 'the bird', 'l’oiseau', 'der', 'FO-gel', 'dair FOH-gel', ['Im Garten singt ein Vogel.', 'A bird is singing in the garden.', 'Un oiseau chante dans le jardin.']),
-    vocab('sp-wetter-natur-pferd', 'das Pferd', 'the horse', 'le cheval', 'das', 'PFERT', 'dahs PFAYRT', ['Das Pferd läuft über die Wiese.', 'The horse runs across the meadow.', 'Le cheval court à travers le pré.']),
-    vocab('sp-wetter-natur-fisch', 'der Fisch', 'the fish', 'le poisson', 'der', 'FISCH', 'dair FISH', ['Im See gibt es viele Fische.', 'There are many fish in the lake.', 'Il y a beaucoup de poissons dans le lac.']),
-    vocab('sp-wetter-natur-tier', 'das Tier', 'the animal', 'l’animal', 'das', 'TIER', 'dahs TEER', ['Welches Tier magst du am liebsten?', 'Which animal do you like best?', 'Quel animal préfères-tu ?']),
+    situation(
+      ['Im Zoo', 'Au zoo'],
+      ['A father and child at the zoo.', 'Un père et son enfant au zoo.'],
+      [
+        ['Kind', 'Schau mal, der Löwe! Und dort ist ein Elefant.', 'Look, the lion! And there is an elephant.', 'Regarde, le lion ! Et là, il y a un éléphant.'],
+        ['Vater', 'Da ist auch ein Affe und ein Vogel.', 'There is also a monkey and a bird.', 'Il y a aussi un singe et un oiseau.'],
+        ['Kind', 'Ich mag Tiere. Zu Hause habe ich eine Katze.', 'I like animals. At home I have a cat.', 'J’aime les animaux. À la maison, j’ai un chat.'],
+      ],
+    ),
+    wordgroup(['Animals', 'Les animaux'], [
+      vocab('sp-wetter-natur-hund', 'der Hund', 'the dog', 'le chien', 'der', 'HUNT', 'dair HOONT', ['Mein Hund heißt Max.', 'My dog is called Max.', 'Mon chien s’appelle Max.']),
+      vocab('sp-wetter-natur-katze', 'die Katze', 'the cat', 'le chat', 'die', 'KAT-ze', 'dee KAT-tseh', ['Die Katze schläft auf dem Sofa.', 'The cat is sleeping on the sofa.', 'Le chat dort sur le canapé.']),
+      vocab('sp-wetter-natur-vogel', 'der Vogel', 'the bird', 'l’oiseau', 'der', 'FO-gel', 'dair FOH-gel', ['Im Garten singt ein Vogel.', 'A bird is singing in the garden.', 'Un oiseau chante dans le jardin.']),
+      vocab('sp-wetter-natur-pferd', 'das Pferd', 'the horse', 'le cheval', 'das', 'PFERT', 'dahs PFAYRT', ['Das Pferd läuft über die Wiese.', 'The horse runs across the meadow.', 'Le cheval court à travers le pré.']),
+      vocab('sp-wetter-natur-fisch', 'der Fisch', 'the fish', 'le poisson', 'der', 'FISCH', 'dair FISH', ['Im See gibt es viele Fische.', 'There are many fish in the lake.', 'Il y a beaucoup de poissons dans le lac.']),
+      vocab('sp-wetter-natur-tier', 'das Tier', 'the animal', 'l’animal', 'das', 'TIER', 'dahs TEER', ['Welches Tier magst du am liebsten?', 'Which animal do you like best?', 'Quel animal préfères-tu ?']),
+    ]),
     grammar(
       'sp-wn-animals',
       ['Animals: plurals and likes', 'Animaux : pluriels et préférences'],
@@ -195,12 +230,23 @@ export const wetterNatur = defineSpecial({
       'Nature and landscape', 'Nature et paysage',
       'Trees, rivers, mountains — and where we go for a walk.', 'Arbres, rivières, montagnes — et où on va se promener.',
     ),
-    vocab('sp-wetter-natur-baum', 'der Baum', 'the tree', 'l’arbre', 'der', 'BAUM', 'dair BOWM', ['Vor dem Haus steht ein großer Baum.', 'There is a big tree in front of the house.', 'Il y a un grand arbre devant la maison.']),
-    vocab('sp-wetter-natur-blume', 'die Blume', 'the flower', 'la fleur', 'die', 'BLU-me', 'dee BLOO-meh', ['Sie kauft Blumen für die Oma.', 'She buys flowers for grandma.', 'Elle achète des fleurs pour sa grand-mère.']),
-    vocab('sp-wetter-natur-wald', 'der Wald', 'the forest', 'la forêt', 'der', 'WALT', 'dair VALT', ['Am Sonntag gehen wir im Wald spazieren.', 'On Sunday we go for a walk in the forest.', 'Dimanche, nous nous promenons dans la forêt.']),
-    vocab('sp-wetter-natur-berg', 'der Berg', 'the mountain', 'la montagne', 'der', 'BERK', 'dair BERK', ['Der Berg ist dreitausend Meter hoch.', 'The mountain is three thousand metres high.', 'La montagne fait trois mille mètres de haut.']),
-    vocab('sp-wetter-natur-see', 'der See', 'the lake', 'le lac', 'der', 'SEE', 'dair ZAY', ['Im Sommer baden wir im See.', 'In summer we swim in the lake.', 'En été, nous nous baignons dans le lac.']),
-    vocab('sp-wetter-natur-fluss', 'der Fluss', 'the river', 'le fleuve, la rivière', 'der', 'FLUSS', 'dair FLOOS', ['Der Fluss fließt durch die Stadt.', 'The river flows through the city.', 'Le fleuve traverse la ville.']),
+    situation(
+      ['Wandern', 'Randonnée'],
+      ['Two friends on a hiking trail.', 'Deux amis sur un sentier de randonnée.'],
+      [
+        ['Anna', 'Wir wandern heute durch den Wald und dann zum See.', 'Today we hike through the forest and then to the lake.', 'Aujourd’hui, nous marchons à travers la forêt puis jusqu’au lac.'],
+        ['Ben', 'Der Berg ist hoch, und der Fluss ist breit.', 'The mountain is high and the river is wide.', 'La montagne est haute et la rivière est large.'],
+        ['Anna', 'Schau, die Blumen auf der Wiese sind wunderschön!', 'Look, the flowers in the meadow are beautiful!', 'Regarde, les fleurs dans la prairie sont magnifiques !'],
+      ],
+    ),
+    wordgroup(['Nature and landscape', 'Nature et paysage'], [
+      vocab('sp-wetter-natur-baum', 'der Baum', 'the tree', 'l’arbre', 'der', 'BAUM', 'dair BOWM', ['Vor dem Haus steht ein großer Baum.', 'There is a big tree in front of the house.', 'Il y a un grand arbre devant la maison.']),
+      vocab('sp-wetter-natur-blume', 'die Blume', 'the flower', 'la fleur', 'die', 'BLU-me', 'dee BLOO-meh', ['Sie kauft Blumen für die Oma.', 'She buys flowers for grandma.', 'Elle achète des fleurs pour sa grand-mère.']),
+      vocab('sp-wetter-natur-wald', 'der Wald', 'the forest', 'la forêt', 'der', 'WALT', 'dair VALT', ['Am Sonntag gehen wir im Wald spazieren.', 'On Sunday we go for a walk in the forest.', 'Dimanche, nous nous promenons dans la forêt.']),
+      vocab('sp-wetter-natur-berg', 'der Berg', 'the mountain', 'la montagne', 'der', 'BERK', 'dair BERK', ['Der Berg ist dreitausend Meter hoch.', 'The mountain is three thousand metres high.', 'La montagne fait trois mille mètres de haut.']),
+      vocab('sp-wetter-natur-see', 'der See', 'the lake', 'le lac', 'der', 'SEE', 'dair ZAY', ['Im Sommer baden wir im See.', 'In summer we swim in the lake.', 'En été, nous nous baignons dans le lac.']),
+      vocab('sp-wetter-natur-fluss', 'der Fluss', 'the river', 'le fleuve, la rivière', 'der', 'FLUSS', 'dair FLOOS', ['Der Fluss fließt durch die Stadt.', 'The river flows through the city.', 'Le fleuve traverse la ville.']),
+    ]),
     grammar(
       'sp-wn-nature',
       ['Places in nature: im, am, auf', 'Lieux dans la nature : im, am, auf'],
@@ -235,10 +281,21 @@ export const wetterNatur = defineSpecial({
       'The weather forecast', 'La prévision météo',
       'Listen to the radio and make plans: wenn es regnet…', 'Écoute la radio et fais des projets : wenn es regnet…',
     ),
-    vocab('sp-wetter-natur-vorhersage', 'die Wettervorhersage', 'the weather forecast', 'la prévision météo', 'die', 'WE-ter-vor-her-sa-ge', 'dee VET-er-fohr-hair-zaa-geh', ['Die Wettervorhersage sagt Regen voraus.', 'The forecast predicts rain.', 'La prévision annonce de la pluie.']),
-    vocab('sp-wetter-natur-gewitter', 'das Gewitter', 'the thunderstorm', 'l’orage', 'das', 'ge-WIT-ter', 'dahs geh-VIT-er', ['Am Abend gibt es ein Gewitter.', 'There will be a thunderstorm this evening.', 'Il y aura un orage ce soir.']),
-    vocab('sp-wetter-natur-nebel', 'der Nebel', 'the fog', 'le brouillard', 'der', 'NE-bel', 'dair NAY-bel', ['Morgens gibt es oft Nebel.', 'In the morning there is often fog.', 'Le matin, il y a souvent du brouillard.']),
-    vocab('sp-wetter-natur-morgen', 'morgen', 'tomorrow', 'demain', null, 'MOR-gen', 'MOR-gen', ['Morgen scheint die Sonne.', 'Tomorrow the sun will shine.', 'Demain, le soleil brillera.']),
+    situation(
+      ['Die Wettervorhersage', 'La météo'],
+      ['A radio weather report.', 'Un bulletin météo à la radio.'],
+      [
+        ['Sprecherin', 'Morgen ist es im Norden bewölkt und im Süden sonnig.', 'Tomorrow it is cloudy in the north and sunny in the south.', 'Demain, il y aura des nuages dans le nord et du soleil dans le sud.'],
+        ['Sprecherin', 'Die Temperatur steigt auf 20 Grad, am Abend gibt es Gewitter.', 'The temperature rises to 20 degrees, in the evening there are thunderstorms.', 'La température monte à 20 degrés, le soir il y aura des orages.'],
+        ['Hörer', 'Dann nehme ich einen Regenschirm mit.', 'Then I will take an umbrella.', 'Alors je prendrai un parapluie.'],
+      ],
+    ),
+    wordgroup(['The weather forecast', 'La prévision météo'], [
+      vocab('sp-wetter-natur-vorhersage', 'die Wettervorhersage', 'the weather forecast', 'la prévision météo', 'die', 'WE-ter-vor-her-sa-ge', 'dee VET-er-fohr-hair-zaa-geh', ['Die Wettervorhersage sagt Regen voraus.', 'The forecast predicts rain.', 'La prévision annonce de la pluie.']),
+      vocab('sp-wetter-natur-gewitter', 'das Gewitter', 'the thunderstorm', 'l’orage', 'das', 'ge-WIT-ter', 'dahs geh-VIT-er', ['Am Abend gibt es ein Gewitter.', 'There will be a thunderstorm this evening.', 'Il y aura un orage ce soir.']),
+      vocab('sp-wetter-natur-nebel', 'der Nebel', 'the fog', 'le brouillard', 'der', 'NE-bel', 'dair NAY-bel', ['Morgens gibt es oft Nebel.', 'In the morning there is often fog.', 'Le matin, il y a souvent du brouillard.']),
+      vocab('sp-wetter-natur-morgen', 'morgen', 'tomorrow', 'demain', null, 'MOR-gen', 'MOR-gen', ['Morgen scheint die Sonne.', 'Tomorrow the sun will shine.', 'Demain, le soleil brillera.']),
+    ]),
     grammar(
       'sp-wn-forecast',
       ['Forecast language and wenn-clauses', 'Langage des prévisions et phrases en wenn'],

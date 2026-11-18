@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const essenRestaurant = defineSpecial({
   slug: 'essen-restaurant',
@@ -51,14 +51,27 @@ export const essenRestaurant = defineSpecial({
       'Meals and drinks', 'Repas et boissons',
       'Three meals a day and what you drink with them.', 'Trois repas par jour et ce qu’on boit avec.',
     ),
-    vocab('sp-essen-restaurant-fruehstueck', 'das Frühstück', 'breakfast', 'le petit-déjeuner', 'das', 'FRÜH-stück', 'dahs FRUE-shtuek', ['Zum Frühstück esse ich Brot mit Käse.', 'For breakfast I eat bread with cheese.', 'Au petit-déjeuner, je mange du pain avec du fromage.']),
-    vocab('sp-essen-restaurant-mittagessen', 'das Mittagessen', 'lunch', 'le déjeuner', 'das', 'MIT-tags-es-sen', 'dahs MIT-tahks-es-sen', ['Das Mittagessen ist um zwölf Uhr.', 'Lunch is at twelve o’clock.', 'Le déjeuner est à midi.']),
-    vocab('sp-essen-restaurant-abendessen', 'das Abendessen', 'dinner, supper', 'le dîner', 'das', 'A-bend-es-sen', 'dahs AH-bent-es-sen', ['Wir kochen das Abendessen zusammen.', 'We cook dinner together.', 'Nous préparons le dîner ensemble.']),
-    vocab('sp-essen-restaurant-wasser', 'das Wasser', 'the water', 'l’eau', 'das', 'WAS-ser', 'dahs VAH-ser', ['Ich trinke Wasser ohne Kohlensäure.', 'I drink still water.', 'Je bois de l’eau plate.']),
-    vocab('sp-essen-restaurant-kaffee', 'der Kaffee', 'the coffee', 'le café', 'der', 'KAF-fee', 'dair KAH-fay', ['Möchtest du einen Kaffee?', 'Would you like a coffee?', 'Veux-tu un café ?']),
-    vocab('sp-essen-restaurant-tee', 'der Tee', 'the tea', 'le thé', 'der', 'TEE', 'dair TAY', ['Ein Tee mit Zitrone, bitte.', 'A tea with lemon, please.', 'Un thé au citron, s’il vous plaît.']),
-    vocab('sp-essen-restaurant-saft', 'der Saft', 'the juice', 'le jus', 'der', 'SAFT', 'dair ZAHFT', ['Die Kinder trinken Apfelsaft.', 'The children drink apple juice.', 'Les enfants boivent du jus de pomme.']),
-    vocab('sp-essen-restaurant-bier', 'das Bier', 'the beer', 'la bière', 'das', 'BIER', 'dahs BEER', ['Ein Bier, bitte.', 'A beer, please.', 'Une bière, s’il vous plaît.']),
+    situation(
+      ['Das Frühstück', 'Le petit-déjeuner'],
+      ['Two flatmates at the breakfast table.', 'Deux colocataires à la table du petit-déjeuner.'],
+      [
+        ['Mia', 'Was isst du zum Frühstück?', 'What do you eat for breakfast?', 'Que manges-tu au petit-déjeuner ?'],
+        ['Tom', 'Brot mit Käse und ein Ei. Dazu trinke ich Kaffee.', 'Bread with cheese and an egg. I drink coffee with it.', 'Du pain avec du fromage et un œuf. Je bois du café avec.'],
+        ['Mia', 'Ich trinke lieber Tee und esse Müsli.', 'I prefer to drink tea and eat muesli.', 'Je préfère boire du thé et manger du muesli.'],
+      ],
+    ),
+    wordgroup(['Meals and drinks (1/2)', 'Repas et boissons (1/2)'], [
+      vocab('sp-essen-restaurant-fruehstueck', 'das Frühstück', 'breakfast', 'le petit-déjeuner', 'das', 'FRÜH-stück', 'dahs FRUE-shtuek', ['Zum Frühstück esse ich Brot mit Käse.', 'For breakfast I eat bread with cheese.', 'Au petit-déjeuner, je mange du pain avec du fromage.']),
+      vocab('sp-essen-restaurant-mittagessen', 'das Mittagessen', 'lunch', 'le déjeuner', 'das', 'MIT-tags-es-sen', 'dahs MIT-tahks-es-sen', ['Das Mittagessen ist um zwölf Uhr.', 'Lunch is at twelve o’clock.', 'Le déjeuner est à midi.']),
+      vocab('sp-essen-restaurant-abendessen', 'das Abendessen', 'dinner, supper', 'le dîner', 'das', 'A-bend-es-sen', 'dahs AH-bent-es-sen', ['Wir kochen das Abendessen zusammen.', 'We cook dinner together.', 'Nous préparons le dîner ensemble.']),
+      vocab('sp-essen-restaurant-wasser', 'das Wasser', 'the water', 'l’eau', 'das', 'WAS-ser', 'dahs VAH-ser', ['Ich trinke Wasser ohne Kohlensäure.', 'I drink still water.', 'Je bois de l’eau plate.']),
+    ]),
+    wordgroup(['Meals and drinks (2/2)', 'Repas et boissons (2/2)'], [
+      vocab('sp-essen-restaurant-kaffee', 'der Kaffee', 'the coffee', 'le café', 'der', 'KAF-fee', 'dair KAH-fay', ['Möchtest du einen Kaffee?', 'Would you like a coffee?', 'Veux-tu un café ?']),
+      vocab('sp-essen-restaurant-tee', 'der Tee', 'the tea', 'le thé', 'der', 'TEE', 'dair TAY', ['Ein Tee mit Zitrone, bitte.', 'A tea with lemon, please.', 'Un thé au citron, s’il vous plaît.']),
+      vocab('sp-essen-restaurant-saft', 'der Saft', 'the juice', 'le jus', 'der', 'SAFT', 'dair ZAHFT', ['Die Kinder trinken Apfelsaft.', 'The children drink apple juice.', 'Les enfants boivent du jus de pomme.']),
+      vocab('sp-essen-restaurant-bier', 'das Bier', 'the beer', 'la bière', 'das', 'BIER', 'dahs BEER', ['Ein Bier, bitte.', 'A beer, please.', 'Une bière, s’il vous plaît.']),
+    ]),
     ap('sp-er-e1', 'Kaffee', 'der', ['Kaffee is masculine: der Kaffee.', 'Kaffee est masculin : der Kaffee.']),
     ap('sp-er-e2', 'Wasser', 'das', ['Wasser is neuter: das Wasser.', 'Wasser est neutre : das Wasser.']),
     ap('sp-er-e3', 'Frühstück', 'das', ['The three meals are all neuter: das Frühstück.', 'Les trois repas sont neutres : das Frühstück.']),
@@ -93,16 +106,29 @@ export const essenRestaurant = defineSpecial({
       'Food from A to Z', 'Les aliments de A à Z',
       'Bread, cheese, meat, vegetables — the everyday basics.', 'Pain, fromage, viande, légumes — les basiques du quotidien.',
     ),
-    vocab('sp-essen-restaurant-brot', 'das Brot', 'the bread', 'le pain', 'das', 'BROT', 'dahs BROHT', ['In Deutschland gibt es über 3000 Brotsorten.', 'In Germany there are over 3,000 kinds of bread.', 'En Allemagne, il existe plus de 3000 sortes de pain.']),
-    vocab('sp-essen-restaurant-broetchen', 'das Brötchen', 'the bread roll', 'le petit pain', 'das', 'BRÖT-chen', 'dahs BRUET-khen', ['Ich hole frische Brötchen vom Bäcker.', 'I am getting fresh rolls from the baker.', 'Je vais chercher des petits pains frais chez le boulanger.']),
-    vocab('sp-essen-restaurant-kaese', 'der Käse', 'the cheese', 'le fromage', 'der', 'KÄ-se', 'dair KAY-zeh', ['Der Käse schmeckt sehr gut.', 'The cheese tastes very good.', 'Le fromage est très bon.']),
-    vocab('sp-essen-restaurant-ei', 'das Ei', 'the egg', 'l’œuf', 'das', 'EI', 'dahs EYE', ['Zum Frühstück esse ich zwei Eier.', 'For breakfast I eat two eggs.', 'Au petit-déjeuner, je mange deux œufs.']),
-    vocab('sp-essen-restaurant-fleisch', 'das Fleisch', 'the meat', 'la viande', 'das', 'FLEISCH', 'dahs FLYSH', ['Sie isst kein Fleisch.', 'She does not eat meat.', 'Elle ne mange pas de viande.']),
-    vocab('sp-essen-restaurant-fisch', 'der Fisch', 'the fish', 'le poisson', 'der', 'FISCH', 'dair FISH', ['Freitags essen wir oft Fisch.', 'On Fridays we often eat fish.', 'Le vendredi, nous mangeons souvent du poisson.']),
-    vocab('sp-essen-restaurant-gemuese', 'das Gemüse', 'the vegetables', 'les légumes', 'das', 'ge-MÜ-se', 'dahs geh-MUE-zeh', ['Gemüse ist gesund.', 'Vegetables are healthy.', 'Les légumes, c’est bon pour la santé.']),
-    vocab('sp-essen-restaurant-obst', 'das Obst', 'the fruit', 'les fruits', 'das', 'OBST', 'dahs OHPST', ['Ich esse jeden Tag Obst.', 'I eat fruit every day.', 'Je mange des fruits tous les jours.']),
-    vocab('sp-essen-restaurant-kartoffel', 'die Kartoffel', 'the potato', 'la pomme de terre', 'die', 'kar-TOF-fel', 'dee kar-TOF-el', ['Zum Fisch gibt es Kartoffeln.', 'There are potatoes with the fish.', 'Il y a des pommes de terre avec le poisson.']),
-    vocab('sp-essen-restaurant-suppe', 'die Suppe', 'the soup', 'la soupe', 'die', 'SUP-pe', 'dee ZOOP-eh', ['Die Suppe ist noch heiß.', 'The soup is still hot.', 'La soupe est encore chaude.']),
+    situation(
+      ['Auf dem Markt', 'Au marché'],
+      ['A stall at the weekly market.', 'Un étal au marché hebdomadaire.'],
+      [
+        ['Verkäuferin', 'Guten Tag! Möchten Sie Äpfel, Tomaten oder Kartoffeln?', 'Good day! Would you like apples, tomatoes or potatoes?', 'Bonjour ! Voulez-vous des pommes, des tomates ou des pommes de terre ?'],
+        ['Kundin', 'Ein Kilo Kartoffeln und ein Brot, bitte.', 'A kilo of potatoes and a loaf of bread, please.', 'Un kilo de pommes de terre et un pain, s’il vous plaît.'],
+        ['Verkäuferin', 'Sonst noch etwas? Der Käse ist heute frisch.', 'Anything else? The cheese is fresh today.', 'Autre chose ? Le fromage est frais aujourd’hui.'],
+      ],
+    ),
+    wordgroup(['Food from A to Z (1/2)', 'Les aliments de A à Z (1/2)'], [
+      vocab('sp-essen-restaurant-brot', 'das Brot', 'the bread', 'le pain', 'das', 'BROT', 'dahs BROHT', ['In Deutschland gibt es über 3000 Brotsorten.', 'In Germany there are over 3,000 kinds of bread.', 'En Allemagne, il existe plus de 3000 sortes de pain.']),
+      vocab('sp-essen-restaurant-broetchen', 'das Brötchen', 'the bread roll', 'le petit pain', 'das', 'BRÖT-chen', 'dahs BRUET-khen', ['Ich hole frische Brötchen vom Bäcker.', 'I am getting fresh rolls from the baker.', 'Je vais chercher des petits pains frais chez le boulanger.']),
+      vocab('sp-essen-restaurant-kaese', 'der Käse', 'the cheese', 'le fromage', 'der', 'KÄ-se', 'dair KAY-zeh', ['Der Käse schmeckt sehr gut.', 'The cheese tastes very good.', 'Le fromage est très bon.']),
+      vocab('sp-essen-restaurant-ei', 'das Ei', 'the egg', 'l’œuf', 'das', 'EI', 'dahs EYE', ['Zum Frühstück esse ich zwei Eier.', 'For breakfast I eat two eggs.', 'Au petit-déjeuner, je mange deux œufs.']),
+      vocab('sp-essen-restaurant-fleisch', 'das Fleisch', 'the meat', 'la viande', 'das', 'FLEISCH', 'dahs FLYSH', ['Sie isst kein Fleisch.', 'She does not eat meat.', 'Elle ne mange pas de viande.']),
+    ]),
+    wordgroup(['Food from A to Z (2/2)', 'Les aliments de A à Z (2/2)'], [
+      vocab('sp-essen-restaurant-fisch', 'der Fisch', 'the fish', 'le poisson', 'der', 'FISCH', 'dair FISH', ['Freitags essen wir oft Fisch.', 'On Fridays we often eat fish.', 'Le vendredi, nous mangeons souvent du poisson.']),
+      vocab('sp-essen-restaurant-gemuese', 'das Gemüse', 'the vegetables', 'les légumes', 'das', 'ge-MÜ-se', 'dahs geh-MUE-zeh', ['Gemüse ist gesund.', 'Vegetables are healthy.', 'Les légumes, c’est bon pour la santé.']),
+      vocab('sp-essen-restaurant-obst', 'das Obst', 'the fruit', 'les fruits', 'das', 'OBST', 'dahs OHPST', ['Ich esse jeden Tag Obst.', 'I eat fruit every day.', 'Je mange des fruits tous les jours.']),
+      vocab('sp-essen-restaurant-kartoffel', 'die Kartoffel', 'the potato', 'la pomme de terre', 'die', 'kar-TOF-fel', 'dee kar-TOF-el', ['Zum Fisch gibt es Kartoffeln.', 'There are potatoes with the fish.', 'Il y a des pommes de terre avec le poisson.']),
+      vocab('sp-essen-restaurant-suppe', 'die Suppe', 'the soup', 'la soupe', 'die', 'SUP-pe', 'dee ZOOP-eh', ['Die Suppe ist noch heiß.', 'The soup is still hot.', 'La soupe est encore chaude.']),
+    ]),
     grammar(
       'sp-er-artikel',
       ['Countable vs. uncountable food', 'Aliments dénombrables et indénombrables'],
@@ -149,9 +175,21 @@ export const essenRestaurant = defineSpecial({
       'Ordering politely', 'Commander poliment',
       'möchte, hätte gern, nehme — and the accusative.', 'möchte, hätte gern, nehme — et l’accusatif.',
     ),
-    vocab('sp-essen-restaurant-speisekarte', 'die Speisekarte', 'the menu', 'la carte', 'die', 'SPEI-se-kar-te', 'dee SHPY-zeh-kar-teh', ['Können wir bitte die Speisekarte haben?', 'Could we have the menu, please?', 'Pouvons-nous avoir la carte, s’il vous plaît ?']),
-    vocab('sp-essen-restaurant-kellner', 'der Kellner', 'the waiter', 'le serveur', 'der', 'KEL-lner', 'dair KEL-ner', ['Der Kellner bringt die Getränke.', 'The waiter brings the drinks.', 'Le serveur apporte les boissons.']),
-    vocab('sp-essen-restaurant-bestellen', 'bestellen', 'to order', 'commander', null, 'be-STEL-len', 'beh-SHTEL-en', ['Wir möchten bestellen.', 'We would like to order.', 'Nous voudrions commander.']),
+    situation(
+      ['Ich hätte gern …', 'Je voudrais …'],
+      ['A waiter takes an order.', 'Un serveur prend une commande.'],
+      [
+        ['Kellner', 'Was darf es sein?', 'What can I get you?', 'Que désirez-vous ?'],
+        ['Gast', 'Ich hätte gern eine Suppe und ein Wasser, bitte.', 'I would like a soup and a water, please.', 'Je voudrais une soupe et une eau, s’il vous plaît.'],
+        ['Kellner', 'Gern. Und zum Nachtisch?', 'Gladly. And for dessert?', 'Volontiers. Et comme dessert ?'],
+        ['Gast', 'Danach nehme ich einen Kuchen.', 'Afterwards I will take a cake.', 'Après, je prendrai un gâteau.'],
+      ],
+    ),
+    wordgroup(['Ordering politely', 'Commander poliment'], [
+      vocab('sp-essen-restaurant-speisekarte', 'die Speisekarte', 'the menu', 'la carte', 'die', 'SPEI-se-kar-te', 'dee SHPY-zeh-kar-teh', ['Können wir bitte die Speisekarte haben?', 'Could we have the menu, please?', 'Pouvons-nous avoir la carte, s’il vous plaît ?']),
+      vocab('sp-essen-restaurant-kellner', 'der Kellner', 'the waiter', 'le serveur', 'der', 'KEL-lner', 'dair KEL-ner', ['Der Kellner bringt die Getränke.', 'The waiter brings the drinks.', 'Le serveur apporte les boissons.']),
+      vocab('sp-essen-restaurant-bestellen', 'bestellen', 'to order', 'commander', null, 'be-STEL-len', 'beh-SHTEL-en', ['Wir möchten bestellen.', 'We would like to order.', 'Nous voudrions commander.']),
+    ]),
     grammar(
       'sp-er-bestellen',
       ['Ich möchte / Ich hätte gern / Ich nehme', 'Ich möchte / Ich hätte gern / Ich nehme'],
@@ -214,8 +252,20 @@ export const essenRestaurant = defineSpecial({
       'In the restaurant', 'Au restaurant',
       'A complete dialogue, from the menu to the dessert.', 'Un dialogue complet, de la carte au dessert.',
     ),
-    vocab('sp-essen-restaurant-hunger', 'der Hunger', 'the hunger', 'la faim', 'der', 'HUN-ger', 'dair HOONG-er', ['Ich habe großen Hunger.', 'I am very hungry.', 'J’ai très faim.']),
-    vocab('sp-essen-restaurant-durst', 'der Durst', 'the thirst', 'la soif', 'der', 'DURST', 'dair DOORST', ['Ich habe Durst — ich brauche Wasser.', 'I am thirsty — I need water.', 'J’ai soif — j’ai besoin d’eau.']),
+    situation(
+      ['Am Tisch', 'À table'],
+      ['A couple in a restaurant.', 'Un couple au restaurant.'],
+      [
+        ['Gast', 'Entschuldigung, wir möchten bestellen. Die Speisekarte, bitte.', 'Excuse me, we would like to order. The menu, please.', 'Excusez-moi, nous voudrions commander. La carte, s’il vous plaît.'],
+        ['Kellner', 'Sofort. Was möchten Sie trinken?', 'Right away. What would you like to drink?', 'Tout de suite. Que souhaitez-vous boire ?'],
+        ['Gast', 'Ein Bier und eine Cola. Ist das Schnitzel gut?', 'A beer and a cola. Is the schnitzel good?', 'Une bière et un coca. Le schnitzel est-il bon ?'],
+        ['Kellner', 'Ja, es ist sehr lecker.', 'Yes, it is very tasty.', 'Oui, il est très bon.'],
+      ],
+    ),
+    wordgroup(['In the restaurant', 'Au restaurant'], [
+      vocab('sp-essen-restaurant-hunger', 'der Hunger', 'the hunger', 'la faim', 'der', 'HUN-ger', 'dair HOONG-er', ['Ich habe großen Hunger.', 'I am very hungry.', 'J’ai très faim.']),
+      vocab('sp-essen-restaurant-durst', 'der Durst', 'the thirst', 'la soif', 'der', 'DURST', 'dair DOORST', ['Ich habe Durst — ich brauche Wasser.', 'I am thirsty — I need water.', 'J’ai soif — j’ai besoin d’eau.']),
+    ]),
     grammar(
       'sp-er-dialog',
       ['Dialogue: Im Restaurant', 'Dialogue : Im Restaurant'],
@@ -256,9 +306,21 @@ export const essenRestaurant = defineSpecial({
       'Paying the bill', 'Payer l’addition',
       'Ask for the bill, split it, and tip the German way.', 'Demander l’addition, la partager et laisser un pourboire à l’allemande.',
     ),
-    vocab('sp-essen-restaurant-rechnung', 'die Rechnung', 'the bill', 'l’addition, la facture', 'die', 'RECH-nung', 'dee REKH-noong', ['Die Rechnung, bitte!', 'The bill, please!', 'L’addition, s’il vous plaît !']),
-    vocab('sp-essen-restaurant-trinkgeld', 'das Trinkgeld', 'the tip', 'le pourboire', 'das', 'TRINK-geld', 'dahs TRINK-gelt', ['Das Trinkgeld ist nicht obligatorisch.', 'Tipping is not compulsory.', 'Le pourboire n’est pas obligatoire.']),
-    vocab('sp-essen-restaurant-bezahlen', 'bezahlen', 'to pay', 'payer', null, 'be-ZAH-len', 'beh-TSAH-len', ['Kann ich mit Karte bezahlen?', 'Can I pay by card?', 'Puis-je payer par carte ?']),
+    situation(
+      ['Zahlen, bitte!', 'L’addition, s’il vous plaît !'],
+      ['After the meal.', 'Après le repas.'],
+      [
+        ['Gast', 'Zahlen, bitte!', 'The bill, please!', 'L’addition, s’il vous plaît !'],
+        ['Kellner', 'Zusammen oder getrennt?', 'Together or separately?', 'Ensemble ou séparément ?'],
+        ['Gast', 'Zusammen, bitte.', 'Together, please.', 'Ensemble, s’il vous plaît.'],
+        ['Kellner', 'Das macht vierundzwanzig Euro.', 'That makes twenty-four euros.', 'Cela fait vingt-quatre euros.'],
+      ],
+    ),
+    wordgroup(['Paying the bill', 'Payer l’addition'], [
+      vocab('sp-essen-restaurant-rechnung', 'die Rechnung', 'the bill', 'l’addition, la facture', 'die', 'RECH-nung', 'dee REKH-noong', ['Die Rechnung, bitte!', 'The bill, please!', 'L’addition, s’il vous plaît !']),
+      vocab('sp-essen-restaurant-trinkgeld', 'das Trinkgeld', 'the tip', 'le pourboire', 'das', 'TRINK-geld', 'dahs TRINK-gelt', ['Das Trinkgeld ist nicht obligatorisch.', 'Tipping is not compulsory.', 'Le pourboire n’est pas obligatoire.']),
+      vocab('sp-essen-restaurant-bezahlen', 'bezahlen', 'to pay', 'payer', null, 'be-ZAH-len', 'beh-TSAH-len', ['Kann ich mit Karte bezahlen?', 'Can I pay by card?', 'Puis-je payer par carte ?']),
+    ]),
     grammar(
       'sp-er-bezahlen',
       ['Paying: Zahlen, bitte!', 'Payer : Zahlen, bitte !'],

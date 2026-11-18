@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const redewendungen = defineSpecial({
   slug: 'redewendungen',
@@ -47,8 +47,10 @@ export const redewendungen = defineSpecial({
       'What is an idiom?', 'Qu’est-ce qu’une expression idiomatique ?',
       'Literal meaning versus real meaning, and why you must learn them whole.', 'Sens littéral et sens réel, et pourquoi il faut les apprendre en entier.',
     ),
-    vocab('sp-redewendungen-redewendung', 'die Redewendung', 'the idiom, the set expression', 'l’expression idiomatique', 'die', 'RAY-de-ven-dung', 'dee RAY-duh-ven-doong', ['Diese Redewendung kenne ich noch nicht.', 'I do not know this idiom yet.', 'Je ne connais pas encore cette expression.']),
-    vocab('sp-redewendungen-bahnhof', 'der Bahnhof', 'the railway station', 'la gare', 'der', 'BAHN-hof', 'dair BAHN-hohf', ['Der Bahnhof ist nicht weit.', 'The station is not far.', 'La gare n’est pas loin.']),
+    wordgroup(['What is an idiom?', 'Qu’est-ce qu’une expression idiomatique ?'], [
+      vocab('sp-redewendungen-redewendung', 'die Redewendung', 'the idiom, the set expression', 'l’expression idiomatique', 'die', 'RAY-de-ven-dung', 'dee RAY-duh-ven-doong', ['Diese Redewendung kenne ich noch nicht.', 'I do not know this idiom yet.', 'Je ne connais pas encore cette expression.']),
+      vocab('sp-redewendungen-bahnhof', 'der Bahnhof', 'the railway station', 'la gare', 'der', 'BAHN-hof', 'dair BAHN-hohf', ['Der Bahnhof ist nicht weit.', 'The station is not far.', 'La gare n’est pas loin.']),
+    ]),
     grammar(
       'sp-rw-what',
       ['Literal and real meaning', 'Sens littéral et sens réel'],
@@ -82,11 +84,13 @@ export const redewendungen = defineSpecial({
       'Luck and understanding', 'Chance et compréhension',
       'Five idioms you will hear constantly.', 'Cinq expressions que tu entendras constamment.',
     ),
-    vocab('sp-redewendungen-bahnhof-idiom', 'Ich verstehe nur Bahnhof.', 'I do not understand a thing.', 'Je n’y comprends rien.', null, 'ikh fer-SHTAY-e noor BAHN-hof', 'ikh fair-SHTAY-uh noor BAHN-hohf', ['Bei dem Text verstehe ich nur Bahnhof.', 'I do not understand a thing of this text.', 'Je ne comprends rien à ce texte.']),
-    vocab('sp-redewendungen-daumen', 'Ich drücke dir die Daumen.', 'I keep my fingers crossed for you.', 'Je croise les doigts pour toi.', null, 'ikh DRUE-ke deer dee DOW-men', 'ikh DRUEK-uh deer dee DOW-men', ['Morgen ist deine Prüfung. Ich drücke dir die Daumen!', 'Your exam is tomorrow. Fingers crossed for you!', 'Ton examen est demain. Je croise les doigts pour toi !']),
-    vocab('sp-redewendungen-schwein', 'Schwein haben', 'to be lucky (informal)', 'avoir de la chance (familier)', null, 'SHVINE HAH-ben', 'SHVINE HAH-ben', ['Ich habe Schwein gehabt: Der Bus kam sofort.', 'I was lucky: the bus came straight away.', 'J’ai eu de la chance : le bus est venu tout de suite.']),
-    vocab('sp-redewendungen-hals-beinbruch', 'Hals- und Beinbruch!', 'Break a leg! (good luck)', 'Bonne chance ! (avant une épreuve)', null, 'HALS unt BINE-brukh', 'HAHLS oont BINE-brookh', ['Viel Spaß beim Auftritt. Hals- und Beinbruch!', 'Have fun at the performance. Break a leg!', 'Amuse-toi bien à ton spectacle. Bonne chance !']),
-    vocab('sp-redewendungen-schlauch', 'auf dem Schlauch stehen', 'to be slow on the uptake', 'ne pas comprendre sur le moment', null, 'owf dem SHLOWKH SHTAY-en', 'owf dem SHLOWKH SHTAY-en', ['Entschuldigung, ich stehe gerade auf dem Schlauch.', 'Sorry, I am being slow right now.', 'Désolé, je ne percute pas là.']),
+    wordgroup(['Luck and understanding', 'Chance et compréhension'], [
+      vocab('sp-redewendungen-bahnhof-idiom', 'Ich verstehe nur Bahnhof.', 'I do not understand a thing.', 'Je n’y comprends rien.', null, 'ikh fer-SHTAY-e noor BAHN-hof', 'ikh fair-SHTAY-uh noor BAHN-hohf', ['Bei dem Text verstehe ich nur Bahnhof.', 'I do not understand a thing of this text.', 'Je ne comprends rien à ce texte.']),
+      vocab('sp-redewendungen-daumen', 'Ich drücke dir die Daumen.', 'I keep my fingers crossed for you.', 'Je croise les doigts pour toi.', null, 'ikh DRUE-ke deer dee DOW-men', 'ikh DRUEK-uh deer dee DOW-men', ['Morgen ist deine Prüfung. Ich drücke dir die Daumen!', 'Your exam is tomorrow. Fingers crossed for you!', 'Ton examen est demain. Je croise les doigts pour toi !']),
+      vocab('sp-redewendungen-schwein', 'Schwein haben', 'to be lucky (informal)', 'avoir de la chance (familier)', null, 'SHVINE HAH-ben', 'SHVINE HAH-ben', ['Ich habe Schwein gehabt: Der Bus kam sofort.', 'I was lucky: the bus came straight away.', 'J’ai eu de la chance : le bus est venu tout de suite.']),
+      vocab('sp-redewendungen-hals-beinbruch', 'Hals- und Beinbruch!', 'Break a leg! (good luck)', 'Bonne chance ! (avant une épreuve)', null, 'HALS unt BINE-brukh', 'HAHLS oont BINE-brookh', ['Viel Spaß beim Auftritt. Hals- und Beinbruch!', 'Have fun at the performance. Break a leg!', 'Amuse-toi bien à ton spectacle. Bonne chance !']),
+      vocab('sp-redewendungen-schlauch', 'auf dem Schlauch stehen', 'to be slow on the uptake', 'ne pas comprendre sur le moment', null, 'owf dem SHLOWKH SHTAY-en', 'owf dem SHLOWKH SHTAY-en', ['Entschuldigung, ich stehe gerade auf dem Schlauch.', 'Sorry, I am being slow right now.', 'Désolé, je ne percute pas là.']),
+    ]),
     grammar(
       'sp-rw-luck',
       ['Five idioms for luck and understanding', 'Cinq expressions pour la chance et la compréhension'],
@@ -132,10 +136,12 @@ export const redewendungen = defineSpecial({
       'Opinions and feelings', 'Opinions et sentiments',
       'Not caring, being fed up, and things that are easy.', 'S’en moquer, en avoir assez, et les choses faciles.',
     ),
-    vocab('sp-redewendungen-wurst', 'Das ist mir Wurst.', 'I do not care. (informal)', 'Ça m’est égal. (familier)', null, 'das ist meer VURST', 'dahs ist meer VOORST', ['Welches Restaurant? Das ist mir Wurst.', 'Which restaurant? I do not care.', 'Quel restaurant ? Ça m’est égal.']),
-    vocab('sp-redewendungen-nase', 'die Nase voll haben', 'to be fed up', 'en avoir assez', null, 'dee NAH-ze fol HAH-ben', 'dee NAH-zuh fol HAH-ben', ['Ich habe die Nase voll von diesem Lärm.', 'I am fed up with this noise.', 'J’en ai assez de ce bruit.']),
-    vocab('sp-redewendungen-bier', 'Das ist nicht mein Bier.', 'That is not my business.', 'Ce n’est pas mon problème.', null, 'das ist nikht mine BEER', 'dahs ist nikht mine BEER', ['Der Streit ist nicht mein Bier.', 'The quarrel is not my business.', 'Cette dispute n’est pas mon problème.']),
-    vocab('sp-redewendungen-kinderspiel', 'ein Kinderspiel', 'child’s play, very easy', 'un jeu d’enfant', null, 'ine KIN-der-shpeel', 'ine KIN-der-shpeel', ['Die Aufgabe war ein Kinderspiel.', 'The task was child’s play.', 'La tâche était un jeu d’enfant.']),
+    wordgroup(['Opinions and feelings', 'Opinions et sentiments'], [
+      vocab('sp-redewendungen-wurst', 'Das ist mir Wurst.', 'I do not care. (informal)', 'Ça m’est égal. (familier)', null, 'das ist meer VURST', 'dahs ist meer VOORST', ['Welches Restaurant? Das ist mir Wurst.', 'Which restaurant? I do not care.', 'Quel restaurant ? Ça m’est égal.']),
+      vocab('sp-redewendungen-nase', 'die Nase voll haben', 'to be fed up', 'en avoir assez', null, 'dee NAH-ze fol HAH-ben', 'dee NAH-zuh fol HAH-ben', ['Ich habe die Nase voll von diesem Lärm.', 'I am fed up with this noise.', 'J’en ai assez de ce bruit.']),
+      vocab('sp-redewendungen-bier', 'Das ist nicht mein Bier.', 'That is not my business.', 'Ce n’est pas mon problème.', null, 'das ist nikht mine BEER', 'dahs ist nikht mine BEER', ['Der Streit ist nicht mein Bier.', 'The quarrel is not my business.', 'Cette dispute n’est pas mon problème.']),
+      vocab('sp-redewendungen-kinderspiel', 'ein Kinderspiel', 'child’s play, very easy', 'un jeu d’enfant', null, 'ine KIN-der-shpeel', 'ine KIN-der-shpeel', ['Die Aufgabe war ein Kinderspiel.', 'The task was child’s play.', 'La tâche était un jeu d’enfant.']),
+    ]),
     grammar(
       'sp-rw-feelings',
       ['Idioms for opinions', 'Expressions pour les opinions'],
@@ -180,12 +186,14 @@ export const redewendungen = defineSpecial({
       'Fixed phrases for every occasion', 'Formules pour toutes les occasions',
       'Meals, toasts, health, birthdays and thanks.', 'Repas, toasts, santé, anniversaires et remerciements.',
     ),
-    vocab('sp-redewendungen-appetit', 'Guten Appetit!', 'Enjoy your meal!', 'Bon appétit !', null, 'GOO-ten a-pe-TEET', 'GOO-ten ah-peh-TEET', ['Das Essen ist fertig. Guten Appetit!', 'The meal is ready. Enjoy!', 'Le repas est prêt. Bon appétit !']),
-    vocab('sp-redewendungen-prost', 'Prost!', 'Cheers!', 'Santé !', null, 'PROHST', 'PROHST', ['Auf dein Wohl! Prost!', 'To your health! Cheers!', 'À ta santé ! Santé !']),
-    vocab('sp-redewendungen-gesundheit', 'Gesundheit!', 'Bless you! (after a sneeze)', 'À tes souhaits !', null, 'ge-ZUNT-hite', 'guh-ZOONT-hyte', ['Hatschi! — Gesundheit!', 'Achoo! — Bless you!', 'Atchoum ! — À tes souhaits !']),
-    vocab('sp-redewendungen-besserung', 'Gute Besserung!', 'Get well soon!', 'Bon rétablissement !', null, 'GOO-te BES-se-rung', 'GOO-tuh BES-uh-roong', ['Du bist krank? Gute Besserung!', 'You are ill? Get well soon!', 'Tu es malade ? Bon rétablissement !']),
-    vocab('sp-redewendungen-glueckwunsch', 'Herzlichen Glückwunsch!', 'Congratulations!', 'Félicitations !', null, 'HERTS-li-khen GLUEK-vunsh', 'HAIRTS-likh-en GLUEK-voonsh', ['Zum Geburtstag: Herzlichen Glückwunsch!', 'For your birthday: Congratulations!', 'Pour ton anniversaire : félicitations !']),
-    vocab('sp-redewendungen-ursache', 'Keine Ursache!', 'You are welcome! / Do not mention it.', 'Il n’y a pas de quoi !', null, 'KINE-e UR-za-khe', 'KINE-uh OOR-zakh-uh', ['Danke für die Hilfe! — Keine Ursache!', 'Thanks for the help! — You are welcome!', 'Merci pour l’aide ! — Il n’y a pas de quoi !']),
+    wordgroup(['Fixed phrases for every occasion', 'Formules pour toutes les occasions'], [
+      vocab('sp-redewendungen-appetit', 'Guten Appetit!', 'Enjoy your meal!', 'Bon appétit !', null, 'GOO-ten a-pe-TEET', 'GOO-ten ah-peh-TEET', ['Das Essen ist fertig. Guten Appetit!', 'The meal is ready. Enjoy!', 'Le repas est prêt. Bon appétit !']),
+      vocab('sp-redewendungen-prost', 'Prost!', 'Cheers!', 'Santé !', null, 'PROHST', 'PROHST', ['Auf dein Wohl! Prost!', 'To your health! Cheers!', 'À ta santé ! Santé !']),
+      vocab('sp-redewendungen-gesundheit', 'Gesundheit!', 'Bless you! (after a sneeze)', 'À tes souhaits !', null, 'ge-ZUNT-hite', 'guh-ZOONT-hyte', ['Hatschi! — Gesundheit!', 'Achoo! — Bless you!', 'Atchoum ! — À tes souhaits !']),
+      vocab('sp-redewendungen-besserung', 'Gute Besserung!', 'Get well soon!', 'Bon rétablissement !', null, 'GOO-te BES-se-rung', 'GOO-tuh BES-uh-roong', ['Du bist krank? Gute Besserung!', 'You are ill? Get well soon!', 'Tu es malade ? Bon rétablissement !']),
+      vocab('sp-redewendungen-glueckwunsch', 'Herzlichen Glückwunsch!', 'Congratulations!', 'Félicitations !', null, 'HERTS-li-khen GLUEK-vunsh', 'HAIRTS-likh-en GLUEK-voonsh', ['Zum Geburtstag: Herzlichen Glückwunsch!', 'For your birthday: Congratulations!', 'Pour ton anniversaire : félicitations !']),
+      vocab('sp-redewendungen-ursache', 'Keine Ursache!', 'You are welcome! / Do not mention it.', 'Il n’y a pas de quoi !', null, 'KINE-e UR-za-khe', 'KINE-uh OOR-zakh-uh', ['Danke für die Hilfe! — Keine Ursache!', 'Thanks for the help! — You are welcome!', 'Merci pour l’aide ! — Il n’y a pas de quoi !']),
+    ]),
     grammar(
       'sp-rw-phrases',
       ['Fixed phrases', 'Formules figées'],
@@ -236,10 +244,12 @@ export const redewendungen = defineSpecial({
       'Everyday images', 'Images du quotidien',
       'Short distances, things that go well, privacy and suspicion.', 'Courtes distances, choses qui vont bien, intimité et soupçon.',
     ),
-    vocab('sp-redewendungen-katzensprung', 'ein Katzensprung', 'a stone’s throw (very close)', 'à deux pas', null, 'ine KAT-sen-shprung', 'ine KAHT-sen-shproong', ['Der Supermarkt ist nur ein Katzensprung entfernt.', 'The supermarket is only a stone’s throw away.', 'Le supermarché est à deux pas.']),
-    vocab('sp-redewendungen-butter', 'Alles in Butter!', 'Everything is fine!', 'Tout va bien !', null, 'A-les in BUT-ter', 'AH-les in BOOT-er', ['Wie läuft es? — Alles in Butter!', 'How is it going? — All good!', 'Comment ça va ? — Tout va bien !']),
-    vocab('sp-redewendungen-vieraugen', 'unter vier Augen', 'in private, face to face', 'en tête-à-tête', null, 'UN-ter feer OW-gen', 'OON-ter feer OW-gen', ['Kann ich Sie unter vier Augen sprechen?', 'Can I speak to you in private?', 'Puis-je vous parler en tête-à-tête ?']),
-    vocab('sp-redewendungen-spanisch', 'Das kommt mir spanisch vor.', 'That seems odd to me.', 'Ça me paraît bizarre.', null, 'das komt meer SHPA-nish for', 'dahs komt meer SHPAH-nish for', ['Die E-Mail kommt mir spanisch vor.', 'This email seems odd to me.', 'Cet e-mail me paraît bizarre.']),
+    wordgroup(['Everyday images', 'Images du quotidien'], [
+      vocab('sp-redewendungen-katzensprung', 'ein Katzensprung', 'a stone’s throw (very close)', 'à deux pas', null, 'ine KAT-sen-shprung', 'ine KAHT-sen-shproong', ['Der Supermarkt ist nur ein Katzensprung entfernt.', 'The supermarket is only a stone’s throw away.', 'Le supermarché est à deux pas.']),
+      vocab('sp-redewendungen-butter', 'Alles in Butter!', 'Everything is fine!', 'Tout va bien !', null, 'A-les in BUT-ter', 'AH-les in BOOT-er', ['Wie läuft es? — Alles in Butter!', 'How is it going? — All good!', 'Comment ça va ? — Tout va bien !']),
+      vocab('sp-redewendungen-vieraugen', 'unter vier Augen', 'in private, face to face', 'en tête-à-tête', null, 'UN-ter feer OW-gen', 'OON-ter feer OW-gen', ['Kann ich Sie unter vier Augen sprechen?', 'Can I speak to you in private?', 'Puis-je vous parler en tête-à-tête ?']),
+      vocab('sp-redewendungen-spanisch', 'Das kommt mir spanisch vor.', 'That seems odd to me.', 'Ça me paraît bizarre.', null, 'das komt meer SHPA-nish for', 'dahs komt meer SHPAH-nish for', ['Die E-Mail kommt mir spanisch vor.', 'This email seems odd to me.', 'Cet e-mail me paraît bizarre.']),
+    ]),
     grammar(
       'sp-rw-images',
       ['Four more everyday idioms', 'Quatre autres expressions courantes'],

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const falscheFreunde = defineSpecial({
   slug: 'falsche-freunde',
@@ -47,8 +47,10 @@ export const falscheFreunde = defineSpecial({
       'Why look-alikes lie', 'Pourquoi les ressemblances mentent',
       'German, English and French share roots, but meanings drift apart.', 'L’allemand, l’anglais et le français ont des racines communes, mais les sens divergent.',
     ),
-    vocab('sp-falsche-freunde-freund', 'der Freund', 'the friend', 'l’ami', 'der', 'FREUND', 'dair FROYNT', ['Er ist mein bester Freund.', 'He is my best friend.', 'C’est mon meilleur ami.']),
-    vocab('sp-falsche-freunde-wort', 'das Wort', 'the word', 'le mot', 'das', 'WORT', 'dahs VORT', ['Dieses Wort ist neu für mich.', 'This word is new to me.', 'Ce mot est nouveau pour moi.']),
+    wordgroup(['Why look-alikes lie', 'Pourquoi les ressemblances mentent'], [
+      vocab('sp-falsche-freunde-freund', 'der Freund', 'the friend', 'l’ami', 'der', 'FREUND', 'dair FROYNT', ['Er ist mein bester Freund.', 'He is my best friend.', 'C’est mon meilleur ami.']),
+      vocab('sp-falsche-freunde-wort', 'das Wort', 'the word', 'le mot', 'das', 'WORT', 'dahs VORT', ['Dieses Wort ist neu für mich.', 'This word is new to me.', 'Ce mot est nouveau pour moi.']),
+    ]),
     grammar(
       'sp-ff-intro',
       ['False friends and true friends', 'Faux amis et vrais amis'],
@@ -84,13 +86,15 @@ export const falscheFreunde = defineSpecial({
       'Traps for English speakers', 'Pièges pour les anglophones',
       'Seven words that English speakers misread all the time.', 'Sept mots que les anglophones comprennent de travers en permanence.',
     ),
-    vocab('sp-falsche-freunde-bekommen', 'bekommen', 'to get, to receive', 'recevoir, obtenir', null, 'be-KOM-men', 'buh-KOM-en', ['Ich bekomme morgen einen Brief.', 'I will get a letter tomorrow.', 'Je recevrai une lettre demain.']),
-    vocab('sp-falsche-freunde-gift', 'das Gift', 'the poison', 'le poison', 'das', 'GIFT', 'dahs GIFT', ['Vorsicht, das ist Gift!', 'Careful, that is poison!', 'Attention, c’est du poison !']),
-    vocab('sp-falsche-freunde-rat', 'der Rat', 'the advice', 'le conseil', 'der', 'RAHT', 'dair RAHT', ['Danke für deinen Rat.', 'Thanks for your advice.', 'Merci pour ton conseil.']),
-    vocab('sp-falsche-freunde-handy', 'das Handy', 'the mobile phone', 'le téléphone portable', 'das', 'HEN-di', 'dahs HEN-dee', ['Mein Handy ist leer.', 'My phone is out of battery.', 'Mon téléphone n’a plus de batterie.']),
-    vocab('sp-falsche-freunde-chef', 'der Chef', 'the boss', 'le patron, le chef', 'der', 'SHEF', 'dair SHEF', ['Mein Chef ist sehr nett.', 'My boss is very nice.', 'Mon patron est très gentil.']),
-    vocab('sp-falsche-freunde-rock', 'der Rock', 'the skirt', 'la jupe', 'der', 'ROK', 'dair ROK', ['Sie trägt einen roten Rock.', 'She is wearing a red skirt.', 'Elle porte une jupe rouge.']),
-    vocab('sp-falsche-freunde-brav', 'brav', 'well-behaved, good', 'sage, obéissant', null, 'BRAHF', 'BRAHF', ['Das Kind war heute sehr brav.', 'The child was very well-behaved today.', 'L’enfant a été très sage aujourd’hui.']),
+    wordgroup(['Traps for English speakers', 'Pièges pour les anglophones'], [
+      vocab('sp-falsche-freunde-bekommen', 'bekommen', 'to get, to receive', 'recevoir, obtenir', null, 'be-KOM-men', 'buh-KOM-en', ['Ich bekomme morgen einen Brief.', 'I will get a letter tomorrow.', 'Je recevrai une lettre demain.']),
+      vocab('sp-falsche-freunde-gift', 'das Gift', 'the poison', 'le poison', 'das', 'GIFT', 'dahs GIFT', ['Vorsicht, das ist Gift!', 'Careful, that is poison!', 'Attention, c’est du poison !']),
+      vocab('sp-falsche-freunde-rat', 'der Rat', 'the advice', 'le conseil', 'der', 'RAHT', 'dair RAHT', ['Danke für deinen Rat.', 'Thanks for your advice.', 'Merci pour ton conseil.']),
+      vocab('sp-falsche-freunde-handy', 'das Handy', 'the mobile phone', 'le téléphone portable', 'das', 'HEN-di', 'dahs HEN-dee', ['Mein Handy ist leer.', 'My phone is out of battery.', 'Mon téléphone n’a plus de batterie.']),
+      vocab('sp-falsche-freunde-chef', 'der Chef', 'the boss', 'le patron, le chef', 'der', 'SHEF', 'dair SHEF', ['Mein Chef ist sehr nett.', 'My boss is very nice.', 'Mon patron est très gentil.']),
+      vocab('sp-falsche-freunde-rock', 'der Rock', 'the skirt', 'la jupe', 'der', 'ROK', 'dair ROK', ['Sie trägt einen roten Rock.', 'She is wearing a red skirt.', 'Elle porte une jupe rouge.']),
+      vocab('sp-falsche-freunde-brav', 'brav', 'well-behaved, good', 'sage, obéissant', null, 'BRAHF', 'BRAHF', ['Das Kind war heute sehr brav.', 'The child was very well-behaved today.', 'L’enfant a été très sage aujourd’hui.']),
+    ]),
     grammar(
       'sp-ff-english',
       ['Seven English traps', 'Sept pièges pour anglophones'],
@@ -145,10 +149,12 @@ export const falscheFreunde = defineSpecial({
       'Same word, safe for one language', 'Même mot, sûr pour une seule langue',
       'sensibel, aktuell, eventuell: traps for English speakers, friends for French speakers.', 'sensibel, aktuell, eventuell : des pièges pour les anglophones, des amis pour les francophones.',
     ),
-    vocab('sp-falsche-freunde-sensibel', 'sensibel', 'sensitive', 'sensible', null, 'sen-ZEE-bel', 'zen-ZEE-bel', ['Er ist ein sehr sensibler Mensch.', 'He is a very sensitive person.', 'C’est une personne très sensible.']),
-    vocab('sp-falsche-freunde-aktuell', 'aktuell', 'current, up to date', 'actuel', null, 'ak-tu-EL', 'ak-too-EL', ['Das ist die aktuelle Nachricht.', 'This is the current news.', 'C’est l’information actuelle.']),
-    vocab('sp-falsche-freunde-eventuell', 'eventuell', 'possibly, perhaps', 'éventuellement', null, 'e-ven-tu-EL', 'ay-ven-too-EL', ['Wir kommen eventuell später.', 'We may come later.', 'Nous viendrons peut-être plus tard.']),
-    vocab('sp-falsche-freunde-schliesslich', 'schließlich', 'eventually, finally', 'finalement, après tout', null, 'SCHLEES-lich', 'SHLEESS-likh', ['Schließlich haben wir es geschafft.', 'Eventually we managed it.', 'Finalement, nous y sommes arrivés.']),
+    wordgroup(['Same word, safe for one language', 'Même mot, sûr pour une seule langue'], [
+      vocab('sp-falsche-freunde-sensibel', 'sensibel', 'sensitive', 'sensible', null, 'sen-ZEE-bel', 'zen-ZEE-bel', ['Er ist ein sehr sensibler Mensch.', 'He is a very sensitive person.', 'C’est une personne très sensible.']),
+      vocab('sp-falsche-freunde-aktuell', 'aktuell', 'current, up to date', 'actuel', null, 'ak-tu-EL', 'ak-too-EL', ['Das ist die aktuelle Nachricht.', 'This is the current news.', 'C’est l’information actuelle.']),
+      vocab('sp-falsche-freunde-eventuell', 'eventuell', 'possibly, perhaps', 'éventuellement', null, 'e-ven-tu-EL', 'ay-ven-too-EL', ['Wir kommen eventuell später.', 'We may come later.', 'Nous viendrons peut-être plus tard.']),
+      vocab('sp-falsche-freunde-schliesslich', 'schließlich', 'eventually, finally', 'finalement, après tout', null, 'SCHLEES-lich', 'SHLEESS-likh', ['Schließlich haben wir es geschafft.', 'Eventually we managed it.', 'Finalement, nous y sommes arrivés.']),
+    ]),
     grammar(
       'sp-ff-partial',
       ['Partial false friends', 'Faux amis partiels'],
@@ -180,10 +186,12 @@ export const falscheFreunde = defineSpecial({
       'Traps for French speakers', 'Pièges pour les francophones',
       'Four words French speakers often get wrong.', 'Quatre mots que les francophones comprennent souvent mal.',
     ),
-    vocab('sp-falsche-freunde-chance', 'die Chance', 'the opportunity', 'l’occasion', 'die', 'SHAN-se', 'dee SHAHN-suh', ['Das ist deine Chance!', 'This is your opportunity!', 'C’est ton occasion !']),
-    vocab('sp-falsche-freunde-ignorieren', 'ignorieren', 'to ignore, to deliberately overlook', 'ignorer (volontairement), faire semblant de ne pas voir', null, 'ig-no-REE-ren', 'ig-noh-REE-ren', ['Er ignoriert mich.', 'He is ignoring me.', 'Il m’ignore (il fait exprès de ne pas me voir).']),
-    vocab('sp-falsche-freunde-brief', 'der Brief', 'the letter', 'la lettre', 'der', 'BREEF', 'dair BREEF', ['Ich schreibe einen Brief.', 'I am writing a letter.', 'J’écris une lettre.']),
-    vocab('sp-falsche-freunde-dose', 'die Dose', 'the can, the tin', 'la boîte de conserve', 'die', 'DO-ze', 'dee DOH-zuh', ['Ich öffne eine Dose Tomaten.', 'I open a can of tomatoes.', 'J’ouvre une boîte de tomates.']),
+    wordgroup(['Traps for French speakers', 'Pièges pour les francophones'], [
+      vocab('sp-falsche-freunde-chance', 'die Chance', 'the opportunity', 'l’occasion', 'die', 'SHAN-se', 'dee SHAHN-suh', ['Das ist deine Chance!', 'This is your opportunity!', 'C’est ton occasion !']),
+      vocab('sp-falsche-freunde-ignorieren', 'ignorieren', 'to ignore, to deliberately overlook', 'ignorer (volontairement), faire semblant de ne pas voir', null, 'ig-no-REE-ren', 'ig-noh-REE-ren', ['Er ignoriert mich.', 'He is ignoring me.', 'Il m’ignore (il fait exprès de ne pas me voir).']),
+      vocab('sp-falsche-freunde-brief', 'der Brief', 'the letter', 'la lettre', 'der', 'BREEF', 'dair BREEF', ['Ich schreibe einen Brief.', 'I am writing a letter.', 'J’écris une lettre.']),
+      vocab('sp-falsche-freunde-dose', 'die Dose', 'the can, the tin', 'la boîte de conserve', 'die', 'DO-ze', 'dee DOH-zuh', ['Ich öffne eine Dose Tomaten.', 'I open a can of tomatoes.', 'J’ouvre une boîte de tomates.']),
+    ]),
     grammar(
       'sp-ff-french',
       ['Four French traps', 'Quatre pièges pour francophones'],
@@ -221,10 +229,12 @@ export const falscheFreunde = defineSpecial({
       'True friends', 'Les vrais amis',
       'Words you can trust, and patterns that help you guess more.', 'Des mots sûrs, et des motifs qui aident à deviner davantage.',
     ),
-    vocab('sp-falsche-freunde-hotel', 'das Hotel', 'the hotel', 'l’hôtel', 'das', 'ho-TEL', 'dahs hoh-TEL', ['Das Hotel ist in der Stadt.', 'The hotel is in the city.', 'L’hôtel est en ville.']),
-    vocab('sp-falsche-freunde-information', 'die Information', 'the information', 'l’information', 'die', 'in-for-ma-tsi-OHN', 'dee in-for-mah-tsee-OHN', ['Ich brauche mehr Informationen.', 'I need more information.', 'J’ai besoin de plus d’informations.']),
-    vocab('sp-falsche-freunde-wasser', 'das Wasser', 'the water', 'l’eau', 'das', 'VAS-ser', 'dahs VAHS-ser', ['Ich trinke Wasser.', 'I drink water.', 'Je bois de l’eau.']),
-    vocab('sp-falsche-freunde-buch', 'das Buch', 'the book', 'le livre', 'das', 'BOOKH', 'dahs BOOKH', ['Das Buch ist spannend.', 'The book is exciting.', 'Le livre est passionnant.']),
+    wordgroup(['True friends', 'Les vrais amis'], [
+      vocab('sp-falsche-freunde-hotel', 'das Hotel', 'the hotel', 'l’hôtel', 'das', 'ho-TEL', 'dahs hoh-TEL', ['Das Hotel ist in der Stadt.', 'The hotel is in the city.', 'L’hôtel est en ville.']),
+      vocab('sp-falsche-freunde-information', 'die Information', 'the information', 'l’information', 'die', 'in-for-ma-tsi-OHN', 'dee in-for-mah-tsee-OHN', ['Ich brauche mehr Informationen.', 'I need more information.', 'J’ai besoin de plus d’informations.']),
+      vocab('sp-falsche-freunde-wasser', 'das Wasser', 'the water', 'l’eau', 'das', 'VAS-ser', 'dahs VAHS-ser', ['Ich trinke Wasser.', 'I drink water.', 'Je bois de l’eau.']),
+      vocab('sp-falsche-freunde-buch', 'das Buch', 'the book', 'le livre', 'das', 'BOOKH', 'dahs BOOKH', ['Das Buch ist spannend.', 'The book is exciting.', 'Le livre est passionnant.']),
+    ]),
     grammar(
       'sp-ff-cognates',
       ['Cognate patterns that work', 'Les motifs qui fonctionnent'],

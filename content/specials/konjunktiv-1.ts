@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const konjunktiv1 = defineSpecial({
   slug: 'konjunktiv-1',
@@ -47,9 +47,11 @@ export const konjunktiv1 = defineSpecial({
       'Forming Konjunktiv I', 'Former le Konjunktiv I',
       'Stem + -e, and why sein is special.', 'Radical + -e, et pourquoi sein est particulier.',
     ),
-    vocab('sp-konjunktiv-1-aussage', 'die Aussage', 'the statement', 'la déclaration', 'die', 'AUS-sa-ge', 'OWS-zah-ge', ['Seine Aussage ist umstritten.', 'His statement is controversial.', 'Sa déclaration est controversée.']),
-    vocab('sp-konjunktiv-1-behaupten', 'behaupten', 'to claim', 'affirmer', null, 'be-HAUP-ten', 'be-HOWP-ten', ['Er behauptet, er sei unschuldig.', 'He claims he is innocent.', 'Il affirme être innocent.']),
-    vocab('sp-konjunktiv-1-zeuge', 'der Zeuge', 'the witness', 'le témoin', 'der', 'ZEU-ge', 'TSOY-ge', ['Der Zeuge sagte, er habe nichts gesehen.', 'The witness said he had seen nothing.', 'Le témoin a dit n’avoir rien vu.']),
+    wordgroup(['Forming Konjunktiv I', 'Former le Konjunktiv I'], [
+      vocab('sp-konjunktiv-1-aussage', 'die Aussage', 'the statement', 'la déclaration', 'die', 'AUS-sa-ge', 'OWS-zah-ge', ['Seine Aussage ist umstritten.', 'His statement is controversial.', 'Sa déclaration est controversée.']),
+      vocab('sp-konjunktiv-1-behaupten', 'behaupten', 'to claim', 'affirmer', null, 'be-HAUP-ten', 'be-HOWP-ten', ['Er behauptet, er sei unschuldig.', 'He claims he is innocent.', 'Il affirme être innocent.']),
+      vocab('sp-konjunktiv-1-zeuge', 'der Zeuge', 'the witness', 'le témoin', 'der', 'ZEU-ge', 'TSOY-ge', ['Der Zeuge sagte, er habe nichts gesehen.', 'The witness said he had seen nothing.', 'Le témoin a dit n’avoir rien vu.']),
+    ]),
     grammar(
       'sp-k1-forms',
       ['The endings', 'Les terminaisons'],
@@ -86,8 +88,10 @@ export const konjunktiv1 = defineSpecial({
       'Statements, questions, requests', 'Affirmations, questions, demandes',
       'Three kinds of direct speech and how to report them.', 'Trois types de discours direct et comment les rapporter.',
     ),
-    vocab('sp-konjunktiv-1-berichten', 'berichten', 'to report', 'rapporter', null, 'be-RICH-ten', 'be-RIKH-ten', ['Die Zeitung berichtet, es gebe Probleme.', 'The paper reports there are problems.', 'Le journal rapporte qu’il y a des problèmes.']),
-    vocab('sp-konjunktiv-1-erkundigen', 'sich erkundigen', 'to enquire', 'se renseigner', null, 'zikh er-KUN-di-gen', 'zikh er-KOON-di-gen', ['Er erkundigte sich, ob der Zug fahre.', 'He enquired whether the train was running.', 'Il s’est renseigné pour savoir si le train circulait.']),
+    wordgroup(['Statements, questions, requests', 'Affirmations, questions, demandes'], [
+      vocab('sp-konjunktiv-1-berichten', 'berichten', 'to report', 'rapporter', null, 'be-RICH-ten', 'be-RIKH-ten', ['Die Zeitung berichtet, es gebe Probleme.', 'The paper reports there are problems.', 'Le journal rapporte qu’il y a des problèmes.']),
+      vocab('sp-konjunktiv-1-erkundigen', 'sich erkundigen', 'to enquire', 'se renseigner', null, 'zikh er-KUN-di-gen', 'zikh er-KOON-di-gen', ['Er erkundigte sich, ob der Zug fahre.', 'He enquired whether the train was running.', 'Il s’est renseigné pour savoir si le train circulait.']),
+    ]),
     grammar(
       'sp-k1-types',
       ['Reporting three kinds of speech', 'Rapporter trois types de paroles'],
@@ -125,8 +129,10 @@ export const konjunktiv1 = defineSpecial({
       'Tenses in indirect speech', 'Les temps du discours indirect',
       'Present, past and future — and what to do when forms are identical.', 'Présent, passé et futur — et que faire quand les formes sont identiques.',
     ),
-    vocab('sp-konjunktiv-1-angeblich', 'angeblich', 'allegedly', 'soi-disant', null, 'AN-geb-lich', 'AHN-gayp-likh', ['Er hat angeblich nichts gewusst.', 'He allegedly knew nothing.', 'Il n’aurait soi-disant rien su.']),
-    vocab('sp-konjunktiv-1-vorwurf', 'der Vorwurf', 'the accusation', 'le reproche', 'der', 'VOR-wurf', 'FOR-voorf', ['Er wies den Vorwurf zurück.', 'He rejected the accusation.', 'Il a rejeté le reproche.']),
+    wordgroup(['Tenses in indirect speech', 'Les temps du discours indirect'], [
+      vocab('sp-konjunktiv-1-angeblich', 'angeblich', 'allegedly', 'soi-disant', null, 'AN-geb-lich', 'AHN-gayp-likh', ['Er hat angeblich nichts gewusst.', 'He allegedly knew nothing.', 'Il n’aurait soi-disant rien su.']),
+      vocab('sp-konjunktiv-1-vorwurf', 'der Vorwurf', 'the accusation', 'le reproche', 'der', 'VOR-wurf', 'FOR-voorf', ['Er wies den Vorwurf zurück.', 'He rejected the accusation.', 'Il a rejeté le reproche.']),
+    ]),
     grammar(
       'sp-k1-tense',
       ['Tenses and the K II substitute', 'Les temps et le remplacement par le K II'],

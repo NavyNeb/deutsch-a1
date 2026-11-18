@@ -1,4 +1,5 @@
 import { lessons } from '@/content';
+import { stepVocab } from '@/content/step-vocab';
 import { SPEAKING_PROMPTS } from '@/content/speaking-prompts.mjs';
 import { fnv1a } from './audio-names.mjs';
 
@@ -34,9 +35,9 @@ function lessonSentences(level: SpeakLevel): SpeakItem[] {
   for (const l of lessons) {
     if (l.level !== level) continue;
     for (const s of l.steps) {
-      if (s.kind === 'vocab') add(s.item.example);
-      else if (s.kind === 'pronunciation') s.items.forEach((it) => add(it.example));
-      else if (s.kind === 'grammar') s.note.examples.forEach(add);
+      stepVocab(s).forEach((it) => add(it.example));
+      if (s.kind === 'grammar') s.note.examples.forEach(add);
+      else if (s.kind === 'situation') s.lines.forEach(add);
     }
   }
   lessonCache.set(level, out);

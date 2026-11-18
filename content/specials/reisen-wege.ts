@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const reisenWege = defineSpecial({
   slug: 'reisen-wege',
@@ -47,13 +47,24 @@ export const reisenWege = defineSpecial({
       'Getting around', 'Se déplacer',
       'Means of transport and the small word mit.', 'Les moyens de transport et le petit mot mit.',
     ),
-    vocab('sp-reisen-wege-zug', 'der Zug', 'the train', 'le train', 'der', 'ZUG', 'dair TSOOK', ['Der Zug nach Hamburg fährt pünktlich.', 'The train to Hamburg leaves on time.', 'Le train pour Hambourg part à l’heure.']),
-    vocab('sp-reisen-wege-bus', 'der Bus', 'the bus', 'le bus', 'der', 'BUS', 'dair BOOS', ['Der Bus kommt alle zehn Minuten.', 'The bus comes every ten minutes.', 'Le bus passe toutes les dix minutes.']),
-    vocab('sp-reisen-wege-ubahn', 'die U-Bahn', 'the underground', 'le métro', 'die', 'U-bahn', 'dee OO-bahn', ['Ich nehme die U-Bahn zur Arbeit.', 'I take the underground to work.', 'Je prends le métro pour aller au travail.']),
-    vocab('sp-reisen-wege-flugzeug', 'das Flugzeug', 'the aeroplane', 'l’avion', 'das', 'FLUG-zeug', 'dahs FLOOK-tsoyk', ['Das Flugzeug landet um zehn Uhr.', 'The plane lands at ten o’clock.', 'L’avion atterrit à dix heures.']),
-    vocab('sp-reisen-wege-fahrrad', 'das Fahrrad', 'the bicycle', 'le vélo', 'das', 'FAHR-rad', 'dahs FAAR-raat', ['Im Sommer fahre ich mit dem Fahrrad.', 'In summer I go by bike.', 'En été, je vais à vélo.']),
-    vocab('sp-reisen-wege-bahnhof', 'der Bahnhof', 'the (train) station', 'la gare', 'der', 'BAHN-hof', 'dair BAAN-hohf', ['Der Bahnhof ist im Zentrum.', 'The station is in the centre.', 'La gare est au centre.']),
-    vocab('sp-reisen-wege-haltestelle', 'die Haltestelle', 'the stop (bus, tram)', 'l’arrêt', 'die', 'HAL-te-stel-le', 'dee HAL-teh-shtel-eh', ['Die Haltestelle ist gleich um die Ecke.', 'The stop is just around the corner.', 'L’arrêt est juste au coin.']),
+    situation(
+      ['Mit dem Bus', 'En bus'],
+      ['At a bus stop.', 'À un arrêt de bus.'],
+      [
+        ['Tom', 'Fährt der Bus zum Bahnhof?', 'Does the bus go to the station?', 'Ce bus va-t-il à la gare ?'],
+        ['Fahrer', 'Ja, Linie 5. Das Ticket kostet zwei Euro.', 'Yes, line 5. The ticket costs two euros.', 'Oui, la ligne 5. Le billet coûte deux euros.'],
+        ['Tom', 'Eine Fahrkarte, bitte.', 'One ticket, please.', 'Un billet, s’il vous plaît.'],
+      ],
+    ),
+    wordgroup(['Getting around', 'Se déplacer'], [
+      vocab('sp-reisen-wege-zug', 'der Zug', 'the train', 'le train', 'der', 'ZUG', 'dair TSOOK', ['Der Zug nach Hamburg fährt pünktlich.', 'The train to Hamburg leaves on time.', 'Le train pour Hambourg part à l’heure.']),
+      vocab('sp-reisen-wege-bus', 'der Bus', 'the bus', 'le bus', 'der', 'BUS', 'dair BOOS', ['Der Bus kommt alle zehn Minuten.', 'The bus comes every ten minutes.', 'Le bus passe toutes les dix minutes.']),
+      vocab('sp-reisen-wege-ubahn', 'die U-Bahn', 'the underground', 'le métro', 'die', 'U-bahn', 'dee OO-bahn', ['Ich nehme die U-Bahn zur Arbeit.', 'I take the underground to work.', 'Je prends le métro pour aller au travail.']),
+      vocab('sp-reisen-wege-flugzeug', 'das Flugzeug', 'the aeroplane', 'l’avion', 'das', 'FLUG-zeug', 'dahs FLOOK-tsoyk', ['Das Flugzeug landet um zehn Uhr.', 'The plane lands at ten o’clock.', 'L’avion atterrit à dix heures.']),
+      vocab('sp-reisen-wege-fahrrad', 'das Fahrrad', 'the bicycle', 'le vélo', 'das', 'FAHR-rad', 'dahs FAAR-raat', ['Im Sommer fahre ich mit dem Fahrrad.', 'In summer I go by bike.', 'En été, je vais à vélo.']),
+      vocab('sp-reisen-wege-bahnhof', 'der Bahnhof', 'the (train) station', 'la gare', 'der', 'BAHN-hof', 'dair BAAN-hohf', ['Der Bahnhof ist im Zentrum.', 'The station is in the centre.', 'La gare est au centre.']),
+      vocab('sp-reisen-wege-haltestelle', 'die Haltestelle', 'the stop (bus, tram)', 'l’arrêt', 'die', 'HAL-te-stel-le', 'dee HAL-teh-shtel-eh', ['Die Haltestelle ist gleich um die Ecke.', 'The stop is just around the corner.', 'L’arrêt est juste au coin.']),
+    ]),
     grammar(
       'sp-rw-mit',
       ['Travelling: mit + dative', 'Voyager : mit + datif'],
@@ -99,13 +110,24 @@ export const reisenWege = defineSpecial({
       'At the station', 'À la gare',
       'Tickets, platforms, delays — and verbs that split in two.', 'Billets, quais, retards — et des verbes qui se coupent en deux.',
     ),
-    vocab('sp-reisen-wege-fahrkarte', 'die Fahrkarte', 'the ticket', 'le billet', 'die', 'FAHR-kar-te', 'dee FAAR-kar-teh', ['Eine Fahrkarte nach Köln, bitte.', 'One ticket to Cologne, please.', 'Un billet pour Cologne, s’il vous plaît.']),
-    vocab('sp-reisen-wege-fahrplan', 'der Fahrplan', 'the timetable', 'l’horaire', 'der', 'FAHR-plan', 'dair FAAR-plaan', ['Im Fahrplan steht die Abfahrtszeit.', 'The departure time is in the timetable.', 'L’heure de départ est dans l’horaire.']),
-    vocab('sp-reisen-wege-gleis', 'das Gleis', 'the platform, track', 'le quai, la voie', 'das', 'GLEIS', 'dahs GLICE', ['Der Zug fährt auf Gleis fünf ab.', 'The train leaves from platform five.', 'Le train part de la voie cinq.']),
-    vocab('sp-reisen-wege-verspaetung', 'die Verspätung', 'the delay', 'le retard', 'die', 'ver-SPÄ-tung', 'dee fer-SHPAY-toong', ['Der Zug hat zehn Minuten Verspätung.', 'The train is ten minutes late.', 'Le train a dix minutes de retard.']),
-    vocab('sp-reisen-wege-abfahren', 'abfahren', 'to depart', 'partir (véhicule)', null, 'AB-fah-ren', 'AHP-faa-ren', ['Wann fährt der Zug ab?', 'When does the train leave?', 'Quand part le train ?']),
-    vocab('sp-reisen-wege-ankommen', 'ankommen', 'to arrive', 'arriver', null, 'AN-kom-men', 'AHN-kom-en', ['Der Bus kommt um neun Uhr an.', 'The bus arrives at nine.', 'Le bus arrive à neuf heures.']),
-    vocab('sp-reisen-wege-umsteigen', 'umsteigen', 'to change (trains)', 'changer (de train)', null, 'UM-stei-gen', 'OOM-shty-gen', ['In Frankfurt musst du umsteigen.', 'You have to change in Frankfurt.', 'Tu dois changer à Francfort.']),
+    situation(
+      ['Am Bahnhof', 'À la gare'],
+      ['At the ticket counter.', 'Au guichet.'],
+      [
+        ['Reisende', 'Wann fährt der Zug nach Berlin?', 'When does the train to Berlin leave?', 'Quand part le train pour Berlin ?'],
+        ['Schalter', 'Um 10:15 Uhr, von Gleis 4.', 'At 10:15, from platform 4.', 'À 10 h 15, de la voie 4.'],
+        ['Reisende', 'Einmal hin und zurück, bitte.', 'A return ticket, please.', 'Un aller-retour, s’il vous plaît.'],
+      ],
+    ),
+    wordgroup(['At the station', 'À la gare'], [
+      vocab('sp-reisen-wege-fahrkarte', 'die Fahrkarte', 'the ticket', 'le billet', 'die', 'FAHR-kar-te', 'dee FAAR-kar-teh', ['Eine Fahrkarte nach Köln, bitte.', 'One ticket to Cologne, please.', 'Un billet pour Cologne, s’il vous plaît.']),
+      vocab('sp-reisen-wege-fahrplan', 'der Fahrplan', 'the timetable', 'l’horaire', 'der', 'FAHR-plan', 'dair FAAR-plaan', ['Im Fahrplan steht die Abfahrtszeit.', 'The departure time is in the timetable.', 'L’heure de départ est dans l’horaire.']),
+      vocab('sp-reisen-wege-gleis', 'das Gleis', 'the platform, track', 'le quai, la voie', 'das', 'GLEIS', 'dahs GLICE', ['Der Zug fährt auf Gleis fünf ab.', 'The train leaves from platform five.', 'Le train part de la voie cinq.']),
+      vocab('sp-reisen-wege-verspaetung', 'die Verspätung', 'the delay', 'le retard', 'die', 'ver-SPÄ-tung', 'dee fer-SHPAY-toong', ['Der Zug hat zehn Minuten Verspätung.', 'The train is ten minutes late.', 'Le train a dix minutes de retard.']),
+      vocab('sp-reisen-wege-abfahren', 'abfahren', 'to depart', 'partir (véhicule)', null, 'AB-fah-ren', 'AHP-faa-ren', ['Wann fährt der Zug ab?', 'When does the train leave?', 'Quand part le train ?']),
+      vocab('sp-reisen-wege-ankommen', 'ankommen', 'to arrive', 'arriver', null, 'AN-kom-men', 'AHN-kom-en', ['Der Bus kommt um neun Uhr an.', 'The bus arrives at nine.', 'Le bus arrive à neuf heures.']),
+      vocab('sp-reisen-wege-umsteigen', 'umsteigen', 'to change (trains)', 'changer (de train)', null, 'UM-stei-gen', 'OOM-shty-gen', ['In Frankfurt musst du umsteigen.', 'You have to change in Frankfurt.', 'Tu dois changer à Francfort.']),
+    ]),
     grammar(
       'sp-rw-separable',
       ['Separable verbs in travel', 'Verbes séparables en voyage'],
@@ -147,12 +169,24 @@ export const reisenWege = defineSpecial({
       'Asking the way', 'Demander son chemin',
       'Left, right, straight on — and zum / zur.', 'Gauche, droite, tout droit — et zum / zur.',
     ),
-    vocab('sp-reisen-wege-links', 'links', 'left', 'à gauche', null, 'LINKS', 'LINKS', ['Biegen Sie links ab.', 'Turn left.', 'Tournez à gauche.']),
-    vocab('sp-reisen-wege-rechts', 'rechts', 'right', 'à droite', null, 'RECHTS', 'REKHTS', ['Das Hotel ist rechts.', 'The hotel is on the right.', 'L’hôtel est à droite.']),
-    vocab('sp-reisen-wege-geradeaus', 'geradeaus', 'straight ahead', 'tout droit', null, 'ge-ra-de-AUS', 'geh-RAA-deh-ows', ['Gehen Sie geradeaus.', 'Go straight ahead.', 'Allez tout droit.']),
-    vocab('sp-reisen-wege-kreuzung', 'die Kreuzung', 'the crossroads', 'le carrefour', 'die', 'KREU-zung', 'dee KROY-tsoong', ['An der Kreuzung gehen Sie links.', 'At the crossroads, go left.', 'Au carrefour, allez à gauche.']),
-    vocab('sp-reisen-wege-ampel', 'die Ampel', 'the traffic light', 'le feu de circulation', 'die', 'AM-pel', 'dee AHM-pel', ['An der Ampel müssen Sie rechts abbiegen.', 'At the traffic light you have to turn right.', 'Au feu, vous devez tourner à droite.']),
-    vocab('sp-reisen-wege-strasse', 'die Straße', 'the street', 'la rue', 'die', 'STRA-ße', 'dee SHTRAA-seh', ['Nehmen Sie die zweite Straße links.', 'Take the second street on the left.', 'Prenez la deuxième rue à gauche.']),
+    situation(
+      ['Wie komme ich …?', 'Comment aller … ?'],
+      ['A tourist asks for directions.', 'Un touriste demande son chemin.'],
+      [
+        ['Tourist', 'Entschuldigung, wie komme ich zum Museum?', 'Excuse me, how do I get to the museum?', 'Excusez-moi, comment aller au musée ?'],
+        ['Passantin', 'Gehen Sie geradeaus, dann links.', 'Go straight on, then left.', 'Allez tout droit, puis à gauche.'],
+        ['Tourist', 'Ist es weit?', 'Is it far?', 'C’est loin ?'],
+        ['Passantin', 'Nein, nur fünf Minuten zu Fuß.', 'No, only five minutes on foot.', 'Non, seulement cinq minutes à pied.'],
+      ],
+    ),
+    wordgroup(['Asking the way', 'Demander son chemin'], [
+      vocab('sp-reisen-wege-links', 'links', 'left', 'à gauche', null, 'LINKS', 'LINKS', ['Biegen Sie links ab.', 'Turn left.', 'Tournez à gauche.']),
+      vocab('sp-reisen-wege-rechts', 'rechts', 'right', 'à droite', null, 'RECHTS', 'REKHTS', ['Das Hotel ist rechts.', 'The hotel is on the right.', 'L’hôtel est à droite.']),
+      vocab('sp-reisen-wege-geradeaus', 'geradeaus', 'straight ahead', 'tout droit', null, 'ge-ra-de-AUS', 'geh-RAA-deh-ows', ['Gehen Sie geradeaus.', 'Go straight ahead.', 'Allez tout droit.']),
+      vocab('sp-reisen-wege-kreuzung', 'die Kreuzung', 'the crossroads', 'le carrefour', 'die', 'KREU-zung', 'dee KROY-tsoong', ['An der Kreuzung gehen Sie links.', 'At the crossroads, go left.', 'Au carrefour, allez à gauche.']),
+      vocab('sp-reisen-wege-ampel', 'die Ampel', 'the traffic light', 'le feu de circulation', 'die', 'AM-pel', 'dee AHM-pel', ['An der Ampel müssen Sie rechts abbiegen.', 'At the traffic light you have to turn right.', 'Au feu, vous devez tourner à droite.']),
+      vocab('sp-reisen-wege-strasse', 'die Straße', 'the street', 'la rue', 'die', 'STRA-ße', 'dee SHTRAA-seh', ['Nehmen Sie die zweite Straße links.', 'Take the second street on the left.', 'Prenez la deuxième rue à gauche.']),
+    ]),
     grammar(
       'sp-rw-way',
       ['Asking and giving directions', 'Demander et donner un itinéraire'],
@@ -209,11 +243,22 @@ export const reisenWege = defineSpecial({
       'Airport and hotel', 'Aéroport et hôtel',
       'Checking in, booking a room, breakfast and keys.', 'Enregistrement, réservation, petit-déjeuner et clés.',
     ),
-    vocab('sp-reisen-wege-flughafen', 'der Flughafen', 'the airport', 'l’aéroport', 'der', 'FLUG-ha-fen', 'dair FLOOK-haa-fen', ['Der Flughafen ist weit vom Zentrum.', 'The airport is far from the centre.', 'L’aéroport est loin du centre.']),
-    vocab('sp-reisen-wege-koffer', 'der Koffer', 'the suitcase', 'la valise', 'der', 'KOF-fer', 'dair KOF-er', ['Mein Koffer ist sehr schwer.', 'My suitcase is very heavy.', 'Ma valise est très lourde.']),
-    vocab('sp-reisen-wege-zimmer', 'das Zimmer', 'the room', 'la chambre', 'das', 'ZIM-mer', 'dahs TSIM-er', ['Ich möchte ein Zimmer für zwei Nächte.', 'I would like a room for two nights.', 'Je voudrais une chambre pour deux nuits.']),
-    vocab('sp-reisen-wege-fruehstueck', 'das Frühstück', 'the breakfast', 'le petit-déjeuner', 'das', 'FRÜH-stück', 'dahs FRUE-shtuek', ['Das Frühstück ist von sieben bis zehn Uhr.', 'Breakfast is from seven to ten.', 'Le petit-déjeuner est de sept à dix heures.']),
-    vocab('sp-reisen-wege-buchen', 'buchen', 'to book', 'réserver', null, 'BU-chen', 'BOO-khen', ['Ich habe ein Hotel gebucht.', 'I have booked a hotel.', 'J’ai réservé un hôtel.']),
+    situation(
+      ['Im Hotel', 'À l’hôtel'],
+      ['Checking in at the reception.', 'Enregistrement à la réception.'],
+      [
+        ['Gast', 'Guten Abend, ich habe ein Zimmer reserviert.', 'Good evening, I have reserved a room.', 'Bonsoir, j’ai réservé une chambre.'],
+        ['Rezeption', 'Auf welchen Namen? Ihr Zimmer ist im zweiten Stock.', 'Under which name? Your room is on the second floor.', 'Au nom de qui ? Votre chambre est au deuxième étage.'],
+        ['Gast', 'Ist das Frühstück inklusive?', 'Is breakfast included?', 'Le petit-déjeuner est-il inclus ?'],
+      ],
+    ),
+    wordgroup(['Airport and hotel', 'Aéroport et hôtel'], [
+      vocab('sp-reisen-wege-flughafen', 'der Flughafen', 'the airport', 'l’aéroport', 'der', 'FLUG-ha-fen', 'dair FLOOK-haa-fen', ['Der Flughafen ist weit vom Zentrum.', 'The airport is far from the centre.', 'L’aéroport est loin du centre.']),
+      vocab('sp-reisen-wege-koffer', 'der Koffer', 'the suitcase', 'la valise', 'der', 'KOF-fer', 'dair KOF-er', ['Mein Koffer ist sehr schwer.', 'My suitcase is very heavy.', 'Ma valise est très lourde.']),
+      vocab('sp-reisen-wege-zimmer', 'das Zimmer', 'the room', 'la chambre', 'das', 'ZIM-mer', 'dahs TSIM-er', ['Ich möchte ein Zimmer für zwei Nächte.', 'I would like a room for two nights.', 'Je voudrais une chambre pour deux nuits.']),
+      vocab('sp-reisen-wege-fruehstueck', 'das Frühstück', 'the breakfast', 'le petit-déjeuner', 'das', 'FRÜH-stück', 'dahs FRUE-shtuek', ['Das Frühstück ist von sieben bis zehn Uhr.', 'Breakfast is from seven to ten.', 'Le petit-déjeuner est de sept à dix heures.']),
+      vocab('sp-reisen-wege-buchen', 'buchen', 'to book', 'réserver', null, 'BU-chen', 'BOO-khen', ['Ich habe ein Hotel gebucht.', 'I have booked a hotel.', 'J’ai réservé un hôtel.']),
+    ]),
     grammar(
       'sp-rw-hotel',
       ['Hotel and airport phrases', 'Phrases pour l’hôtel et l’aéroport'],
@@ -249,9 +294,20 @@ export const reisenWege = defineSpecial({
       'Holiday and destinations', 'Vacances et destinations',
       'nach Berlin, in die Schweiz, an den Strand — the right little word.', 'nach Berlin, in die Schweiz, an den Strand — le bon petit mot.',
     ),
-    vocab('sp-reisen-wege-urlaub', 'der Urlaub', 'the holiday, leave', 'les vacances, le congé', 'der', 'UR-laub', 'dair OOR-lowp', ['Im Urlaub fahre ich ans Meer.', 'On holiday I go to the sea.', 'En vacances, je vais à la mer.']),
-    vocab('sp-reisen-wege-strand', 'der Strand', 'the beach', 'la plage', 'der', 'STRAND', 'dair SHTRANT', ['Wir liegen den ganzen Tag am Strand.', 'We lie on the beach all day.', 'Nous restons toute la journée à la plage.']),
-    vocab('sp-reisen-wege-sehenswuerdigkeit', 'die Sehenswürdigkeit', 'the sight, attraction', 'le lieu d’intérêt', 'die', 'SEH-ens-wür-dig-keit', 'dee ZAY-ens-vuer-dikh-kite', ['In Berlin gibt es viele Sehenswürdigkeiten.', 'There are many sights in Berlin.', 'Il y a beaucoup de lieux d’intérêt à Berlin.']),
+    situation(
+      ['Urlaubspläne', 'Projets de vacances'],
+      ['Colleagues talk about holidays.', 'Des collègues parlent de leurs vacances.'],
+      [
+        ['Mia', 'Wohin fährst du im Urlaub?', 'Where are you going on holiday?', 'Où pars-tu en vacances ?'],
+        ['Tom', 'Ich fliege nach Spanien und bleibe zwei Wochen am Strand.', 'I am flying to Spain and staying two weeks at the beach.', 'Je vais en Espagne en avion et je reste deux semaines à la plage.'],
+        ['Mia', 'Schön! Ich fahre in die Berge.', 'Lovely! I am going to the mountains.', 'Super ! Moi, je vais à la montagne.'],
+      ],
+    ),
+    wordgroup(['Holiday and destinations', 'Vacances et destinations'], [
+      vocab('sp-reisen-wege-urlaub', 'der Urlaub', 'the holiday, leave', 'les vacances, le congé', 'der', 'UR-laub', 'dair OOR-lowp', ['Im Urlaub fahre ich ans Meer.', 'On holiday I go to the sea.', 'En vacances, je vais à la mer.']),
+      vocab('sp-reisen-wege-strand', 'der Strand', 'the beach', 'la plage', 'der', 'STRAND', 'dair SHTRANT', ['Wir liegen den ganzen Tag am Strand.', 'We lie on the beach all day.', 'Nous restons toute la journée à la plage.']),
+      vocab('sp-reisen-wege-sehenswuerdigkeit', 'die Sehenswürdigkeit', 'the sight, attraction', 'le lieu d’intérêt', 'die', 'SEH-ens-wür-dig-keit', 'dee ZAY-ens-vuer-dikh-kite', ['In Berlin gibt es viele Sehenswürdigkeiten.', 'There are many sights in Berlin.', 'Il y a beaucoup de lieux d’intérêt à Berlin.']),
+    ]),
     grammar(
       'sp-rw-where-to',
       ['Where to? nach, in, an', 'Où aller ? nach, in, an'],

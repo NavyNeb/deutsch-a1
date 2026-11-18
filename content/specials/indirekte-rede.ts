@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const indirekteRede = defineSpecial({
   slug: 'indirekte-rede',
@@ -63,8 +63,10 @@ export const indirekteRede = defineSpecial({
       ],
       'satzklammer',
     ),
-    vocab('sp-indirekte-rede-fragen', 'fragen', 'to ask', 'demander', null, 'FRA-gen', 'FRAH-gen', ['Er fragt, ob ich Zeit habe.', 'He asks whether I have time.', 'Il demande si j’ai le temps.']),
-    vocab('sp-indirekte-rede-antworten', 'antworten', 'to answer', 'répondre', null, 'ANT-wor-ten', 'ANT-vor-ten', ['Sie antwortet, dass sie kommt.', 'She answers that she is coming.', 'Elle répond qu’elle vient.']),
+    wordgroup(['Indirect questions', 'Questions indirectes'], [
+      vocab('sp-indirekte-rede-fragen', 'fragen', 'to ask', 'demander', null, 'FRA-gen', 'FRAH-gen', ['Er fragt, ob ich Zeit habe.', 'He asks whether I have time.', 'Il demande si j’ai le temps.']),
+      vocab('sp-indirekte-rede-antworten', 'antworten', 'to answer', 'répondre', null, 'ANT-wor-ten', 'ANT-vor-ten', ['Sie antwortet, dass sie kommt.', 'She answers that she is coming.', 'Elle répond qu’elle vient.']),
+    ]),
     mc(
       'sp-ir-e1',
       ['"Er fragt, ___ ich morgen komme." (yes/no question)', '« Er fragt, ___ ich morgen komme. » (question oui/non)'],
@@ -139,8 +141,10 @@ export const indirekteRede = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-indirekte-rede-behaupten', 'behaupten', 'to claim', 'prétendre', null, 'be-HAUP-ten', 'beh-HOWP-ten', ['Er behauptet, er sei unschuldig.', 'He claims he is innocent.', 'Il prétend être innocent.']),
-    vocab('sp-indirekte-rede-berichten', 'berichten', 'to report', 'rapporter, faire un reportage', null, 'be-RICH-ten', 'beh-RIKH-ten', ['Die Zeitung berichtet, der Zug sei spät.', 'The newspaper reports that the train is late.', 'Le journal rapporte que le train est en retard.']),
+    wordgroup(['Konjunktiv I', 'Konjunktiv I'], [
+      vocab('sp-indirekte-rede-behaupten', 'behaupten', 'to claim', 'prétendre', null, 'be-HAUP-ten', 'beh-HOWP-ten', ['Er behauptet, er sei unschuldig.', 'He claims he is innocent.', 'Il prétend être innocent.']),
+      vocab('sp-indirekte-rede-berichten', 'berichten', 'to report', 'rapporter, faire un reportage', null, 'be-RICH-ten', 'beh-RIKH-ten', ['Die Zeitung berichtet, der Zug sei spät.', 'The newspaper reports that the train is late.', 'Le journal rapporte que le train est en retard.']),
+    ]),
     mc(
       'sp-ir-e8',
       ['"Er sagt, er ___ keine Zeit." (Konjunktiv I of haben)', '« Er sagt, er ___ keine Zeit. » (Konjunktiv I de haben)'],

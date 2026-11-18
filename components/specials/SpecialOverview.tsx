@@ -12,6 +12,7 @@ import { LessonArt } from '@/components/ui/LessonArt';
 import { GROUP_LABEL } from '@/content/specials/meta';
 import { BookRefLinks } from '@/components/learn/BookRefLinks';
 import { stepId } from '@/components/learn/stepId';
+import { stepVocab } from '@/content/step-vocab';
 import { levelRange } from './SpecialCard';
 
 export function SpecialOverview({ special }: { special: Special }) {
@@ -23,7 +24,7 @@ export function SpecialOverview({ special }: { special: Special }) {
   const started = p.stepsDone > 0 || p.quizAnswered > 0;
 
   const chapters = special.steps.flatMap((s, i) => (s.kind === 'chapter' ? [{ step: s, id: stepId(s, i) }] : []));
-  const words = special.steps.filter((s) => s.kind === 'vocab').length;
+  const words = special.steps.reduce((n, s) => n + stepVocab(s).length, 0);
   const quizAt = special.steps.findIndex((s) => s.kind === 'quiz');
   const exercises = special.steps.filter((s, i) => s.kind === 'exercise' && (quizAt < 0 || i < quizAt)).length;
   const related = special.special.related.flatMap((id) => { const l = getLesson(id); return l ? [l] : []; });

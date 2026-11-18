@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { stepVocab } from '@/content/step-vocab';
 import type { Lesson } from '@/content/types';
 import { canDoFor, stepProgress } from '@/lib/path-model';
 import { genderMeta } from '@/lib/gender';
@@ -16,7 +17,7 @@ const MAX_WORDS = 5;
 export function LessonDetail({ lesson, state }: { lesson: Lesson; state: ProgressState }) {
   const { locale } = useLocale();
   const canDo = canDoFor(lesson);
-  const vocab = lesson.steps.flatMap((s) => (s.kind === 'vocab' ? [s.item] : []));
+  const vocab = lesson.steps.flatMap((s) => (s.kind === 'pronunciation' ? [] : stepVocab(s)));
   const grammar = lesson.steps.flatMap((s) => (s.kind === 'grammar' ? [s.note] : []));
   const exercises = lesson.steps.filter((s) => s.kind === 'exercise').length;
   const p = stepProgress(state, lesson);

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const relativsaetze = defineSpecial({
   slug: 'relativsaetze',
@@ -63,8 +63,10 @@ export const relativsaetze = defineSpecial({
       ],
       'satzklammer',
     ),
-    vocab('sp-relativsaetze-relativsatz', 'der Relativsatz', 'the relative clause', 'la proposition relative', 'der', 're-la-TIV-satz', 'dair reh-lah-TEEF-zats', ['Ein Relativsatz steht hinter dem Nomen.', 'A relative clause stands after the noun.', 'Une relative se place après le nom.']),
-    vocab('sp-relativsaetze-nachbar', 'der Nachbar', 'the neighbour', 'le voisin', 'der', 'NACH-bar', 'dair NAKH-bar', ['Der Nachbar, der unten wohnt, ist nett.', 'The neighbour who lives downstairs is nice.', 'Le voisin qui habite en bas est sympa.']),
+    wordgroup(['Building a relative clause', 'Construire une relative'], [
+      vocab('sp-relativsaetze-relativsatz', 'der Relativsatz', 'the relative clause', 'la proposition relative', 'der', 're-la-TIV-satz', 'dair reh-lah-TEEF-zats', ['Ein Relativsatz steht hinter dem Nomen.', 'A relative clause stands after the noun.', 'Une relative se place après le nom.']),
+      vocab('sp-relativsaetze-nachbar', 'der Nachbar', 'the neighbour', 'le voisin', 'der', 'NACH-bar', 'dair NAKH-bar', ['Der Nachbar, der unten wohnt, ist nett.', 'The neighbour who lives downstairs is nice.', 'Le voisin qui habite en bas est sympa.']),
+    ]),
     mc(
       'sp-rel-e1',
       ['"Das ist der Mann, ___ neben mir wohnt." (subject of the clause)', '« Das ist der Mann, ___ neben mir wohnt. » (sujet de la relative)'],
@@ -104,8 +106,10 @@ export const relativsaetze = defineSpecial({
         ['Die Kinder, die im Garten spielen, sind meine Neffen.', 'The children who are playing in the garden are my nephews.', 'Les enfants qui jouent dans le jardin sont mes neveux.'],
       ],
     ),
-    vocab('sp-relativsaetze-relativpronomen', 'das Relativpronomen', 'the relative pronoun', 'le pronom relatif', 'das', 're-la-TIV-pro-no-men', 'dahs reh-lah-TEEF-proh-noh-men', ['Das Relativpronomen heißt oft der, die oder das.', 'The relative pronoun is often der, die or das.', 'Le pronom relatif est souvent der, die ou das.']),
-    vocab('sp-relativsaetze-schluessel', 'der Schlüssel', 'the key', 'la clé', 'der', 'SCHLÜS-sel', 'dair SHLEWS-sel', ['Der Schlüssel, den ich suche, ist weg.', 'The key I am looking for is gone.', 'La clé que je cherche a disparu.']),
+    wordgroup(['Nominative & accusative', 'Nominatif et accusatif'], [
+      vocab('sp-relativsaetze-relativpronomen', 'das Relativpronomen', 'the relative pronoun', 'le pronom relatif', 'das', 're-la-TIV-pro-no-men', 'dahs reh-lah-TEEF-proh-noh-men', ['Das Relativpronomen heißt oft der, die oder das.', 'The relative pronoun is often der, die or das.', 'Le pronom relatif est souvent der, die ou das.']),
+      vocab('sp-relativsaetze-schluessel', 'der Schlüssel', 'the key', 'la clé', 'der', 'SCHLÜS-sel', 'dair SHLEWS-sel', ['Der Schlüssel, den ich suche, ist weg.', 'The key I am looking for is gone.', 'La clé que je cherche a disparu.']),
+    ]),
     mc(
       'sp-rel-e5',
       ['"Der Film, ___ ich gestern gesehen habe, war toll."', '« Der Film, ___ ich gestern gesehen habe, war toll. »'],
@@ -150,8 +154,10 @@ export const relativsaetze = defineSpecial({
         ['Die Leute, denen ich helfe, sind alt.', 'The people I am helping are old.', 'Les gens que j’aide sont âgés.'],
       ],
     ),
-    vocab('sp-relativsaetze-kollege', 'der Kollege', 'the colleague', 'le collègue', 'der', 'kol-LE-ge', 'dair kol-LAY-geh', ['Der Kollege, mit dem ich arbeite, ist neu.', 'The colleague I work with is new.', 'Le collègue avec qui je travaille est nouveau.']),
-    vocab('sp-relativsaetze-stadt', 'die Stadt', 'the city', 'la ville', 'die', 'STADT', 'dee SHTAT', ['Die Stadt, in der ich wohne, ist schön.', 'The city I live in is beautiful.', 'La ville où j’habite est belle.']),
+    wordgroup(['Dative & prepositions', 'Datif et prépositions'], [
+      vocab('sp-relativsaetze-kollege', 'der Kollege', 'the colleague', 'le collègue', 'der', 'kol-LE-ge', 'dair kol-LAY-geh', ['Der Kollege, mit dem ich arbeite, ist neu.', 'The colleague I work with is new.', 'Le collègue avec qui je travaille est nouveau.']),
+      vocab('sp-relativsaetze-stadt', 'die Stadt', 'the city', 'la ville', 'die', 'STADT', 'dee SHTAT', ['Die Stadt, in der ich wohne, ist schön.', 'The city I live in is beautiful.', 'La ville où j’habite est belle.']),
+    ]),
     mc(
       'sp-rel-e9',
       ['"Die Frau, mit ___ ich arbeite, ist nett."', '« Die Frau, mit ___ ich arbeite, ist nett. »'],

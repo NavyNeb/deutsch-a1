@@ -16,6 +16,9 @@ function labelFor(step: LessonStep, index: number, lesson: Lesson): string {
       return step.item.german;
     case 'grammar':
       return step.note.title;
+    case 'situation':
+    case 'wordgroup':
+      return step.title;
     case 'exercise': {
       const n = lesson.steps.slice(0, index + 1).filter((s) => s.kind === 'exercise').length;
       return `Übung ${n}`;

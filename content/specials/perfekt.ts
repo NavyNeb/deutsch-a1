@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const perfekt = defineSpecial({
   slug: 'perfekt',
@@ -80,10 +80,12 @@ export const perfekt = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-perfekt-gestern', 'gestern', 'yesterday', 'hier', null, 'GES-tern', 'GES-tern', ['Gestern habe ich lange geschlafen.', 'Yesterday I slept late.', 'Hier, j’ai dormi tard.']),
-    vocab('sp-perfekt-letzte-woche', 'letzte Woche', 'last week', 'la semaine dernière', null, 'LETZ-te WO-che', 'LETS-teh VOKH-eh', ['Letzte Woche bin ich umgezogen.', 'Last week I moved house.', 'La semaine dernière, j’ai déménagé.']),
-    vocab('sp-perfekt-schon', 'schon', 'already', 'déjà', null, 'SCHON', 'SHOHN', ['Hast du schon gefrühstückt?', 'Have you had breakfast already?', 'As-tu déjà pris ton petit-déjeuner ?']),
-    vocab('sp-perfekt-noch-nie', 'noch nie', 'never (so far)', 'jamais (jusqu’ici)', null, 'NOCH NEE', 'NOKH NEE', ['Ich bin noch nie geflogen.', 'I have never flown.', 'Je n’ai jamais pris l’avion.']),
+    wordgroup(['The frame: helper + participle', 'Le cadre : auxiliaire + participe'], [
+      vocab('sp-perfekt-gestern', 'gestern', 'yesterday', 'hier', null, 'GES-tern', 'GES-tern', ['Gestern habe ich lange geschlafen.', 'Yesterday I slept late.', 'Hier, j’ai dormi tard.']),
+      vocab('sp-perfekt-letzte-woche', 'letzte Woche', 'last week', 'la semaine dernière', null, 'LETZ-te WO-che', 'LETS-teh VOKH-eh', ['Letzte Woche bin ich umgezogen.', 'Last week I moved house.', 'La semaine dernière, j’ai déménagé.']),
+      vocab('sp-perfekt-schon', 'schon', 'already', 'déjà', null, 'SCHON', 'SHOHN', ['Hast du schon gefrühstückt?', 'Have you had breakfast already?', 'As-tu déjà pris ton petit-déjeuner ?']),
+      vocab('sp-perfekt-noch-nie', 'noch nie', 'never (so far)', 'jamais (jusqu’ici)', null, 'NOCH NEE', 'NOKH NEE', ['Ich bin noch nie geflogen.', 'I have never flown.', 'Je n’ai jamais pris l’avion.']),
+    ]),
     mc(
       'sp-pf-e1',
       ['Where does the participle go in a main clause?', 'Où va le participe dans une phrase principale ?'],
@@ -136,9 +138,11 @@ export const perfekt = defineSpecial({
         ['Sie ist spät nach Hause gekommen.', 'She came home late.', 'Elle est rentrée tard.'],
       ],
     ),
-    vocab('sp-perfekt-gesehen', 'gesehen', 'seen (participle of sehen)', 'vu (participe de sehen)', null, 'ge-SE-hen', 'geh-ZAY-en', ['Hast du den Film schon gesehen?', 'Have you seen the film yet?', 'As-tu déjà vu le film ?']),
-    vocab('sp-perfekt-gegessen', 'gegessen', 'eaten (participle of essen)', 'mangé (participe de essen)', null, 'ge-GES-sen', 'geh-GES-en', ['Wir haben im Restaurant gegessen.', 'We ate at the restaurant.', 'Nous avons mangé au restaurant.']),
-    vocab('sp-perfekt-gearbeitet', 'gearbeitet', 'worked (participle of arbeiten)', 'travaillé (participe de arbeiten)', null, 'ge-AR-bei-tet', 'geh-AR-by-tet', ['Er hat heute lange gearbeitet.', 'He worked late today.', 'Il a travaillé tard aujourd’hui.']),
+    wordgroup(['Forming the participle', 'Former le participe'], [
+      vocab('sp-perfekt-gesehen', 'gesehen', 'seen (participle of sehen)', 'vu (participe de sehen)', null, 'ge-SE-hen', 'geh-ZAY-en', ['Hast du den Film schon gesehen?', 'Have you seen the film yet?', 'As-tu déjà vu le film ?']),
+      vocab('sp-perfekt-gegessen', 'gegessen', 'eaten (participle of essen)', 'mangé (participe de essen)', null, 'ge-GES-sen', 'geh-GES-en', ['Wir haben im Restaurant gegessen.', 'We ate at the restaurant.', 'Nous avons mangé au restaurant.']),
+      vocab('sp-perfekt-gearbeitet', 'gearbeitet', 'worked (participle of arbeiten)', 'travaillé (participe de arbeiten)', null, 'ge-AR-bei-tet', 'geh-AR-by-tet', ['Er hat heute lange gearbeitet.', 'He worked late today.', 'Il a travaillé tard aujourd’hui.']),
+    ]),
     mc(
       'sp-pf-e5',
       ['Participle of "lernen"?', 'Participe de « lernen » ?'],
@@ -213,8 +217,10 @@ export const perfekt = defineSpecial({
         ['Er hat den ganzen Abend gesessen.', 'He sat the whole evening.', 'Il est resté assis toute la soirée.'],
       ],
     ),
-    vocab('sp-perfekt-geblieben', 'geblieben', 'stayed (participle of bleiben)', 'resté (participe de bleiben)', null, 'ge-BLIE-ben', 'geh-BLEE-ben', ['Wir sind zu Hause geblieben.', 'We stayed at home.', 'Nous sommes restés à la maison.']),
-    vocab('sp-perfekt-gewesen', 'gewesen', 'been (participle of sein)', 'été (participe de sein)', null, 'ge-WE-sen', 'geh-VAY-zen', ['Ich bin schon in Berlin gewesen.', 'I have already been to Berlin.', 'Je suis déjà allé à Berlin.']),
+    wordgroup(['Haben or sein?', 'Haben ou sein ?'], [
+      vocab('sp-perfekt-geblieben', 'geblieben', 'stayed (participle of bleiben)', 'resté (participe de bleiben)', null, 'ge-BLIE-ben', 'geh-BLEE-ben', ['Wir sind zu Hause geblieben.', 'We stayed at home.', 'Nous sommes restés à la maison.']),
+      vocab('sp-perfekt-gewesen', 'gewesen', 'been (participle of sein)', 'été (participe de sein)', null, 'ge-WE-sen', 'geh-VAY-zen', ['Ich bin schon in Berlin gewesen.', 'I have already been to Berlin.', 'Je suis déjà allé à Berlin.']),
+    ]),
     mc(
       'sp-pf-e11',
       ['Which helper? "Ich ___ nach Paris geflogen."', 'Quel auxiliaire ? « Ich ___ nach Paris geflogen. »'],
@@ -265,9 +271,11 @@ export const perfekt = defineSpecial({
         ['Ich habe lange mit Anna telefoniert.', 'I talked on the phone with Anna for a long time.', 'J’ai longuement téléphoné avec Anna.'],
       ],
     ),
-    vocab('sp-perfekt-eingekauft', 'eingekauft', 'shopped (participle of einkaufen)', 'fait les courses (participe de einkaufen)', null, 'EIN-ge-kauft', 'INE-geh-kowft', ['Wir haben gestern eingekauft.', 'We did the shopping yesterday.', 'Nous avons fait les courses hier.']),
-    vocab('sp-perfekt-besucht', 'besucht', 'visited (participle of besuchen)', 'visité (participe de besuchen)', null, 'be-SUCHT', 'beh-ZOOKHT', ['Ich habe meine Oma besucht.', 'I visited my grandmother.', 'J’ai rendu visite à ma grand-mère.']),
-    vocab('sp-perfekt-studiert', 'studiert', 'studied (participle of studieren)', 'étudié (participe de studieren)', null, 'stu-DIERT', 'shtoo-DEERT', ['Sie hat Medizin studiert.', 'She studied medicine.', 'Elle a étudié la médecine.']),
+    wordgroup(['Special participles', 'Participes particuliers'], [
+      vocab('sp-perfekt-eingekauft', 'eingekauft', 'shopped (participle of einkaufen)', 'fait les courses (participe de einkaufen)', null, 'EIN-ge-kauft', 'INE-geh-kowft', ['Wir haben gestern eingekauft.', 'We did the shopping yesterday.', 'Nous avons fait les courses hier.']),
+      vocab('sp-perfekt-besucht', 'besucht', 'visited (participle of besuchen)', 'visité (participe de besuchen)', null, 'be-SUCHT', 'beh-ZOOKHT', ['Ich habe meine Oma besucht.', 'I visited my grandmother.', 'J’ai rendu visite à ma grand-mère.']),
+      vocab('sp-perfekt-studiert', 'studiert', 'studied (participle of studieren)', 'étudié (participe de studieren)', null, 'stu-DIERT', 'shtoo-DEERT', ['Sie hat Medizin studiert.', 'She studied medicine.', 'Elle a étudié la médecine.']),
+    ]),
     fb(
       'sp-pf-e16',
       ['Ich habe gestern Oma ___. (anrufen — Partizip)', 'Ich habe gestern Oma ___. (anrufen — participe)'],

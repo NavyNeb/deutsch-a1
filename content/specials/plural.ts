@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const plural = defineSpecial({
   slug: 'plural',
@@ -65,8 +65,10 @@ export const plural = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-plural-kind', 'das Kind', 'the child', 'l’enfant', 'das', 'KIND', 'dahs KINT', ['Die Kinder spielen im Park.', 'The children are playing in the park.', 'Les enfants jouent dans le parc.']),
-    vocab('sp-plural-auto', 'das Auto', 'the car', 'la voiture', 'das', 'AU-to', 'dahs OW-toh', ['Wir haben zwei Autos.', 'We have two cars.', 'Nous avons deux voitures.']),
+    wordgroup(['The five plural types', 'Les cinq types de pluriel'], [
+      vocab('sp-plural-kind', 'das Kind', 'the child', 'l’enfant', 'das', 'KIND', 'dahs KINT', ['Die Kinder spielen im Park.', 'The children are playing in the park.', 'Les enfants jouent dans le parc.']),
+      vocab('sp-plural-auto', 'das Auto', 'the car', 'la voiture', 'das', 'AU-to', 'dahs OW-toh', ['Wir haben zwei Autos.', 'We have two cars.', 'Nous avons deux voitures.']),
+    ]),
     mc(
       'sp-plural-e1',
       ['What is the plural of "das Haus"?', 'Quel est le pluriel de « das Haus » ?'],
@@ -189,8 +191,10 @@ export const plural = defineSpecial({
         ['Meine Eltern wohnen in Hamburg.', 'My parents live in Hamburg.', 'Mes parents habitent à Hambourg.'],
       ],
     ),
-    vocab('sp-plural-eltern', 'die Eltern', 'the parents', 'les parents', 'die', 'EL-tern', 'dee EL-tern', ['Meine Eltern wohnen in Hamburg.', 'My parents live in Hamburg.', 'Mes parents habitent à Hambourg.']),
-    vocab('sp-plural-bus', 'der Bus', 'the bus', 'le bus', 'der', 'BUS', 'dair BOOS', ['Die Busse fahren alle zehn Minuten.', 'The buses run every ten minutes.', 'Les bus passent toutes les dix minutes.']),
+    wordgroup(['Foreign words and special cases', 'Mots étrangers et cas particuliers'], [
+      vocab('sp-plural-eltern', 'die Eltern', 'the parents', 'les parents', 'die', 'EL-tern', 'dee EL-tern', ['Meine Eltern wohnen in Hamburg.', 'My parents live in Hamburg.', 'Mes parents habitent à Hambourg.']),
+      vocab('sp-plural-bus', 'der Bus', 'the bus', 'le bus', 'der', 'BUS', 'dair BOOS', ['Die Busse fahren alle zehn Minuten.', 'The buses run every ten minutes.', 'Les bus passent toutes les dix minutes.']),
+    ]),
     mc(
       'sp-plural-e11',
       ['What is the plural of "das Museum"?', 'Quel est le pluriel de « das Museum » ?'],

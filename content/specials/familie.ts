@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const familie = defineSpecial({
   slug: 'familie',
@@ -51,16 +51,29 @@ export const familie = defineSpecial({
       'Close family', 'La famille proche',
       'Parents, children and siblings — the core vocabulary.', 'Parents, enfants et frères et sœurs — le vocabulaire de base.',
     ),
-    vocab('sp-familie-familie', 'die Familie', 'the family', 'la famille', 'die', 'fa-MI-li-e', 'dee fah-MEE-lee-eh', ['Meine Familie ist groß.', 'My family is big.', 'Ma famille est grande.']),
-    vocab('sp-familie-eltern', 'die Eltern', 'the parents', 'les parents', 'die', 'EL-tern', 'dee EL-tern', ['Meine Eltern wohnen in Kribi.', 'My parents live in Kribi.', 'Mes parents habitent à Kribi.']),
-    vocab('sp-familie-mutter', 'die Mutter', 'the mother', 'la mère', 'die', 'MUT-ter', 'dee MOOT-er', ['Meine Mutter arbeitet im Krankenhaus.', 'My mother works in the hospital.', 'Ma mère travaille à l’hôpital.']),
-    vocab('sp-familie-vater', 'der Vater', 'the father', 'le père', 'der', 'VA-ter', 'dair FAH-ter', ['Mein Vater kocht gern.', 'My father likes to cook.', 'Mon père aime cuisiner.']),
-    vocab('sp-familie-bruder', 'der Bruder', 'the brother', 'le frère', 'der', 'BRU-der', 'dair BROO-der', ['Mein Bruder heißt Paul.', 'My brother is called Paul.', 'Mon frère s’appelle Paul.']),
-    vocab('sp-familie-schwester', 'die Schwester', 'the sister', 'la sœur', 'die', 'SCHWES-ter', 'dee SHVES-ter', ['Meine Schwester ist Lehrerin.', 'My sister is a teacher.', 'Ma sœur est enseignante.']),
-    vocab('sp-familie-geschwister', 'die Geschwister', 'the siblings', 'les frères et sœurs', 'die', 'ge-SCHWIS-ter', 'dee geh-SHVIS-ter', ['Hast du Geschwister?', 'Do you have siblings?', 'As-tu des frères et sœurs ?']),
-    vocab('sp-familie-sohn', 'der Sohn', 'the son', 'le fils', 'der', 'SOHN', 'dair ZOHN', ['Ihr Sohn ist acht Jahre alt.', 'Her son is eight years old.', 'Son fils a huit ans.']),
-    vocab('sp-familie-tochter', 'die Tochter', 'the daughter', 'la fille', 'die', 'TOCH-ter', 'dee TOKH-ter', ['Seine Tochter geht zur Schule.', 'His daughter goes to school.', 'Sa fille va à l’école.']),
-    vocab('sp-familie-kind', 'das Kind', 'the child', 'l’enfant', 'das', 'KIND', 'dahs KINT', ['Das Kind spielt im Garten.', 'The child is playing in the garden.', 'L’enfant joue dans le jardin.']),
+    situation(
+      ['Meine Familie', 'Ma famille'],
+      ['Anna shows a photo to her friend.', 'Anna montre une photo à son ami.'],
+      [
+        ['Anna', 'Das ist meine Familie: meine Eltern, mein Bruder Paul und meine Schwester.', 'This is my family: my parents, my brother Paul and my sister.', 'Voici ma famille : mes parents, mon frère Paul et ma sœur.'],
+        ['Ben', 'Ihr seid drei Geschwister? Was macht deine Mutter?', 'There are three of you siblings? What does your mother do?', 'Vous êtes trois frères et sœurs ? Que fait ta mère ?'],
+        ['Anna', 'Meine Mutter arbeitet im Krankenhaus, und mein Vater kocht gern.', 'My mother works at the hospital, and my father likes cooking.', 'Ma mère travaille à l’hôpital, et mon père aime cuisiner.'],
+      ],
+    ),
+    wordgroup(['Close family (1/2)', 'La famille proche (1/2)'], [
+      vocab('sp-familie-familie', 'die Familie', 'the family', 'la famille', 'die', 'fa-MI-li-e', 'dee fah-MEE-lee-eh', ['Meine Familie ist groß.', 'My family is big.', 'Ma famille est grande.']),
+      vocab('sp-familie-eltern', 'die Eltern', 'the parents', 'les parents', 'die', 'EL-tern', 'dee EL-tern', ['Meine Eltern wohnen in Kribi.', 'My parents live in Kribi.', 'Mes parents habitent à Kribi.']),
+      vocab('sp-familie-mutter', 'die Mutter', 'the mother', 'la mère', 'die', 'MUT-ter', 'dee MOOT-er', ['Meine Mutter arbeitet im Krankenhaus.', 'My mother works in the hospital.', 'Ma mère travaille à l’hôpital.']),
+      vocab('sp-familie-vater', 'der Vater', 'the father', 'le père', 'der', 'VA-ter', 'dair FAH-ter', ['Mein Vater kocht gern.', 'My father likes to cook.', 'Mon père aime cuisiner.']),
+      vocab('sp-familie-bruder', 'der Bruder', 'the brother', 'le frère', 'der', 'BRU-der', 'dair BROO-der', ['Mein Bruder heißt Paul.', 'My brother is called Paul.', 'Mon frère s’appelle Paul.']),
+    ]),
+    wordgroup(['Close family (2/2)', 'La famille proche (2/2)'], [
+      vocab('sp-familie-schwester', 'die Schwester', 'the sister', 'la sœur', 'die', 'SCHWES-ter', 'dee SHVES-ter', ['Meine Schwester ist Lehrerin.', 'My sister is a teacher.', 'Ma sœur est enseignante.']),
+      vocab('sp-familie-geschwister', 'die Geschwister', 'the siblings', 'les frères et sœurs', 'die', 'ge-SCHWIS-ter', 'dee geh-SHVIS-ter', ['Hast du Geschwister?', 'Do you have siblings?', 'As-tu des frères et sœurs ?']),
+      vocab('sp-familie-sohn', 'der Sohn', 'the son', 'le fils', 'der', 'SOHN', 'dair ZOHN', ['Ihr Sohn ist acht Jahre alt.', 'Her son is eight years old.', 'Son fils a huit ans.']),
+      vocab('sp-familie-tochter', 'die Tochter', 'the daughter', 'la fille', 'die', 'TOCH-ter', 'dee TOKH-ter', ['Seine Tochter geht zur Schule.', 'His daughter goes to school.', 'Sa fille va à l’école.']),
+      vocab('sp-familie-kind', 'das Kind', 'the child', 'l’enfant', 'das', 'KIND', 'dahs KINT', ['Das Kind spielt im Garten.', 'The child is playing in the garden.', 'L’enfant joue dans le jardin.']),
+    ]),
     ap('sp-fam-e1', 'Mutter', 'die', ['Mutter is feminine: die Mutter.', 'Mutter est féminin : die Mutter.']),
     ap('sp-fam-e2', 'Vater', 'der', ['Male people are usually masculine: der Vater.', 'Les personnes de sexe masculin sont en général masculines : der Vater.']),
     ap('sp-fam-e3', 'Kind', 'das', ['Kind is neuter, whatever the sex of the child: das Kind.', 'Kind est neutre, quel que soit le sexe de l’enfant : das Kind.']),
@@ -109,22 +122,37 @@ export const familie = defineSpecial({
       'Extended family and status', 'Famille élargie et situation',
       'Grandparents, aunts, uncles, cousins — and who is married to whom.', 'Grands-parents, oncles, tantes, cousins — et qui est marié avec qui.',
     ),
-    vocab('sp-familie-grosseltern', 'die Großeltern', 'the grandparents', 'les grands-parents', 'die', 'GROSS-el-tern', 'dee GROHS-el-tern', ['Meine Großeltern besuchen uns am Sonntag.', 'My grandparents visit us on Sunday.', 'Mes grands-parents nous rendent visite le dimanche.']),
-    vocab('sp-familie-oma', 'die Oma', 'grandma', 'mamie', 'die', 'O-ma', 'dee OH-mah', ['Meine Oma backt sehr gut.', 'My grandma bakes very well.', 'Ma mamie fait très bien la pâtisserie.']),
-    vocab('sp-familie-opa', 'der Opa', 'grandpa', 'papi', 'der', 'O-pa', 'dair OH-pah', ['Mein Opa liest die Zeitung.', 'My grandpa is reading the newspaper.', 'Mon papi lit le journal.']),
-    vocab('sp-familie-tante', 'die Tante', 'the aunt', 'la tante', 'die', 'TAN-te', 'dee TAN-teh', ['Meine Tante wohnt in Berlin.', 'My aunt lives in Berlin.', 'Ma tante habite à Berlin.']),
-    vocab('sp-familie-onkel', 'der Onkel', 'the uncle', 'l’oncle', 'der', 'ON-kel', 'dair ON-kel', ['Mein Onkel hat ein Restaurant.', 'My uncle has a restaurant.', 'Mon oncle a un restaurant.']),
-    vocab('sp-familie-cousin', 'der Cousin', 'the (male) cousin', 'le cousin', 'der', 'ku-SENG', 'dair koo-ZANG', ['Mein Cousin ist so alt wie ich.', 'My cousin is as old as I am.', 'Mon cousin a le même âge que moi.']),
-    vocab('sp-familie-cousine', 'die Cousine', 'the (female) cousin', 'la cousine', 'die', 'ku-SI-ne', 'dee koo-ZEE-neh', ['Meine Cousine studiert Medizin.', 'My cousin studies medicine.', 'Ma cousine étudie la médecine.']),
-    vocab('sp-familie-enkel', 'das Enkelkind', 'the grandchild', 'le petit-enfant', 'das', 'EN-kel-kind', 'dahs EN-kel-kint', ['Das Enkelkind besucht die Großmutter.', 'The grandchild visits the grandmother.', 'Le petit-enfant rend visite à sa grand-mère.']),
-    vocab('sp-familie-mann', 'der Mann', 'the husband, the man', 'le mari, l’homme', 'der', 'MAN', 'dair MAHN', ['Ihr Mann arbeitet bei einer Bank.', 'Her husband works at a bank.', 'Son mari travaille dans une banque.']),
-    vocab('sp-familie-frau', 'die Frau', 'the wife, the woman', 'la femme, l’épouse', 'die', 'FRAU', 'dee FROW', ['Seine Frau ist Ärztin.', 'His wife is a doctor.', 'Sa femme est médecin.']),
-    vocab('sp-familie-freund', 'der Freund', 'the friend, boyfriend', 'l’ami, le petit ami', 'der', 'FREUND', 'dair FROYNT', ['Mein Freund kommt aus Spanien.', 'My boyfriend comes from Spain.', 'Mon petit ami vient d’Espagne.']),
-    vocab('sp-familie-freundin', 'die Freundin', 'the (female) friend, girlfriend', 'l’amie, la petite amie', 'die', 'FREUN-din', 'dee FROYN-din', ['Meine Freundin ist sehr nett.', 'My friend is very nice.', 'Mon amie est très gentille.']),
-    vocab('sp-familie-verheiratet', 'verheiratet', 'married', 'marié(e)', null, 'ver-HEI-ra-tet', 'fair-HY-rah-tet', ['Sie sind seit zehn Jahren verheiratet.', 'They have been married for ten years.', 'Ils sont mariés depuis dix ans.']),
-    vocab('sp-familie-ledig', 'ledig', 'single (unmarried)', 'célibataire', null, 'LE-dig', 'LAY-dikh', ['Mein Bruder ist noch ledig.', 'My brother is still single.', 'Mon frère est encore célibataire.']),
-    vocab('sp-familie-geschieden', 'geschieden', 'divorced', 'divorcé(e)', null, 'ge-SCHIE-den', 'geh-SHEE-den', ['Meine Tante ist geschieden.', 'My aunt is divorced.', 'Ma tante est divorcée.']),
-    vocab('sp-familie-heiraten', 'heiraten', 'to marry', 'se marier', null, 'HEI-ra-ten', 'HY-rah-ten', ['Sie heiraten im Mai.', 'They are getting married in May.', 'Ils se marient en mai.']),
+    situation(
+      ['Die große Familie', 'La grande famille'],
+      ['Two friends talk about relatives.', 'Deux amis parlent de leur famille élargie.'],
+      [
+        ['Lisa', 'Meine Großmutter und mein Großvater wohnen in Hamburg. Mein Onkel ist verheiratet.', 'My grandmother and grandfather live in Hamburg. My uncle is married.', 'Ma grand-mère et mon grand-père habitent à Hambourg. Mon oncle est marié.'],
+        ['Tom', 'Und deine Tante?', 'And your aunt?', 'Et ta tante ?'],
+        ['Lisa', 'Sie ist geschieden und hat zwei Kinder, meine Cousins.', 'She is divorced and has two children, my cousins.', 'Elle est divorcée et a deux enfants, mes cousins.'],
+      ],
+    ),
+    wordgroup(['Extended family and status (1/3)', 'Famille élargie et situation (1/3)'], [
+      vocab('sp-familie-grosseltern', 'die Großeltern', 'the grandparents', 'les grands-parents', 'die', 'GROSS-el-tern', 'dee GROHS-el-tern', ['Meine Großeltern besuchen uns am Sonntag.', 'My grandparents visit us on Sunday.', 'Mes grands-parents nous rendent visite le dimanche.']),
+      vocab('sp-familie-oma', 'die Oma', 'grandma', 'mamie', 'die', 'O-ma', 'dee OH-mah', ['Meine Oma backt sehr gut.', 'My grandma bakes very well.', 'Ma mamie fait très bien la pâtisserie.']),
+      vocab('sp-familie-opa', 'der Opa', 'grandpa', 'papi', 'der', 'O-pa', 'dair OH-pah', ['Mein Opa liest die Zeitung.', 'My grandpa is reading the newspaper.', 'Mon papi lit le journal.']),
+      vocab('sp-familie-tante', 'die Tante', 'the aunt', 'la tante', 'die', 'TAN-te', 'dee TAN-teh', ['Meine Tante wohnt in Berlin.', 'My aunt lives in Berlin.', 'Ma tante habite à Berlin.']),
+      vocab('sp-familie-onkel', 'der Onkel', 'the uncle', 'l’oncle', 'der', 'ON-kel', 'dair ON-kel', ['Mein Onkel hat ein Restaurant.', 'My uncle has a restaurant.', 'Mon oncle a un restaurant.']),
+      vocab('sp-familie-cousin', 'der Cousin', 'the (male) cousin', 'le cousin', 'der', 'ku-SENG', 'dair koo-ZANG', ['Mein Cousin ist so alt wie ich.', 'My cousin is as old as I am.', 'Mon cousin a le même âge que moi.']),
+    ]),
+    wordgroup(['Extended family and status (2/3)', 'Famille élargie et situation (2/3)'], [
+      vocab('sp-familie-cousine', 'die Cousine', 'the (female) cousin', 'la cousine', 'die', 'ku-SI-ne', 'dee koo-ZEE-neh', ['Meine Cousine studiert Medizin.', 'My cousin studies medicine.', 'Ma cousine étudie la médecine.']),
+      vocab('sp-familie-enkel', 'das Enkelkind', 'the grandchild', 'le petit-enfant', 'das', 'EN-kel-kind', 'dahs EN-kel-kint', ['Das Enkelkind besucht die Großmutter.', 'The grandchild visits the grandmother.', 'Le petit-enfant rend visite à sa grand-mère.']),
+      vocab('sp-familie-mann', 'der Mann', 'the husband, the man', 'le mari, l’homme', 'der', 'MAN', 'dair MAHN', ['Ihr Mann arbeitet bei einer Bank.', 'Her husband works at a bank.', 'Son mari travaille dans une banque.']),
+      vocab('sp-familie-frau', 'die Frau', 'the wife, the woman', 'la femme, l’épouse', 'die', 'FRAU', 'dee FROW', ['Seine Frau ist Ärztin.', 'His wife is a doctor.', 'Sa femme est médecin.']),
+      vocab('sp-familie-freund', 'der Freund', 'the friend, boyfriend', 'l’ami, le petit ami', 'der', 'FREUND', 'dair FROYNT', ['Mein Freund kommt aus Spanien.', 'My boyfriend comes from Spain.', 'Mon petit ami vient d’Espagne.']),
+      vocab('sp-familie-freundin', 'die Freundin', 'the (female) friend, girlfriend', 'l’amie, la petite amie', 'die', 'FREUN-din', 'dee FROYN-din', ['Meine Freundin ist sehr nett.', 'My friend is very nice.', 'Mon amie est très gentille.']),
+    ]),
+    wordgroup(['Extended family and status (3/3)', 'Famille élargie et situation (3/3)'], [
+      vocab('sp-familie-verheiratet', 'verheiratet', 'married', 'marié(e)', null, 'ver-HEI-ra-tet', 'fair-HY-rah-tet', ['Sie sind seit zehn Jahren verheiratet.', 'They have been married for ten years.', 'Ils sont mariés depuis dix ans.']),
+      vocab('sp-familie-ledig', 'ledig', 'single (unmarried)', 'célibataire', null, 'LE-dig', 'LAY-dikh', ['Mein Bruder ist noch ledig.', 'My brother is still single.', 'Mon frère est encore célibataire.']),
+      vocab('sp-familie-geschieden', 'geschieden', 'divorced', 'divorcé(e)', null, 'ge-SCHIE-den', 'geh-SHEE-den', ['Meine Tante ist geschieden.', 'My aunt is divorced.', 'Ma tante est divorcée.']),
+      vocab('sp-familie-heiraten', 'heiraten', 'to marry', 'se marier', null, 'HEI-ra-ten', 'HY-rah-ten', ['Sie heiraten im Mai.', 'They are getting married in May.', 'Ils se marient en mai.']),
+    ]),
     grammar(
       'sp-fam-plural',
       ['Plural of family words', 'Pluriel des mots de la famille'],
@@ -182,6 +210,16 @@ export const familie = defineSpecial({
     chapter(
       'Possessives: mein, dein, sein, ihr', 'Les possessifs : mein, dein, sein, ihr',
       'Who does it belong to? The owner picks the stem, the noun picks the ending.', 'À qui est-ce ? Le possesseur choisit le radical, le nom choisit la terminaison.',
+    ),
+    situation(
+      ['Mein, dein, sein', 'Mon, ton, son'],
+      ['At a party, Mia introduces people.', 'À une fête, Mia présente des gens.'],
+      [
+        ['Ben', 'Ist das dein Bruder?', 'Is that your brother?', 'C’est ton frère ?'],
+        ['Mia', 'Ja, das ist mein Bruder, und das sind seine Freunde.', 'Yes, that is my brother, and those are his friends.', 'Oui, c’est mon frère, et ce sont ses amis.'],
+        ['Ben', 'Wo wohnt eure Mutter?', 'Where does your mother live?', 'Où habite votre mère ?'],
+        ['Mia', 'Unsere Mutter wohnt in Berlin. Ihr Haus ist klein.', 'Our mother lives in Berlin. Her house is small.', 'Notre mère habite à Berlin. Sa maison est petite.'],
+      ],
     ),
     grammar(
       'sp-fam-possessive-stems',
@@ -256,6 +294,16 @@ export const familie = defineSpecial({
       'Whose is it? The genitive -s', 'À qui est-ce ? Le -s du génitif',
       'Annas Mutter, Toms Bruder — the easy way to show belonging.', 'Annas Mutter, Toms Bruder — la façon simple d’exprimer l’appartenance.',
     ),
+    situation(
+      ['Wessen Handy?', 'À qui est ce portable ?'],
+      ['Things are lying around the flat.', 'Des objets traînent dans l’appartement.'],
+      [
+        ['Jan', 'Wessen Handy ist das? Ist das Pauls Handy?', 'Whose mobile is that? Is it Paul’s?', 'À qui est ce portable ? C’est celui de Paul ?'],
+        ['Eva', 'Nein, das ist das Handy meiner Schwester.', 'No, that is my sister’s mobile.', 'Non, c’est le portable de ma sœur.'],
+        ['Jan', 'Und das Fahrrad?', 'And the bike?', 'Et le vélo ?'],
+        ['Eva', 'Das ist Annas Fahrrad. Das Auto gehört meinem Vater.', 'That is Anna’s bike. The car belongs to my father.', 'C’est le vélo d’Anna. La voiture appartient à mon père.'],
+      ],
+    ),
     grammar(
       'sp-fam-genitive-s',
       ['First name + -s', 'Prénom + -s'],
@@ -300,6 +348,15 @@ export const familie = defineSpecial({
     chapter(
       'Talking about your family', 'Parler de sa famille',
       'Put everything together in a real conversation.', 'Rassemble tout dans une vraie conversation.',
+    ),
+    situation(
+      ['Erzähl von deiner Familie', 'Parle-nous de ta famille'],
+      ['A German lesson in class.', 'Un cours d’allemand en classe.'],
+      [
+        ['Lehrer', 'Sara, erzähl uns von deiner Familie.', 'Sara, tell us about your family.', 'Sara, parle-nous de ta famille.'],
+        ['Sara', 'Ich habe zwei Brüder und eine Schwester. Meine Eltern sind verheiratet.', 'I have two brothers and a sister. My parents are married.', 'J’ai deux frères et une sœur. Mes parents sont mariés.'],
+        ['Sara', 'Mein Vater ist Lehrer, meine Mutter ist Ärztin. Wir sind eine große Familie.', 'My father is a teacher, my mother is a doctor. We are a big family.', 'Mon père est professeur, ma mère est médecin. Nous sommes une grande famille.'],
+      ],
     ),
     grammar(
       'sp-fam-dialogue',

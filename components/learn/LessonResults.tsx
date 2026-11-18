@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { stepVocab } from '@/content/step-vocab';
 import type { Lesson } from '@/content/types';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -45,9 +46,7 @@ export function LessonResults({ lesson, onHome, homeLabel, reviewHref, onRetakeQ
   const total = exerciseSteps.length;
   const correct = exerciseSteps.filter((s) => results[s.exercise.id] === true).length;
 
-  const vocabIds = lesson.steps.flatMap((s) =>
-    s.kind === 'vocab' ? [s.item.id] : s.kind === 'pronunciation' ? s.items.map((i) => i.id) : [],
-  );
+  const vocabIds = lesson.steps.flatMap((s) => stepVocab(s).map((i) => i.id));
   const wordsLearned = new Set(vocabIds).size;
   const saved = vocabIds.filter((id) => state.hardWords.includes(id)).length;
   const streak = currentStreak(state, dateKey(Date.now()));

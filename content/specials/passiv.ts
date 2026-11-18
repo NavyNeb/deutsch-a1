@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const passiv = defineSpecial({
   slug: 'passiv',
@@ -81,9 +81,11 @@ export const passiv = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-passiv-bauen', 'bauen', 'to build', 'construire', null, 'BAU-en', 'BOW-en', ['Das Haus wird gebaut.', 'The house is being built.', 'La maison est en construction.']),
-    vocab('sp-passiv-der-vorgang', 'der Vorgang', 'process, action', 'le processus, l’action', 'der', 'FOR-gang', 'FOR-gahng', ['Das Vorgangspassiv beschreibt einen Vorgang.', 'The Vorgangspassiv describes a process.', 'Le Vorgangspassiv décrit un processus.']),
-    vocab('sp-passiv-die-anleitung', 'die Anleitung', 'instructions', 'la notice', 'die', 'AN-lei-tung', 'AHN-ly-toong', ['In der Anleitung wird alles erklärt.', 'Everything is explained in the instructions.', 'Tout est expliqué dans la notice.']),
+    wordgroup(['Active becomes passive', 'De l’actif au passif'], [
+      vocab('sp-passiv-bauen', 'bauen', 'to build', 'construire', null, 'BAU-en', 'BOW-en', ['Das Haus wird gebaut.', 'The house is being built.', 'La maison est en construction.']),
+      vocab('sp-passiv-der-vorgang', 'der Vorgang', 'process, action', 'le processus, l’action', 'der', 'FOR-gang', 'FOR-gahng', ['Das Vorgangspassiv beschreibt einen Vorgang.', 'The Vorgangspassiv describes a process.', 'Le Vorgangspassiv décrit un processus.']),
+      vocab('sp-passiv-die-anleitung', 'die Anleitung', 'instructions', 'la notice', 'die', 'AN-lei-tung', 'AHN-ly-toong', ['In der Anleitung wird alles erklärt.', 'Everything is explained in the instructions.', 'Tout est expliqué dans la notice.']),
+    ]),
     mc(
       'sp-pv-e1',
       ['Which sentence is passive?', 'Quelle phrase est au passif ?'],
@@ -135,9 +137,11 @@ export const passiv = defineSpecial({
         ['Mir wird geholfen.', 'I am being helped.', 'On m’aide.'],
       ],
     ),
-    vocab('sp-passiv-der-architekt', 'der Architekt', 'architect', 'l’architecte', 'der', 'ar-chi-TEKT', 'ar-khee-TEKT', ['Der Architekt hat den Plan gezeichnet.', 'The architect drew the plan.', 'L’architecte a dessiné le plan.']),
-    vocab('sp-passiv-das-erdbeben', 'das Erdbeben', 'earthquake', 'le tremblement de terre', 'das', 'ERD-be-ben', 'AIRT-bay-ben', ['Das Erdbeben hat viele Häuser zerstört.', 'The earthquake destroyed many houses.', 'Le tremblement de terre a détruit beaucoup de maisons.']),
-    vocab('sp-passiv-liefern', 'liefern', 'to deliver', 'livrer', null, 'LIE-fern', 'LEE-fern', ['Das Paket wird morgen geliefert.', 'The parcel will be delivered tomorrow.', 'Le colis sera livré demain.']),
+    wordgroup(['The agent and the transformation', 'L’agent et la transformation'], [
+      vocab('sp-passiv-der-architekt', 'der Architekt', 'architect', 'l’architecte', 'der', 'ar-chi-TEKT', 'ar-khee-TEKT', ['Der Architekt hat den Plan gezeichnet.', 'The architect drew the plan.', 'L’architecte a dessiné le plan.']),
+      vocab('sp-passiv-das-erdbeben', 'das Erdbeben', 'earthquake', 'le tremblement de terre', 'das', 'ERD-be-ben', 'AIRT-bay-ben', ['Das Erdbeben hat viele Häuser zerstört.', 'The earthquake destroyed many houses.', 'Le tremblement de terre a détruit beaucoup de maisons.']),
+      vocab('sp-passiv-liefern', 'liefern', 'to deliver', 'livrer', null, 'LIE-fern', 'LEE-fern', ['Das Paket wird morgen geliefert.', 'The parcel will be delivered tomorrow.', 'Le colis sera livré demain.']),
+    ]),
     mc(
       'sp-pv-e5',
       ['"Das Dorf wurde ___ ein Erdbeben zerstört."', '« Das Dorf wurde ___ ein Erdbeben zerstört. »'],
@@ -240,8 +244,10 @@ export const passiv = defineSpecial({
         ['Das Essen ist schon gekocht.', 'The meal is already cooked.', 'Le repas est déjà cuit.'],
       ],
     ),
-    vocab('sp-passiv-geoeffnet', 'geöffnet', 'open (state), opened', 'ouvert (état)', null, 'ge-ÖFF-net', 'geh-ÖF-net', ['Das Geschäft ist bis 20 Uhr geöffnet.', 'The shop is open until 8 pm.', 'Le magasin est ouvert jusqu’à 20 h.']),
-    vocab('sp-passiv-geschlossen', 'geschlossen', 'closed', 'fermé', null, 'ge-SCHLOS-sen', 'geh-SHLOS-en', ['Die Bank ist am Sonntag geschlossen.', 'The bank is closed on Sunday.', 'La banque est fermée le dimanche.']),
+    wordgroup(['State or process?', 'État ou processus ?'], [
+      vocab('sp-passiv-geoeffnet', 'geöffnet', 'open (state), opened', 'ouvert (état)', null, 'ge-ÖFF-net', 'geh-ÖF-net', ['Das Geschäft ist bis 20 Uhr geöffnet.', 'The shop is open until 8 pm.', 'Le magasin est ouvert jusqu’à 20 h.']),
+      vocab('sp-passiv-geschlossen', 'geschlossen', 'closed', 'fermé', null, 'ge-SCHLOS-sen', 'geh-SHLOS-en', ['Die Bank ist am Sonntag geschlossen.', 'The bank is closed on Sunday.', 'La banque est fermée le dimanche.']),
+    ]),
     mc(
       'sp-pv-e15',
       ['Which sentence describes a STATE?', 'Quelle phrase décrit un ÉTAT ?'],
@@ -286,8 +292,10 @@ export const passiv = defineSpecial({
         ['Hier wird gebaut.', 'Building work is going on here.', 'Il y a des travaux ici.'],
       ],
     ),
-    vocab('sp-passiv-verletzen', 'verletzen', 'to injure', 'blesser', null, 'ver-LET-zen', 'fer-LET-sen', ['Bei dem Unfall wurde niemand verletzt.', 'Nobody was injured in the accident.', 'Personne n’a été blessé lors de l’accident.']),
-    vocab('sp-passiv-schneiden', 'schneiden', 'to cut, to chop', 'couper', null, 'SCHNEI-den', 'SHNY-den', ['Die Zwiebeln werden in kleine Stücke geschnitten.', 'The onions are chopped into small pieces.', 'Les oignons sont coupés en petits morceaux.']),
+    wordgroup(['Alternatives and real texts', 'Alternatives et textes réels'], [
+      vocab('sp-passiv-verletzen', 'verletzen', 'to injure', 'blesser', null, 'ver-LET-zen', 'fer-LET-sen', ['Bei dem Unfall wurde niemand verletzt.', 'Nobody was injured in the accident.', 'Personne n’a été blessé lors de l’accident.']),
+      vocab('sp-passiv-schneiden', 'schneiden', 'to cut, to chop', 'couper', null, 'SCHNEI-den', 'SHNY-den', ['Die Zwiebeln werden in kleine Stücke geschnitten.', 'The onions are chopped into small pieces.', 'Les oignons sont coupés en petits morceaux.']),
+    ]),
     mc(
       'sp-pv-e17',
       ['"Man spricht hier Deutsch." means the same as…', '« Man spricht hier Deutsch. » a le même sens que…'],

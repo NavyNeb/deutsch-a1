@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { lessonHelpFor, type StepKind } from './lesson-help';
 
-const KINDS: StepKind[] = ['intro', 'chapter', 'quiz', 'wrapup', 'vocab', 'grammar', 'exercise', 'pronunciation'];
+const KINDS: StepKind[] = ['intro', 'chapter', 'quiz', 'wrapup', 'vocab', 'grammar', 'exercise', 'pronunciation', 'situation', 'wordgroup'];
 
 describe('lessonHelpFor', () => {
   it.each(KINDS)('%s has a title, rows and EN/FR text', (kind) => {

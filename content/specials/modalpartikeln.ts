@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const modalpartikeln = defineSpecial({
   slug: 'modalpartikeln',
@@ -49,8 +49,10 @@ export const modalpartikeln = defineSpecial({
       'Small words, big tone', 'Petits mots, grand effet',
       'What a modal particle is, and why sentences feel different with one.', 'Ce qu’est une particule modale, et pourquoi une phrase change avec elle.',
     ),
-    vocab('sp-modalpartikeln-partikel', 'die Partikel', 'the particle', 'la particule', 'die', 'par-TI-kel', 'dee par-TEE-kel', ['Doch ist eine Partikel.', 'Doch is a particle.', 'Doch est une particule.']),
-    vocab('sp-modalpartikeln-stimmung', 'die Stimmung', 'the mood, atmosphere', 'l’ambiance, l’humeur', 'die', 'STIM-mung', 'dee SHTIM-oong', ['Die Stimmung auf der Party ist super.', 'The mood at the party is great.', 'L’ambiance à la fête est super.']),
+    wordgroup(['Small words, big tone', 'Petits mots, grand effet'], [
+      vocab('sp-modalpartikeln-partikel', 'die Partikel', 'the particle', 'la particule', 'die', 'par-TI-kel', 'dee par-TEE-kel', ['Doch ist eine Partikel.', 'Doch is a particle.', 'Doch est une particule.']),
+      vocab('sp-modalpartikeln-stimmung', 'die Stimmung', 'the mood, atmosphere', 'l’ambiance, l’humeur', 'die', 'STIM-mung', 'dee SHTIM-oong', ['Die Stimmung auf der Party ist super.', 'The mood at the party is great.', 'L’ambiance à la fête est super.']),
+    ]),
     grammar(
       'sp-mp-what',
       ['What modal particles do', 'Ce que font les particules modales'],
@@ -86,9 +88,11 @@ export const modalpartikeln = defineSpecial({
       'mal, doch and ja', 'mal, doch et ja',
       'Soften requests, insist kindly, share what you both know.', 'Adoucir une demande, insister gentiment, partager ce que l’on sait tous les deux.',
     ),
-    vocab('sp-modalpartikeln-doch', 'doch', 'do, after all (particle)', 'donc, pourtant (particule)', null, 'DOCH', 'DOKH', ['Setz dich doch!', 'Do sit down!', 'Assieds-toi donc !']),
-    vocab('sp-modalpartikeln-mal', 'mal', 'just, for a moment', 'un peu, un instant', null, 'MAL', 'MAHL', ['Schau mal, wer da ist!', 'Look who’s there!', 'Regarde qui est là !']),
-    vocab('sp-modalpartikeln-ja', 'ja', 'as you know, how nice (particle)', 'comme tu sais, tiens (particule)', null, 'JA', 'YAH', ['Das ist ja schön!', 'Well, that’s nice!', 'Eh bien, c’est beau !']),
+    wordgroup(['mal, doch and ja', 'mal, doch et ja'], [
+      vocab('sp-modalpartikeln-doch', 'doch', 'do, after all (particle)', 'donc, pourtant (particule)', null, 'DOCH', 'DOKH', ['Setz dich doch!', 'Do sit down!', 'Assieds-toi donc !']),
+      vocab('sp-modalpartikeln-mal', 'mal', 'just, for a moment', 'un peu, un instant', null, 'MAL', 'MAHL', ['Schau mal, wer da ist!', 'Look who’s there!', 'Regarde qui est là !']),
+      vocab('sp-modalpartikeln-ja', 'ja', 'as you know, how nice (particle)', 'comme tu sais, tiens (particule)', null, 'JA', 'YAH', ['Das ist ja schön!', 'Well, that’s nice!', 'Eh bien, c’est beau !']),
+    ]),
     grammar(
       'sp-mp-mal-doch-ja',
       ['mal, doch and ja in practice', 'mal, doch et ja en pratique'],
@@ -128,8 +132,10 @@ export const modalpartikeln = defineSpecial({
       'denn and eigentlich in questions', 'denn et eigentlich dans les questions',
       'Two words that make a question sound curious instead of cold.', 'Deux mots qui rendent une question curieuse plutôt que froide.',
     ),
-    vocab('sp-modalpartikeln-denn', 'denn', 'then, so (in questions)', 'alors (dans les questions)', null, 'DENN', 'DEN', ['Was machst du denn da?', 'What are you doing there, then?', 'Qu’est-ce que tu fabriques là, alors ?']),
-    vocab('sp-modalpartikeln-eigentlich', 'eigentlich', 'actually, by the way', 'au fait, en réalité', null, 'EI-gent-lich', 'EYE-gent-likh', ['Wie alt bist du eigentlich?', 'How old are you, by the way?', 'Au fait, quel âge as-tu ?']),
+    wordgroup(['denn and eigentlich in questions', 'denn et eigentlich dans les questions'], [
+      vocab('sp-modalpartikeln-denn', 'denn', 'then, so (in questions)', 'alors (dans les questions)', null, 'DENN', 'DEN', ['Was machst du denn da?', 'What are you doing there, then?', 'Qu’est-ce que tu fabriques là, alors ?']),
+      vocab('sp-modalpartikeln-eigentlich', 'eigentlich', 'actually, by the way', 'au fait, en réalité', null, 'EI-gent-lich', 'EYE-gent-likh', ['Wie alt bist du eigentlich?', 'How old are you, by the way?', 'Au fait, quel âge as-tu ?']),
+    ]),
     grammar(
       'sp-mp-denn-eigentlich',
       ['denn and eigentlich', 'denn et eigentlich'],
@@ -178,10 +184,12 @@ export const modalpartikeln = defineSpecial({
       'eben, halt, schon and wohl', 'eben, halt, schon et wohl',
       'Accepting facts, reassuring someone, guessing.', 'Accepter les faits, rassurer quelqu’un, supposer.',
     ),
-    vocab('sp-modalpartikeln-eben', 'eben', 'simply, just (it can’t be changed)', 'justement, tout simplement', null, 'E-ben', 'AY-ben', ['Dann musst du eben warten.', 'Then you simply have to wait.', 'Alors tu dois simplement attendre.']),
-    vocab('sp-modalpartikeln-halt', 'halt', 'just, that’s the way it is (spoken)', 'c’est comme ça (oral)', null, 'HALT', 'HALT', ['Das ist halt so.', 'That’s just the way it is.', 'C’est comme ça.']),
-    vocab('sp-modalpartikeln-schon', 'schon', 'surely, don’t worry (reassurance)', 'ne t’inquiète pas, ça va aller', null, 'SCHON', 'SHOHN', ['Das wird schon klappen.', 'It will work out, don’t worry.', 'Ça va marcher, ne t’inquiète pas.']),
-    vocab('sp-modalpartikeln-wohl', 'wohl', 'probably', 'sans doute, probablement', null, 'WOHL', 'VOHL', ['Er ist wohl krank.', 'He’s probably ill.', 'Il est sans doute malade.']),
+    wordgroup(['eben, halt, schon and wohl', 'eben, halt, schon et wohl'], [
+      vocab('sp-modalpartikeln-eben', 'eben', 'simply, just (it can’t be changed)', 'justement, tout simplement', null, 'E-ben', 'AY-ben', ['Dann musst du eben warten.', 'Then you simply have to wait.', 'Alors tu dois simplement attendre.']),
+      vocab('sp-modalpartikeln-halt', 'halt', 'just, that’s the way it is (spoken)', 'c’est comme ça (oral)', null, 'HALT', 'HALT', ['Das ist halt so.', 'That’s just the way it is.', 'C’est comme ça.']),
+      vocab('sp-modalpartikeln-schon', 'schon', 'surely, don’t worry (reassurance)', 'ne t’inquiète pas, ça va aller', null, 'SCHON', 'SHOHN', ['Das wird schon klappen.', 'It will work out, don’t worry.', 'Ça va marcher, ne t’inquiète pas.']),
+      vocab('sp-modalpartikeln-wohl', 'wohl', 'probably', 'sans doute, probablement', null, 'WOHL', 'VOHL', ['Er ist wohl krank.', 'He’s probably ill.', 'Il est sans doute malade.']),
+    ]),
     grammar(
       'sp-mp-eben-schon-wohl',
       ['eben/halt, schon, wohl', 'eben/halt, schon, wohl'],

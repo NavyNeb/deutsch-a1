@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const konnektoren = defineSpecial({
   slug: 'konnektoren',
@@ -63,8 +63,10 @@ export const konnektoren = defineSpecial({
       ],
       'verb-second',
     ),
-    vocab('sp-konnektoren-denn', 'denn', 'because (main clause)', 'car', null, 'DENN', 'DEN', ['Ich bleibe hier, denn ich bin krank.', 'I am staying here because I am ill.', 'Je reste ici car je suis malade.']),
-    vocab('sp-konnektoren-aber', 'aber', 'but', 'mais', null, 'A-ber', 'AH-ber', ['Er ist jung, aber sehr klug.', 'He is young but very clever.', 'Il est jeune mais très intelligent.']),
+    wordgroup(['Family 1: und, aber, oder, denn', 'Famille 1 : und, aber, oder, denn'], [
+      vocab('sp-konnektoren-denn', 'denn', 'because (main clause)', 'car', null, 'DENN', 'DEN', ['Ich bleibe hier, denn ich bin krank.', 'I am staying here because I am ill.', 'Je reste ici car je suis malade.']),
+      vocab('sp-konnektoren-aber', 'aber', 'but', 'mais', null, 'A-ber', 'AH-ber', ['Er ist jung, aber sehr klug.', 'He is young but very clever.', 'Il est jeune mais très intelligent.']),
+    ]),
     mc(
       'sp-kon-e1',
       ['"Ich bleibe zu Hause, ___ ich bin krank." (verb is in position 2)', '« Ich bleibe zu Hause, ___ ich bin krank. » (le verbe est en position 2)'],
@@ -99,10 +101,12 @@ export const konnektoren = defineSpecial({
       ],
       'satzklammer',
     ),
-    vocab('sp-konnektoren-weil', 'weil', 'because (subordinate)', 'parce que', null, 'WEIL', 'VILE', ['Ich lerne, weil ich eine Prüfung habe.', 'I am studying because I have an exam.', 'J’étudie parce que j’ai un examen.']),
-    vocab('sp-konnektoren-dass', 'dass', 'that', 'que', null, 'DASS', 'DAHSS', ['Ich weiß, dass du müde bist.', 'I know that you are tired.', 'Je sais que tu es fatigué.']),
-    vocab('sp-konnektoren-obwohl', 'obwohl', 'although', 'bien que', null, 'ob-WOHL', 'op-VOHL', ['Er bleibt, obwohl es spät ist.', 'He stays although it is late.', 'Il reste bien qu’il soit tard.']),
-    vocab('sp-konnektoren-damit', 'damit', 'so that', 'pour que', null, 'da-MIT', 'dah-MIT', ['Ich schreibe es auf, damit ich es nicht vergesse.', 'I write it down so that I do not forget it.', 'Je le note pour ne pas l’oublier.']),
+    wordgroup(['Family 2: weil, dass, wenn …', 'Famille 2 : weil, dass, wenn …'], [
+      vocab('sp-konnektoren-weil', 'weil', 'because (subordinate)', 'parce que', null, 'WEIL', 'VILE', ['Ich lerne, weil ich eine Prüfung habe.', 'I am studying because I have an exam.', 'J’étudie parce que j’ai un examen.']),
+      vocab('sp-konnektoren-dass', 'dass', 'that', 'que', null, 'DASS', 'DAHSS', ['Ich weiß, dass du müde bist.', 'I know that you are tired.', 'Je sais que tu es fatigué.']),
+      vocab('sp-konnektoren-obwohl', 'obwohl', 'although', 'bien que', null, 'ob-WOHL', 'op-VOHL', ['Er bleibt, obwohl es spät ist.', 'He stays although it is late.', 'Il reste bien qu’il soit tard.']),
+      vocab('sp-konnektoren-damit', 'damit', 'so that', 'pour que', null, 'da-MIT', 'dah-MIT', ['Ich schreibe es auf, damit ich es nicht vergesse.', 'I write it down so that I do not forget it.', 'Je le note pour ne pas l’oublier.']),
+    ]),
     fb(
       'sp-kon-e4',
       ['Ich bleibe zu Hause, weil ich krank ___. (sein)', 'Ich bleibe zu Hause, weil ich krank ___. (sein)'],
@@ -149,8 +153,10 @@ export const konnektoren = defineSpecial({
       ],
       'verb-second',
     ),
-    vocab('sp-konnektoren-deshalb', 'deshalb', 'therefore', 'c’est pourquoi', null, 'DES-halb', 'DES-halp', ['Ich bin krank, deshalb bleibe ich hier.', 'I am ill, therefore I am staying here.', 'Je suis malade, c’est pourquoi je reste ici.']),
-    vocab('sp-konnektoren-trotzdem', 'trotzdem', 'nevertheless', 'malgré tout', null, 'TROTZ-dem', 'TROTS-dem', ['Es regnet, trotzdem gehen wir spazieren.', 'It is raining, nevertheless we go for a walk.', 'Il pleut, malgré tout nous allons nous promener.']),
+    wordgroup(['Family 3: deshalb, trotzdem …', 'Famille 3 : deshalb, trotzdem …'], [
+      vocab('sp-konnektoren-deshalb', 'deshalb', 'therefore', 'c’est pourquoi', null, 'DES-halb', 'DES-halp', ['Ich bin krank, deshalb bleibe ich hier.', 'I am ill, therefore I am staying here.', 'Je suis malade, c’est pourquoi je reste ici.']),
+      vocab('sp-konnektoren-trotzdem', 'trotzdem', 'nevertheless', 'malgré tout', null, 'TROTZ-dem', 'TROTS-dem', ['Es regnet, trotzdem gehen wir spazieren.', 'It is raining, nevertheless we go for a walk.', 'Il pleut, malgré tout nous allons nous promener.']),
+    ]),
     fb(
       'sp-kon-e9',
       ['Es regnet. ___ nehme ich einen Schirm mit. (therefore)', 'Es regnet. ___ nehme ich einen Schirm mit. (c’est pourquoi)'],

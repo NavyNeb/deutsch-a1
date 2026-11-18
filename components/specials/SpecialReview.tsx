@@ -12,6 +12,7 @@ import { Card } from '@/components/ui/Card';
 import { MiniMarkdown } from '@/components/ui/miniMarkdown';
 import { LanguageToggle } from '@/components/ui/LanguageToggle';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import type { VocabItem } from '@/content/types';
 
 // Read-only, in-order walk through a special's teaching content (no exercises, no progress tracking).
 export function SpecialReview({ special }: { special: Special }) {
@@ -63,20 +64,30 @@ export function SpecialReview({ special }: { special: Special }) {
               </Card>
             );
           }
-          if (step.kind === 'vocab') {
-            const item = step.item;
+          if (step.kind === 'vocab') return <VocabCard key={i} item={step.item} locale={locale} />;
+          if (step.kind === 'wordgroup') {
             return (
-              <Card key={i} className="!p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-display font-bold text-[20px]">{item.german}</span>
-                      <GenderTag gender={item.gender} />
+              <div key={i} className="grid gap-3">
+                <h3 className="text-[18px] font-bold m-0">{pick(step.title, step.titleFr ?? step.title, locale)}</h3>
+                {step.items.map((item) => <VocabCard key={item.id} item={item} locale={locale} />)}
+              </div>
+            );
+          }
+          if (step.kind === 'situation') {
+            return (
+              <Card key={i}>
+                <h3 className="text-[20px] font-bold m-0 mb-2">{pick(step.title, step.titleFr ?? step.title, locale)}</h3>
+                <div className="grid gap-2.5">
+                  {step.lines.map((ln, j) => (
+                    <div key={j} className="border-l-[3px] border-text pl-3 flex gap-2.5 items-center">
+                      <div className="flex-1">
+                        <span className="label">{ln.who}</span><br />
+                        <em className="not-italic font-medium">{ln.de}</em><br />
+                        <span className="text-muted text-sm">{pick(ln.en, ln.fr, locale)}</span>
+                      </div>
+                      <AudioButton src={ttsSrc(ln.de)} label={`Anhören: ${ln.de}`} />
                     </div>
-                    <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>
-                    <p className="text-text-2 text-[14px] m-0 mt-1">{item.example.de} — <span className="text-muted">{pick(item.example.en, item.example.fr, locale)}</span></p>
-                  </div>
-                  <AudioButton src={ttsSrc(item.german)} label={`Anhören: ${item.german}`} />
+                  ))}
                 </div>
               </Card>
             );
@@ -88,5 +99,23 @@ export function SpecialReview({ special }: { special: Special }) {
         })}
       </div>
     </div>
+  );
+}
+
+function VocabCard({ item, locale }: { item: VocabItem; locale: Parameters<typeof pick>[2] }) {
+  return (
+    <Card className="!p-4">
+      <div className="flex items-center gap-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="font-display font-bold text-[20px]">{item.german}</span>
+            <GenderTag gender={item.gender} />
+          </div>
+          <p className="text-muted m-0 mt-0.5">{pick(item.english, item.french, locale)}</p>
+          <p className="text-text-2 text-[14px] m-0 mt-1">{item.example.de} — <span className="text-muted">{pick(item.example.en, item.example.fr, locale)}</span></p>
+        </div>
+        <AudioButton src={ttsSrc(item.german)} label={`Anhören: ${item.german}`} />
+      </div>
+    </Card>
   );
 }

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const infinitivZu = defineSpecial({
   slug: 'infinitiv-zu',
@@ -63,8 +63,10 @@ export const infinitivZu = defineSpecial({
       ],
       'satzklammer',
     ),
-    vocab('sp-infinitiv-zu-vergessen', 'vergessen', 'to forget', 'oublier', null, 'ver-GES-sen', 'fer-GES-sen', ['Ich habe vergessen, Brot zu kaufen.', 'I forgot to buy bread.', 'J’ai oublié d’acheter du pain.']),
-    vocab('sp-infinitiv-zu-versuchen', 'versuchen', 'to try', 'essayer', null, 'ver-SU-chen', 'fer-ZOO-khen', ['Ich versuche, mehr zu schlafen.', 'I try to sleep more.', 'J’essaie de dormir plus.']),
+    wordgroup(['The basic pattern', 'Le schéma de base'], [
+      vocab('sp-infinitiv-zu-vergessen', 'vergessen', 'to forget', 'oublier', null, 'ver-GES-sen', 'fer-GES-sen', ['Ich habe vergessen, Brot zu kaufen.', 'I forgot to buy bread.', 'J’ai oublié d’acheter du pain.']),
+      vocab('sp-infinitiv-zu-versuchen', 'versuchen', 'to try', 'essayer', null, 'ver-SU-chen', 'fer-ZOO-khen', ['Ich versuche, mehr zu schlafen.', 'I try to sleep more.', 'J’essaie de dormir plus.']),
+    ]),
     mc(
       'sp-iz-e1',
       ['"Ich habe vergessen, dich ___." (anrufen)', '« Ich habe vergessen, dich ___. » (anrufen)'],
@@ -105,10 +107,12 @@ export const infinitivZu = defineSpecial({
         ['Ich habe keine Lust, heute zu arbeiten.', 'I do not feel like working today.', 'Je n’ai pas envie de travailler aujourd’hui.'],
       ],
     ),
-    vocab('sp-infinitiv-zu-aufhoeren', 'aufhören', 'to stop', 'arrêter', null, 'AUF-hö-ren', 'OWF-her-en', ['Er hört auf zu rauchen.', 'He is quitting smoking.', 'Il arrête de fumer.']),
-    vocab('sp-infinitiv-zu-anfangen', 'anfangen', 'to begin', 'commencer', null, 'AN-fan-gen', 'AN-fang-en', ['Es fängt an zu schneien.', 'It is starting to snow.', 'Il commence à neiger.']),
-    vocab('sp-infinitiv-zu-lust', 'die Lust', 'the desire, the mood', 'l’envie', 'die', 'LUST', 'dee LOOST', ['Ich habe keine Lust, zu kochen.', 'I do not feel like cooking.', 'Je n’ai pas envie de cuisiner.']),
-    vocab('sp-infinitiv-zu-vorhaben', 'vorhaben', 'to plan, to intend', 'avoir l’intention de', null, 'VOR-ha-ben', 'FOHR-hah-ben', ['Ich habe vor, einen Kurs zu machen.', 'I plan to take a course.', 'J’ai l’intention de suivre un cours.']),
+    wordgroup(['Verbs and phrases with zu', 'Verbes et expressions avec zu'], [
+      vocab('sp-infinitiv-zu-aufhoeren', 'aufhören', 'to stop', 'arrêter', null, 'AUF-hö-ren', 'OWF-her-en', ['Er hört auf zu rauchen.', 'He is quitting smoking.', 'Il arrête de fumer.']),
+      vocab('sp-infinitiv-zu-anfangen', 'anfangen', 'to begin', 'commencer', null, 'AN-fan-gen', 'AN-fang-en', ['Es fängt an zu schneien.', 'It is starting to snow.', 'Il commence à neiger.']),
+      vocab('sp-infinitiv-zu-lust', 'die Lust', 'the desire, the mood', 'l’envie', 'die', 'LUST', 'dee LOOST', ['Ich habe keine Lust, zu kochen.', 'I do not feel like cooking.', 'Je n’ai pas envie de cuisiner.']),
+      vocab('sp-infinitiv-zu-vorhaben', 'vorhaben', 'to plan, to intend', 'avoir l’intention de', null, 'VOR-ha-ben', 'FOHR-hah-ben', ['Ich habe vor, einen Kurs zu machen.', 'I plan to take a course.', 'J’ai l’intention de suivre un cours.']),
+    ]),
     mc(
       'sp-iz-e5',
       ['"Es fängt an ___ regnen."', '« Es fängt an ___ regnen. »'],
@@ -186,8 +190,10 @@ export const infinitivZu = defineSpecial({
         ['Ich spreche langsam, damit du mich verstehst.', 'I speak slowly so that you understand me.', 'Je parle lentement pour que tu me comprennes.'],
       ],
     ),
-    vocab('sp-infinitiv-zu-um', 'um zu', 'in order to', 'pour', null, 'UM-tsu', 'OOM tsoo', ['Ich lerne, um die Prüfung zu bestehen.', 'I study in order to pass the exam.', 'J’étudie pour réussir l’examen.']),
-    vocab('sp-infinitiv-zu-ohne', 'ohne zu', 'without', 'sans', null, 'OH-ne-tsu', 'OH-neh tsoo', ['Er geht, ohne zu grüßen.', 'He leaves without saying hello.', 'Il part sans saluer.']),
+    wordgroup(['um … zu, ohne … zu, (an)statt … zu', 'um … zu, ohne … zu, (an)statt … zu'], [
+      vocab('sp-infinitiv-zu-um', 'um zu', 'in order to', 'pour', null, 'UM-tsu', 'OOM tsoo', ['Ich lerne, um die Prüfung zu bestehen.', 'I study in order to pass the exam.', 'J’étudie pour réussir l’examen.']),
+      vocab('sp-infinitiv-zu-ohne', 'ohne zu', 'without', 'sans', null, 'OH-ne-tsu', 'OH-neh tsoo', ['Er geht, ohne zu grüßen.', 'He leaves without saying hello.', 'Il part sans saluer.']),
+    ]),
     mc(
       'sp-iz-e12',
       ['"Er lernt Deutsch, ___ in Wien zu arbeiten."', '« Er lernt Deutsch, ___ in Wien zu arbeiten. »'],

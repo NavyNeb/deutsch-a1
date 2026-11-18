@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const trennbareVerben = defineSpecial({
   slug: 'trennbare-verben',
@@ -77,11 +77,13 @@ export const trennbareVerben = defineSpecial({
         ['Wir steigen in Köln um.', 'We change trains in Cologne.', 'Nous changeons de train à Cologne.'],
       ],
     ),
-    vocab('sp-trennbare-verben-aufstehen', 'aufstehen', 'to get up', 'se lever', null, 'AUF-ste-hen', 'OWF-shtay-en', ['Ich stehe jeden Tag früh auf.', 'I get up early every day.', 'Je me lève tôt chaque jour.']),
-    vocab('sp-trennbare-verben-ankommen', 'ankommen', 'to arrive', 'arriver', null, 'AN-kom-men', 'AHN-kom-en', ['Wann kommst du in Berlin an?', 'When do you arrive in Berlin?', 'Quand arrives-tu à Berlin ?']),
-    vocab('sp-trennbare-verben-abholen', 'abholen', 'to pick up, to collect', 'aller chercher', null, 'AB-ho-len', 'AHP-hoh-len', ['Ich hole dich am Bahnhof ab.', 'I will pick you up at the station.', 'Je viens te chercher à la gare.']),
-    vocab('sp-trennbare-verben-einkaufen', 'einkaufen', 'to shop', 'faire les courses', null, 'EIN-kau-fen', 'INE-kow-fen', ['Wir kaufen im Supermarkt ein.', 'We shop at the supermarket.', 'Nous faisons les courses au supermarché.']),
-    vocab('sp-trennbare-verben-fernsehen', 'fernsehen', 'to watch TV', 'regarder la télé', null, 'FERN-se-hen', 'FAIRN-zay-en', ['Abends sehen wir oft fern.', 'In the evening we often watch TV.', 'Le soir, nous regardons souvent la télé.']),
+    wordgroup(['Separable or inseparable?', 'Séparable ou inséparable ?'], [
+      vocab('sp-trennbare-verben-aufstehen', 'aufstehen', 'to get up', 'se lever', null, 'AUF-ste-hen', 'OWF-shtay-en', ['Ich stehe jeden Tag früh auf.', 'I get up early every day.', 'Je me lève tôt chaque jour.']),
+      vocab('sp-trennbare-verben-ankommen', 'ankommen', 'to arrive', 'arriver', null, 'AN-kom-men', 'AHN-kom-en', ['Wann kommst du in Berlin an?', 'When do you arrive in Berlin?', 'Quand arrives-tu à Berlin ?']),
+      vocab('sp-trennbare-verben-abholen', 'abholen', 'to pick up, to collect', 'aller chercher', null, 'AB-ho-len', 'AHP-hoh-len', ['Ich hole dich am Bahnhof ab.', 'I will pick you up at the station.', 'Je viens te chercher à la gare.']),
+      vocab('sp-trennbare-verben-einkaufen', 'einkaufen', 'to shop', 'faire les courses', null, 'EIN-kau-fen', 'INE-kow-fen', ['Wir kaufen im Supermarkt ein.', 'We shop at the supermarket.', 'Nous faisons les courses au supermarché.']),
+      vocab('sp-trennbare-verben-fernsehen', 'fernsehen', 'to watch TV', 'regarder la télé', null, 'FERN-se-hen', 'FAIRN-zay-en', ['Abends sehen wir oft fern.', 'In the evening we often watch TV.', 'Le soir, nous regardons souvent la télé.']),
+    ]),
     mc(
       'sp-tv-e1',
       ['Which verb is separable?', 'Quel verbe est séparable ?'],
@@ -315,9 +317,11 @@ export const trennbareVerben = defineSpecial({
         ['Ich schlafe immer sofort ein und wache um sechs Uhr auf.', 'I always fall asleep at once and wake up at six.', 'Je m’endors toujours tout de suite et me réveille à six heures.'],
       ],
     ),
-    vocab('sp-trennbare-verben-mitkommen', 'mitkommen', 'to come along', 'venir avec', null, 'MIT-kom-men', 'MIT-kom-en', ['Kommst du mit ins Kino?', 'Are you coming along to the cinema?', 'Tu viens avec nous au cinéma ?']),
-    vocab('sp-trennbare-verben-anfangen', 'anfangen', 'to begin, to start', 'commencer', null, 'AN-fan-gen', 'AHN-fahng-en', ['Der Kurs fängt um neun Uhr an.', 'The course starts at nine o’clock.', 'Le cours commence à neuf heures.']),
-    vocab('sp-trennbare-verben-einsteigen', 'einsteigen', 'to get on, to board', 'monter (dans un véhicule)', null, 'EIN-stei-gen', 'INE-shty-gen', ['Bitte alle einsteigen!', 'Everyone please get on!', 'Tout le monde monte, s’il vous plaît !']),
+    wordgroup(['Prefixes with a meaning', 'Des particules qui ont un sens'], [
+      vocab('sp-trennbare-verben-mitkommen', 'mitkommen', 'to come along', 'venir avec', null, 'MIT-kom-men', 'MIT-kom-en', ['Kommst du mit ins Kino?', 'Are you coming along to the cinema?', 'Tu viens avec nous au cinéma ?']),
+      vocab('sp-trennbare-verben-anfangen', 'anfangen', 'to begin, to start', 'commencer', null, 'AN-fan-gen', 'AHN-fahng-en', ['Der Kurs fängt um neun Uhr an.', 'The course starts at nine o’clock.', 'Le cours commence à neuf heures.']),
+      vocab('sp-trennbare-verben-einsteigen', 'einsteigen', 'to get on, to board', 'monter (dans un véhicule)', null, 'EIN-stei-gen', 'INE-shty-gen', ['Bitte alle einsteigen!', 'Everyone please get on!', 'Tout le monde monte, s’il vous plaît !']),
+    ]),
     mc(
       'sp-tv-e19',
       ['What is the opposite of "aufmachen"?', 'Quel est l’opposé de « aufmachen » ?'],

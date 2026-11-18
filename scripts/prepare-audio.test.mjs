@@ -21,7 +21,32 @@ const special = {
   ],
 };
 
+const redesigned = {
+  id: 'new',
+  steps: [
+    { kind: 'situation', title: 'Im Café', lines: [{ who: 'A', de: 'Hallo!' }, { who: 'B', de: 'Einen Kaffee, bitte.' }], words: [{ german: 'der Kaffee', example: { de: 'Ich trinke Kaffee.' } }] },
+    { kind: 'wordgroup', title: 'Getränke', items: [{ german: 'der Tee', example: { de: 'Der Tee ist heiß.' } }, { german: 'trinken', example: { de: 'Wir trinken Wasser.' } }] },
+    { kind: 'grammar', note: {
+      examples: [{ de: 'Ich lerne Deutsch.' }],
+      anatomy: [{ parts: [{ text: 'Heute', role: 'time' }, { text: 'lerne', role: 'verb' }, { text: 'ich.', role: 'subject' }], en: 'x' }],
+      contrast: { a: { examples: [{ de: 'Obwohl es regnet, gehe ich.' }] }, b: { examples: [{ de: 'Es regnet. Trotzdem gehe ich.' }] } },
+      mistakes: [{ wrong: 'Heute ich lerne.', right: 'Heute lerne ich.', why: 'x' }],
+    } },
+    { kind: 'wrapup', summary: 's', card: { title: 't', sections: [{ heading: 'h', rows: [{ de: 'ich bin', en: 'I am' }] }] } },
+  ],
+};
+
 describe('collectAudioJobs', () => {
+  it('collects every German string of the redesigned steps, but not the wrong half of a mistake', () => {
+    const { tts } = collectAudioJobs([redesigned]);
+    // 'Heute lerne ich.' is both the joined breakdown parts and the right half of the mistake, so it appears once.
+    expect(tts.sort()).toEqual([
+      'Der Tee ist heiß.', 'Einen Kaffee, bitte.', 'Es regnet. Trotzdem gehe ich.', 'Hallo!', 'Heute lerne ich.',
+      'Ich lerne Deutsch.', 'Ich trinke Kaffee.', 'Obwohl es regnet, gehe ich.', 'Wir trinken Wasser.',
+      'der Kaffee', 'der Tee', 'ich bin', 'trinken',
+    ].sort());
+    expect(tts).not.toContain('Heute ich lerne.');
+  });
   it('walks specials, ignoring chapter and quiz markers', () => {
     const { official, tts } = collectAudioJobs([special]);
     expect(official).toEqual([]);

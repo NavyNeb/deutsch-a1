@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const funktionsverbgefuege = defineSpecial({
   slug: 'funktionsverbgefuege',
@@ -47,8 +47,10 @@ export const funktionsverbgefuege = defineSpecial({
       'What they are', 'Ce que c’est',
       'A noun that carries the meaning and a verb that just conjugates.', 'Un nom qui porte le sens et un verbe qui ne fait que se conjuguer.',
     ),
-    vocab('sp-funktionsverbgefuege-entscheidung', 'eine Entscheidung treffen', 'to make a decision', 'prendre une décision', null, 'ei-ne ent-SCHEI-dung TREF-fen', 'eye-ne ent-SHY-doong TREF-fen', ['Wir müssen heute eine Entscheidung treffen.', 'We have to make a decision today.', 'Nous devons prendre une décision aujourd’hui.']),
-    vocab('sp-funktionsverbgefuege-frage', 'in Frage stellen', 'to question, to call into doubt', 'remettre en question', null, 'in FRA-ge SHTEL-len', 'in FRAH-ge SHTEL-len', ['Der Chef stellt den Plan in Frage.', 'The boss questions the plan.', 'Le chef remet le plan en question.']),
+    wordgroup(['What they are', 'Ce que c’est'], [
+      vocab('sp-funktionsverbgefuege-entscheidung', 'eine Entscheidung treffen', 'to make a decision', 'prendre une décision', null, 'ei-ne ent-SCHEI-dung TREF-fen', 'eye-ne ent-SHY-doong TREF-fen', ['Wir müssen heute eine Entscheidung treffen.', 'We have to make a decision today.', 'Nous devons prendre une décision aujourd’hui.']),
+      vocab('sp-funktionsverbgefuege-frage', 'in Frage stellen', 'to question, to call into doubt', 'remettre en question', null, 'in FRA-ge SHTEL-len', 'in FRAH-ge SHTEL-len', ['Der Chef stellt den Plan in Frage.', 'The boss questions the plan.', 'Le chef remet le plan en question.']),
+    ]),
     grammar(
       'sp-fvg-what',
       ['Noun + verb with little meaning', 'Nom + verbe au sens faible'],
@@ -85,9 +87,11 @@ export const funktionsverbgefuege = defineSpecial({
       'Phrases with in, zu, unter', 'Locutions avec in, zu, unter',
       'The most frequent patterns in news and official texts.', 'Les schémas les plus fréquents dans la presse et les textes officiels.',
     ),
-    vocab('sp-funktionsverbgefuege-verfuegung', 'zur Verfügung stehen', 'to be available', 'être à disposition', null, 'tsoor fer-FÜ-gung SHTE-hen', 'tsoor fer-FUE-goong SHTAY-en', ['Ein Auto steht Ihnen zur Verfügung.', 'A car is at your disposal.', 'Une voiture est à votre disposition.']),
-    vocab('sp-funktionsverbgefuege-kraft', 'in Kraft treten', 'to come into force', 'entrer en vigueur', null, 'in KRAFT TRE-ten', 'in KRAFT TRAY-ten', ['Das Gesetz tritt morgen in Kraft.', 'The law comes into force tomorrow.', 'La loi entre en vigueur demain.']),
-    vocab('sp-funktionsverbgefuege-kenntnis', 'zur Kenntnis nehmen', 'to take note of', 'prendre connaissance de', null, 'tsoor KENT-nis NE-men', 'tsoor KENT-nis NAY-men', ['Bitte nehmen Sie die Änderung zur Kenntnis.', 'Please take note of the change.', 'Veuillez prendre connaissance du changement.']),
+    wordgroup(['Phrases with in, zu, unter', 'Locutions avec in, zu, unter'], [
+      vocab('sp-funktionsverbgefuege-verfuegung', 'zur Verfügung stehen', 'to be available', 'être à disposition', null, 'tsoor fer-FÜ-gung SHTE-hen', 'tsoor fer-FUE-goong SHTAY-en', ['Ein Auto steht Ihnen zur Verfügung.', 'A car is at your disposal.', 'Une voiture est à votre disposition.']),
+      vocab('sp-funktionsverbgefuege-kraft', 'in Kraft treten', 'to come into force', 'entrer en vigueur', null, 'in KRAFT TRE-ten', 'in KRAFT TRAY-ten', ['Das Gesetz tritt morgen in Kraft.', 'The law comes into force tomorrow.', 'La loi entre en vigueur demain.']),
+      vocab('sp-funktionsverbgefuege-kenntnis', 'zur Kenntnis nehmen', 'to take note of', 'prendre connaissance de', null, 'tsoor KENT-nis NE-men', 'tsoor KENT-nis NAY-men', ['Bitte nehmen Sie die Änderung zur Kenntnis.', 'Please take note of the change.', 'Veuillez prendre connaissance du changement.']),
+    ]),
     grammar(
       'sp-fvg-patterns',
       ['Common patterns by preposition', 'Schémas courants par préposition'],
@@ -124,9 +128,11 @@ export const funktionsverbgefuege = defineSpecial({
       'Phrases with nehmen, üben, legen', 'Locutions avec nehmen, üben, legen',
       'Attitudes, criticism and values.', 'Attitudes, critiques et valeurs.',
     ),
-    vocab('sp-funktionsverbgefuege-ruecksicht', 'Rücksicht nehmen auf', 'to show consideration for', 'tenir compte de', null, 'RÜCK-sicht NE-men auf', 'RUEK-zikht NAY-men owf', ['Wir nehmen Rücksicht auf die Nachbarn.', 'We show consideration for the neighbours.', 'Nous tenons compte des voisins.']),
-    vocab('sp-funktionsverbgefuege-kritik', 'Kritik üben an', 'to criticise', 'critiquer', null, 'kri-TIK Ü-ben an', 'kri-TEEK UE-ben ahn', ['Viele üben Kritik an der Entscheidung.', 'Many criticise the decision.', 'Beaucoup critiquent la décision.']),
-    vocab('sp-funktionsverbgefuege-wert', 'Wert legen auf', 'to attach importance to', 'attacher de l’importance à', null, 'WERT LE-gen auf', 'vert LAY-gen owf', ['Ich lege Wert auf gute Qualität.', 'I attach importance to good quality.', 'J’attache de l’importance à la bonne qualité.']),
+    wordgroup(['Phrases with nehmen, üben, legen', 'Locutions avec nehmen, üben, legen'], [
+      vocab('sp-funktionsverbgefuege-ruecksicht', 'Rücksicht nehmen auf', 'to show consideration for', 'tenir compte de', null, 'RÜCK-sicht NE-men auf', 'RUEK-zikht NAY-men owf', ['Wir nehmen Rücksicht auf die Nachbarn.', 'We show consideration for the neighbours.', 'Nous tenons compte des voisins.']),
+      vocab('sp-funktionsverbgefuege-kritik', 'Kritik üben an', 'to criticise', 'critiquer', null, 'kri-TIK Ü-ben an', 'kri-TEEK UE-ben ahn', ['Viele üben Kritik an der Entscheidung.', 'Many criticise the decision.', 'Beaucoup critiquent la décision.']),
+      vocab('sp-funktionsverbgefuege-wert', 'Wert legen auf', 'to attach importance to', 'attacher de l’importance à', null, 'WERT LE-gen auf', 'vert LAY-gen owf', ['Ich lege Wert auf gute Qualität.', 'I attach importance to good quality.', 'J’attache de l’importance à la bonne qualité.']),
+    ]),
     grammar(
       'sp-fvg-prep',
       ['Verb + noun + fixed preposition', 'Verbe + nom + préposition fixe'],

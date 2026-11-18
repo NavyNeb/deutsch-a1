@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const partizipialattribute = defineSpecial({
   slug: 'partizipialattribute',
@@ -47,8 +47,10 @@ export const partizipialattribute = defineSpecial({
       'Partizip I: active and simultaneous', 'Partizip I : actif et simultané',
       'Infinitive + d + adjective ending.', 'Infinitif + d + terminaison d’adjectif.',
     ),
-    vocab('sp-partizipialattribute-lachend', 'lachend', 'laughing', 'qui rit', null, 'LA-chend', 'LAH-khent', ['Der lachende Mann winkt uns zu.', 'The laughing man waves at us.', 'L’homme qui rit nous fait signe.']),
-    vocab('sp-partizipialattribute-steigend', 'steigend', 'rising', 'en hausse', null, 'SHTEI-gend', 'SHTY-gent', ['Die steigenden Preise machen Sorgen.', 'The rising prices cause worry.', 'La hausse des prix inquiète.']),
+    wordgroup(['Partizip I: active and simultaneous', 'Partizip I : actif et simultané'], [
+      vocab('sp-partizipialattribute-lachend', 'lachend', 'laughing', 'qui rit', null, 'LA-chend', 'LAH-khent', ['Der lachende Mann winkt uns zu.', 'The laughing man waves at us.', 'L’homme qui rit nous fait signe.']),
+      vocab('sp-partizipialattribute-steigend', 'steigend', 'rising', 'en hausse', null, 'SHTEI-gend', 'SHTY-gent', ['Die steigenden Preise machen Sorgen.', 'The rising prices cause worry.', 'La hausse des prix inquiète.']),
+    ]),
     grammar(
       'sp-pa-p1',
       ['Partizip I', 'Partizip I'],
@@ -85,8 +87,10 @@ export const partizipialattribute = defineSpecial({
       'Partizip II: passive or completed', 'Partizip II : passif ou accompli',
       'The past participle as an adjective.', 'Le participe passé comme adjectif.',
     ),
-    vocab('sp-partizipialattribute-veroeffentlicht', 'veröffentlicht', 'published', 'publié', null, 'fer-Ö-ffent-licht', 'fer-OEF-fent-likht', ['Das veröffentlichte Buch ist spannend.', 'The published book is exciting.', 'Le livre publié est passionnant.']),
-    vocab('sp-partizipialattribute-geschlossen', 'geschlossen', 'closed', 'fermé', null, 'ge-SCHLOS-sen', 'ge-SHLOS-sen', ['Das Geschäft ist geschlossen.', 'The shop is closed.', 'Le magasin est fermé.']),
+    wordgroup(['Partizip II: passive or completed', 'Partizip II : passif ou accompli'], [
+      vocab('sp-partizipialattribute-veroeffentlicht', 'veröffentlicht', 'published', 'publié', null, 'fer-Ö-ffent-licht', 'fer-OEF-fent-likht', ['Das veröffentlichte Buch ist spannend.', 'The published book is exciting.', 'Le livre publié est passionnant.']),
+      vocab('sp-partizipialattribute-geschlossen', 'geschlossen', 'closed', 'fermé', null, 'ge-SCHLOS-sen', 'ge-SHLOS-sen', ['Das Geschäft ist geschlossen.', 'The shop is closed.', 'Le magasin est fermé.']),
+    ]),
     grammar(
       'sp-pa-p2',
       ['Partizip II', 'Partizip II'],
@@ -123,8 +127,10 @@ export const partizipialattribute = defineSpecial({
       'zu + Partizip I: must or can be done', 'zu + Partizip I : doit ou peut être fait',
       'A very formal way to express necessity.', 'Une manière très formelle d’exprimer la nécessité.',
     ),
-    vocab('sp-partizipialattribute-aufgabe', 'die zu lösende Aufgabe', 'the task to be solved', 'la tâche à résoudre', 'die', 'dee tsoo LÖ-sen-de AUF-ga-be', 'dee tsoo LOE-zen-de OWF-gah-be', ['Die zu lösende Aufgabe ist schwer.', 'The task to be solved is hard.', 'La tâche à résoudre est difficile.']),
-    vocab('sp-partizipialattribute-regeln', 'die zu beachtenden Regeln', 'the rules to be observed', 'les règles à respecter', null, 'dee tsoo be-ACH-ten-den RE-geln', 'dee tsoo be-AKH-ten-den RAY-geln', ['Die zu beachtenden Regeln stehen hier.', 'The rules to be observed are listed here.', 'Les règles à respecter sont ici.']),
+    wordgroup(['zu + Partizip I: must or can be done', 'zu + Partizip I : doit ou peut être fait'], [
+      vocab('sp-partizipialattribute-aufgabe', 'die zu lösende Aufgabe', 'the task to be solved', 'la tâche à résoudre', 'die', 'dee tsoo LÖ-sen-de AUF-ga-be', 'dee tsoo LOE-zen-de OWF-gah-be', ['Die zu lösende Aufgabe ist schwer.', 'The task to be solved is hard.', 'La tâche à résoudre est difficile.']),
+      vocab('sp-partizipialattribute-regeln', 'die zu beachtenden Regeln', 'the rules to be observed', 'les règles à respecter', null, 'dee tsoo be-ACH-ten-den RE-geln', 'dee tsoo be-AKH-ten-den RAY-geln', ['Die zu beachtenden Regeln stehen hier.', 'The rules to be observed are listed here.', 'Les règles à respecter sont ici.']),
+    ]),
     grammar(
       'sp-pa-zu',
       ['zu + Partizip I', 'zu + Partizip I'],

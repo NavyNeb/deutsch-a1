@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const reflexiveVerben = defineSpecial({
   slug: 'reflexive-verben',
@@ -81,10 +81,12 @@ export const reflexiveVerben = defineSpecial({
         ['Wir treffen uns am Bahnhof.', 'We meet at the station.', 'Nous nous retrouvons à la gare.'],
       ],
     ),
-    vocab('sp-reflexive-verben-sich-freuen', 'sich freuen', 'to be glad, to look forward', 'se réjouir', null, 'sich FREU-en', 'zikh FROY-en', ['Ich freue mich auf den Urlaub.', 'I am looking forward to the holiday.', 'Je me réjouis des vacances.']),
-    vocab('sp-reflexive-verben-sich-beeilen', 'sich beeilen', 'to hurry', 'se dépêcher', null, 'sich be-EI-len', 'zikh beh-Y-len', ['Beeil dich, wir kommen zu spät!', 'Hurry up, we are going to be late!', 'Dépêche-toi, nous allons être en retard !']),
-    vocab('sp-reflexive-verben-sich-treffen', 'sich treffen', 'to meet', 'se retrouver', null, 'sich TREF-fen', 'zikh TREF-en', ['Wir treffen uns um acht Uhr.', 'We meet at eight o’clock.', 'Nous nous retrouvons à huit heures.']),
-    vocab('sp-reflexive-verben-sich-erholen', 'sich erholen', 'to relax, to recover', 'se reposer', null, 'sich er-HO-len', 'zikh er-HOH-len', ['Am Wochenende erhole ich mich.', 'At the weekend I relax.', 'Le week-end, je me repose.']),
+    wordgroup(['What is a reflexive verb?', 'Qu’est-ce qu’un verbe réfléchi ?'], [
+      vocab('sp-reflexive-verben-sich-freuen', 'sich freuen', 'to be glad, to look forward', 'se réjouir', null, 'sich FREU-en', 'zikh FROY-en', ['Ich freue mich auf den Urlaub.', 'I am looking forward to the holiday.', 'Je me réjouis des vacances.']),
+      vocab('sp-reflexive-verben-sich-beeilen', 'sich beeilen', 'to hurry', 'se dépêcher', null, 'sich be-EI-len', 'zikh beh-Y-len', ['Beeil dich, wir kommen zu spät!', 'Hurry up, we are going to be late!', 'Dépêche-toi, nous allons être en retard !']),
+      vocab('sp-reflexive-verben-sich-treffen', 'sich treffen', 'to meet', 'se retrouver', null, 'sich TREF-fen', 'zikh TREF-en', ['Wir treffen uns um acht Uhr.', 'We meet at eight o’clock.', 'Nous nous retrouvons à huit heures.']),
+      vocab('sp-reflexive-verben-sich-erholen', 'sich erholen', 'to relax, to recover', 'se reposer', null, 'sich er-HO-len', 'zikh er-HOH-len', ['Am Wochenende erhole ich mich.', 'At the weekend I relax.', 'Le week-end, je me repose.']),
+    ]),
     mc(
       'sp-rv-e1',
       ['Reflexive pronoun for "ich"?', 'Pronom réfléchi pour « ich » ?'],
@@ -158,9 +160,11 @@ export const reflexiveVerben = defineSpecial({
         ['Ich stelle mich vor: Ich heiße Anna.', 'Let me introduce myself: I’m Anna.', 'Je me présente : je m’appelle Anna.'],
       ],
     ),
-    vocab('sp-reflexive-verben-sich-die-haende-waschen', 'sich die Hände waschen', 'to wash one’s hands', 'se laver les mains', null, 'sich dee HEN-de VA-schen', 'zikh dee HEN-deh VASH-en', ['Wasch dir die Hände vor dem Essen!', 'Wash your hands before eating!', 'Lave-toi les mains avant de manger !']),
-    vocab('sp-reflexive-verben-sich-die-zaehne-putzen', 'sich die Zähne putzen', 'to brush one’s teeth', 'se brosser les dents', null, 'sich dee TSÄ-ne PUT-zen', 'zikh dee TSAY-neh POOT-sen', ['Ich putze mir zweimal täglich die Zähne.', 'I brush my teeth twice a day.', 'Je me brosse les dents deux fois par jour.']),
-    vocab('sp-reflexive-verben-sich-etwas-kaufen', 'sich etwas kaufen', 'to buy oneself something', 's’acheter quelque chose', null, 'sich ET-vas KAU-fen', 'zikh ET-vahs KOW-fen', ['Ich kaufe mir einen neuen Mantel.', 'I am buying myself a new coat.', 'Je m’achète un nouveau manteau.']),
+    wordgroup(['Accusative or dative?', 'Accusatif ou datif ?'], [
+      vocab('sp-reflexive-verben-sich-die-haende-waschen', 'sich die Hände waschen', 'to wash one’s hands', 'se laver les mains', null, 'sich dee HEN-de VA-schen', 'zikh dee HEN-deh VASH-en', ['Wasch dir die Hände vor dem Essen!', 'Wash your hands before eating!', 'Lave-toi les mains avant de manger !']),
+      vocab('sp-reflexive-verben-sich-die-zaehne-putzen', 'sich die Zähne putzen', 'to brush one’s teeth', 'se brosser les dents', null, 'sich dee TSÄ-ne PUT-zen', 'zikh dee TSAY-neh POOT-sen', ['Ich putze mir zweimal täglich die Zähne.', 'I brush my teeth twice a day.', 'Je me brosse les dents deux fois par jour.']),
+      vocab('sp-reflexive-verben-sich-etwas-kaufen', 'sich etwas kaufen', 'to buy oneself something', 's’acheter quelque chose', null, 'sich ET-vas KAU-fen', 'zikh ET-vahs KOW-fen', ['Ich kaufe mir einen neuen Mantel.', 'I am buying myself a new coat.', 'Je m’achète un nouveau manteau.']),
+    ]),
     mc(
       'sp-rv-e7',
       ['"Ich wasche ___ die Hände."', '« Ich wasche ___ die Hände. »'],
@@ -223,8 +227,10 @@ export const reflexiveVerben = defineSpecial({
         ['Du musst dich ausruhen.', 'You need to rest.', 'Tu dois te reposer.'],
       ],
     ),
-    vocab('sp-reflexive-verben-sich-ausruhen', 'sich ausruhen', 'to rest', 'se reposer', null, 'sich AUS-ru-hen', 'zikh OWS-roo-en', ['Nach der Arbeit ruhe ich mich aus.', 'After work I rest.', 'Après le travail, je me repose.']),
-    vocab('sp-reflexive-verben-sich-anmelden', 'sich anmelden', 'to register, to sign up', 's’inscrire', null, 'sich AN-mel-den', 'zikh AHN-mel-den', ['Ich möchte mich für den Kurs anmelden.', 'I would like to sign up for the course.', 'Je voudrais m’inscrire au cours.']),
+    wordgroup(['Word order and tenses', 'Ordre des mots et temps'], [
+      vocab('sp-reflexive-verben-sich-ausruhen', 'sich ausruhen', 'to rest', 'se reposer', null, 'sich AUS-ru-hen', 'zikh OWS-roo-en', ['Nach der Arbeit ruhe ich mich aus.', 'After work I rest.', 'Après le travail, je me repose.']),
+      vocab('sp-reflexive-verben-sich-anmelden', 'sich anmelden', 'to register, to sign up', 's’inscrire', null, 'sich AN-mel-den', 'zikh AHN-mel-den', ['Ich möchte mich für den Kurs anmelden.', 'I would like to sign up for the course.', 'Je voudrais m’inscrire au cours.']),
+    ]),
     wo('sp-rv-e12', ['sich', 'Er', 'auf', 'freut', 'den', 'Urlaub'], ['Er', 'freut', 'sich', 'auf', 'den', 'Urlaub'], ['sich directly after the conjugated verb.', 'sich juste après le verbe conjugué.']),
     wo('sp-rv-e13', ['du', 'auf', 'dich', 'Freust', 'das', 'Wochenende?'], ['Freust', 'du', 'dich', 'auf', 'das', 'Wochenende?'], ['Question: verb, subject, sich.', 'Question : verbe, sujet, sich.']),
     wo('sp-rv-e14', ['gestern', 'getroffen', 'Wir', 'haben', 'uns'], ['Wir', 'haben', 'uns', 'gestern', 'getroffen'], ['Perfekt: helper, sich, time, participle.', 'Perfekt : auxiliaire, sich, temps, participe.']),
@@ -273,9 +279,11 @@ export const reflexiveVerben = defineSpecial({
         ['Ich erinnere mich an meine Kindheit.', 'I remember my childhood.', 'Je me souviens de mon enfance.'],
       ],
     ),
-    vocab('sp-reflexive-verben-sich-interessieren', 'sich interessieren für', 'to be interested in', 's’intéresser à', null, 'sich in-te-res-SIE-ren fyr', 'zikh in-teh-reh-SEE-ren fuer', ['Ich interessiere mich für Geschichte.', 'I am interested in history.', 'Je m’intéresse à l’histoire.']),
-    vocab('sp-reflexive-verben-sich-aergern', 'sich ärgern über', 'to be annoyed about', 'se fâcher de', null, 'sich Ä-gern Ü-ber', 'zikh ER-gern UE-ber', ['Ich ärgere mich über den Lärm.', 'I am annoyed about the noise.', 'Je suis agacé par le bruit.']),
-    vocab('sp-reflexive-verben-sich-erinnern', 'sich erinnern an', 'to remember', 'se souvenir de', null, 'sich er-IN-nern an', 'zikh er-IN-ern ahn', ['Erinnerst du dich an mich?', 'Do you remember me?', 'Te souviens-tu de moi ?']),
+    wordgroup(['Everyday reflexive verbs', 'Les verbes réfléchis du quotidien'], [
+      vocab('sp-reflexive-verben-sich-interessieren', 'sich interessieren für', 'to be interested in', 's’intéresser à', null, 'sich in-te-res-SIE-ren fyr', 'zikh in-teh-reh-SEE-ren fuer', ['Ich interessiere mich für Geschichte.', 'I am interested in history.', 'Je m’intéresse à l’histoire.']),
+      vocab('sp-reflexive-verben-sich-aergern', 'sich ärgern über', 'to be annoyed about', 'se fâcher de', null, 'sich Ä-gern Ü-ber', 'zikh ER-gern UE-ber', ['Ich ärgere mich über den Lärm.', 'I am annoyed about the noise.', 'Je suis agacé par le bruit.']),
+      vocab('sp-reflexive-verben-sich-erinnern', 'sich erinnern an', 'to remember', 'se souvenir de', null, 'sich er-IN-nern an', 'zikh er-IN-ern ahn', ['Erinnerst du dich an mich?', 'Do you remember me?', 'Te souviens-tu de moi ?']),
+    ]),
     mc(
       'sp-rv-e17',
       ['"Ich freue mich ___ den Urlaub (next month)."', '« Ich freue mich ___ den Urlaub (le mois prochain). »'],

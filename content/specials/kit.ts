@@ -26,6 +26,19 @@ export const vocab = (
   item: { id, german, english, french, gender, syllables: syllables.split('-'), pronunciation: pron, example: example(ex) },
 });
 
+/** A group of 2+ words taught together; pass vocab(...) steps, the items are unwrapped. */
+export const wordgroup = (title: readonly [string, string], words: LessonStep[]): LessonStep => ({
+  kind: 'wordgroup', title: title[0], titleFr: title[1],
+  items: words.flatMap((w) => (w.kind === 'vocab' ? [w.item] : [])),
+});
+
+/** A short dialogue shown before the words of a chapter: [who, de, en, fr] per line. */
+export const situation = (title: readonly [string, string], setting: readonly [string, string], lines: readonly (readonly [string, string, string, string])[]): LessonStep => ({
+  kind: 'situation', title: title[0], titleFr: title[1], setting: setting[0], settingFr: setting[1],
+  lines: lines.map(([who, de, en, fr]) => ({ who, de, en, fr })),
+  words: [],
+});
+
 export const grammar = (
   id: string, title: readonly [string, string], md: readonly [string, string], examples: Ex[],
   diagram?: 'verb-second' | 'satzklammer' | 'conjugation-table',

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const genus = defineSpecial({
   slug: 'genus',
@@ -96,8 +96,10 @@ export const genus = defineSpecial({
         ['Mein Lehrer kommt aus Wien.', 'My teacher comes from Vienna.', 'Mon professeur vient de Vienne.'],
       ],
     ),
-    vocab('sp-genus-fruehling', 'der Frühling', 'the spring', 'le printemps', 'der', 'FRÜH-ling', 'dair FREW-ling', ['Im Frühling blühen die Blumen.', 'In spring the flowers bloom.', 'Au printemps, les fleurs éclosent.']),
-    vocab('sp-genus-lehrer', 'der Lehrer', 'the teacher (male)', 'l’enseignant', 'der', 'LEH-rer', 'dair LAY-rer', ['Der Lehrer erklärt die Grammatik.', 'The teacher explains the grammar.', 'L’enseignant explique la grammaire.']),
+    wordgroup(['Masculine patterns', 'Les schémas masculins'], [
+      vocab('sp-genus-fruehling', 'der Frühling', 'the spring', 'le printemps', 'der', 'FRÜH-ling', 'dair FREW-ling', ['Im Frühling blühen die Blumen.', 'In spring the flowers bloom.', 'Au printemps, les fleurs éclosent.']),
+      vocab('sp-genus-lehrer', 'der Lehrer', 'the teacher (male)', 'l’enseignant', 'der', 'LEH-rer', 'dair LAY-rer', ['Der Lehrer erklärt die Grammatik.', 'The teacher explains the grammar.', 'L’enseignant explique la grammaire.']),
+    ]),
     ap('sp-genus-e3', 'Dienstag', 'der', ['Days of the week are masculine.', 'Les jours de la semaine sont masculins.']),
     ap('sp-genus-e4', 'Tourismus', 'der', ['-ismus is always masculine.', '-ismus est toujours masculin.']),
     ap('sp-genus-e5', 'Journalist', 'der', ['People in -ist are masculine; the woman is die Journalistin.', 'Les personnes en -ist sont masculines ; la femme est die Journalistin.']),
@@ -128,9 +130,11 @@ export const genus = defineSpecial({
         ['Meine Lehrerin heißt Frau Weber.', 'My teacher (female) is called Ms Weber.', 'Mon enseignante s’appelle Mme Weber.'],
       ],
     ),
-    vocab('sp-genus-wohnung', 'die Wohnung', 'the flat, apartment', 'l’appartement', 'die', 'WOH-nung', 'dee VOH-noong', ['Meine Wohnung hat drei Zimmer.', 'My flat has three rooms.', 'Mon appartement a trois pièces.']),
-    vocab('sp-genus-freundschaft', 'die Freundschaft', 'the friendship', 'l’amitié', 'die', 'FREUND-schaft', 'dee FROYNT-shahft', ['Unsere Freundschaft ist sehr alt.', 'Our friendship is very old.', 'Notre amitié est très ancienne.']),
-    vocab('sp-genus-moeglichkeit', 'die Möglichkeit', 'the possibility, option', 'la possibilité', 'die', 'MÖG-lich-keit', 'dee MUHG-likh-kite', ['Es gibt zwei Möglichkeiten.', 'There are two options.', 'Il y a deux possibilités.']),
+    wordgroup(['Feminine patterns', 'Les schémas féminins'], [
+      vocab('sp-genus-wohnung', 'die Wohnung', 'the flat, apartment', 'l’appartement', 'die', 'WOH-nung', 'dee VOH-noong', ['Meine Wohnung hat drei Zimmer.', 'My flat has three rooms.', 'Mon appartement a trois pièces.']),
+      vocab('sp-genus-freundschaft', 'die Freundschaft', 'the friendship', 'l’amitié', 'die', 'FREUND-schaft', 'dee FROYNT-shahft', ['Unsere Freundschaft ist sehr alt.', 'Our friendship is very old.', 'Notre amitié est très ancienne.']),
+      vocab('sp-genus-moeglichkeit', 'die Möglichkeit', 'the possibility, option', 'la possibilité', 'die', 'MÖG-lich-keit', 'dee MUHG-likh-kite', ['Es gibt zwei Möglichkeiten.', 'There are two options.', 'Il y a deux possibilités.']),
+    ]),
     ap('sp-genus-e8', 'Zeitung', 'die', ['-ung is always feminine.', '-ung est toujours féminin.']),
     ap('sp-genus-e9', 'Gesundheit', 'die', ['-heit is always feminine.', '-heit est toujours féminin.']),
     ap('sp-genus-e10', 'Universität', 'die', ['-tät is always feminine.', '-tät est toujours féminin.']),
@@ -161,8 +165,10 @@ export const genus = defineSpecial({
         ['Ich möchte ein Brötchen mit Käse.', 'I would like a bread roll with cheese.', 'Je voudrais un petit pain au fromage.'],
       ],
     ),
-    vocab('sp-genus-datum', 'das Datum', 'the date', 'la date', 'das', 'DAH-tum', 'dahs DAH-toom', ['Welches Datum haben wir heute?', 'What is the date today?', 'Quelle est la date aujourd’hui ?']),
-    vocab('sp-genus-zimmer', 'das Zimmer', 'the room', 'la pièce, la chambre', 'das', 'ZIM-mer', 'dahs TSIM-mer', ['Mein Zimmer ist klein, aber gemütlich.', 'My room is small but cosy.', 'Ma chambre est petite mais confortable.']),
+    wordgroup(['Neuter patterns', 'Les schémas neutres'], [
+      vocab('sp-genus-datum', 'das Datum', 'the date', 'la date', 'das', 'DAH-tum', 'dahs DAH-toom', ['Welches Datum haben wir heute?', 'What is the date today?', 'Quelle est la date aujourd’hui ?']),
+      vocab('sp-genus-zimmer', 'das Zimmer', 'the room', 'la pièce, la chambre', 'das', 'ZIM-mer', 'dahs TSIM-mer', ['Mein Zimmer ist klein, aber gemütlich.', 'My room is small but cosy.', 'Ma chambre est petite mais confortable.']),
+    ]),
     ap('sp-genus-e13', 'Medikament', 'das', ['-ment is neuter.', '-ment est neutre.']),
     ap('sp-genus-e14', 'Museum', 'das', ['-um is neuter.', '-um est neutre.']),
     ap('sp-genus-e15', 'Brötchen', 'das', ['-chen is always neuter.', '-chen est toujours neutre.']),

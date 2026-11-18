@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const adjektivendungen = defineSpecial({
   slug: 'adjektivendungen',
@@ -62,8 +62,10 @@ export const adjektivendungen = defineSpecial({
         ['Der neue Lehrer ist sehr nett.', 'The new teacher is very kind.', 'Le nouvel enseignant est très gentil.'],
       ],
     ),
-    vocab('sp-adjektivendungen-neu', 'neu', 'new', 'nouveau', null, 'NOY', 'NOY', ['Ich brauche ein neues Handy.', 'I need a new mobile phone.', 'J’ai besoin d’un nouveau téléphone.']),
-    vocab('sp-adjektivendungen-alt', 'alt', 'old', 'vieux, âgé', null, 'ALT', 'AHLT', ['Der alte Mann sitzt im Park.', 'The old man is sitting in the park.', 'Le vieil homme est assis dans le parc.']),
+    wordgroup(['Ending or no ending?', 'Terminaison ou pas ?'], [
+      vocab('sp-adjektivendungen-neu', 'neu', 'new', 'nouveau', null, 'NOY', 'NOY', ['Ich brauche ein neues Handy.', 'I need a new mobile phone.', 'J’ai besoin d’un nouveau téléphone.']),
+      vocab('sp-adjektivendungen-alt', 'alt', 'old', 'vieux, âgé', null, 'ALT', 'AHLT', ['Der alte Mann sitzt im Park.', 'The old man is sitting in the park.', 'Le vieil homme est assis dans le parc.']),
+    ]),
     mc(
       'sp-adj-e1',
       ['Which sentence is correct?', 'Quelle phrase est correcte ?'],
@@ -253,8 +255,10 @@ export const adjektivendungen = defineSpecial({
         ['Hast du etwas Neues gelernt?', 'Did you learn something new?', 'As-tu appris quelque chose de nouveau ?'],
       ],
     ),
-    vocab('sp-adjektivendungen-teuer', 'teuer', 'expensive', 'cher', null, 'TOY-er', 'TOY-er', ['Das Hotel ist zu teuer.', 'The hotel is too expensive.', 'L’hôtel est trop cher.']),
-    vocab('sp-adjektivendungen-hoch', 'hoch', 'high, tall', 'haut', null, 'HOHKH', 'HOHKH', ['Der Berg ist sehr hoch.', 'The mountain is very high.', 'La montagne est très haute.']),
+    wordgroup(['Special cases and strategy', 'Cas particuliers et stratégie'], [
+      vocab('sp-adjektivendungen-teuer', 'teuer', 'expensive', 'cher', null, 'TOY-er', 'TOY-er', ['Das Hotel ist zu teuer.', 'The hotel is too expensive.', 'L’hôtel est trop cher.']),
+      vocab('sp-adjektivendungen-hoch', 'hoch', 'high, tall', 'haut', null, 'HOHKH', 'HOHKH', ['Der Berg ist sehr hoch.', 'The mountain is very high.', 'La montagne est très haute.']),
+    ]),
     mc(
       'sp-adj-e19',
       ['"Das ist ein ___ Berg." (hoch)', '« Das ist ein ___ Berg. » (hoch)'],

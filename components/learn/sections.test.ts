@@ -34,6 +34,11 @@ describe('buildSections', () => {
     ]);
   });
 
+  it('labels dialogue and word-group steps in a lesson without chapters', () => {
+    const lesson = { steps: [{ kind: 'intro' }, { kind: 'situation', title: 'Im Café' }, ex, { kind: 'wordgroup', title: 'Getränke' }, { kind: 'grammar' }, { kind: 'wrapup' }] } as any;
+    expect(buildSections(lesson).map((x) => x.label)).toEqual(['Einstieg', 'Dialog', 'Übungen', 'Wortschatz', 'Grammatik', 'Fertig']);
+  });
+
   it('finds the section containing a step', () => {
     const lesson = { steps: [{ kind: 'intro' }, vocab, vocab, { kind: 'wrapup' }] } as any;
     const s = buildSections(lesson);

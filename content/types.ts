@@ -16,14 +16,46 @@ export const VocabItemSchema = z.object({
 });
 export type VocabItem = z.infer<typeof VocabItemSchema>;
 
+const GlossSchema = z.object({ de: z.string(), en: z.string(), fr: z.string().optional() });
+
+/** Colour role of a part of a sentence in a breakdown ("anatomy"). */
+export const AnatomyRoleSchema = z.enum(['subject', 'verb', 'accusative', 'dative', 'time', 'place', 'connector', 'other']);
+export type AnatomyRole = z.infer<typeof AnatomyRoleSchema>;
+
+const ContrastSideSchema = z.object({
+  label: z.string(), labelFr: z.string().optional(),
+  examples: z.array(GlossSchema).min(1),
+  note: z.string().optional(), noteFr: z.string().optional(),
+});
+
 export const GrammarNoteSchema = z.object({
   id: z.string(),
   title: z.string(),
   titleFr: z.string().optional(),
   explanationMd: z.string(),
   explanationMdFr: z.string().optional(),
-  examples: z.array(z.object({ de: z.string(), en: z.string(), fr: z.string().optional() })),
+  examples: z.array(GlossSchema),
   diagram: z.enum(['verb-second', 'satzklammer', 'conjugation-table']).optional(),
+  // Rich rule block (all optional, so older notes keep working):
+  lead: z.string().optional(),             // one line: "use it when ..."
+  leadFr: z.string().optional(),
+  tables: z.array(z.object({
+    title: z.string(), titleFr: z.string().optional(),
+    headers: z.array(z.string()).min(1),
+    headersFr: z.array(z.string()).optional(),
+    rows: z.array(z.array(z.string())).min(1),
+    rowsFr: z.array(z.array(z.string())).optional(),   // parallel French body; German-only tables repeat their rows
+    highlightCol: z.number().int().min(0).optional(),
+  })).optional(),
+  anatomy: z.array(z.object({              // a sentence split into colour-coded roles
+    parts: z.array(z.object({ text: z.string(), role: AnatomyRoleSchema })).min(1),
+    en: z.string(), fr: z.string().optional(),
+  })).optional(),
+  contrast: z.object({ a: ContrastSideSchema, b: ContrastSideSchema }).optional(),
+  mistakes: z.array(z.object({
+    wrong: z.string(), right: z.string(),
+    why: z.string(), whyFr: z.string().optional(),
+  })).optional(),
 });
 export type GrammarNote = z.infer<typeof GrammarNoteSchema>;
 
@@ -48,7 +80,27 @@ export const LessonStepSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('grammar'), note: GrammarNoteSchema }),
   z.object({ kind: z.literal('exercise'), exercise: ExerciseSchema }),
   z.object({ kind: z.literal('pronunciation'), focus: z.string(), focusFr: z.string().optional(), items: z.array(VocabItemSchema) }),
-  z.object({ kind: z.literal('wrapup'), summary: z.string(), summaryFr: z.string().optional() }),
+  z.object({
+    kind: z.literal('wrapup'), summary: z.string(), summaryFr: z.string().optional(),
+    card: z.object({                       // the save-worthy summary page of the lesson
+      title: z.string(), titleFr: z.string().optional(),
+      sections: z.array(z.object({
+        heading: z.string(), headingFr: z.string().optional(),
+        rows: z.array(GlossSchema).min(1),
+      })).min(1),
+    }).optional(),
+  }),
+  z.object({
+    kind: z.literal('situation'), title: z.string(), titleFr: z.string().optional(),
+    setting: z.string(), settingFr: z.string().optional(),
+    lines: z.array(z.object({ who: z.string(), de: z.string(), en: z.string(), fr: z.string().optional() })).min(2),
+    words: z.array(VocabItemSchema).default([]),
+  }),
+  z.object({
+    kind: z.literal('wordgroup'), title: z.string(), titleFr: z.string().optional(),
+    note: z.string().optional(), noteFr: z.string().optional(),
+    items: z.array(VocabItemSchema).min(2),
+  }),
   z.object({ kind: z.literal('chapter'), title: z.string(), titleFr: z.string().optional(), blurb: z.string().optional(), blurbFr: z.string().optional() }),
   z.object({ kind: z.literal('quiz'), title: z.string(), titleFr: z.string().optional(), passMark: z.number().min(0).max(1).default(0.8) }),
 ]);

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const wohnenMoebel = defineSpecial({
   slug: 'wohnen-moebel',
@@ -51,14 +51,27 @@ export const wohnenMoebel = defineSpecial({
       'Rooms of a flat', 'Les pièces d’un logement',
       'Wohnzimmer, Küche, Bad — and how German builds room words.', 'Wohnzimmer, Küche, Bad — et comment l’allemand construit les noms de pièces.',
     ),
-    vocab('sp-wohnen-moebel-zimmer', 'das Zimmer', 'the room', 'la pièce, la chambre', 'das', 'ZIM-mer', 'dahs TSIM-mer', ['Die Wohnung hat drei Zimmer.', 'The flat has three rooms.', 'L’appartement a trois pièces.']),
-    vocab('sp-wohnen-moebel-wohnzimmer', 'das Wohnzimmer', 'the living room', 'le salon', 'das', 'WOHN-zim-mer', 'dahs VOHN-tsim-mer', ['Im Wohnzimmer steht ein großes Sofa.', 'There is a big sofa in the living room.', 'Il y a un grand canapé dans le salon.']),
-    vocab('sp-wohnen-moebel-schlafzimmer', 'das Schlafzimmer', 'the bedroom', 'la chambre à coucher', 'das', 'SCHLAF-zim-mer', 'dahs SHLAHF-tsim-mer', ['Das Schlafzimmer ist ruhig.', 'The bedroom is quiet.', 'La chambre est calme.']),
-    vocab('sp-wohnen-moebel-kueche', 'die Küche', 'the kitchen', 'la cuisine', 'die', 'KÜ-che', 'dee KUE-kheh', ['In der Küche kocht meine Mutter.', 'My mother is cooking in the kitchen.', 'Ma mère cuisine dans la cuisine.']),
-    vocab('sp-wohnen-moebel-bad', 'das Bad', 'the bathroom', 'la salle de bain', 'das', 'BAD', 'dahs BAHT', ['Das Bad hat eine Dusche.', 'The bathroom has a shower.', 'La salle de bain a une douche.']),
-    vocab('sp-wohnen-moebel-flur', 'der Flur', 'the hallway', 'le couloir, l’entrée', 'der', 'FLUR', 'dair FLOOR', ['Im Flur hängen viele Jacken.', 'Many jackets are hanging in the hallway.', 'Beaucoup de vestes sont accrochées dans l’entrée.']),
-    vocab('sp-wohnen-moebel-balkon', 'der Balkon', 'the balcony', 'le balcon', 'der', 'bal-KON', 'dair bahl-KONG', ['Wir frühstücken auf dem Balkon.', 'We have breakfast on the balcony.', 'Nous prenons le petit-déjeuner sur le balcon.']),
-    vocab('sp-wohnen-moebel-garten', 'der Garten', 'the garden', 'le jardin', 'der', 'GAR-ten', 'dair GAR-ten', ['Hinter dem Haus ist ein kleiner Garten.', 'There is a small garden behind the house.', 'Il y a un petit jardin derrière la maison.']),
+    situation(
+      ['Die Wohnung', 'L’appartement'],
+      ['Anna gives a tour of her flat.', 'Anna fait visiter son appartement.'],
+      [
+        ['Anna', 'Das ist mein Wohnzimmer, hier ist die Küche, und dort ist das Bad.', 'This is my living room, here is the kitchen, and there is the bathroom.', 'Voici mon salon, ici la cuisine, et là la salle de bains.'],
+        ['Ben', 'Und wo schläfst du?', 'And where do you sleep?', 'Et où dors-tu ?'],
+        ['Anna', 'Im Schlafzimmer. Die Wohnung hat auch einen Balkon.', 'In the bedroom. The flat also has a balcony.', 'Dans la chambre. L’appartement a aussi un balcon.'],
+      ],
+    ),
+    wordgroup(['Rooms of a flat (1/2)', 'Les pièces d’un logement (1/2)'], [
+      vocab('sp-wohnen-moebel-zimmer', 'das Zimmer', 'the room', 'la pièce, la chambre', 'das', 'ZIM-mer', 'dahs TSIM-mer', ['Die Wohnung hat drei Zimmer.', 'The flat has three rooms.', 'L’appartement a trois pièces.']),
+      vocab('sp-wohnen-moebel-wohnzimmer', 'das Wohnzimmer', 'the living room', 'le salon', 'das', 'WOHN-zim-mer', 'dahs VOHN-tsim-mer', ['Im Wohnzimmer steht ein großes Sofa.', 'There is a big sofa in the living room.', 'Il y a un grand canapé dans le salon.']),
+      vocab('sp-wohnen-moebel-schlafzimmer', 'das Schlafzimmer', 'the bedroom', 'la chambre à coucher', 'das', 'SCHLAF-zim-mer', 'dahs SHLAHF-tsim-mer', ['Das Schlafzimmer ist ruhig.', 'The bedroom is quiet.', 'La chambre est calme.']),
+      vocab('sp-wohnen-moebel-kueche', 'die Küche', 'the kitchen', 'la cuisine', 'die', 'KÜ-che', 'dee KUE-kheh', ['In der Küche kocht meine Mutter.', 'My mother is cooking in the kitchen.', 'Ma mère cuisine dans la cuisine.']),
+    ]),
+    wordgroup(['Rooms of a flat (2/2)', 'Les pièces d’un logement (2/2)'], [
+      vocab('sp-wohnen-moebel-bad', 'das Bad', 'the bathroom', 'la salle de bain', 'das', 'BAD', 'dahs BAHT', ['Das Bad hat eine Dusche.', 'The bathroom has a shower.', 'La salle de bain a une douche.']),
+      vocab('sp-wohnen-moebel-flur', 'der Flur', 'the hallway', 'le couloir, l’entrée', 'der', 'FLUR', 'dair FLOOR', ['Im Flur hängen viele Jacken.', 'Many jackets are hanging in the hallway.', 'Beaucoup de vestes sont accrochées dans l’entrée.']),
+      vocab('sp-wohnen-moebel-balkon', 'der Balkon', 'the balcony', 'le balcon', 'der', 'bal-KON', 'dair bahl-KONG', ['Wir frühstücken auf dem Balkon.', 'We have breakfast on the balcony.', 'Nous prenons le petit-déjeuner sur le balcon.']),
+      vocab('sp-wohnen-moebel-garten', 'der Garten', 'the garden', 'le jardin', 'der', 'GAR-ten', 'dair GAR-ten', ['Hinter dem Haus ist ein kleiner Garten.', 'There is a small garden behind the house.', 'Il y a un petit jardin derrière la maison.']),
+    ]),
     grammar(
       'sp-wo-zimmer',
       ['Room words and plurals', 'Noms de pièces et pluriels'],
@@ -94,16 +107,29 @@ export const wohnenMoebel = defineSpecial({
       'Furniture', 'Les meubles',
       'What stands in the rooms — and its plural.', 'Ce qu’il y a dans les pièces — et leur pluriel.',
     ),
-    vocab('sp-wohnen-moebel-sofa', 'das Sofa', 'the sofa', 'le canapé', 'das', 'SO-fa', 'dahs ZOH-fah', ['Das Sofa ist sehr bequem.', 'The sofa is very comfortable.', 'Le canapé est très confortable.']),
-    vocab('sp-wohnen-moebel-tisch', 'der Tisch', 'the table', 'la table', 'der', 'TISCH', 'dair TISH', ['Der Tisch ist aus Holz.', 'The table is made of wood.', 'La table est en bois.']),
-    vocab('sp-wohnen-moebel-stuhl', 'der Stuhl', 'the chair', 'la chaise', 'der', 'STUHL', 'dair SHTOOL', ['Wir brauchen noch zwei Stühle.', 'We still need two chairs.', 'Il nous faut encore deux chaises.']),
-    vocab('sp-wohnen-moebel-bett', 'das Bett', 'the bed', 'le lit', 'das', 'BETT', 'dahs BET', ['Mein Bett steht am Fenster.', 'My bed is by the window.', 'Mon lit est près de la fenêtre.']),
-    vocab('sp-wohnen-moebel-schrank', 'der Schrank', 'the cupboard, wardrobe', 'l’armoire, le placard', 'der', 'SCHRANK', 'dair SHRAHNK', ['Die Kleider hängen im Schrank.', 'The clothes are hanging in the wardrobe.', 'Les vêtements sont dans l’armoire.']),
-    vocab('sp-wohnen-moebel-regal', 'das Regal', 'the shelf', 'l’étagère', 'das', 're-GAL', 'dahs reh-GAHL', ['Die Bücher stehen im Regal.', 'The books are on the shelf.', 'Les livres sont sur l’étagère.']),
-    vocab('sp-wohnen-moebel-lampe', 'die Lampe', 'the lamp', 'la lampe', 'die', 'LAM-pe', 'dee LAHM-peh', ['Die Lampe hängt über dem Tisch.', 'The lamp hangs over the table.', 'La lampe est suspendue au-dessus de la table.']),
-    vocab('sp-wohnen-moebel-teppich', 'der Teppich', 'the carpet, rug', 'le tapis', 'der', 'TEP-pich', 'dair TEP-ikh', ['Der Teppich liegt unter dem Tisch.', 'The rug is lying under the table.', 'Le tapis est sous la table.']),
-    vocab('sp-wohnen-moebel-fenster', 'das Fenster', 'the window', 'la fenêtre', 'das', 'FENS-ter', 'dahs FENS-ter', ['Das Fenster ist offen.', 'The window is open.', 'La fenêtre est ouverte.']),
-    vocab('sp-wohnen-moebel-tuer', 'die Tür', 'the door', 'la porte', 'die', 'TÜR', 'dee TUER', ['Bitte mach die Tür zu!', 'Please close the door!', 'Ferme la porte, s’il te plaît !']),
+    situation(
+      ['Im Möbelhaus', 'Au magasin de meubles'],
+      ['A shop assistant helps a customer.', 'Un vendeur aide une cliente.'],
+      [
+        ['Verkäufer', 'Möchten Sie einen Tisch oder ein Sofa?', 'Would you like a table or a sofa?', 'Voulez-vous une table ou un canapé ?'],
+        ['Kundin', 'Ich suche einen Schrank und ein Bett.', 'I am looking for a wardrobe and a bed.', 'Je cherche une armoire et un lit.'],
+        ['Verkäufer', 'Der Schrank ist groß, und das Bett ist sehr bequem.', 'The wardrobe is big and the bed is very comfortable.', 'L’armoire est grande et le lit est très confortable.'],
+      ],
+    ),
+    wordgroup(['Furniture (1/2)', 'Les meubles (1/2)'], [
+      vocab('sp-wohnen-moebel-sofa', 'das Sofa', 'the sofa', 'le canapé', 'das', 'SO-fa', 'dahs ZOH-fah', ['Das Sofa ist sehr bequem.', 'The sofa is very comfortable.', 'Le canapé est très confortable.']),
+      vocab('sp-wohnen-moebel-tisch', 'der Tisch', 'the table', 'la table', 'der', 'TISCH', 'dair TISH', ['Der Tisch ist aus Holz.', 'The table is made of wood.', 'La table est en bois.']),
+      vocab('sp-wohnen-moebel-stuhl', 'der Stuhl', 'the chair', 'la chaise', 'der', 'STUHL', 'dair SHTOOL', ['Wir brauchen noch zwei Stühle.', 'We still need two chairs.', 'Il nous faut encore deux chaises.']),
+      vocab('sp-wohnen-moebel-bett', 'das Bett', 'the bed', 'le lit', 'das', 'BETT', 'dahs BET', ['Mein Bett steht am Fenster.', 'My bed is by the window.', 'Mon lit est près de la fenêtre.']),
+      vocab('sp-wohnen-moebel-schrank', 'der Schrank', 'the cupboard, wardrobe', 'l’armoire, le placard', 'der', 'SCHRANK', 'dair SHRAHNK', ['Die Kleider hängen im Schrank.', 'The clothes are hanging in the wardrobe.', 'Les vêtements sont dans l’armoire.']),
+    ]),
+    wordgroup(['Furniture (2/2)', 'Les meubles (2/2)'], [
+      vocab('sp-wohnen-moebel-regal', 'das Regal', 'the shelf', 'l’étagère', 'das', 're-GAL', 'dahs reh-GAHL', ['Die Bücher stehen im Regal.', 'The books are on the shelf.', 'Les livres sont sur l’étagère.']),
+      vocab('sp-wohnen-moebel-lampe', 'die Lampe', 'the lamp', 'la lampe', 'die', 'LAM-pe', 'dee LAHM-peh', ['Die Lampe hängt über dem Tisch.', 'The lamp hangs over the table.', 'La lampe est suspendue au-dessus de la table.']),
+      vocab('sp-wohnen-moebel-teppich', 'der Teppich', 'the carpet, rug', 'le tapis', 'der', 'TEP-pich', 'dair TEP-ikh', ['Der Teppich liegt unter dem Tisch.', 'The rug is lying under the table.', 'Le tapis est sous la table.']),
+      vocab('sp-wohnen-moebel-fenster', 'das Fenster', 'the window', 'la fenêtre', 'das', 'FENS-ter', 'dahs FENS-ter', ['Das Fenster ist offen.', 'The window is open.', 'La fenêtre est ouverte.']),
+      vocab('sp-wohnen-moebel-tuer', 'die Tür', 'the door', 'la porte', 'die', 'TÜR', 'dee TUER', ['Bitte mach die Tür zu!', 'Please close the door!', 'Ferme la porte, s’il te plaît !']),
+    ]),
     grammar(
       'sp-wo-plural',
       ['Plurals of furniture', 'Pluriels des meubles'],
@@ -149,6 +175,15 @@ export const wohnenMoebel = defineSpecial({
     chapter(
       'Where is everything?', 'Où se trouve quoi ?',
       'Prepositions of place with the dative, plus stehen, liegen and hängen.', 'Prépositions de lieu avec le datif, plus stehen, liegen et hängen.',
+    ),
+    situation(
+      ['Wo ist die Lampe?', 'Où est la lampe ?'],
+      ['Moving in: where does everything go?', 'Emménagement : où va chaque chose ?'],
+      [
+        ['Mia', 'Wo ist die Lampe?', 'Where is the lamp?', 'Où est la lampe ?'],
+        ['Tom', 'Die Lampe steht auf dem Tisch, und das Buch liegt unter dem Stuhl.', 'The lamp is on the table and the book is under the chair.', 'La lampe est sur la table et le livre est sous la chaise.'],
+        ['Mia', 'Ich hänge das Bild an die Wand.', 'I am hanging the picture on the wall.', 'J’accroche le tableau au mur.'],
+      ],
     ),
     grammar(
       'sp-wo-praepositionen',
@@ -222,12 +257,23 @@ export const wohnenMoebel = defineSpecial({
       'Looking for a flat', 'Chercher un logement',
       'Ads, abbreviations, rent and the viewing.', 'Annonces, abréviations, loyer et visite.',
     ),
-    vocab('sp-wohnen-moebel-wohnung', 'die Wohnung', 'the flat, apartment', 'l’appartement', 'die', 'WOH-nung', 'dee VOH-noong', ['Ich suche eine Wohnung in der Stadt.', 'I am looking for a flat in the city.', 'Je cherche un appartement en ville.']),
-    vocab('sp-wohnen-moebel-miete', 'die Miete', 'the rent', 'le loyer', 'die', 'MIE-te', 'dee MEE-teh', ['Die Miete beträgt 650 Euro im Monat.', 'The rent is 650 euros per month.', 'Le loyer est de 650 euros par mois.']),
-    vocab('sp-wohnen-moebel-vermieter', 'der Vermieter', 'the landlord', 'le propriétaire (bailleur)', 'der', 'ver-MIE-ter', 'dair fair-MEE-ter', ['Der Vermieter wohnt im Erdgeschoss.', 'The landlord lives on the ground floor.', 'Le propriétaire habite au rez-de-chaussée.']),
-    vocab('sp-wohnen-moebel-besichtigung', 'die Besichtigung', 'the viewing', 'la visite', 'die', 'be-SICH-ti-gung', 'dee beh-ZIKH-tee-goong', ['Die Besichtigung ist am Samstag um zehn Uhr.', 'The viewing is on Saturday at ten o’clock.', 'La visite a lieu samedi à dix heures.']),
-    vocab('sp-wohnen-moebel-anzeige', 'die Anzeige', 'the advertisement', 'l’annonce', 'die', 'AN-zei-ge', 'dee AHN-tsy-geh', ['Ich habe die Anzeige im Internet gefunden.', 'I found the ad on the internet.', 'J’ai trouvé l’annonce sur Internet.']),
-    vocab('sp-wohnen-moebel-quadratmeter', 'der Quadratmeter', 'the square metre', 'le mètre carré', 'der', 'qua-DRAT-me-ter', 'dair kvah-DRAHT-may-ter', ['Die Wohnung hat 65 Quadratmeter.', 'The flat has 65 square metres.', 'L’appartement fait 65 mètres carrés.']),
+    situation(
+      ['Eine Wohnung suchen', 'Chercher un logement'],
+      ['A viewing with the agent.', 'Une visite avec l’agent immobilier.'],
+      [
+        ['Makler', 'Die Wohnung hat drei Zimmer und kostet 800 Euro Miete.', 'The flat has three rooms and costs 800 euros rent.', 'L’appartement a trois pièces et coûte 800 euros de loyer.'],
+        ['Kunde', 'Ist die Miete warm oder kalt?', 'Is the rent warm or cold?', 'Le loyer est-il charges comprises ou hors charges ?'],
+        ['Makler', 'Kalt. Dazu kommen die Nebenkosten.', 'Cold. The additional costs come on top.', 'Hors charges. Les charges s’y ajoutent.'],
+      ],
+    ),
+    wordgroup(['Looking for a flat', 'Chercher un logement'], [
+      vocab('sp-wohnen-moebel-wohnung', 'die Wohnung', 'the flat, apartment', 'l’appartement', 'die', 'WOH-nung', 'dee VOH-noong', ['Ich suche eine Wohnung in der Stadt.', 'I am looking for a flat in the city.', 'Je cherche un appartement en ville.']),
+      vocab('sp-wohnen-moebel-miete', 'die Miete', 'the rent', 'le loyer', 'die', 'MIE-te', 'dee MEE-teh', ['Die Miete beträgt 650 Euro im Monat.', 'The rent is 650 euros per month.', 'Le loyer est de 650 euros par mois.']),
+      vocab('sp-wohnen-moebel-vermieter', 'der Vermieter', 'the landlord', 'le propriétaire (bailleur)', 'der', 'ver-MIE-ter', 'dair fair-MEE-ter', ['Der Vermieter wohnt im Erdgeschoss.', 'The landlord lives on the ground floor.', 'Le propriétaire habite au rez-de-chaussée.']),
+      vocab('sp-wohnen-moebel-besichtigung', 'die Besichtigung', 'the viewing', 'la visite', 'die', 'be-SICH-ti-gung', 'dee beh-ZIKH-tee-goong', ['Die Besichtigung ist am Samstag um zehn Uhr.', 'The viewing is on Saturday at ten o’clock.', 'La visite a lieu samedi à dix heures.']),
+      vocab('sp-wohnen-moebel-anzeige', 'die Anzeige', 'the advertisement', 'l’annonce', 'die', 'AN-zei-ge', 'dee AHN-tsy-geh', ['Ich habe die Anzeige im Internet gefunden.', 'I found the ad on the internet.', 'J’ai trouvé l’annonce sur Internet.']),
+      vocab('sp-wohnen-moebel-quadratmeter', 'der Quadratmeter', 'the square metre', 'le mètre carré', 'der', 'qua-DRAT-me-ter', 'dair kvah-DRAHT-may-ter', ['Die Wohnung hat 65 Quadratmeter.', 'The flat has 65 square metres.', 'L’appartement fait 65 mètres carrés.']),
+    ]),
     grammar(
       'sp-wo-anzeige',
       ['Reading a flat ad', 'Lire une annonce immobilière'],
@@ -286,8 +332,19 @@ export const wohnenMoebel = defineSpecial({
       'Describing your flat', 'Décrire son logement',
       'Bring it all together: size, rooms, light and atmosphere.', 'Rassemble tout : taille, pièces, lumière et ambiance.',
     ),
-    vocab('sp-wohnen-moebel-hell', 'hell', 'bright, light', 'clair, lumineux', null, 'HELL', 'HEL', ['Das Wohnzimmer ist schön hell.', 'The living room is nice and bright.', 'Le salon est agréablement lumineux.']),
-    vocab('sp-wohnen-moebel-gemuetlich', 'gemütlich', 'cosy', 'confortable, douillet', null, 'ge-MÜT-lich', 'geh-MUET-likh', ['Mit Kerzen ist es sehr gemütlich.', 'With candles it is very cosy.', 'Avec des bougies, c’est très douillet.']),
+    situation(
+      ['Meine Wohnung', 'Mon logement'],
+      ['Sara describes her new flat.', 'Sara décrit son nouvel appartement.'],
+      [
+        ['Sara', 'Meine Wohnung ist klein, aber hell und gemütlich.', 'My flat is small but bright and cosy.', 'Mon appartement est petit, mais lumineux et agréable.'],
+        ['Tim', 'Hast du einen Balkon?', 'Do you have a balcony?', 'As-tu un balcon ?'],
+        ['Sara', 'Ja, und die Küche ist neu. Das Bad ist leider sehr klein.', 'Yes, and the kitchen is new. The bathroom is unfortunately very small.', 'Oui, et la cuisine est neuve. La salle de bains est malheureusement très petite.'],
+      ],
+    ),
+    wordgroup(['Describing your flat', 'Décrire son logement'], [
+      vocab('sp-wohnen-moebel-hell', 'hell', 'bright, light', 'clair, lumineux', null, 'HELL', 'HEL', ['Das Wohnzimmer ist schön hell.', 'The living room is nice and bright.', 'Le salon est agréablement lumineux.']),
+      vocab('sp-wohnen-moebel-gemuetlich', 'gemütlich', 'cosy', 'confortable, douillet', null, 'ge-MÜT-lich', 'geh-MUET-likh', ['Mit Kerzen ist es sehr gemütlich.', 'With candles it is very cosy.', 'Avec des bougies, c’est très douillet.']),
+    ]),
     grammar(
       'sp-wo-beschreiben',
       ['Describing where you live', 'Décrire où l’on habite'],

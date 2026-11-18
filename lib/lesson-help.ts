@@ -1,6 +1,6 @@
 import type { L } from './kumpel-copy';
 
-export type StepKind = 'intro' | 'chapter' | 'quiz' | 'wrapup' | 'vocab' | 'grammar' | 'exercise' | 'pronunciation';
+export type StepKind = 'intro' | 'chapter' | 'quiz' | 'wrapup' | 'vocab' | 'grammar' | 'exercise' | 'pronunciation' | 'situation' | 'wordgroup';
 
 export type HelpItemKey = 'play' | 'speak' | 'save' | 'move' | 'translate' | 'contents' | 'speed' | 'answer';
 
@@ -31,6 +31,8 @@ const HELP: Record<StepKind, LessonHelp> = {
   wrapup: { title: { en: 'The end of the lesson', fr: 'La fin de la leçon' }, items: pick('move', 'contents') },
   vocab: { title: { en: 'How the word card works', fr: 'Comment fonctionne la carte de mot' }, items: pick('play', 'speak', 'save', 'move') },
   grammar: { title: { en: 'How the grammar step works', fr: 'Comment fonctionne l’étape de grammaire' }, items: pick('translate', 'move', 'contents') },
+  situation: { title: { en: 'How the dialogue works', fr: 'Comment fonctionne le dialogue' }, items: pick('play', 'translate', 'save', 'move') },
+  wordgroup: { title: { en: 'How the word group works', fr: 'Comment fonctionne le groupe de mots' }, items: pick('play', 'speak', 'save', 'move') },
   exercise: { title: { en: 'How exercises work', fr: 'Comment fonctionnent les exercices' }, items: pick('answer', 'move') },
   pronunciation: { title: { en: 'How the pronunciation step works', fr: 'Comment fonctionne l’étape de prononciation' }, items: pick('play', 'speak', 'speed', 'move') },
 };

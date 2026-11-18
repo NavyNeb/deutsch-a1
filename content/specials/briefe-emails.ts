@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const briefeEmails = defineSpecial({
   slug: 'briefe-emails',
@@ -49,9 +49,11 @@ export const briefeEmails = defineSpecial({
       'Sie or du?', 'Sie ou du ?',
       'The first choice that sets the tone of everything after.', 'Le premier choix qui donne le ton à tout le reste.',
     ),
-    vocab('sp-briefe-emails-brief', 'der Brief', 'the letter', 'la lettre', 'der', 'BREEF', 'dair BREEF', ['Ich schreibe einen Brief an die Firma.', 'I am writing a letter to the company.', 'J’écris une lettre à l’entreprise.']),
-    vocab('sp-briefe-emails-email', 'die E-Mail', 'the email', 'l’e-mail', 'die', 'EE-mayl', 'dee EE-mayl', ['Ich schicke dir eine E-Mail.', 'I am sending you an email.', 'Je t’envoie un e-mail.']),
-    vocab('sp-briefe-emails-anrede', 'die Anrede', 'the form of address, salutation', 'la formule d’appel', 'die', 'AN-ray-de', 'dee AHN-ray-duh', ['Die Anrede steht am Anfang des Briefs.', 'The salutation is at the start of the letter.', 'La formule d’appel est au début de la lettre.']),
+    wordgroup(['Sie or du?', 'Sie ou du ?'], [
+      vocab('sp-briefe-emails-brief', 'der Brief', 'the letter', 'la lettre', 'der', 'BREEF', 'dair BREEF', ['Ich schreibe einen Brief an die Firma.', 'I am writing a letter to the company.', 'J’écris une lettre à l’entreprise.']),
+      vocab('sp-briefe-emails-email', 'die E-Mail', 'the email', 'l’e-mail', 'die', 'EE-mayl', 'dee EE-mayl', ['Ich schicke dir eine E-Mail.', 'I am sending you an email.', 'Je t’envoie un e-mail.']),
+      vocab('sp-briefe-emails-anrede', 'die Anrede', 'the form of address, salutation', 'la formule d’appel', 'die', 'AN-ray-de', 'dee AHN-ray-duh', ['Die Anrede steht am Anfang des Briefs.', 'The salutation is at the start of the letter.', 'La formule d’appel est au début de la lettre.']),
+    ]),
     grammar(
       'sp-be-register',
       ['Formal or informal', 'Formel ou informel'],
@@ -90,10 +92,12 @@ export const briefeEmails = defineSpecial({
       'Betreff and structure', 'Betreff et structure',
       'A short subject line and a clear order of parts.', 'Un objet court et un ordre clair des parties.',
     ),
-    vocab('sp-briefe-emails-betreff', 'der Betreff', 'the subject line', 'l’objet', 'der', 'be-TREFF', 'dair buh-TREF', ['Im Betreff steht: „Anfrage zum Kurs“.', 'The subject says: “Enquiry about the course”.', 'L’objet indique : « Demande sur le cours ».']),
-    vocab('sp-briefe-emails-anlage', 'die Anlage', 'the enclosure, attachment (letter)', 'la pièce jointe (lettre)', 'die', 'AN-la-ge', 'dee AHN-lah-guh', ['Als Anlage sende ich Ihnen mein Zeugnis.', 'I am enclosing my certificate.', 'Je joins mon certificat.']),
-    vocab('sp-briefe-emails-anhang', 'der Anhang', 'the attachment (email)', 'la pièce jointe (e-mail)', 'der', 'AN-hang', 'dair AHN-hahng', ['Im Anhang finden Sie die Rechnung.', 'The invoice is attached.', 'La facture est en pièce jointe.']),
-    vocab('sp-briefe-emails-anfrage', 'die Anfrage', 'the enquiry', 'la demande de renseignements', 'die', 'AN-fra-ge', 'dee AHN-frah-guh', ['Ich habe eine Anfrage zum Sprachkurs.', 'I have an enquiry about the language course.', 'J’ai une demande de renseignements sur le cours de langue.']),
+    wordgroup(['Betreff and structure', 'Betreff et structure'], [
+      vocab('sp-briefe-emails-betreff', 'der Betreff', 'the subject line', 'l’objet', 'der', 'be-TREFF', 'dair buh-TREF', ['Im Betreff steht: „Anfrage zum Kurs“.', 'The subject says: “Enquiry about the course”.', 'L’objet indique : « Demande sur le cours ».']),
+      vocab('sp-briefe-emails-anlage', 'die Anlage', 'the enclosure, attachment (letter)', 'la pièce jointe (lettre)', 'die', 'AN-la-ge', 'dee AHN-lah-guh', ['Als Anlage sende ich Ihnen mein Zeugnis.', 'I am enclosing my certificate.', 'Je joins mon certificat.']),
+      vocab('sp-briefe-emails-anhang', 'der Anhang', 'the attachment (email)', 'la pièce jointe (e-mail)', 'der', 'AN-hang', 'dair AHN-hahng', ['Im Anhang finden Sie die Rechnung.', 'The invoice is attached.', 'La facture est en pièce jointe.']),
+      vocab('sp-briefe-emails-anfrage', 'die Anfrage', 'the enquiry', 'la demande de renseignements', 'die', 'AN-fra-ge', 'dee AHN-frah-guh', ['Ich habe eine Anfrage zum Sprachkurs.', 'I have an enquiry about the language course.', 'J’ai une demande de renseignements sur le cours de langue.']),
+    ]),
     grammar(
       'sp-be-structure',
       ['Structure of a formal email', 'Structure d’un e-mail formel'],
@@ -131,10 +135,12 @@ export const briefeEmails = defineSpecial({
       'Requests and appointments', 'Demandes et rendez-vous',
       'Polite requests with Könnten Sie … and arranging a Termin.', 'Demandes polies avec Könnten Sie … et prise de rendez-vous.',
     ),
-    vocab('sp-briefe-emails-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MEEN', 'dair ter-MEEN', ['Ich möchte einen Termin vereinbaren.', 'I would like to arrange an appointment.', 'Je voudrais fixer un rendez-vous.']),
-    vocab('sp-briefe-emails-vereinbaren', 'vereinbaren', 'to arrange, to agree on', 'convenir de, fixer', null, 'fer-EIN-ba-ren', 'fair-INE-bah-ren', ['Können wir einen Termin vereinbaren?', 'Can we arrange an appointment?', 'Pouvons-nous convenir d’un rendez-vous ?']),
-    vocab('sp-briefe-emails-schicken', 'schicken', 'to send', 'envoyer', null, 'SHIK-ken', 'SHIK-en', ['Könnten Sie mir die Unterlagen schicken?', 'Could you send me the documents?', 'Pourriez-vous m’envoyer les documents ?']),
-    vocab('sp-briefe-emails-antwort', 'die Antwort', 'the reply', 'la réponse', 'die', 'ANT-vort', 'dee AHNT-vort', ['Ich warte auf Ihre Antwort.', 'I am waiting for your reply.', 'J’attends votre réponse.']),
+    wordgroup(['Requests and appointments', 'Demandes et rendez-vous'], [
+      vocab('sp-briefe-emails-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MEEN', 'dair ter-MEEN', ['Ich möchte einen Termin vereinbaren.', 'I would like to arrange an appointment.', 'Je voudrais fixer un rendez-vous.']),
+      vocab('sp-briefe-emails-vereinbaren', 'vereinbaren', 'to arrange, to agree on', 'convenir de, fixer', null, 'fer-EIN-ba-ren', 'fair-INE-bah-ren', ['Können wir einen Termin vereinbaren?', 'Can we arrange an appointment?', 'Pouvons-nous convenir d’un rendez-vous ?']),
+      vocab('sp-briefe-emails-schicken', 'schicken', 'to send', 'envoyer', null, 'SHIK-ken', 'SHIK-en', ['Könnten Sie mir die Unterlagen schicken?', 'Could you send me the documents?', 'Pourriez-vous m’envoyer les documents ?']),
+      vocab('sp-briefe-emails-antwort', 'die Antwort', 'the reply', 'la réponse', 'die', 'ANT-vort', 'dee AHNT-vort', ['Ich warte auf Ihre Antwort.', 'I am waiting for your reply.', 'J’attends votre réponse.']),
+    ]),
     grammar(
       'sp-be-requests',
       ['Polite requests', 'Demandes polies'],
@@ -182,10 +188,12 @@ export const briefeEmails = defineSpecial({
       'Complaints', 'Réclamations',
       'Say what is wrong, what you expect, and by when, politely.', 'Dire ce qui ne va pas, ce que tu attends, et pour quand, poliment.',
     ),
-    vocab('sp-briefe-emails-bestellung', 'die Bestellung', 'the order', 'la commande', 'die', 'be-SHTEL-ung', 'dee buh-SHTEL-oong', ['Meine Bestellung ist noch nicht angekommen.', 'My order has not arrived yet.', 'Ma commande n’est pas encore arrivée.']),
-    vocab('sp-briefe-emails-beschwerde', 'die Beschwerde', 'the complaint', 'la réclamation', 'die', 'be-SHVAIR-de', 'dee buh-SHVAIR-duh', ['Ich möchte eine Beschwerde einreichen.', 'I would like to file a complaint.', 'Je voudrais déposer une réclamation.']),
-    vocab('sp-briefe-emails-beschaedigt', 'beschädigt', 'damaged', 'endommagé', null, 'be-SHAY-digt', 'buh-SHAY-dikht', ['Das Paket war beschädigt.', 'The parcel was damaged.', 'Le colis était endommagé.']),
-    vocab('sp-briefe-emails-erwarten', 'erwarten', 'to expect', 'attendre, s’attendre à', null, 'er-VAR-ten', 'air-VAR-ten', ['Ich erwarte eine schnelle Antwort.', 'I expect a quick reply.', 'J’attends une réponse rapide.']),
+    wordgroup(['Complaints', 'Réclamations'], [
+      vocab('sp-briefe-emails-bestellung', 'die Bestellung', 'the order', 'la commande', 'die', 'be-SHTEL-ung', 'dee buh-SHTEL-oong', ['Meine Bestellung ist noch nicht angekommen.', 'My order has not arrived yet.', 'Ma commande n’est pas encore arrivée.']),
+      vocab('sp-briefe-emails-beschwerde', 'die Beschwerde', 'the complaint', 'la réclamation', 'die', 'be-SHVAIR-de', 'dee buh-SHVAIR-duh', ['Ich möchte eine Beschwerde einreichen.', 'I would like to file a complaint.', 'Je voudrais déposer une réclamation.']),
+      vocab('sp-briefe-emails-beschaedigt', 'beschädigt', 'damaged', 'endommagé', null, 'be-SHAY-digt', 'buh-SHAY-dikht', ['Das Paket war beschädigt.', 'The parcel was damaged.', 'Le colis était endommagé.']),
+      vocab('sp-briefe-emails-erwarten', 'erwarten', 'to expect', 'attendre, s’attendre à', null, 'er-VAR-ten', 'air-VAR-ten', ['Ich erwarte eine schnelle Antwort.', 'I expect a quick reply.', 'J’attends une réponse rapide.']),
+    ]),
     grammar(
       'sp-be-complaint',
       ['Writing a complaint', 'Rédiger une réclamation'],
@@ -224,9 +232,11 @@ export const briefeEmails = defineSpecial({
       'Friendly messages', 'Messages amicaux',
       'Informal invitations and thanks to friends.', 'Invitations et remerciements informels à des amis.',
     ),
-    vocab('sp-briefe-emails-einladung', 'die Einladung', 'the invitation', 'l’invitation', 'die', 'EIN-la-dung', 'dee INE-lah-doong', ['Danke für die Einladung!', 'Thanks for the invitation!', 'Merci pour l’invitation !']),
-    vocab('sp-briefe-emails-gruss', 'der Gruß', 'the greeting', 'le salut', 'der', 'GROOSS', 'dair GROOSS', ['Viele Grüße an deine Familie!', 'Best wishes to your family!', 'Bien des choses à ta famille !']),
-    vocab('sp-briefe-emails-freuen', 'sich freuen auf', 'to look forward to', 'se réjouir de (à venir)', null, 'zikh FROY-en owf', 'zikh FROY-en owf', ['Ich freue mich auf Samstag!', 'I am looking forward to Saturday!', 'Je me réjouis de samedi !']),
+    wordgroup(['Friendly messages', 'Messages amicaux'], [
+      vocab('sp-briefe-emails-einladung', 'die Einladung', 'the invitation', 'l’invitation', 'die', 'EIN-la-dung', 'dee INE-lah-doong', ['Danke für die Einladung!', 'Thanks for the invitation!', 'Merci pour l’invitation !']),
+      vocab('sp-briefe-emails-gruss', 'der Gruß', 'the greeting', 'le salut', 'der', 'GROOSS', 'dair GROOSS', ['Viele Grüße an deine Familie!', 'Best wishes to your family!', 'Bien des choses à ta famille !']),
+      vocab('sp-briefe-emails-freuen', 'sich freuen auf', 'to look forward to', 'se réjouir de (à venir)', null, 'zikh FROY-en owf', 'zikh FROY-en owf', ['Ich freue mich auf Samstag!', 'I am looking forward to Saturday!', 'Je me réjouis de samedi !']),
+    ]),
     grammar(
       'sp-be-informal',
       ['Informal messages', 'Messages informels'],

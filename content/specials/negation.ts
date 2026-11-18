@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const negation = defineSpecial({
   slug: 'negation',
@@ -63,8 +63,10 @@ export const negation = defineSpecial({
         ['Kinder? Nein, wir haben keine Kinder.', 'Children? No, we have no children.', 'Des enfants ? Non, nous n’avons pas d’enfants.'],
       ],
     ),
-    vocab('sp-negation-kein', 'kein', 'no, not a, not any', 'aucun, pas de', null, 'KEIN', 'KINE', ['Ich habe kein Auto.', 'I do not have a car.', 'Je n’ai pas de voiture.']),
-    vocab('sp-negation-nicht', 'nicht', 'not', 'ne … pas', null, 'NICHT', 'NIKHT', ['Das ist nicht teuer.', 'That is not expensive.', 'Ce n’est pas cher.']),
+    wordgroup(['nicht or kein-?', 'nicht ou kein- ?'], [
+      vocab('sp-negation-kein', 'kein', 'no, not a, not any', 'aucun, pas de', null, 'KEIN', 'KINE', ['Ich habe kein Auto.', 'I do not have a car.', 'Je n’ai pas de voiture.']),
+      vocab('sp-negation-nicht', 'nicht', 'not', 'ne … pas', null, 'NICHT', 'NIKHT', ['Das ist nicht teuer.', 'That is not expensive.', 'Ce n’est pas cher.']),
+    ]),
     mc(
       'sp-neg-e1',
       ['"Ich habe ___ Auto." (neuter noun, no article)', '« Ich habe ___ Auto. » (nom neutre, sans article)'],
@@ -110,8 +112,10 @@ export const negation = defineSpecial({
       ],
       'satzklammer',
     ),
-    vocab('sp-negation-verneinen', 'verneinen', 'to negate, to deny', 'nier', null, 'ver-NEI-nen', 'fer-NYE-nen', ['Du musst den Satz verneinen.', 'You have to negate the sentence.', 'Tu dois nier la phrase.']),
-    vocab('sp-negation-verstehen', 'verstehen', 'to understand', 'comprendre', null, 'ver-STE-hen', 'fer-SHTAY-en', ['Ich verstehe das nicht.', 'I do not understand that.', 'Je ne comprends pas cela.']),
+    wordgroup(['Where does nicht go?', 'Où se place nicht ?'], [
+      vocab('sp-negation-verneinen', 'verneinen', 'to negate, to deny', 'nier', null, 'ver-NEI-nen', 'fer-NYE-nen', ['Du musst den Satz verneinen.', 'You have to negate the sentence.', 'Tu dois nier la phrase.']),
+      vocab('sp-negation-verstehen', 'verstehen', 'to understand', 'comprendre', null, 'ver-STE-hen', 'fer-SHTAY-en', ['Ich verstehe das nicht.', 'I do not understand that.', 'Je ne comprends pas cela.']),
+    ]),
     wo('sp-neg-e5', ['nicht', 'Ich', 'ihn', 'kenne'], ['Ich', 'kenne', 'ihn', 'nicht'], ['Whole sentence negated: nicht goes last.', 'Toute la phrase est niée : nicht va à la fin.']),
     wo('sp-neg-e6', ['kann', 'Ich', 'kommen', 'nicht', 'heute'], ['Ich', 'kann', 'heute', 'nicht', 'kommen'], ['nicht stands before the infinitive at the end of the bracket.', 'nicht se place devant l’infinitif à la fin du cadre.']),
     mc(
@@ -147,10 +151,12 @@ export const negation = defineSpecial({
         ['Ich finde meinen Schlüssel nirgendwo.', 'I cannot find my key anywhere.', 'Je ne trouve ma clé nulle part.'],
       ],
     ),
-    vocab('sp-negation-nie', 'nie', 'never', 'jamais', null, 'NIE', 'NEE', ['Ich trinke nie Kaffee.', 'I never drink coffee.', 'Je ne bois jamais de café.']),
-    vocab('sp-negation-niemand', 'niemand', 'nobody', 'personne', null, 'NIE-mand', 'NEE-mahnt', ['Niemand weiß es.', 'Nobody knows.', 'Personne ne le sait.']),
-    vocab('sp-negation-nichts', 'nichts', 'nothing', 'rien', null, 'NICHTS', 'NIKHTS', ['Ich habe nichts gehört.', 'I heard nothing.', 'Je n’ai rien entendu.']),
-    vocab('sp-negation-nirgendwo', 'nirgendwo', 'nowhere', 'nulle part', null, 'NIR-gend-wo', 'NEER-gent-voh', ['Er ist nirgendwo zu finden.', 'He is nowhere to be found.', 'Il est introuvable.']),
+    wordgroup(['never, nobody, nothing', 'jamais, personne, rien'], [
+      vocab('sp-negation-nie', 'nie', 'never', 'jamais', null, 'NIE', 'NEE', ['Ich trinke nie Kaffee.', 'I never drink coffee.', 'Je ne bois jamais de café.']),
+      vocab('sp-negation-niemand', 'niemand', 'nobody', 'personne', null, 'NIE-mand', 'NEE-mahnt', ['Niemand weiß es.', 'Nobody knows.', 'Personne ne le sait.']),
+      vocab('sp-negation-nichts', 'nichts', 'nothing', 'rien', null, 'NICHTS', 'NIKHTS', ['Ich habe nichts gehört.', 'I heard nothing.', 'Je n’ai rien entendu.']),
+      vocab('sp-negation-nirgendwo', 'nirgendwo', 'nowhere', 'nulle part', null, 'NIR-gend-wo', 'NEER-gent-voh', ['Er ist nirgendwo zu finden.', 'He is nowhere to be found.', 'Il est introuvable.']),
+    ]),
     match(
       'sp-neg-e9',
       [

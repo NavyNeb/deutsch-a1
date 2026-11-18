@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, it, expect } from 'vitest';
 import { lessons } from '@/content';
+import { stepVocab } from '@/content/step-vocab';
 import { emptyProgress, dateKey, type ProgressState } from '@/lib/progress';
 import { replaceProgress } from '@/lib/progress-store';
 import { nextLesson } from '@/lib/path-model';
@@ -32,7 +33,7 @@ describe('LessonResults', () => {
     const quizAt = l1.steps.findIndex((s) => s.kind === 'quiz');
     const ex = l1.steps.filter((s, i) => s.kind === 'exercise' && (quizAt < 0 || i < quizAt)).length;
     if (ex > 0) expect(screen.getByText(`${ex}/${ex}`)).toBeInTheDocument();
-    const words = new Set(l1.steps.flatMap((s) => (s.kind === 'vocab' ? [s.item.id] : s.kind === 'pronunciation' ? s.items.map((i) => i.id) : []))).size;
+    const words = new Set(l1.steps.flatMap((s) => stepVocab(s).map((i) => i.id))).size;
     expect(screen.getByText(String(words))).toBeInTheDocument();
   });
 

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const konjunktiv2 = defineSpecial({
   slug: 'konjunktiv-2',
@@ -64,11 +64,13 @@ export const konjunktiv2 = defineSpecial({
         ['Wenn ich Zeit hätte, würde ich reisen.', 'If I had time, I would travel.', 'Si j’avais le temps, je voyagerais.'],
       ],
     ),
-    vocab('sp-konjunktiv-2-wunsch', 'der Wunsch', 'the wish', 'le souhait', 'der', 'WUNSCH', 'dair VOONSH', ['Mein größter Wunsch ist ein Haus am Meer.', 'My greatest wish is a house by the sea.', 'Mon plus grand souhait est une maison au bord de la mer.']),
-    vocab('sp-konjunktiv-2-rat', 'der Rat', 'the advice', 'le conseil', 'der', 'RAHT', 'dair RAHT', ['Ich brauche deinen Rat.', 'I need your advice.', 'J’ai besoin de ton conseil.']),
-    vocab('sp-konjunktiv-2-vorschlag', 'der Vorschlag', 'the suggestion', 'la proposition', 'der', 'VOR-schlag', 'dair FOR-shlahg', ['Ich habe einen Vorschlag.', 'I have a suggestion.', 'J’ai une proposition.']),
-    vocab('sp-konjunktiv-2-hoeflich', 'höflich', 'polite', 'poli', null, 'HÖF-lich', 'HOEF-likh', ['Er ist immer sehr höflich.', 'He is always very polite.', 'Il est toujours très poli.']),
-    vocab('sp-konjunktiv-2-wuenschen', 'wünschen', 'to wish', 'souhaiter', null, 'WÜN-schen', 'VUEN-shen', ['Ich wünsche dir viel Glück.', 'I wish you good luck.', 'Je te souhaite bonne chance.']),
+    wordgroup(['What is it for?', 'À quoi ça sert ?'], [
+      vocab('sp-konjunktiv-2-wunsch', 'der Wunsch', 'the wish', 'le souhait', 'der', 'WUNSCH', 'dair VOONSH', ['Mein größter Wunsch ist ein Haus am Meer.', 'My greatest wish is a house by the sea.', 'Mon plus grand souhait est une maison au bord de la mer.']),
+      vocab('sp-konjunktiv-2-rat', 'der Rat', 'the advice', 'le conseil', 'der', 'RAHT', 'dair RAHT', ['Ich brauche deinen Rat.', 'I need your advice.', 'J’ai besoin de ton conseil.']),
+      vocab('sp-konjunktiv-2-vorschlag', 'der Vorschlag', 'the suggestion', 'la proposition', 'der', 'VOR-schlag', 'dair FOR-shlahg', ['Ich habe einen Vorschlag.', 'I have a suggestion.', 'J’ai une proposition.']),
+      vocab('sp-konjunktiv-2-hoeflich', 'höflich', 'polite', 'poli', null, 'HÖF-lich', 'HOEF-likh', ['Er ist immer sehr höflich.', 'He is always very polite.', 'Il est toujours très poli.']),
+      vocab('sp-konjunktiv-2-wuenschen', 'wünschen', 'to wish', 'souhaiter', null, 'WÜN-schen', 'VUEN-shen', ['Ich wünsche dir viel Glück.', 'I wish you good luck.', 'Je te souhaite bonne chance.']),
+    ]),
     mc(
       'sp-k2-e1',
       ['Which sentence is a polite request?', 'Quelle phrase est une demande polie ?'],

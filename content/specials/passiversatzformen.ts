@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const passiversatzformen = defineSpecial({
   slug: 'passiversatzformen',
@@ -47,8 +47,10 @@ export const passiversatzformen = defineSpecial({
       'man and sich + verb', 'man et sich + verbe',
       'The simplest ways to hide the agent.', 'Les manières les plus simples de cacher l’agent.',
     ),
-    vocab('sp-passiversatzformen-reparieren', 'reparieren', 'to repair', 'réparer', null, 're-pa-RIE-ren', 're-pah-REE-ren', ['Man kann den Fernseher reparieren.', 'The TV can be repaired.', 'La télé peut être réparée.']),
-    vocab('sp-passiversatzformen-verkaufen', 'sich verkaufen', 'to sell (well)', 'se vendre', null, 'zikh fer-KAU-fen', 'zikh fer-KOW-fen', ['Das Buch verkauft sich gut.', 'The book sells well.', 'Le livre se vend bien.']),
+    wordgroup(['man and sich + verb', 'man et sich + verbe'], [
+      vocab('sp-passiversatzformen-reparieren', 'reparieren', 'to repair', 'réparer', null, 're-pa-RIE-ren', 're-pah-REE-ren', ['Man kann den Fernseher reparieren.', 'The TV can be repaired.', 'La télé peut être réparée.']),
+      vocab('sp-passiversatzformen-verkaufen', 'sich verkaufen', 'to sell (well)', 'se vendre', null, 'zikh fer-KAU-fen', 'zikh fer-KOW-fen', ['Das Buch verkauft sich gut.', 'The book sells well.', 'Le livre se vend bien.']),
+    ]),
     grammar(
       'sp-pe-man',
       ['man and sich + verb', 'man et sich + verbe'],
@@ -85,8 +87,10 @@ export const passiversatzformen = defineSpecial({
       'sich lassen: can be done', 'sich lassen : peut être fait',
       'The most common substitute for können + passive.', 'Le remplacement le plus courant de können + passif.',
     ),
-    vocab('sp-passiversatzformen-beweisen', 'beweisen', 'to prove', 'prouver', null, 'be-WEI-sen', 'be-VY-zen', ['Das lässt sich leicht beweisen.', 'That can easily be proved.', 'Cela se prouve facilement.']),
-    vocab('sp-passiversatzformen-loesen', 'lösen', 'to solve', 'résoudre', null, 'LÖ-sen', 'LOE-zen', ['Das Problem lässt sich schnell lösen.', 'The problem can be solved quickly.', 'Le problème peut se résoudre vite.']),
+    wordgroup(['sich lassen: can be done', 'sich lassen : peut être fait'], [
+      vocab('sp-passiversatzformen-beweisen', 'beweisen', 'to prove', 'prouver', null, 'be-WEI-sen', 'be-VY-zen', ['Das lässt sich leicht beweisen.', 'That can easily be proved.', 'Cela se prouve facilement.']),
+      vocab('sp-passiversatzformen-loesen', 'lösen', 'to solve', 'résoudre', null, 'LÖ-sen', 'LOE-zen', ['Das Problem lässt sich schnell lösen.', 'The problem can be solved quickly.', 'Le problème peut se résoudre vite.']),
+    ]),
     grammar(
       'sp-pe-lassen',
       ['sich lassen + Infinitiv', 'sich lassen + infinitif'],
@@ -124,8 +128,10 @@ export const passiversatzformen = defineSpecial({
       'sein + zu: can or must', 'sein + zu : peut ou doit',
       'Possibility and necessity with one construction.', 'Possibilité et nécessité avec une seule construction.',
     ),
-    vocab('sp-passiversatzformen-erledigen', 'erledigen', 'to take care of', 'régler', null, 'er-LE-di-gen', 'er-LAY-di-gen', ['Das ist bis morgen zu erledigen.', 'That has to be done by tomorrow.', 'Cela doit être réglé d’ici demain.']),
-    vocab('sp-passiversatzformen-erkennen', 'erkennen', 'to recognise', 'reconnaître', null, 'er-KEN-nen', 'er-KEN-nen', ['Der Fehler ist leicht zu erkennen.', 'The mistake is easy to spot.', 'L’erreur est facile à repérer.']),
+    wordgroup(['sein + zu: can or must', 'sein + zu : peut ou doit'], [
+      vocab('sp-passiversatzformen-erledigen', 'erledigen', 'to take care of', 'régler', null, 'er-LE-di-gen', 'er-LAY-di-gen', ['Das ist bis morgen zu erledigen.', 'That has to be done by tomorrow.', 'Cela doit être réglé d’ici demain.']),
+      vocab('sp-passiversatzformen-erkennen', 'erkennen', 'to recognise', 'reconnaître', null, 'er-KEN-nen', 'er-KEN-nen', ['Der Fehler ist leicht zu erkennen.', 'The mistake is easy to spot.', 'L’erreur est facile à repérer.']),
+    ]),
     grammar(
       'sp-pe-zu',
       ['sein + zu + Infinitiv', 'sein + zu + infinitif'],
@@ -162,8 +168,10 @@ export const passiversatzformen = defineSpecial({
       '-bar and -lich adjectives', 'Adjectifs en -bar et -lich',
       'One word instead of a whole passive.', 'Un seul mot au lieu d’un passif entier.',
     ),
-    vocab('sp-passiversatzformen-erreichbar', 'erreichbar', 'reachable', 'joignable', null, 'er-REICH-bar', 'er-RYKH-bar', ['Ich bin telefonisch erreichbar.', 'I can be reached by phone.', 'Je suis joignable par téléphone.']),
-    vocab('sp-passiversatzformen-verstaendlich', 'verständlich', 'understandable', 'compréhensible', null, 'ver-STÄND-lich', 'fer-SHTEND-likh', ['Der Text ist gut verständlich.', 'The text is easy to understand.', 'Le texte est facile à comprendre.']),
+    wordgroup(['-bar and -lich adjectives', 'Adjectifs en -bar et -lich'], [
+      vocab('sp-passiversatzformen-erreichbar', 'erreichbar', 'reachable', 'joignable', null, 'er-REICH-bar', 'er-RYKH-bar', ['Ich bin telefonisch erreichbar.', 'I can be reached by phone.', 'Je suis joignable par téléphone.']),
+      vocab('sp-passiversatzformen-verstaendlich', 'verständlich', 'understandable', 'compréhensible', null, 'ver-STÄND-lich', 'fer-SHTEND-likh', ['Der Text ist gut verständlich.', 'The text is easy to understand.', 'Le texte est facile à comprendre.']),
+    ]),
     grammar(
       'sp-pe-bar',
       ['-bar, -lich, -fähig', '-bar, -lich, -fähig'],

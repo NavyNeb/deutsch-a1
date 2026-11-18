@@ -19,7 +19,20 @@ export function collectAudioJobs(lessons) {
   for (const lesson of lessons) for (const step of lesson.steps) {
     if (step.kind === 'vocab') { tts.add(step.item.german); tts.add(step.item.example.de); }
     if (step.kind === 'pronunciation') for (const it of step.items) { tts.add(it.german); tts.add(it.example.de); }
-    if (step.kind === 'grammar') for (const e of step.note.examples) tts.add(e.de);
+    if (step.kind === 'grammar') {
+      const n = step.note;
+      for (const e of n.examples) tts.add(e.de);
+      // The breakdown plays as one sentence: its parts joined by spaces (GrammarStep builds the same string).
+      for (const a of n.anatomy ?? []) tts.add(a.parts.map((x) => x.text).join(' '));
+      for (const side of n.contrast ? [n.contrast.a, n.contrast.b] : []) for (const e of side.examples) tts.add(e.de);
+      for (const m of n.mistakes ?? []) tts.add(m.right); // only the correct sentence is ever played
+    }
+    if (step.kind === 'situation') {
+      for (const l of step.lines) tts.add(l.de);
+      for (const it of step.words ?? []) { tts.add(it.german); tts.add(it.example.de); }
+    }
+    if (step.kind === 'wordgroup') for (const it of step.items) { tts.add(it.german); tts.add(it.example.de); }
+    if (step.kind === 'wrapup') for (const sec of step.card?.sections ?? []) for (const r of sec.rows) tts.add(r.de);
     if (step.kind === 'exercise' && step.exercise.type === 'listenChoose') {
       const a = step.exercise.audio;
       if (a.official) official.push(a.official); else tts.add(a.ttsText);

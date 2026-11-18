@@ -22,6 +22,12 @@ export const UI = {
   },
 
   sayIt: { en: 'say it:', fr: 'prononce :' },
+  keyWords: { en: 'Key words', fr: 'Mots clés' },
+  examplesHeading: { en: 'Examples', fr: 'Exemples' },
+  sentenceBreakdown: { en: 'Sentence breakdown', fr: 'Analyse de la phrase' },
+  commonMistakes: { en: 'Watch out', fr: 'Attention' },
+  mistakeWrong: { en: 'Wrong', fr: 'Faux' },
+  mistakeRight: { en: 'Right', fr: 'Juste' },
   markDifficult: { en: 'Mark as difficult — save to review', fr: 'Marquer comme difficile — à réviser' },
   savedToReview: { en: 'Saved to review', fr: 'Enregistré pour révision' },
   savedToReviewTapRemove: {

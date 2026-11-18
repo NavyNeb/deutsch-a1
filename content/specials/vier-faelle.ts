@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const vierFaelle = defineSpecial({
   slug: 'vier-faelle',
@@ -144,8 +144,10 @@ export const vierFaelle = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-vier-faelle-helfen', 'helfen', 'to help', 'aider', null, 'HEL-fen', 'HEL-fen', ['Kannst du mir bitte helfen?', 'Can you please help me?', 'Peux-tu m’aider, s’il te plaît ?']),
-    vocab('sp-vier-faelle-gehoeren', 'gehören', 'to belong to', 'appartenir à', null, 'ge-HÖ-ren', 'guh-HUH-ren', ['Das Fahrrad gehört meinem Bruder.', 'The bike belongs to my brother.', 'Le vélo appartient à mon frère.']),
+    wordgroup(['The dative', 'Le datif'], [
+      vocab('sp-vier-faelle-helfen', 'helfen', 'to help', 'aider', null, 'HEL-fen', 'HEL-fen', ['Kannst du mir bitte helfen?', 'Can you please help me?', 'Peux-tu m’aider, s’il te plaît ?']),
+      vocab('sp-vier-faelle-gehoeren', 'gehören', 'to belong to', 'appartenir à', null, 'ge-HÖ-ren', 'guh-HUH-ren', ['Das Fahrrad gehört meinem Bruder.', 'The bike belongs to my brother.', 'Le vélo appartient à mon frère.']),
+    ]),
     fb(
       'sp-vf-e8',
       ['Ich fahre mit ___ Bus. (der Bus)', 'Ich fahre mit ___ Bus. (der Bus)'],
@@ -198,8 +200,10 @@ export const vierFaelle = defineSpecial({
       ],
       'conjugation-table',
     ),
-    vocab('sp-vier-faelle-wegen', 'wegen', 'because of (+ genitive)', 'à cause de (+ génitif)', null, 'WEH-gen', 'VAY-gen', ['Wegen des Wetters bleiben wir zu Hause.', 'Because of the weather we stay at home.', 'À cause du temps, nous restons à la maison.']),
-    vocab('sp-vier-faelle-trotz', 'trotz', 'despite (+ genitive)', 'malgré (+ génitif)', null, 'TROTS', 'TROTS', ['Trotz der Kälte schwimmt er im See.', 'Despite the cold he swims in the lake.', 'Malgré le froid, il nage dans le lac.']),
+    wordgroup(['The genitive', 'Le génitif'], [
+      vocab('sp-vier-faelle-wegen', 'wegen', 'because of (+ genitive)', 'à cause de (+ génitif)', null, 'WEH-gen', 'VAY-gen', ['Wegen des Wetters bleiben wir zu Hause.', 'Because of the weather we stay at home.', 'À cause du temps, nous restons à la maison.']),
+      vocab('sp-vier-faelle-trotz', 'trotz', 'despite (+ genitive)', 'malgré (+ génitif)', null, 'TROTS', 'TROTS', ['Trotz der Kälte schwimmt er im See.', 'Despite the cold he swims in the lake.', 'Malgré le froid, il nage dans le lac.']),
+    ]),
     fb(
       'sp-vf-e13',
       ['Das ist das Haus ___ Lehrers. (der Lehrer, genitive)', 'Das ist das Haus ___ Lehrers. (der Lehrer, génitif)'],

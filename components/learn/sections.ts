@@ -2,7 +2,7 @@ import type { Lesson } from '@/content/types';
 
 export interface Section {
   key: string;
-  kind: 'intro' | 'chapter' | 'quiz' | 'wrapup' | 'vocab' | 'grammar' | 'exercise' | 'pronunciation';
+  kind: 'intro' | 'chapter' | 'quiz' | 'wrapup' | 'vocab' | 'grammar' | 'exercise' | 'pronunciation' | 'situation' | 'wordgroup';
   label: string;
   labelFr: string;
   start: number;
@@ -11,6 +11,8 @@ export interface Section {
 
 const RUN_LABEL = {
   vocab: 'Wortschatz',
+  wordgroup: 'Wortschatz',
+  situation: 'Dialog',
   grammar: 'Grammatik',
   exercise: 'Übungen',
   pronunciation: 'Aussprache',

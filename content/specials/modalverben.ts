@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const modalverben = defineSpecial({
   slug: 'modalverben',
@@ -66,12 +66,14 @@ export const modalverben = defineSpecial({
         ['Ich möchte einen Kaffee.', 'I would like a coffee.', 'Je voudrais un café.'],
       ],
     ),
-    vocab('sp-modalverben-koennen', 'können', 'can, to be able to', 'pouvoir, savoir', null, 'KÖN-nen', 'KOEN-en', ['Kannst du schwimmen?', 'Can you swim?', 'Sais-tu nager ?']),
-    vocab('sp-modalverben-muessen', 'müssen', 'must, to have to', 'devoir, falloir', null, 'MÜS-sen', 'MUESS-en', ['Ich muss früh aufstehen.', 'I have to get up early.', 'Je dois me lever tôt.']),
-    vocab('sp-modalverben-duerfen', 'dürfen', 'may, to be allowed to', 'avoir le droit de', null, 'DÜR-fen', 'DUER-fen', ['Darf ich hier sitzen?', 'May I sit here?', 'Puis-je m’asseoir ici ?']),
-    vocab('sp-modalverben-wollen', 'wollen', 'to want to', 'vouloir', null, 'WOL-len', 'VOL-en', ['Wir wollen nach Berlin fahren.', 'We want to go to Berlin.', 'Nous voulons aller à Berlin.']),
-    vocab('sp-modalverben-sollen', 'sollen', 'should, to be supposed to', 'devoir (conseil, ordre)', null, 'SOL-len', 'ZOL-en', ['Du sollst zum Arzt gehen.', 'You should go to the doctor.', 'Tu devrais aller chez le médecin.']),
-    vocab('sp-modalverben-moechten', 'möchten', 'would like to', 'vouloir bien, aimerais', null, 'MÖCH-ten', 'MOEKH-ten', ['Ich möchte bitte zahlen.', 'I would like to pay, please.', 'Je voudrais payer, s’il vous plaît.']),
+    wordgroup(['The six modal verbs', 'Les six verbes modaux'], [
+      vocab('sp-modalverben-koennen', 'können', 'can, to be able to', 'pouvoir, savoir', null, 'KÖN-nen', 'KOEN-en', ['Kannst du schwimmen?', 'Can you swim?', 'Sais-tu nager ?']),
+      vocab('sp-modalverben-muessen', 'müssen', 'must, to have to', 'devoir, falloir', null, 'MÜS-sen', 'MUESS-en', ['Ich muss früh aufstehen.', 'I have to get up early.', 'Je dois me lever tôt.']),
+      vocab('sp-modalverben-duerfen', 'dürfen', 'may, to be allowed to', 'avoir le droit de', null, 'DÜR-fen', 'DUER-fen', ['Darf ich hier sitzen?', 'May I sit here?', 'Puis-je m’asseoir ici ?']),
+      vocab('sp-modalverben-wollen', 'wollen', 'to want to', 'vouloir', null, 'WOL-len', 'VOL-en', ['Wir wollen nach Berlin fahren.', 'We want to go to Berlin.', 'Nous voulons aller à Berlin.']),
+      vocab('sp-modalverben-sollen', 'sollen', 'should, to be supposed to', 'devoir (conseil, ordre)', null, 'SOL-len', 'ZOL-en', ['Du sollst zum Arzt gehen.', 'You should go to the doctor.', 'Tu devrais aller chez le médecin.']),
+      vocab('sp-modalverben-moechten', 'möchten', 'would like to', 'vouloir bien, aimerais', null, 'MÖCH-ten', 'MOEKH-ten', ['Ich möchte bitte zahlen.', 'I would like to pay, please.', 'Je voudrais payer, s’il vous plaît.']),
+    ]),
     mc(
       'sp-mv-e1',
       ['Which modal verb fits? "In the library you ___ not talk loudly." (it is forbidden)', 'Quel verbe modal convient ? « À la bibliothèque, on ___ pas parler fort. » (c’est interdit)'],

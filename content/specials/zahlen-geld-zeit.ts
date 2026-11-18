@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, ap, lc, wrapup, quiz, wordgroup, situation } from './kit';
 
 export const zahlenGeldZeit = defineSpecial({
   slug: 'zahlen-geld-zeit',
@@ -47,12 +47,24 @@ export const zahlenGeldZeit = defineSpecial({
       'Numbers up to 1000', 'Les nombres jusqu’à 1000',
       'Units first: einundzwanzig. Learn the pattern and you can say any number.', 'Les unités d’abord : einundzwanzig. Apprends le schéma et tu peux dire n’importe quel nombre.',
     ),
-    vocab('sp-zahlen-geld-zeit-zahl', 'die Zahl', 'the number (figure)', 'le nombre', 'die', 'ZAHL', 'dee TSAAL', ['Die Zahl auf dem Schild ist 38.', 'The number on the sign is 38.', 'Le nombre sur le panneau est 38.']),
-    vocab('sp-zahlen-geld-zeit-nummer', 'die Nummer', 'the number (phone, house)', 'le numéro', 'die', 'NUM-mer', 'dee NOO-mer', ['Wie ist deine Telefonnummer?', 'What is your phone number?', 'Quel est ton numéro de téléphone ?']),
-    vocab('sp-zahlen-geld-zeit-hundert', 'hundert', 'one hundred', 'cent', null, 'HUN-dert', 'HOON-dert', ['Im Saal sind hundert Leute.', 'There are a hundred people in the hall.', 'Il y a cent personnes dans la salle.']),
-    vocab('sp-zahlen-geld-zeit-tausend', 'tausend', 'one thousand', 'mille', null, 'TAU-send', 'TOW-zent', ['Das Fahrrad kostet tausend Euro.', 'The bike costs a thousand euros.', 'Le vélo coûte mille euros.']),
-    vocab('sp-zahlen-geld-zeit-dreissig', 'dreißig', 'thirty', 'trente', null, 'DREI-ßig', 'DRY-sikh', ['Meine Mutter ist dreißig Jahre alt.', 'My mother is thirty years old.', 'Ma mère a trente ans.']),
-    vocab('sp-zahlen-geld-zeit-sechzig', 'sechzig', 'sixty', 'soixante', null, 'SECH-zig', 'ZEKH-tsikh', ['Der Bus fährt sechzig Kilometer pro Stunde.', 'The bus drives sixty kilometres per hour.', 'Le bus roule à soixante kilomètres à l’heure.']),
+    situation(
+      ['Telefonnummer', 'Numéro de téléphone'],
+      ['Two people swap numbers.', 'Deux personnes échangent leurs numéros.'],
+      [
+        ['Anna', 'Wie ist deine Telefonnummer?', 'What is your phone number?', 'Quel est ton numéro de téléphone ?'],
+        ['Ben', 'Null eins sieben sechs, vier fünf zwei, neun acht.', 'Zero one seven six, four five two, nine eight.', 'Zéro un sept six, quatre cinq deux, neuf huit.'],
+        ['Anna', 'Danke! Wie alt bist du? Ich bin dreißig.', 'Thanks! How old are you? I am thirty.', 'Merci ! Quel âge as-tu ? J’ai trente ans.'],
+        ['Ben', 'Ich bin zweiundzwanzig.', 'I am twenty-two.', 'J’ai vingt-deux ans.'],
+      ],
+    ),
+    wordgroup(['Numbers up to 1000', 'Les nombres jusqu’à 1000'], [
+      vocab('sp-zahlen-geld-zeit-zahl', 'die Zahl', 'the number (figure)', 'le nombre', 'die', 'ZAHL', 'dee TSAAL', ['Die Zahl auf dem Schild ist 38.', 'The number on the sign is 38.', 'Le nombre sur le panneau est 38.']),
+      vocab('sp-zahlen-geld-zeit-nummer', 'die Nummer', 'the number (phone, house)', 'le numéro', 'die', 'NUM-mer', 'dee NOO-mer', ['Wie ist deine Telefonnummer?', 'What is your phone number?', 'Quel est ton numéro de téléphone ?']),
+      vocab('sp-zahlen-geld-zeit-hundert', 'hundert', 'one hundred', 'cent', null, 'HUN-dert', 'HOON-dert', ['Im Saal sind hundert Leute.', 'There are a hundred people in the hall.', 'Il y a cent personnes dans la salle.']),
+      vocab('sp-zahlen-geld-zeit-tausend', 'tausend', 'one thousand', 'mille', null, 'TAU-send', 'TOW-zent', ['Das Fahrrad kostet tausend Euro.', 'The bike costs a thousand euros.', 'Le vélo coûte mille euros.']),
+      vocab('sp-zahlen-geld-zeit-dreissig', 'dreißig', 'thirty', 'trente', null, 'DREI-ßig', 'DRY-sikh', ['Meine Mutter ist dreißig Jahre alt.', 'My mother is thirty years old.', 'Ma mère a trente ans.']),
+      vocab('sp-zahlen-geld-zeit-sechzig', 'sechzig', 'sixty', 'soixante', null, 'SECH-zig', 'ZEKH-tsikh', ['Der Bus fährt sechzig Kilometer pro Stunde.', 'The bus drives sixty kilometres per hour.', 'Le bus roule à soixante kilomètres à l’heure.']),
+    ]),
     grammar(
       'sp-zgz-numbers',
       ['How German builds numbers', 'Comment l’allemand construit les nombres'],
@@ -97,14 +109,27 @@ export const zahlenGeldZeit = defineSpecial({
       'Money and prices', 'L’argent et les prix',
       'Euro, Cent, paying and getting change.', 'Euro, Cent, payer et rendre la monnaie.',
     ),
-    vocab('sp-zahlen-geld-zeit-geld', 'das Geld', 'the money', 'l’argent', 'das', 'GELD', 'dahs GELT', ['Ich habe heute kein Geld dabei.', 'I have no money on me today.', 'Je n’ai pas d’argent sur moi aujourd’hui.']),
-    vocab('sp-zahlen-geld-zeit-euro', 'der Euro', 'the euro', 'l’euro', 'der', 'EU-ro', 'dair OY-roh', ['Der Kaffee kostet drei Euro.', 'The coffee costs three euros.', 'Le café coûte trois euros.']),
-    vocab('sp-zahlen-geld-zeit-cent', 'der Cent', 'the cent', 'le centime', 'der', 'CENT', 'dair TSENT', ['Das Brötchen kostet fünfzig Cent.', 'The bread roll costs fifty cents.', 'Le petit pain coûte cinquante centimes.']),
-    vocab('sp-zahlen-geld-zeit-preis', 'der Preis', 'the price', 'le prix', 'der', 'PREIS', 'dair PRICE', ['Der Preis steht auf dem Schild.', 'The price is on the sign.', 'Le prix est sur le panneau.']),
-    vocab('sp-zahlen-geld-zeit-bezahlen', 'bezahlen', 'to pay', 'payer', null, 'be-ZAH-len', 'beh-TSAA-len', ['Ich bezahle mit Karte.', 'I pay by card.', 'Je paie par carte.']),
-    vocab('sp-zahlen-geld-zeit-wechselgeld', 'das Wechselgeld', 'the change', 'la monnaie (rendue)', 'das', 'WECH-sel-geld', 'dahs VEK-sel-gelt', ['Hier ist Ihr Wechselgeld.', 'Here is your change.', 'Voici votre monnaie.']),
-    vocab('sp-zahlen-geld-zeit-guenstig', 'günstig', 'cheap, good value', 'avantageux, bon marché', null, 'GÜNS-tig', 'GUEN-stikh', ['Das Hotel ist sehr günstig.', 'The hotel is very good value.', 'L’hôtel est très avantageux.']),
-    vocab('sp-zahlen-geld-zeit-bar', 'bar', 'in cash', 'en espèces', null, 'BAR', 'BAAR', ['Zahlen Sie bar oder mit Karte?', 'Are you paying cash or by card?', 'Vous payez en espèces ou par carte ?']),
+    situation(
+      ['An der Kasse', 'À la caisse'],
+      ['Paying at the supermarket.', 'Paiement au supermarché.'],
+      [
+        ['Kassiererin', 'Das macht zwölf Euro fünfzig.', 'That comes to twelve euros fifty.', 'Cela fait douze euros cinquante.'],
+        ['Kunde', 'Hier sind zwanzig Euro.', 'Here are twenty euros.', 'Voici vingt euros.'],
+        ['Kassiererin', 'Und sieben Euro fünfzig zurück. Schönen Tag!', 'And seven euros fifty change. Have a nice day!', 'Et sept euros cinquante de monnaie. Bonne journée !'],
+      ],
+    ),
+    wordgroup(['Money and prices (1/2)', 'L’argent et les prix (1/2)'], [
+      vocab('sp-zahlen-geld-zeit-geld', 'das Geld', 'the money', 'l’argent', 'das', 'GELD', 'dahs GELT', ['Ich habe heute kein Geld dabei.', 'I have no money on me today.', 'Je n’ai pas d’argent sur moi aujourd’hui.']),
+      vocab('sp-zahlen-geld-zeit-euro', 'der Euro', 'the euro', 'l’euro', 'der', 'EU-ro', 'dair OY-roh', ['Der Kaffee kostet drei Euro.', 'The coffee costs three euros.', 'Le café coûte trois euros.']),
+      vocab('sp-zahlen-geld-zeit-cent', 'der Cent', 'the cent', 'le centime', 'der', 'CENT', 'dair TSENT', ['Das Brötchen kostet fünfzig Cent.', 'The bread roll costs fifty cents.', 'Le petit pain coûte cinquante centimes.']),
+      vocab('sp-zahlen-geld-zeit-preis', 'der Preis', 'the price', 'le prix', 'der', 'PREIS', 'dair PRICE', ['Der Preis steht auf dem Schild.', 'The price is on the sign.', 'Le prix est sur le panneau.']),
+    ]),
+    wordgroup(['Money and prices (2/2)', 'L’argent et les prix (2/2)'], [
+      vocab('sp-zahlen-geld-zeit-bezahlen', 'bezahlen', 'to pay', 'payer', null, 'be-ZAH-len', 'beh-TSAA-len', ['Ich bezahle mit Karte.', 'I pay by card.', 'Je paie par carte.']),
+      vocab('sp-zahlen-geld-zeit-wechselgeld', 'das Wechselgeld', 'the change', 'la monnaie (rendue)', 'das', 'WECH-sel-geld', 'dahs VEK-sel-gelt', ['Hier ist Ihr Wechselgeld.', 'Here is your change.', 'Voici votre monnaie.']),
+      vocab('sp-zahlen-geld-zeit-guenstig', 'günstig', 'cheap, good value', 'avantageux, bon marché', null, 'GÜNS-tig', 'GUEN-stikh', ['Das Hotel ist sehr günstig.', 'The hotel is very good value.', 'L’hôtel est très avantageux.']),
+      vocab('sp-zahlen-geld-zeit-bar', 'bar', 'in cash', 'en espèces', null, 'BAR', 'BAAR', ['Zahlen Sie bar oder mit Karte?', 'Are you paying cash or by card?', 'Vous payez en espèces ou par carte ?']),
+    ]),
     grammar(
       'sp-zgz-prices',
       ['Saying prices', 'Dire les prix'],
@@ -140,13 +165,25 @@ export const zahlenGeldZeit = defineSpecial({
       'Telling the time', 'Dire l’heure',
       'Two systems: the 24-hour clock for timetables, halb and Viertel for daily talk.', 'Deux systèmes : l’horloge de 24 h pour les horaires, halb et Viertel pour parler.',
     ),
-    vocab('sp-zahlen-geld-zeit-uhr', 'die Uhr', 'the clock, o’clock', 'l’horloge, la montre, l’heure', 'die', 'UHR', 'dee OOR', ['Es ist drei Uhr.', 'It is three o’clock.', 'Il est trois heures.']),
-    vocab('sp-zahlen-geld-zeit-minute', 'die Minute', 'the minute', 'la minute', 'die', 'mi-NU-te', 'dee mee-NOO-teh', ['Der Bus kommt in fünf Minuten.', 'The bus comes in five minutes.', 'Le bus arrive dans cinq minutes.']),
-    vocab('sp-zahlen-geld-zeit-stunde', 'die Stunde', 'the hour', 'l’heure (durée)', 'die', 'STUN-de', 'dee SHTOON-deh', ['Der Film dauert zwei Stunden.', 'The film lasts two hours.', 'Le film dure deux heures.']),
-    vocab('sp-zahlen-geld-zeit-viertel', 'das Viertel', 'the quarter', 'le quart', 'das', 'VIER-tel', 'dahs FEER-tel', ['Es ist Viertel nach acht.', 'It is a quarter past eight.', 'Il est huit heures et quart.']),
-    vocab('sp-zahlen-geld-zeit-halb', 'halb', 'half (to the next hour)', 'demi (vers l’heure suivante)', null, 'HALP', 'HALP', ['Wir treffen uns um halb sieben.', 'We meet at half past six.', 'Nous nous retrouvons à six heures et demie.']),
-    vocab('sp-zahlen-geld-zeit-puenktlich', 'pünktlich', 'on time', 'à l’heure, ponctuel', null, 'PÜNKT-lich', 'PUENKT-likh', ['Der Zug war nicht pünktlich.', 'The train was not on time.', 'Le train n’était pas à l’heure.']),
-    vocab('sp-zahlen-geld-zeit-mitternacht', 'die Mitternacht', 'midnight', 'minuit', 'die', 'MIT-ter-nacht', 'dee MIT-er-nakht', ['Um Mitternacht gehe ich schlafen.', 'At midnight I go to sleep.', 'À minuit, je vais dormir.']),
+    situation(
+      ['Wie spät ist es?', 'Quelle heure est-il ?'],
+      ['At a bus stop.', 'À un arrêt de bus.'],
+      [
+        ['Tom', 'Entschuldigung, wie spät ist es?', 'Excuse me, what time is it?', 'Excusez-moi, quelle heure est-il ?'],
+        ['Frau', 'Es ist Viertel nach drei.', 'It is a quarter past three.', 'Il est trois heures et quart.'],
+        ['Tom', 'Wann fährt der Bus?', 'When does the bus leave?', 'Quand part le bus ?'],
+        ['Frau', 'Um halb vier.', 'At half past three.', 'À trois heures et demie.'],
+      ],
+    ),
+    wordgroup(['Telling the time', 'Dire l’heure'], [
+      vocab('sp-zahlen-geld-zeit-uhr', 'die Uhr', 'the clock, o’clock', 'l’horloge, la montre, l’heure', 'die', 'UHR', 'dee OOR', ['Es ist drei Uhr.', 'It is three o’clock.', 'Il est trois heures.']),
+      vocab('sp-zahlen-geld-zeit-minute', 'die Minute', 'the minute', 'la minute', 'die', 'mi-NU-te', 'dee mee-NOO-teh', ['Der Bus kommt in fünf Minuten.', 'The bus comes in five minutes.', 'Le bus arrive dans cinq minutes.']),
+      vocab('sp-zahlen-geld-zeit-stunde', 'die Stunde', 'the hour', 'l’heure (durée)', 'die', 'STUN-de', 'dee SHTOON-deh', ['Der Film dauert zwei Stunden.', 'The film lasts two hours.', 'Le film dure deux heures.']),
+      vocab('sp-zahlen-geld-zeit-viertel', 'das Viertel', 'the quarter', 'le quart', 'das', 'VIER-tel', 'dahs FEER-tel', ['Es ist Viertel nach acht.', 'It is a quarter past eight.', 'Il est huit heures et quart.']),
+      vocab('sp-zahlen-geld-zeit-halb', 'halb', 'half (to the next hour)', 'demi (vers l’heure suivante)', null, 'HALP', 'HALP', ['Wir treffen uns um halb sieben.', 'We meet at half past six.', 'Nous nous retrouvons à six heures et demie.']),
+      vocab('sp-zahlen-geld-zeit-puenktlich', 'pünktlich', 'on time', 'à l’heure, ponctuel', null, 'PÜNKT-lich', 'PUENKT-likh', ['Der Zug war nicht pünktlich.', 'The train was not on time.', 'Le train n’était pas à l’heure.']),
+      vocab('sp-zahlen-geld-zeit-mitternacht', 'die Mitternacht', 'midnight', 'minuit', 'die', 'MIT-ter-nacht', 'dee MIT-er-nakht', ['Um Mitternacht gehe ich schlafen.', 'At midnight I go to sleep.', 'À minuit, je vais dormir.']),
+    ]),
     grammar(
       'sp-zgz-time-formal',
       ['Formal time: the 24-hour clock', 'L’heure formelle : l’horloge de 24 h'],
@@ -205,13 +242,24 @@ export const zahlenGeldZeit = defineSpecial({
       'Days, months and the calendar', 'Jours, mois et calendrier',
       'Weeks, months, years — and the little words am, im and um.', 'Semaines, mois, années — et les petits mots am, im et um.',
     ),
-    vocab('sp-zahlen-geld-zeit-woche', 'die Woche', 'the week', 'la semaine', 'die', 'WO-che', 'dee VOKH-eh', ['Ich arbeite vier Tage pro Woche.', 'I work four days a week.', 'Je travaille quatre jours par semaine.']),
-    vocab('sp-zahlen-geld-zeit-monat', 'der Monat', 'the month', 'le mois', 'der', 'MO-nat', 'dair MOH-naht', ['Der Mai ist mein Lieblingsmonat.', 'May is my favourite month.', 'Mai est mon mois préféré.']),
-    vocab('sp-zahlen-geld-zeit-jahr', 'das Jahr', 'the year', 'l’année, l’an', 'das', 'JAHR', 'dahs YAAR', ['Dieses Jahr fahre ich nach Berlin.', 'This year I am going to Berlin.', 'Cette année, je vais à Berlin.']),
-    vocab('sp-zahlen-geld-zeit-datum', 'das Datum', 'the date', 'la date', 'das', 'DA-tum', 'dahs DAA-toom', ['Welches Datum haben wir heute?', 'What is today’s date?', 'Quelle est la date aujourd’hui ?']),
-    vocab('sp-zahlen-geld-zeit-geburtstag', 'der Geburtstag', 'the birthday', 'l’anniversaire', 'der', 'ge-BURTS-tag', 'dair geh-BOORTS-taak', ['Wann hast du Geburtstag?', 'When is your birthday?', 'Quand est ton anniversaire ?']),
-    vocab('sp-zahlen-geld-zeit-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich habe um drei Uhr einen Termin.', 'I have an appointment at three o’clock.', 'J’ai un rendez-vous à trois heures.']),
-    vocab('sp-zahlen-geld-zeit-feiertag', 'der Feiertag', 'the public holiday', 'le jour férié', 'der', 'FEI-er-tag', 'dair FY-er-taak', ['Der erste Mai ist ein Feiertag.', 'The first of May is a public holiday.', 'Le premier mai est un jour férié.']),
+    situation(
+      ['Der Terminkalender', 'L’agenda'],
+      ['A boss and an employee plan a meeting.', 'Une cheffe et un employé planifient une réunion.'],
+      [
+        ['Chefin', 'Welcher Wochentag ist heute?', 'Which day of the week is it today?', 'Quel jour de la semaine sommes-nous ?'],
+        ['Mitarbeiter', 'Heute ist Montag. Das Treffen ist im Mai, am Freitag.', 'Today is Monday. The meeting is in May, on Friday.', 'Aujourd’hui, c’est lundi. La réunion est en mai, vendredi.'],
+        ['Chefin', 'Gut, dann trage ich es in den Kalender ein.', 'Good, then I will put it in the calendar.', 'Bien, alors je le note dans l’agenda.'],
+      ],
+    ),
+    wordgroup(['Days, months and the calendar', 'Jours, mois et calendrier'], [
+      vocab('sp-zahlen-geld-zeit-woche', 'die Woche', 'the week', 'la semaine', 'die', 'WO-che', 'dee VOKH-eh', ['Ich arbeite vier Tage pro Woche.', 'I work four days a week.', 'Je travaille quatre jours par semaine.']),
+      vocab('sp-zahlen-geld-zeit-monat', 'der Monat', 'the month', 'le mois', 'der', 'MO-nat', 'dair MOH-naht', ['Der Mai ist mein Lieblingsmonat.', 'May is my favourite month.', 'Mai est mon mois préféré.']),
+      vocab('sp-zahlen-geld-zeit-jahr', 'das Jahr', 'the year', 'l’année, l’an', 'das', 'JAHR', 'dahs YAAR', ['Dieses Jahr fahre ich nach Berlin.', 'This year I am going to Berlin.', 'Cette année, je vais à Berlin.']),
+      vocab('sp-zahlen-geld-zeit-datum', 'das Datum', 'the date', 'la date', 'das', 'DA-tum', 'dahs DAA-toom', ['Welches Datum haben wir heute?', 'What is today’s date?', 'Quelle est la date aujourd’hui ?']),
+      vocab('sp-zahlen-geld-zeit-geburtstag', 'der Geburtstag', 'the birthday', 'l’anniversaire', 'der', 'ge-BURTS-tag', 'dair geh-BOORTS-taak', ['Wann hast du Geburtstag?', 'When is your birthday?', 'Quand est ton anniversaire ?']),
+      vocab('sp-zahlen-geld-zeit-termin', 'der Termin', 'the appointment', 'le rendez-vous', 'der', 'ter-MIN', 'dair ter-MEEN', ['Ich habe um drei Uhr einen Termin.', 'I have an appointment at three o’clock.', 'J’ai un rendez-vous à trois heures.']),
+      vocab('sp-zahlen-geld-zeit-feiertag', 'der Feiertag', 'the public holiday', 'le jour férié', 'der', 'FEI-er-tag', 'dair FY-er-taak', ['Der erste Mai ist ein Feiertag.', 'The first of May is a public holiday.', 'Le premier mai est un jour férié.']),
+    ]),
     grammar(
       'sp-zgz-calendar',
       ['am, im, um: when does it happen?', 'am, im, um : quand cela se passe-t-il ?'],
@@ -246,6 +294,15 @@ export const zahlenGeldZeit = defineSpecial({
     chapter(
       'Dates and ordinal numbers', 'Dates et nombres ordinaux',
       'The first of May, the third of June: ordinals and how to say a date.', 'Le premier mai, le trois juin : les ordinaux et comment dire une date.',
+    ),
+    situation(
+      ['Mein Geburtstag', 'Mon anniversaire'],
+      ['Friends compare birthdays.', 'Des amis comparent leurs anniversaires.'],
+      [
+        ['Lea', 'Wann hast du Geburtstag?', 'When is your birthday?', 'Quand est ton anniversaire ?'],
+        ['Max', 'Am zwölften Dezember. Und du?', 'On the twelfth of December. And you?', 'Le douze décembre. Et toi ?'],
+        ['Lea', 'Am ersten Januar. Das ist der erste Tag im Jahr!', 'On the first of January. That is the first day of the year!', 'Le premier janvier. C’est le premier jour de l’année !'],
+      ],
     ),
     grammar(
       'sp-zgz-ordinals',

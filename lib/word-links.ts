@@ -1,4 +1,5 @@
 import { lessons } from '@/content';
+import { stepVocab } from '@/content/step-vocab';
 import type { DictHit } from '@/lib/dictionary';
 
 export function wordHref(headword: string, q?: string): string {
@@ -34,9 +35,9 @@ export function lessonSentences(forms: string[], limit = 6): LessonSentence[] {
   };
   for (const l of lessons) {
     for (const st of l.steps) {
-      if (st.kind === 'vocab') push(st.item.example, l);
-      else if (st.kind === 'pronunciation') st.items.forEach((i) => push(i.example, l));
-      else if (st.kind === 'grammar') st.note.examples.forEach((e) => push(e, l));
+      stepVocab(st).forEach((i) => push(i.example, l));
+      if (st.kind === 'grammar') st.note.examples.forEach((e) => push(e, l));
+      else if (st.kind === 'situation') st.lines.forEach((e) => push(e, l));
     }
     if (out.length >= limit) break;
   }

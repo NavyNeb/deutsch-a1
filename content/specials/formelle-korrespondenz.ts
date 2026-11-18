@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const formelleKorrespondenz = defineSpecial({
   slug: 'formelle-korrespondenz',
@@ -47,8 +47,10 @@ export const formelleKorrespondenz = defineSpecial({
       'Structure of a formal letter', 'Structure d’une lettre formelle',
       'Subject line, salutation, reason, details, request, closing.', 'Objet, appel, motif, détails, demande, clôture.',
     ),
-    vocab('sp-formelle-korrespondenz-betreff', 'der Betreff', 'the subject line', 'l’objet', 'der', 'be-TREFF', 'dair be-TREF', ['Betreff: Reklamation der Heizung.', 'Subject: Complaint about the heating.', 'Objet : Réclamation concernant le chauffage.']),
-    vocab('sp-formelle-korrespondenz-anliegen', 'das Anliegen', 'the request, the matter', 'la demande', 'das', 'AN-lee-gen', 'das AHN-lee-gen', ['Mein Anliegen betrifft die Nebenkosten.', 'My request concerns the service charges.', 'Ma demande concerne les charges.']),
+    wordgroup(['Structure of a formal letter', 'Structure d’une lettre formelle'], [
+      vocab('sp-formelle-korrespondenz-betreff', 'der Betreff', 'the subject line', 'l’objet', 'der', 'be-TREFF', 'dair be-TREF', ['Betreff: Reklamation der Heizung.', 'Subject: Complaint about the heating.', 'Objet : Réclamation concernant le chauffage.']),
+      vocab('sp-formelle-korrespondenz-anliegen', 'das Anliegen', 'the request, the matter', 'la demande', 'das', 'AN-lee-gen', 'das AHN-lee-gen', ['Mein Anliegen betrifft die Nebenkosten.', 'My request concerns the service charges.', 'Ma demande concerne les charges.']),
+    ]),
     grammar(
       'sp-fk-structure',
       ['The parts of a formal letter', 'Les parties d’une lettre formelle'],
@@ -85,9 +87,11 @@ export const formelleKorrespondenz = defineSpecial({
       'Complaints', 'Réclamations',
       'Firm, factual and polite.', 'Ferme, factuel et poli.',
     ),
-    vocab('sp-formelle-korrespondenz-beschwerde', 'die Beschwerde', 'the complaint', 'la réclamation', 'die', 'be-SCHWER-de', 'dee be-SHVER-de', ['Ich möchte mich über den Service beschweren.', 'I would like to complain about the service.', 'Je voudrais me plaindre du service.']),
-    vocab('sp-formelle-korrespondenz-mangel', 'der Mangel', 'the defect', 'le défaut', 'der', 'MAN-gel', 'dair MAHN-gel', ['Der Mangel wurde bereits gemeldet.', 'The defect has already been reported.', 'Le défaut a déjà été signalé.']),
-    vocab('sp-formelle-korrespondenz-unverzueglich', 'unverzüglich', 'immediately', 'sans délai', null, 'UN-fer-tsueg-lich', 'OON-fer-tsueg-likh', ['Bitte beheben Sie den Schaden unverzüglich.', 'Please repair the damage immediately.', 'Veuillez réparer le dommage sans délai.']),
+    wordgroup(['Complaints', 'Réclamations'], [
+      vocab('sp-formelle-korrespondenz-beschwerde', 'die Beschwerde', 'the complaint', 'la réclamation', 'die', 'be-SCHWER-de', 'dee be-SHVER-de', ['Ich möchte mich über den Service beschweren.', 'I would like to complain about the service.', 'Je voudrais me plaindre du service.']),
+      vocab('sp-formelle-korrespondenz-mangel', 'der Mangel', 'the defect', 'le défaut', 'der', 'MAN-gel', 'dair MAHN-gel', ['Der Mangel wurde bereits gemeldet.', 'The defect has already been reported.', 'Le défaut a déjà été signalé.']),
+      vocab('sp-formelle-korrespondenz-unverzueglich', 'unverzüglich', 'immediately', 'sans délai', null, 'UN-fer-tsueg-lich', 'OON-fer-tsueg-likh', ['Bitte beheben Sie den Schaden unverzüglich.', 'Please repair the damage immediately.', 'Veuillez réparer le dommage sans délai.']),
+    ]),
     grammar(
       'sp-fk-complaint',
       ['Complaint phrases', 'Formules de réclamation'],
@@ -125,8 +129,10 @@ export const formelleKorrespondenz = defineSpecial({
       'Requests and enquiries', 'Demandes et renseignements',
       'Asking for information or documents politely.', 'Demander poliment des informations ou des documents.',
     ),
-    vocab('sp-formelle-korrespondenz-anbei', 'anbei', 'enclosed', 'ci-joint', null, 'AN-bai', 'AHN-by', ['Anbei sende ich Ihnen die Unterlagen.', 'Enclosed I am sending you the documents.', 'Ci-joint, je vous envoie les documents.']),
-    vocab('sp-formelle-korrespondenz-erstatten', 'erstatten', 'to refund', 'rembourser', null, 'er-SHTAT-ten', 'er-SHTAT-ten', ['Bitte erstatten Sie mir den Betrag.', 'Please refund the amount to me.', 'Veuillez me rembourser le montant.']),
+    wordgroup(['Requests and enquiries', 'Demandes et renseignements'], [
+      vocab('sp-formelle-korrespondenz-anbei', 'anbei', 'enclosed', 'ci-joint', null, 'AN-bai', 'AHN-by', ['Anbei sende ich Ihnen die Unterlagen.', 'Enclosed I am sending you the documents.', 'Ci-joint, je vous envoie les documents.']),
+      vocab('sp-formelle-korrespondenz-erstatten', 'erstatten', 'to refund', 'rembourser', null, 'er-SHTAT-ten', 'er-SHTAT-ten', ['Bitte erstatten Sie mir den Betrag.', 'Please refund the amount to me.', 'Veuillez me rembourser le montant.']),
+    ]),
     grammar(
       'sp-fk-request',
       ['Polite requests with Konjunktiv II', 'Demandes polies avec le Konjunktiv II'],

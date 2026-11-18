@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const vermutungen = defineSpecial({
   slug: 'vermutungen',
@@ -47,8 +47,10 @@ export const vermutungen = defineSpecial({
       'Modal verbs of certainty', 'Modaux de certitude',
       'muss, dürfte, kann, könnte: from sure to possible.', 'muss, dürfte, kann, könnte : du certain au possible.',
     ),
-    vocab('sp-vermutungen-vermuten', 'vermuten', 'to assume, to suspect', 'supposer', null, 'fer-MU-ten', 'fer-MOO-ten', ['Ich vermute, dass er verschlafen hat.', 'I suspect he overslept.', 'Je suppose qu’il a dormi trop longtemps.']),
-    vocab('sp-vermutungen-wahrscheinlich', 'wahrscheinlich', 'probably', 'probablement', null, 'wahr-SCHEIN-lich', 'vahr-SHINE-likh', ['Er kommt wahrscheinlich später.', 'He will probably come later.', 'Il viendra probablement plus tard.']),
+    wordgroup(['Modal verbs of certainty', 'Modaux de certitude'], [
+      vocab('sp-vermutungen-vermuten', 'vermuten', 'to assume, to suspect', 'supposer', null, 'fer-MU-ten', 'fer-MOO-ten', ['Ich vermute, dass er verschlafen hat.', 'I suspect he overslept.', 'Je suppose qu’il a dormi trop longtemps.']),
+      vocab('sp-vermutungen-wahrscheinlich', 'wahrscheinlich', 'probably', 'probablement', null, 'wahr-SCHEIN-lich', 'vahr-SHINE-likh', ['Er kommt wahrscheinlich später.', 'He will probably come later.', 'Il viendra probablement plus tard.']),
+    ]),
     grammar(
       'sp-vm-modal',
       ['Degrees of certainty', 'Degrés de certitude'],
@@ -85,8 +87,10 @@ export const vermutungen = defineSpecial({
       'Guessing about the past', 'Supposer sur le passé',
       'modal + Partizip II + haben / sein.', 'modal + Partizip II + haben / sein.',
     ),
-    vocab('sp-vermutungen-verlieren', 'verlieren', 'to lose', 'perdre', null, 'fer-LIE-ren', 'fer-LEE-ren', ['Er muss den Schlüssel verloren haben.', 'He must have lost the key.', 'Il doit avoir perdu la clé.']),
-    vocab('sp-vermutungen-abreisen', 'abreisen', 'to leave (on a trip)', 'partir (en voyage)', null, 'AB-rei-sen', 'AHP-ry-zen', ['Sie dürfte schon abgereist sein.', 'She has probably already left.', 'Elle est probablement déjà partie.']),
+    wordgroup(['Guessing about the past', 'Supposer sur le passé'], [
+      vocab('sp-vermutungen-verlieren', 'verlieren', 'to lose', 'perdre', null, 'fer-LIE-ren', 'fer-LEE-ren', ['Er muss den Schlüssel verloren haben.', 'He must have lost the key.', 'Il doit avoir perdu la clé.']),
+      vocab('sp-vermutungen-abreisen', 'abreisen', 'to leave (on a trip)', 'partir (en voyage)', null, 'AB-rei-sen', 'AHP-ry-zen', ['Sie dürfte schon abgereist sein.', 'She has probably already left.', 'Elle est probablement déjà partie.']),
+    ]),
     grammar(
       'sp-vm-past',
       ['Modal + Partizip II + haben/sein', 'Modal + Partizip II + haben/sein'],
@@ -162,8 +166,10 @@ export const vermutungen = defineSpecial({
       'Adverbs of certainty', 'Adverbes de certitude',
       'Sicherlich, wahrscheinlich, vielleicht, anscheinend …', 'Sicherlich, wahrscheinlich, vielleicht, anscheinend …',
     ),
-    vocab('sp-vermutungen-sicherlich', 'sicherlich', 'surely', 'sûrement', null, 'SI-cher-lich', 'ZI-kher-likh', ['Das war sicherlich ein Missverständnis.', 'That was surely a misunderstanding.', 'C’était sûrement un malentendu.']),
-    vocab('sp-vermutungen-anscheinend', 'anscheinend', 'apparently', 'apparemment', null, 'AN-schei-nend', 'AHN-shy-nent', ['Anscheinend ist er krank.', 'Apparently he is ill.', 'Apparemment il est malade.']),
+    wordgroup(['Adverbs of certainty', 'Adverbes de certitude'], [
+      vocab('sp-vermutungen-sicherlich', 'sicherlich', 'surely', 'sûrement', null, 'SI-cher-lich', 'ZI-kher-likh', ['Das war sicherlich ein Missverständnis.', 'That was surely a misunderstanding.', 'C’était sûrement un malentendu.']),
+      vocab('sp-vermutungen-anscheinend', 'anscheinend', 'apparently', 'apparemment', null, 'AN-schei-nend', 'AHN-shy-nent', ['Anscheinend ist er krank.', 'Apparently he is ill.', 'Apparemment il est malade.']),
+    ]),
     grammar(
       'sp-vm-adv',
       ['From certain to doubtful', 'Du certain au douteux'],

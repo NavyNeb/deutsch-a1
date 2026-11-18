@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const eroerterung = defineSpecial({
   slug: 'eroerterung',
@@ -47,8 +47,10 @@ export const eroerterung = defineSpecial({
       'Giving an opinion', 'Donner son opinion',
       'Beyond “ich denke”: openers with and without dass.', 'Au-delà de « ich denke » : formules avec et sans dass.',
     ),
-    vocab('sp-eroerterung-meinung', 'die Meinung', 'the opinion', 'l’opinion', 'die', 'MEI-nung', 'MY-noong', ['Meiner Meinung nach ist das falsch.', 'In my opinion that is wrong.', 'À mon avis, c’est faux.']),
-    vocab('sp-eroerterung-ueberzeugt', 'überzeugt sein', 'to be convinced', 'être convaincu', null, 'ü-ber-ZEUGT zain', 'ue-ber-TSOYKT zine', ['Ich bin davon überzeugt, dass es funktioniert.', 'I am convinced that it works.', 'Je suis convaincu que ça marche.']),
+    wordgroup(['Giving an opinion', 'Donner son opinion'], [
+      vocab('sp-eroerterung-meinung', 'die Meinung', 'the opinion', 'l’opinion', 'die', 'MEI-nung', 'MY-noong', ['Meiner Meinung nach ist das falsch.', 'In my opinion that is wrong.', 'À mon avis, c’est faux.']),
+      vocab('sp-eroerterung-ueberzeugt', 'überzeugt sein', 'to be convinced', 'être convaincu', null, 'ü-ber-ZEUGT zain', 'ue-ber-TSOYKT zine', ['Ich bin davon überzeugt, dass es funktioniert.', 'I am convinced that it works.', 'Je suis convaincu que ça marche.']),
+    ]),
     grammar(
       'sp-er-opinion',
       ['Openers for your opinion', 'Formules pour ton opinion'],
@@ -85,8 +87,10 @@ export const eroerterung = defineSpecial({
       'Reacting to others', 'Réagir aux autres',
       'Agree, partly agree, disagree — politely.', 'Approuver, approuver en partie, contredire — poliment.',
     ),
-    vocab('sp-eroerterung-zustimmen', 'zustimmen', 'to agree', 'approuver', null, 'ZU-shtim-men', 'TSOO-shtim-men', ['Dem stimme ich voll zu.', 'I fully agree with that.', 'Je suis tout à fait d’accord.']),
-    vocab('sp-eroerterung-widersprechen', 'widersprechen', 'to contradict', 'contredire', null, 'WI-der-shpre-chen', 'VEE-der-shpre-khen', ['Da muss ich dir widersprechen.', 'I have to disagree with you there.', 'Là, je dois te contredire.']),
+    wordgroup(['Reacting to others', 'Réagir aux autres'], [
+      vocab('sp-eroerterung-zustimmen', 'zustimmen', 'to agree', 'approuver', null, 'ZU-shtim-men', 'TSOO-shtim-men', ['Dem stimme ich voll zu.', 'I fully agree with that.', 'Je suis tout à fait d’accord.']),
+      vocab('sp-eroerterung-widersprechen', 'widersprechen', 'to contradict', 'contredire', null, 'WI-der-shpre-chen', 'VEE-der-shpre-khen', ['Da muss ich dir widersprechen.', 'I have to disagree with you there.', 'Là, je dois te contredire.']),
+    ]),
     grammar(
       'sp-er-react',
       ['Reaction phrases', 'Formules de réaction'],
@@ -124,9 +128,11 @@ export const eroerterung = defineSpecial({
       'Building the argument', 'Construire l’argument',
       'Thesis, reasons, counter-argument, conclusion.', 'Thèse, raisons, contre-argument, conclusion.',
     ),
-    vocab('sp-eroerterung-vorteil', 'der Vorteil', 'the advantage', 'l’avantage', 'der', 'FOR-tail', 'dair FOR-tile', ['Ein Vorteil ist die saubere Luft.', 'One advantage is the clean air.', 'Un avantage est l’air pur.']),
-    vocab('sp-eroerterung-nachteil', 'der Nachteil', 'the disadvantage', 'l’inconvénient', 'der', 'NACH-tail', 'dair NAKH-tile', ['Der Nachteil sind die höheren Kosten.', 'The disadvantage is the higher cost.', 'L’inconvénient, ce sont les coûts plus élevés.']),
-    vocab('sp-eroerterung-fazit', 'das Fazit', 'the conclusion', 'le bilan', 'das', 'FA-tsit', 'das FAH-tsit', ['Das Fazit ist eindeutig.', 'The conclusion is clear.', 'Le bilan est clair.']),
+    wordgroup(['Building the argument', 'Construire l’argument'], [
+      vocab('sp-eroerterung-vorteil', 'der Vorteil', 'the advantage', 'l’avantage', 'der', 'FOR-tail', 'dair FOR-tile', ['Ein Vorteil ist die saubere Luft.', 'One advantage is the clean air.', 'Un avantage est l’air pur.']),
+      vocab('sp-eroerterung-nachteil', 'der Nachteil', 'the disadvantage', 'l’inconvénient', 'der', 'NACH-tail', 'dair NAKH-tile', ['Der Nachteil sind die höheren Kosten.', 'The disadvantage is the higher cost.', 'L’inconvénient, ce sont les coûts plus élevés.']),
+      vocab('sp-eroerterung-fazit', 'das Fazit', 'the conclusion', 'le bilan', 'das', 'FA-tsit', 'das FAH-tsit', ['Das Fazit ist eindeutig.', 'The conclusion is clear.', 'Le bilan est clair.']),
+    ]),
     grammar(
       'sp-er-structure',
       ['Four moves', 'Quatre étapes'],

@@ -1,4 +1,4 @@
-import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz } from './kit';
+import { defineSpecial, intro, chapter, vocab, grammar, mc, fb, wo, match, lc, wrapup, quiz, wordgroup } from './kit';
 
 export const praeteritum = defineSpecial({
   slug: 'praeteritum',
@@ -79,10 +79,12 @@ export const praeteritum = defineSpecial({
         ['Wir wollten ins Kino gehen, aber wir hatten keine Zeit.', 'We wanted to go to the cinema, but we had no time.', 'Nous voulions aller au cinéma, mais nous n’avions pas le temps.'],
       ],
     ),
-    vocab('sp-praeteritum-war', 'war', 'was (sein)', 'était (sein)', null, 'WAR', 'VAHR', ['Ich war gestern krank.', 'I was ill yesterday.', 'J’étais malade hier.']),
-    vocab('sp-praeteritum-hatte', 'hatte', 'had (haben)', 'avait (haben)', null, 'HAT-te', 'HAT-eh', ['Wir hatten ein tolles Wochenende.', 'We had a great weekend.', 'Nous avons passé un super week-end.']),
-    vocab('sp-praeteritum-musste', 'musste', 'had to (müssen)', 'devait (müssen)', null, 'MUS-te', 'MOOS-teh', ['Sie musste früh aufstehen.', 'She had to get up early.', 'Elle devait se lever tôt.']),
-    vocab('sp-praeteritum-konnte', 'konnte', 'could (können)', 'pouvait (können)', null, 'KON-te', 'KON-teh', ['Er konnte nicht kommen.', 'He could not come.', 'Il n’a pas pu venir.']),
+    wordgroup(['War, hatte and the modals', 'War, hatte et les modaux'], [
+      vocab('sp-praeteritum-war', 'war', 'was (sein)', 'était (sein)', null, 'WAR', 'VAHR', ['Ich war gestern krank.', 'I was ill yesterday.', 'J’étais malade hier.']),
+      vocab('sp-praeteritum-hatte', 'hatte', 'had (haben)', 'avait (haben)', null, 'HAT-te', 'HAT-eh', ['Wir hatten ein tolles Wochenende.', 'We had a great weekend.', 'Nous avons passé un super week-end.']),
+      vocab('sp-praeteritum-musste', 'musste', 'had to (müssen)', 'devait (müssen)', null, 'MUS-te', 'MOOS-teh', ['Sie musste früh aufstehen.', 'She had to get up early.', 'Elle devait se lever tôt.']),
+      vocab('sp-praeteritum-konnte', 'konnte', 'could (können)', 'pouvait (können)', null, 'KON-te', 'KON-teh', ['Er konnte nicht kommen.', 'He could not come.', 'Il n’a pas pu venir.']),
+    ]),
     mc(
       'sp-pr-e1',
       ['Präteritum of "sein" (ich)?', 'Präteritum de « sein » (ich) ?'],
@@ -147,8 +149,10 @@ export const praeteritum = defineSpecial({
         ['Er holte sie am Bahnhof ab.', 'He picked her up at the station.', 'Il alla la chercher à la gare.'],
       ],
     ),
-    vocab('sp-praeteritum-wohnte', 'wohnte', 'lived (wohnen)', 'habitait (wohnen)', null, 'WOHN-te', 'VOHN-teh', ['Er wohnte lange in München.', 'He lived in Munich for a long time.', 'Il a longtemps habité à Munich.']),
-    vocab('sp-praeteritum-arbeitete', 'arbeitete', 'worked (arbeiten)', 'travaillait (arbeiten)', null, 'AR-bei-te-te', 'AR-by-teh-teh', ['Sie arbeitete in einem Hotel.', 'She worked in a hotel.', 'Elle travaillait dans un hôtel.']),
+    wordgroup(['Regular verbs', 'Verbes réguliers'], [
+      vocab('sp-praeteritum-wohnte', 'wohnte', 'lived (wohnen)', 'habitait (wohnen)', null, 'WOHN-te', 'VOHN-teh', ['Er wohnte lange in München.', 'He lived in Munich for a long time.', 'Il a longtemps habité à Munich.']),
+      vocab('sp-praeteritum-arbeitete', 'arbeitete', 'worked (arbeiten)', 'travaillait (arbeiten)', null, 'AR-bei-te-te', 'AR-by-teh-teh', ['Sie arbeitete in einem Hotel.', 'She worked in a hotel.', 'Elle travaillait dans un hôtel.']),
+    ]),
     fb(
       'sp-pr-e6',
       ['Er ___ in Berlin. (wohnen)', 'Er ___ in Berlin. (wohnen)'],
@@ -207,10 +211,12 @@ export const praeteritum = defineSpecial({
         ['Sie kannte den Weg nicht.', 'She did not know the way.', 'Elle ne connaissait pas le chemin.'],
       ],
     ),
-    vocab('sp-praeteritum-ging', 'ging', 'went (gehen)', 'allait (gehen)', null, 'GING', 'GING', ['Er ging früh ins Bett.', 'He went to bed early.', 'Il alla se coucher tôt.']),
-    vocab('sp-praeteritum-kam', 'kam', 'came (kommen)', 'venait (kommen)', null, 'KAM', 'KAHM', ['Sie kam spät nach Hause.', 'She came home late.', 'Elle rentra tard à la maison.']),
-    vocab('sp-praeteritum-sah', 'sah', 'saw (sehen)', 'voyait (sehen)', null, 'SAH', 'ZAH', ['Ich sah ihn im Park.', 'I saw him in the park.', 'Je l’ai vu dans le parc.']),
-    vocab('sp-praeteritum-brachte', 'brachte', 'brought (bringen)', 'apportait (bringen)', null, 'BRACH-te', 'BRAKH-teh', ['Er brachte uns Kaffee.', 'He brought us coffee.', 'Il nous apporta du café.']),
+    wordgroup(['Irregular verbs', 'Verbes irréguliers'], [
+      vocab('sp-praeteritum-ging', 'ging', 'went (gehen)', 'allait (gehen)', null, 'GING', 'GING', ['Er ging früh ins Bett.', 'He went to bed early.', 'Il alla se coucher tôt.']),
+      vocab('sp-praeteritum-kam', 'kam', 'came (kommen)', 'venait (kommen)', null, 'KAM', 'KAHM', ['Sie kam spät nach Hause.', 'She came home late.', 'Elle rentra tard à la maison.']),
+      vocab('sp-praeteritum-sah', 'sah', 'saw (sehen)', 'voyait (sehen)', null, 'SAH', 'ZAH', ['Ich sah ihn im Park.', 'I saw him in the park.', 'Je l’ai vu dans le parc.']),
+      vocab('sp-praeteritum-brachte', 'brachte', 'brought (bringen)', 'apportait (bringen)', null, 'BRACH-te', 'BRAKH-teh', ['Er brachte uns Kaffee.', 'He brought us coffee.', 'Il nous apporta du café.']),
+    ]),
     mc(
       'sp-pr-e10',
       ['Präteritum of "gehen" (er)?', 'Präteritum de « gehen » (er) ?'],
@@ -284,8 +290,10 @@ export const praeteritum = defineSpecial({
         ['Plötzlich klingelte das Telefon.', 'Suddenly the phone rang.', 'Soudain, le téléphone sonna.'],
       ],
     ),
-    vocab('sp-praeteritum-damals', 'damals', 'back then', 'à l’époque', null, 'DA-mals', 'DAH-mahls', ['Damals gab es kein Internet.', 'Back then there was no internet.', 'À l’époque, il n’y avait pas d’internet.']),
-    vocab('sp-praeteritum-ploetzlich', 'plötzlich', 'suddenly', 'soudain', null, 'PLÖTZ-lich', 'PLÖTS-likh', ['Plötzlich war das Licht aus.', 'Suddenly the light was out.', 'Soudain, la lumière était éteinte.']),
+    wordgroup(['Präteritum or Perfekt?', 'Präteritum ou Perfekt ?'], [
+      vocab('sp-praeteritum-damals', 'damals', 'back then', 'à l’époque', null, 'DA-mals', 'DAH-mahls', ['Damals gab es kein Internet.', 'Back then there was no internet.', 'À l’époque, il n’y avait pas d’internet.']),
+      vocab('sp-praeteritum-ploetzlich', 'plötzlich', 'suddenly', 'soudain', null, 'PLÖTZ-lich', 'PLÖTS-likh', ['Plötzlich war das Licht aus.', 'Suddenly the light was out.', 'Soudain, la lumière était éteinte.']),
+    ]),
     mc(
       'sp-pr-e16',
       ['Which tense for a message to a friend?', 'Quel temps pour un message à un ami ?'],
