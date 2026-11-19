@@ -21,6 +21,7 @@
 
 # generated content snapshot consumed by scripts/prepare-audio.mjs
 /content/lessons.snapshot.json
+/content/wordbank.snapshot.json
 
 # misc
 .DS_Store
@@ -47,3 +48,8 @@ ours-*.png
 
 # textbook PDFs are served only through /api/books (preview-only), never committed
 /private/
+
+# content studio
+content-studio/node_modules
+content-studio/out
+content-studio/.work

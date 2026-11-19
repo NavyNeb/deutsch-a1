@@ -48,7 +48,9 @@ async function main() {
   const lessons = JSON.parse(await readFile(path.resolve('content/lessons.snapshot.json'), 'utf8'));
   await mkdir(OUT, { recursive: true });
   const { official, tts: contentTts } = collectAudioJobs(lessons);
-  const tts = [...new Set([...contentTts, ...UI_PHRASES, ...SPEAKING_PROMPTS.map((p) => p.de)])];
+  // Word Sprint word bank (written by scripts/snapshot.mjs): each word is spoken on its own.
+  const bank = await readFile(path.resolve('content/wordbank.snapshot.json'), 'utf8').then((j) => JSON.parse(j), () => []);
+  const tts = [...new Set([...contentTts, ...UI_PHRASES, ...SPEAKING_PROMPTS.map((p) => p.de), ...bank.map((w) => w.german)])];
 
   let copied = 0, generated = 0, skipped = 0, missing = [];
   for (const { lesson, activity } of official) {
@@ -60,17 +62,28 @@ async function main() {
     else missing.push(srcName);
   }
 
-  const engine = new MsEdgeTTS();
-  await engine.setMetadata(TTS_VOICE, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+  // The service now and then closes a stream early; retry a clip with a fresh connection and, if it keeps failing,
+  // skip it (re-running the script picks it up) instead of losing the whole run.
+  let engine = null;
+  const fresh = async () => { engine = new MsEdgeTTS(); await engine.setMetadata(TTS_VOICE, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3); };
+  const failed = [];
   for (const text of tts) {
     const dest = path.join(OUT, ttsFileName(text));
     if (await exists(dest)) { skipped++; continue; }
-    const { audioStream } = await engine.toStream(text);
-    const chunks = [];
-    for await (const c of audioStream) chunks.push(c);
-    await writeFile(dest, Buffer.concat(chunks));
-    generated++;
+    let ok = false;
+    for (let attempt = 0; attempt < 3 && !ok; attempt++) {
+      try {
+        if (!engine || attempt > 0) await fresh();
+        const { audioStream } = await engine.toStream(text);
+        const chunks = [];
+        for await (const c of audioStream) chunks.push(c);
+        await writeFile(dest, Buffer.concat(chunks));
+        ok = true;
+      } catch { engine = null; }
+    }
+    if (ok) generated++; else failed.push(text);
   }
+  if (failed.length) console.warn(`audio: ${failed.length} clip(s) failed, run again:\n` + failed.join('\n'));
   console.log(`audio: copied ${copied}, generated ${generated}, skipped ${skipped}`);
   if (missing.length) console.warn('MISSING official tracks:\n' + missing.join('\n'));
 }
