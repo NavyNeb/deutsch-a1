@@ -4,6 +4,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { officialTrackName, ttsFileName, TTS_VOICE } from '../lib/audio-names.mjs';
 import { SPEAKING_PROMPTS } from '../content/speaking-prompts.mjs';
+import { sprechenAudioLines } from '../content/sprechen/audio-lines.mjs';
 
 const OFFICIAL_SRC = process.env.MENSCHEN_AUDIO_DIR || 'C:/Users/F3LX_STOR/Downloads/Menschen A1 audio';
 const OUT = path.resolve('public/audio');
@@ -50,7 +51,7 @@ async function main() {
   const { official, tts: contentTts } = collectAudioJobs(lessons);
   // Word Sprint word bank (written by scripts/snapshot.mjs): each word is spoken on its own.
   const bank = await readFile(path.resolve('content/wordbank.snapshot.json'), 'utf8').then((j) => JSON.parse(j), () => []);
-  const tts = [...new Set([...contentTts, ...UI_PHRASES, ...SPEAKING_PROMPTS.map((p) => p.de), ...bank.map((w) => w.german)])];
+  const tts = [...new Set([...contentTts, ...UI_PHRASES, ...SPEAKING_PROMPTS.map((p) => p.de), ...bank.map((w) => w.german), ...sprechenAudioLines()])];
 
   let copied = 0, generated = 0, skipped = 0, missing = [];
   for (const { lesson, activity } of official) {
