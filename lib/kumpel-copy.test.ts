@@ -13,7 +13,7 @@ const SOURCES: Record<PageGroupId, string[]> = {
   practice: ['components/games/GamesHub.tsx', S],
   games: ['components/games/QuizGame.tsx', S],
   review: ['components/review/ReviewSession.tsx', S],
-  speak: ['components/speak/SpeakStudio.tsx', S],
+  speak: ['components/sprechen/SpeakHub.tsx', 'components/speak/SpeakStudio.tsx', S],
   write: ['components/write/WriteEditor.tsx', S],
   specials: ['components/specials/SpecialsHub.tsx', S],
   special: ['components/specials/SpecialOverview.tsx', 'components/specials/SpecialReview.tsx', S],

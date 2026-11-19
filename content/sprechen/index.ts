@@ -1,5 +1,6 @@
 import { PHRASES as RAW_PHRASES, PHRASE_FUNCTIONS as RAW_FUNCTIONS } from './redemittel.mjs';
 import { TALK_TOPICS as RAW_TOPICS } from './topics.mjs';
+import { AI_SCENARIOS as RAW_SCENARIOS } from './ai-scenarios.mjs';
 import { MINIMAL_PAIRS as RAW_PAIRS, SOUND_GROUPS as RAW_GROUPS } from './minimal-pairs.mjs';
 
 // Typed views of the plain .mjs content (the audio script reads the .mjs files directly).
@@ -17,3 +18,11 @@ export const PHRASES = RAW_PHRASES as Phrase[];
 export const TALK_TOPICS = RAW_TOPICS as TalkTopic[];
 export const SOUND_GROUPS = RAW_GROUPS as SoundGroup[];
 export const MINIMAL_PAIRS = RAW_PAIRS as MinimalPair[];
+
+export type AiScenario = {
+  id: string; level: SpeakLevelBX; kind: 'chat' | 'exam' | 'discussion';
+  de: string; en: string; fr: string;
+  situation: { en: string; fr: string };
+  role: string; opener: string;
+};
+export const AI_SCENARIOS = RAW_SCENARIOS as AiScenario[];

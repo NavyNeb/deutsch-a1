@@ -14,7 +14,8 @@ export function TakePlayer({ blob, label }: { blob: Blob; label?: string }) {
   useEffect(() => {
     const u = URL.createObjectURL(blob);
     setUrl(u);
-    return () => { audio.current?.pause(); URL.revokeObjectURL(u); };
+    const el = audio.current;
+    return () => { el?.pause(); URL.revokeObjectURL(u); };
   }, [blob]);
 
   const toggle = () => {

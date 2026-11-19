@@ -120,16 +120,16 @@ export const PAGE_HELP: Record<PageGroupId, PageGuide> = {
 
   speak: {
     de: 'Sprechen',
-    purpose: l('Listen, repeat and get word-by-word feedback on your pronunciation.', 'Écoute, répète et obtiens un retour mot par mot sur ta prononciation.'),
+    purpose: l('Speak out loud every day: repeat, role-play, give talks and rehearse the oral exams.', 'Parle à voix haute chaque jour : répète, joue des dialogues, fais des exposés et répète les oraux d’examen.'),
     steps: [
-      { title: l('Pick a mode', 'Choisis un mode'), text: l('Listen and repeat after the model, or read the sentence aloud yourself.', 'Écoute et répète après le modèle, ou lis la phrase à voix haute.'), target: 'speak-modes' },
-      { title: l('Say it', 'Dis-le'), text: l('Tap the microphone and speak. You see what was heard, word by word.', 'Touche le micro et parle. Tu vois ce qui a été entendu, mot par mot.') },
+      { title: l('Pick a tool', 'Choisis un outil'), text: l('Repeat sentences, role-play a dialogue, learn exam phrases, give a timed talk or sit a mock oral exam.', 'Répète des phrases, joue un dialogue, apprends des formules d’examen, fais un exposé chronométré ou passe un oral blanc.'), target: 'speak-modes' },
+      { title: l('Say it', 'Dis-le'), text: l('Tap the microphone and speak. You see what was heard, word by word, and you can play your own voice back.', 'Touche le micro et parle. Tu vois ce qui a été entendu, mot par mot, et tu peux réécouter ta voix.') },
       { title: l('Read the result', 'Lis le résultat'), text: l('Each word is marked clear, close or missed. Try again to make a close word clear.', 'Chaque mot est marqué clair, proche ou manqué. Réessaie pour rendre clair un mot proche.') },
     ],
     questions: [
-      { q: l('Does it need a microphone?', 'Faut-il un micro ?'), a: l('Yes. If your browser cannot record speech you can still listen and repeat out loud.', 'Oui. Si ton navigateur ne peut pas enregistrer la voix, tu peux quand même écouter et répéter à voix haute.') },
-      { q: l('What does close mean?', 'Que veut dire proche ?'), a: l('The word was nearly right. Try again to make it clear.', 'Le mot était presque juste. Réessaie pour qu’il soit clair.') },
-      { q: l('Does speaking give XP?', 'L’oral donne-t-il de l’XP ?'), a: l('A finished set shows the XP you earned.', 'Une série terminée montre l’XP gagnée.') },
+      { q: l('Does it need a microphone?', 'Faut-il un micro ?'), a: l('Yes. If your browser cannot turn speech into text you can still record yourself and listen back.', 'Oui. Si ton navigateur ne transforme pas la voix en texte, tu peux quand même t’enregistrer et t’écouter.') },
+      { q: l('Is my accent scored?', 'Mon accent est-il noté ?'), a: l('No. The score checks which words were recognised. Judge the sound by listening to your recording.', 'Non. Le score vérifie les mots reconnus. Juge le son en écoutant ton enregistrement.') },
+      { q: l('Does speaking give XP?', 'L’oral donne-t-il de l’XP ?'), a: l('Finished sentences, talks and mock exams give XP, up to a daily limit.', 'Les phrases, exposés et oraux blancs terminés donnent de l’XP, jusqu’à une limite quotidienne.') },
     ],
   },
 

@@ -37,7 +37,7 @@ export function RoleplayPlayer({ id }: { id: string }) {
   const startedAt = useRef(0);
   const secondsSpoken = useRef(0);
 
-  const mine = dialogue && role ? learnerLineIndexes(dialogue, role) : [];
+  const mine = useMemo(() => (dialogue && role ? learnerLineIndexes(dialogue, role) : []), [dialogue, role]);
   const finished = !!dialogue && idx >= dialogue.lines.length;
   const line = dialogue && !finished ? dialogue.lines[idx] : null;
   const myTurn = !!line && line.who === role;

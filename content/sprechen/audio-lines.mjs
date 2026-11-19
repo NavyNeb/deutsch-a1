@@ -2,6 +2,7 @@
 // generate a recording of each. Plain .mjs: scripts/prepare-audio.mjs imports it.
 import { PHRASES } from './redemittel.mjs';
 import { MINIMAL_PAIRS } from './minimal-pairs.mjs';
+import { AI_SCENARIOS } from './ai-scenarios.mjs';
 import {
   DISCUSSION_CLOSE, DISCUSSION_STATEMENTS, EXAMINER, FOLLOWUP_QUESTIONS, INTRO_QUESTIONS, PLAN_PARTNER, PLAN_SCENARIOS,
 } from './exam-lines.mjs';
@@ -9,6 +10,7 @@ import {
 export function sprechenAudioLines() {
   return [...new Set([
     ...PHRASES.map((p) => p.de),
+    ...AI_SCENARIOS.map((s) => s.opener),
     ...MINIMAL_PAIRS.flatMap((p) => [p.a, p.b]),
     ...Object.values(EXAMINER),
     ...INTRO_QUESTIONS,
