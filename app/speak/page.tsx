@@ -1,7 +1,7 @@
-import { SpeakStudio } from '@/components/speak/SpeakStudio';
+import { SpeakHub } from '@/components/sprechen/SpeakHub';
 
-export const metadata = { title: 'Speak — Deutsch' };
+export const metadata = { title: 'Speaking — Deutsch' };
 
 export default function SpeakPage() {
-  return <SpeakStudio />;
+  return <SpeakHub />;
 }

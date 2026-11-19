@@ -58,3 +58,40 @@ export function playAudio(src: string): Promise<void> {
   try { sharedAudio.currentTime = 0; } catch { /* not always settable before load */ }
   return sharedAudio.play().catch(() => { /* ignore autoplay/user-gesture errors */ });
 }
+
+// Plays the pre-generated clip for `text`; where there is none (new content before its audio is generated,
+// or a phrase built on the fly) the browser voice reads it instead.
+export function playOrSpeak(text: string): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (!sharedAudio) sharedAudio = new Audio();
+  sharedAudio.src = ttsSrc(text);
+  sharedAudio.playbackRate = playbackRate;
+  try { sharedAudio.currentTime = 0; } catch { /* not always settable before load */ }
+  return sharedAudio.play().catch(() => speakText(text));
+}
+
+// Plays a clip (or the browser voice when there is none) and resolves when it has finished, so a role-play can
+// wait for the partner to stop talking before it is the learner's turn.
+export function playUntilEnd(text: string): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (!sharedAudio) sharedAudio = new Audio();
+  const a = sharedAudio;
+  return new Promise<void>((resolve) => {
+    let settled = false;
+    const done = () => { if (settled) return; settled = true; a.removeEventListener('ended', done); a.removeEventListener('error', fallback); resolve(); };
+    const fallback = () => {
+      a.removeEventListener('ended', done);
+      if (typeof window === 'undefined' || !('speechSynthesis' in window)) { done(); return; }
+      speakText(text);
+      const u = window.speechSynthesis;
+      const poll = setInterval(() => { if (!u.speaking && !u.pending) { clearInterval(poll); done(); } }, 200);
+      setTimeout(() => { clearInterval(poll); done(); }, 15000);
+    };
+    a.addEventListener('ended', done);
+    a.addEventListener('error', fallback, { once: true });
+    a.src = ttsSrc(text);
+    a.playbackRate = playbackRate;
+    try { a.currentTime = 0; } catch { /* not always settable before load */ }
+    a.play().catch(fallback);
+  });
+}

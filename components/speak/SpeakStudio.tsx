@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Mic, Square, Volume2, ChevronRight, RotateCcw, Eye } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, Mic, Square, Volume2, ChevronRight, RotateCcw, Eye } from 'lucide-react';
 import { useLocale } from '@/lib/locale-store';
 import { t, type UIKey } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
@@ -13,6 +14,11 @@ import { pickSet, SPEAK_LEVELS, type SpeakItem, type SpeakLevel } from '@/lib/sp
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Segmented } from '@/components/ui/Segmented';
+import { useRecorder } from '@/lib/useRecorder';
+import { TakePlayer } from '@/components/sprechen/TakePlayer';
+import { sc } from '@/lib/sprechen-copy';
+import { addWeakWords, loadSprechen, recordSpeaking, saveSprechen } from '@/lib/sprechen-stats';
+import { dateKey } from '@/lib/progress';
 
 const SET_SIZE = 8;
 const XP_PER_SENTENCE = 5;
@@ -50,6 +56,9 @@ export function SpeakStudio() {
   const [finished, setFinished] = useState(false);
 
   const sr = useSpeechRecognition('de-DE', 3);
+  const recorder = useRecorder();
+  const [mine, setMine] = useState<Blob | null>(null);
+  const startedAt = useRef(0);
   const { reset: srReset } = sr;
   const processed = useRef<string[] | null>(null);
 
@@ -65,11 +74,17 @@ export function SpeakStudio() {
   const item = set[idx];
   const best = item && sr.alternatives && !sr.listening ? bestAlternative(sr.alternatives, item.de) : null;
 
+  // The recording ends with the recognition; keep it so the learner can hear themselves.
+  useEffect(() => { if (!sr.listening && recorder.recording) void recorder.stop().then(setMine); }, [sr.listening, recorder]);
+
   // Record the score (and XP, once per sentence per day) when a recognition finishes.
   useEffect(() => {
     if (!item || !best || sr.listening || !sr.alternatives || processed.current === sr.alternatives) return;
     processed.current = sr.alternatives;
     setAttempted((a) => ({ ...a, [item.id]: true }));
+    const missed = best.score.words.filter((w) => w.status !== 'ok').map((w) => w.word);
+    const seconds = startedAt.current ? (Date.now() - startedAt.current) / 1000 : 3;
+    saveSprechen(addWeakWords(recordSpeaking(loadSprechen(), dateKey(Date.now()), { seconds, words: item.de.split(/\s+/).length }), missed));
     setScores((s) => ({ ...s, [item.id]: Math.max(s[item.id] ?? 0, best.score.percent) }));
     if (best.score.passed) {
       const granted = claimPracticeXp(`speak:${item.id}`, XP_PER_SENTENCE, XP_DAILY_CAP);
@@ -89,6 +104,7 @@ export function SpeakStudio() {
 
   return (
     <div className="mx-auto max-w-[760px] px-5 py-8 md:py-12">
+      <Link href="/speak" className="inline-flex items-center gap-1.5 h-10 text-[14px] font-semibold text-text no-underline hover:underline"><ArrowLeft size={16} strokeWidth={2.4} /> {sc('backToHub', locale)}</Link>
       <h1 className="font-display font-extrabold text-[34px] md:text-[44px] tracking-tight m-0">{t('speakTitle', locale)}</h1>
       <p className="text-text-2 text-[17px] leading-relaxed mt-2 mb-6 max-w-[56ch]">{t('speakSubtitle', locale)}</p>
 
@@ -174,7 +190,7 @@ export function SpeakStudio() {
               <div className="mt-6 flex flex-col items-center gap-3">
                 <button
                   type="button"
-                  onClick={sr.listening ? sr.stop : sr.listen}
+                  onClick={sr.listening ? sr.stop : () => { setMine(null); startedAt.current = Date.now(); sr.listen(); void recorder.start(); }}
                   aria-label={t(sr.listening ? 'speakStop' : 'speakTap', locale)}
                   className={
                     'grid place-items-center w-[76px] h-[76px] rounded-full transition active:scale-95 ' +
@@ -207,6 +223,10 @@ export function SpeakStudio() {
                 {best.score.extra.length > 0 && (
                   <p className="text-muted text-[14px] mt-1 mb-0">{t('speakExtra', locale)}: {best.score.extra.join(', ')}</p>
                 )}
+                <div className="flex flex-wrap items-center gap-3 mt-4">
+                  {mine && <TakePlayer blob={mine} label={sc('playMine', locale)} />}
+                  <Button variant="secondary" size="sm" onClick={() => playAudio(ttsSrc(item.de))}><Volume2 size={16} />{sc('playModel', locale)}</Button>
+                </div>
                 <p className="text-muted text-[12.5px] mt-3 mb-0">{t('speakLegend', locale)}</p>
               </div>
             )}
