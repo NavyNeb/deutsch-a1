@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { Check, X, Volume2, ArrowUpRight } from 'lucide-react';
+import { Check, X, Volume2, Search } from 'lucide-react';
 import type { VocabItem } from '@/content/types';
 import type { MissedWord, RoundSummary } from '@/lib/game';
 import { ttsSrc, playAudio } from '@/lib/audio';
-import { wordHref } from '@/lib/word-links';
+import { dictSearchHref } from '@/lib/word-links';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
 import { pick } from '@/lib/i18n';
@@ -59,16 +59,18 @@ function MissedCard({ m }: { m: MissedWord }) {
         </p>
       )}
 
-      <div className="mt-3 rounded-xl bg-surface-2 px-3.5 py-2.5">
-        <p className="m-0 text-[15px] text-text font-medium">{item.example.de}</p>
-        <p className="m-0 mt-0.5 text-[13.5px] text-muted">{pick(item.example.en, item.example.fr, locale)}</p>
-      </div>
+      {item.example.de && (
+        <div className="mt-3 rounded-xl bg-surface-2 px-3.5 py-2.5">
+          <p className="m-0 text-[15px] text-text font-medium">{item.example.de}</p>
+          <p className="m-0 mt-0.5 text-[13.5px] text-muted">{pick(item.example.en, item.example.fr, locale)}</p>
+        </div>
+      )}
 
       <Link
-        href={wordHref(headword(item))}
-        className="mt-3 inline-flex items-center gap-1 text-[13.5px] font-semibold text-text no-underline hover:underline"
+        href={dictSearchHref(headword(item))}
+        className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-surface-2 px-4 py-2 text-[13.5px] font-semibold text-text no-underline hover:brightness-105 active:scale-[.98] transition"
       >
-        {t('openWordPage', locale)} <ArrowUpRight size={14} strokeWidth={2.4} aria-hidden="true" />
+        <Search size={14} strokeWidth={2.6} aria-hidden="true" /> {t('lookUpDictionary', locale)}
       </Link>
     </li>
   );
@@ -119,6 +121,10 @@ export function RoundReview({ summary }: { summary: RoundSummary }) {
                   <span className="font-display font-bold text-[16px] text-text">{v.german}</span>
                   <span className="text-muted text-[14px]"> — {meaning(v, locale)}</span>
                 </div>
+                <Link href={dictSearchHref(headword(v))} aria-label={`${t('lookUpDictionary', locale)}: ${v.german}`}
+                  className="grid place-items-center shrink-0 w-10 h-10 rounded-full bg-surface-2 text-text hover:brightness-105 active:scale-90 transition">
+                  <Search size={17} strokeWidth={2.4} />
+                </Link>
                 <Speak item={v} label={`${t('replayAudio', locale)}: ${v.german}`} />
               </li>
             ))}

@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Check, X } from 'lucide-react';
-import { allVocab } from '@/content';
+import { allVocabWithBank } from '@/content';
 import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
 import { dueVocabIds } from '@/lib/progress';
@@ -31,7 +31,7 @@ export function ReviewSession() {
   const router = useRouter();
   const { state, reviewCard } = useProgress();
   const { locale } = useLocale();
-  const vocab = useMemo(() => allVocab(), []);
+  const vocab = useMemo(() => allVocabWithBank(), []);
   const byId = useMemo(() => new Map(vocab.map((v) => [v.id, v])), [vocab]);
 
   // Freeze the due queue once, after hydration, so grading doesn't reshuffle it mid-session.

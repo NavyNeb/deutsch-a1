@@ -1,6 +1,6 @@
 'use client';
 import { X } from 'lucide-react';
-import { allVocab } from '@/content';
+import { allVocabWithBank } from '@/content';
 import { ttsSrc } from '@/lib/audio';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -13,7 +13,7 @@ import { Card } from '@/components/ui/Card';
 export function WordsToReview() {
   const { state, toggleHardWord } = useProgress();
   const { locale } = useLocale();
-  const vocab = allVocab();
+  const vocab = allVocabWithBank();
   const hardWords = state.hardWords
     .map((id) => vocab.find((v) => v.id === id))
     .filter((v): v is NonNullable<typeof v> => v != null);

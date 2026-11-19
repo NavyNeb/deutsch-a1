@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import Link from 'next/link';
-import { allVocab } from '@/content';
+import { allVocabWithBank } from '@/content';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
 import { t } from '@/lib/ui-strings';
@@ -12,7 +12,7 @@ export function DueCard() {
   const { state } = useProgress();
   const { locale } = useLocale();
   const due = dueVocabIds(state, Date.now());
-  const vocab = useMemo(() => (due.length ? allVocab() : []), [due.length]);
+  const vocab = useMemo(() => (due.length ? allVocabWithBank() : []), [due.length]);
   const sample = due.slice(0, 2).flatMap((id) => { const v = vocab.find((x) => x.id === id); return v ? [v] : []; });
 
   return (

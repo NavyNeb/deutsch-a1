@@ -1,3 +1,4 @@
+import { allBankWords } from './word-bank';
 import { parseLesson, type Lesson, type VocabItem, type Level } from './types';
 import { stepVocab } from './step-vocab';
 import { lektion1 } from './lessons/lektion-1';
@@ -142,6 +143,11 @@ export function allVocab(): VocabItem[] {
   return [...lessons, ...specials].flatMap((l) =>
     l.steps.flatMap(stepVocab)
   );
+}
+
+// Lesson vocabulary plus the Word Sprint word bank: what a saved or due word id can resolve to.
+export function allVocabWithBank(): VocabItem[] {
+  return [...allVocab(), ...allBankWords()];
 }
 
 // Vocabulary grouped by CEFR level (deduped by German word within a level) —

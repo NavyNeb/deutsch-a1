@@ -1,11 +1,17 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Volume2, Timer, Trophy, Check, X, ArrowRight, RotateCcw, Target } from 'lucide-react';
-import { allVocab } from '@/content';
-import type { VocabItem } from '@/content/types';
+import { Volume2, Timer, Trophy, Check, X, ArrowRight, RotateCcw, Target, CalendarCheck, Flame, BookmarkPlus } from 'lucide-react';
+import { vocabByLevel } from '@/content';
+import { bankByLevel } from '@/content/word-bank';
+import type { Level, VocabItem } from '@/content/types';
 import { ttsSrc, playAudio } from '@/lib/audio';
 import { buildPracticeQuestions, buildQuestions, loadBest, saveBest, summarizeRound, type Answer, type Question } from '@/lib/game';
+import { SPRINT_LEVELS, buildPools, dailyWords, poolFor } from '@/lib/sprint';
+import {
+  dailyStreak, emptyStats, isSeen, levelProgress, loadStats, recordAnswers, recordDaily, saveStats, type SprintStats,
+} from '@/lib/sprint-stats';
+import { dateKey } from '@/lib/progress';
 import { RoundReview } from './RoundReview';
 import { useProgress } from '@/lib/progress-store';
 import { useLocale } from '@/lib/locale-store';
@@ -15,8 +21,12 @@ import { pick } from '@/lib/i18n';
 const DURATION = 60;
 const BONUS = 1; // seconds added per correct answer
 const N = 60;
+const DAILY_N = 15;
 
 type Phase = 'ready' | 'playing' | 'over';
+type RoundKind = 'normal' | 'practice' | 'daily';
+
+const LEVEL_NAME: Record<Level, UIKey> = { A1: 'levelNameA1', A2: 'levelNameA2', B1: 'levelNameB1', B2: 'levelNameB2' };
 
 export function QuizGame({
   mode, gradient, illustration, titleKey, taglineKey, howToKey,
@@ -29,14 +39,18 @@ export function QuizGame({
   howToKey: UIKey;
 }) {
   const { locale } = useLocale();
-  const { awardXp } = useProgress();
+  const { state: progress, awardXp, toggleHardWord } = useProgress();
 
-  const pool = useMemo(() => {
-    const seen = new Set<string>();
-    return allVocab().filter((v) => (seen.has(v.german) ? false : (seen.add(v.german), true)));
-  }, []);
+  // Every word belongs to one level (the lowest that has it): lesson vocabulary plus the word bank.
+  const pools = useMemo(() => buildPools(vocabByLevel(), bankByLevel()), []);
+
+  const [level, setLevel] = useState<Level>('A1');
+  const [includeEasier, setIncludeEasier] = useState(false);
+  const [stats, setStats] = useState<SprintStats>(emptyStats);
+  const [hydrated, setHydrated] = useState(false);
 
   const [phase, setPhase] = useState<Phase>('ready');
+  const [kind, setKind] = useState<RoundKind>('normal');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -44,23 +58,41 @@ export function QuizGame({
   const [picked, setPicked] = useState<number | null>(null);
   const [best, setBest] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
-  const [practice, setPractice] = useState(false);
+  const [newWords, setNewWords] = useState(0);
+  const [saved, setSaved] = useState(false);
   const awarded = useRef(false);
 
-  useEffect(() => { setBest(loadBest(mode)); }, [mode]);
+  const today = dateKey(Date.now());
+  const pool = useMemo(() => poolFor(pools, level, includeEasier), [pools, level, includeEasier]);
+  const bestKey = `${mode}-${level}${includeEasier && level !== 'A1' ? '-mix' : ''}`;
+  const fixed = kind !== 'normal'; // practice and daily rounds end when their questions run out
+
+  useEffect(() => {
+    const s = loadStats();
+    setStats(s);
+    if (s.level) setLevel(s.level);
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => { setBest(loadBest(bestKey)); }, [bestKey]);
 
   const q = questions[idx];
 
   const speak = useCallback((item: VocabItem) => playAudio(ttsSrc(item.german)), []);
 
-  // A normal round, or — given the words just missed — a practice round of only those.
-  const start = (practiceWords?: VocabItem[]) => {
-    const isPractice = !!practiceWords?.length;
-    setQuestions(isPractice ? buildPracticeQuestions(pool, practiceWords) : buildQuestions(pool, N));
-    setPractice(isPractice);
+  // A normal round, a practice round of the words just missed, or today's daily set.
+  const start = (roundKind: RoundKind = 'normal', practiceWords?: VocabItem[]) => {
+    let qs: Question[];
+    if (roundKind === 'practice' && practiceWords?.length) qs = buildPracticeQuestions(pool, practiceWords);
+    else if (roundKind === 'daily') qs = buildPracticeQuestions(pools[level], dailyWords(pools[level], level, today, DAILY_N));
+    else { roundKind = 'normal'; qs = buildQuestions(pool, N); }
+    setQuestions(qs);
+    setKind(roundKind);
     setAnswers([]);
-    setIdx(0); setScore(0); setTime(DURATION); setPicked(null);
+    setIdx(0); setScore(0); setTime(DURATION); setPicked(null); setSaved(false); setNewWords(0);
     awarded.current = false;
+    const next = { ...stats, level };
+    setStats(next); saveStats(next);
     setPhase('playing');
   };
 
@@ -75,10 +107,17 @@ export function QuizGame({
   useEffect(() => {
     if (phase === 'playing' && time <= 0) {
       setPhase('over');
-      if (!practice) { saveBest(mode, score); setBest(loadBest(mode)); }
-      if (!awarded.current) { awarded.current = true; awardXp(score); }
+      if (kind === 'normal') { saveBest(bestKey, score); setBest(loadBest(bestKey)); }
+      if (!awarded.current) {
+        awarded.current = true;
+        awardXp(score);
+        setNewWords(new Set(answers.map((a) => a.question.prompt.id).filter((id) => !isSeen(stats.words[id]))).size);
+        let next = recordAnswers(stats, answers);
+        if (kind === 'daily') next = recordDaily(next, today, { level, score, total: answers.length });
+        setStats(next); saveStats(next);
+      }
     }
-  }, [time, phase, score, mode, practice, awardXp]);
+  }, [time, phase, score, kind, bestKey, answers, stats, today, level, awardXp]);
 
   // Auto-play the prompt when an audio question appears
   useEffect(() => {
@@ -95,14 +134,21 @@ export function QuizGame({
     setTimeout(() => {
       setPicked(null);
       if (next < questions.length) { setIdx(next); return; }
-      // Out of questions: a practice round ends here, a normal one reshuffles and keeps going.
-      if (practice) setTime(0);
+      // Out of questions: a practice or daily round ends here, a normal one reshuffles and keeps going.
+      if (fixed) setTime(0);
       else { setQuestions(buildQuestions(pool, N)); setIdx(0); }
     }, correct ? 320 : 620);
   };
 
+  const saveMissed = (items: VocabItem[]) => {
+    for (const it of items) if (!progress.hardWords.includes(it.id)) toggleHardWord(it.id);
+    setSaved(true);
+  };
+
   // ---- READY ----
   if (phase === 'ready') {
+    const todayRec = stats.daily[today];
+    const streak = dailyStreak(stats, today);
     return (
       <Shell gradient={gradient}>
         <div className="grid md:grid-cols-[1fr_0.8fr] gap-8 items-center">
@@ -111,43 +157,100 @@ export function QuizGame({
               {t(titleKey, locale)}
             </h1>
             <p className="text-text-2 text-[17px] leading-relaxed mt-4 mb-2 max-w-[46ch]">{t(taglineKey, locale)}</p>
-            <p className="text-muted text-[14px] leading-relaxed mb-7 max-w-[48ch]">{t(howToKey, locale)}</p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-              <button onClick={() => start()} className="inline-flex items-center justify-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
-                {t('startGame', locale)} <ArrowRight size={17} strokeWidth={2.5} />
-              </button>
-              {best > 0 && (
-                <span className="inline-flex items-center gap-1.5 label text-muted">
-                  <Trophy size={15} className="text-ember-text" /> {t('best', locale)} {best}
-                </span>
-              )}
-            </div>
+            <p className="text-muted text-[14px] leading-relaxed mb-0 max-w-[48ch]">{t(howToKey, locale)}</p>
           </div>
           <GameArt src={illustration} />
         </div>
+
+        <section className="mt-9" aria-label={t('chooseLevel', locale)}>
+          <h2 className="label text-muted m-0 mb-3">{t('chooseLevel', locale)}</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3" role="radiogroup" aria-label={t('chooseLevel', locale)}>
+            {SPRINT_LEVELS.map((l) => {
+              const ids = pools[l].map((v) => v.id);
+              const p = levelProgress(stats, ids);
+              const on = l === level;
+              return (
+                <button
+                  key={l} type="button" role="radio" aria-checked={on} onClick={() => setLevel(l)}
+                  className={'text-left rounded-[18px] border-2 p-4 transition-[border-color,transform] hover:-translate-y-0.5 ' + (on ? 'border-text bg-card shadow-card' : 'border-border bg-card/60')}
+                >
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="font-display font-extrabold text-[26px] leading-none text-text">{l}</span>
+                    <span className="text-[12px] text-muted">{p.total} {t('wordsInLevel', locale)}</span>
+                  </div>
+                  <div className="text-[13.5px] text-text-2 mt-1">{t(LEVEL_NAME[l], locale)}</div>
+                  <div className="h-1.5 rounded-full bg-surface-3 overflow-hidden mt-3">
+                    <div className="h-full rounded-full bg-text" style={{ width: `${hydrated && p.total ? Math.round((p.seen / p.total) * 100) : 0}%` }} />
+                  </div>
+                  <div className="text-[12px] text-muted mt-1.5 tabular-nums">
+                    {hydrated ? p.seen : 0} {t('wordsMetOf', locale)} · {hydrated ? p.mastered : 0} {t('wordsMasteredLabel', locale)}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {level !== 'A1' && (
+            <label className="mt-4 inline-flex items-center gap-2.5 text-[14px] text-text-2 cursor-pointer select-none">
+              <input type="checkbox" checked={includeEasier} onChange={(e) => setIncludeEasier(e.target.checked)} className="w-4 h-4 accent-[var(--text)]" />
+              {t('includeEasier', locale)}
+            </label>
+          )}
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mt-6">
+            <button onClick={() => start()} className="inline-flex items-center justify-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
+              {t('startGame', locale)} · {level} <ArrowRight size={17} strokeWidth={2.5} />
+            </button>
+            {best > 0 && (
+              <span className="inline-flex items-center gap-1.5 label text-muted">
+                <Trophy size={15} className="text-ember-text" /> {t('best', locale)} {best}
+              </span>
+            )}
+          </div>
+
+          <div data-testid="sprint-daily" className="mt-8 rounded-[20px] border border-border bg-card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+            <span className="grid place-items-center shrink-0 w-11 h-11 rounded-full bg-surface-2 text-text"><CalendarCheck size={22} strokeWidth={2.2} /></span>
+            <div className="flex-1 min-w-0">
+              <div className="font-display font-extrabold text-[17px] text-text">{t('dailyChallenge', locale)} · {level}</div>
+              <p className="text-muted text-[13.5px] m-0 mt-0.5">{t('dailyChallengeHint', locale)}</p>
+              {hydrated && (todayRec || streak > 0) && (
+                <p className="text-[13px] text-text-2 m-0 mt-1.5 inline-flex items-center gap-3">
+                  {todayRec && <span className="inline-flex items-center gap-1"><Check size={14} strokeWidth={3} className="text-[var(--ok-t)]" /> {t('dailyDoneToday', locale)} · {todayRec.level} {todayRec.score}/{todayRec.total}</span>}
+                  {streak > 0 && <span className="inline-flex items-center gap-1"><Flame size={14} className="text-ember-text" /> {streak} {t('dailyStreakDays', locale)}</span>}
+                </p>
+              )}
+            </div>
+            <button onClick={() => start('daily')} className="inline-flex items-center justify-center gap-2 font-display font-bold text-[14px] text-text bg-surface-2 rounded-full px-5 py-3 hover:brightness-105 active:scale-[.98] transition shrink-0">
+              {t('playNow', locale)} <ArrowRight size={16} strokeWidth={2.5} />
+            </button>
+          </div>
+        </section>
       </Shell>
     );
   }
 
   // ---- OVER ----
   if (phase === 'over') {
-    const isBest = !practice && score >= best && score > 0;
+    const isBest = kind === 'normal' && score >= best && score > 0;
     const summary = summarizeRound(answers);
+    const missedItems = summary.missed.map((m) => m.item);
     return (
       <Shell gradient={gradient}>
         <div className="max-w-[620px] mx-auto text-center">
           <GameArt src={illustration} small />
-          {practice && <p className="font-display font-extrabold text-text text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
+          {kind === 'practice' && <p className="font-display font-extrabold text-text text-[15px] tracking-wide uppercase mt-4 mb-1">{t('practiceRound', locale)}</p>}
+          {kind === 'daily' && <p className="font-display font-extrabold text-text text-[15px] tracking-wide uppercase mt-4 mb-1">{t('dailyRound', locale)} · {level}</p>}
           {isBest && <p className="font-display font-extrabold text-ember-text text-[15px] tracking-wide uppercase mt-4 mb-1">🏆 {t('newBest', locale)}</p>}
           <p className="label text-muted mt-2">{t('yourScore', locale)}</p>
           <div className="font-display font-extrabold text-[64px] leading-none text-text tabular-nums my-1">{score}</div>
-          <div className="flex items-center justify-center gap-6 mt-3 mb-8 text-[14px] text-muted">
-            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-ember-text" /> {t('best', locale)} {Math.max(best, score)}</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 mt-3 mb-8 text-[14px] text-muted">
+            <span className="inline-flex items-center gap-1.5"><Trophy size={15} className="text-ember-text" /> {t('best', locale)} {Math.max(best, kind === 'normal' ? score : 0)}</span>
             <span className="inline-flex items-center gap-1.5">+{score} {t('xpEarned', locale)}</span>
+            {newWords > 0 && <span className="inline-flex items-center gap-1.5">{newWords} {t('newWordsThisRound', locale)}</span>}
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {summary.missed.length > 0 && (
-              <button onClick={() => start(summary.missed.map((m) => m.item))} className="inline-flex items-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
+              <button onClick={() => start('practice', missedItems)} className="inline-flex items-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition">
                 <Target size={16} strokeWidth={2.5} /> {t('practiceMissed', locale)} ({summary.missed.length})
               </button>
             )}
@@ -156,10 +259,22 @@ export function QuizGame({
               : 'inline-flex items-center gap-2 font-display font-bold text-[15px] text-cta-ink bg-cta rounded-full px-6 py-3.5  hover:brightness-105 active:scale-[.98] transition'}>
               <RotateCcw size={16} strokeWidth={2.5} /> {t('playAgain', locale)}
             </button>
+            <button onClick={() => setPhase('ready')} className="font-display font-bold text-[15px] text-text bg-transparent border-none cursor-pointer hover:underline px-2 py-3">
+              {t('levelLabel', locale)}: {level}
+            </button>
             <Link href="/games" className="font-display font-bold text-[15px] text-text no-underline hover:text-text transition px-2 py-3">
               {t('backToGames', locale)}
             </Link>
           </div>
+          {summary.missed.length > 0 && (
+            <button
+              type="button" onClick={() => saveMissed(missedItems)} disabled={saved}
+              className="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-text-2 bg-transparent border-none cursor-pointer hover:underline disabled:cursor-default disabled:no-underline disabled:text-[var(--ok-t)]"
+            >
+              {saved ? <Check size={15} strokeWidth={3} /> : <BookmarkPlus size={15} strokeWidth={2.4} />}
+              {saved ? t('savedToDeck', locale) : t('saveMissedToDeck', locale)}
+            </button>
+          )}
           <RoundReview summary={summary} />
         </div>
       </Shell>
@@ -180,6 +295,7 @@ export function QuizGame({
           <div className="h-full rounded-full transition-[width] duration-1000 ease-linear"
             style={{ width: `${timePct * 100}%`, background: time <= 10 ? 'var(--ember)' : 'linear-gradient(90deg,var(--t1),var(--t1))' }} />
         </div>
+        <span className="label text-muted">{level}</span>
         <div className="inline-flex items-center gap-1.5 font-display font-extrabold text-[18px] tabular-nums text-text">
           <span className="text-ember-text">★</span> {score}
         </div>

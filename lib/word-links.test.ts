@@ -1,11 +1,17 @@
 import { describe, it, expect } from 'vitest';
-import { wordHref, lemmaOf, lessonSentences } from './word-links';
+import { wordHref, lemmaOf, lessonSentences, dictSearchHref } from './word-links';
 
 describe('word links', () => {
   it('encodes headwords and the optional query', () => {
     expect(wordHref('gehen')).toBe('/dictionary/gehen');
     expect(wordHref('Straße', 'strasse')).toBe('/dictionary/Stra%C3%9Fe?q=strasse');
     expect(wordHref('sich freuen')).toBe('/dictionary/sich%20freuen');
+  });
+
+  it('builds a dictionary search link with the query encoded', () => {
+    expect(dictSearchHref('Baum')).toBe('/dictionary?q=Baum');
+    expect(dictSearchHref('Straße')).toBe('/dictionary?q=Stra%C3%9Fe');
+    expect(dictSearchHref('sich freuen')).toBe('/dictionary?q=sich%20freuen');
   });
 
   it('links a form, English or fuzzy hit to its lemma', () => {

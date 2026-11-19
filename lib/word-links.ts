@@ -7,6 +7,11 @@ export function wordHref(headword: string, q?: string): string {
   return q ? `${base}?q=${encodeURIComponent(q)}` : base;
 }
 
+/** A dictionary search for `word`: opens the results page with the query already typed in. */
+export function dictSearchHref(word: string): string {
+  return `/dictionary?q=${encodeURIComponent(word)}`;
+}
+
 export function lemmaOf(hit: Pick<DictHit, 'entry'>): string {
   return hit.entry.w;
 }

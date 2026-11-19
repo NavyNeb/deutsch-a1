@@ -1,4 +1,5 @@
 import type { VocabItem } from '@/content/types';
+import { kindOf } from './sprint';
 
 export type Question = { prompt: VocabItem; choices: VocabItem[]; answer: number };
 
@@ -16,9 +17,12 @@ function usableOf(pool: VocabItem[]): VocabItem[] {
 }
 
 function makeQuestion(usable: VocabItem[], prompt: VocabItem): Question {
-  const distractors = shuffle(
-    usable.filter((v) => v.id !== prompt.id && v.english !== prompt.english),
-  ).slice(0, 3);
+  const others = usable.filter((v) => v.id !== prompt.id && v.english !== prompt.english);
+  // Wrong answers of the same word type first (a noun among nouns), so the right one cannot be spotted by its type.
+  const kind = kindOf(prompt);
+  const same = shuffle(others.filter((v) => kindOf(v) === kind));
+  const rest = shuffle(others.filter((v) => kindOf(v) !== kind));
+  const distractors = [...same, ...rest].slice(0, 3);
   const choices = shuffle([prompt, ...distractors]);
   return { prompt, choices, answer: choices.indexOf(prompt) };
 }
